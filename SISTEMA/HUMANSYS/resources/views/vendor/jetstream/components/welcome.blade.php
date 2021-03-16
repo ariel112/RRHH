@@ -5,7 +5,7 @@
                 <div class="content container-fluid">
 				
 					<!-- Page Header -->
-					<div class="page-header">
+					{{-- <div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
 								<h3 class="page-title">Welcome Admin!</h3>
@@ -14,7 +14,7 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<!-- /Page Header -->
 				
 					<div class="row">
@@ -26,7 +26,7 @@
 										<h3>112</h3>
 										<span>Projects</span>
 									</div>
-								</div>
+			 					</div>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">

@@ -7,7 +7,7 @@
 				<!-- Logo -->
                 <div class="header-left">
                     <a href="index.html" class="logo">
-						<img src="assets/img/logo.png" width="40" height="40" alt="">
+						{{-- <img src="assets/img/logo.png" width="40" height="40" alt=""> --}}
 					</a>
                 </div>
 				<!-- /Logo -->
@@ -22,7 +22,7 @@
 				
 				<!-- Header Title -->
                 <div class="page-title-box">
-					<h3>Dreamguy's Technologies</h3>
+					<h3>HUMANSYS</h3>
                 </div>
 				<!-- /Header Title -->
 				
@@ -32,7 +32,7 @@
 				<ul class="nav user-menu">
 				
 					<!-- Search -->
-					<li class="nav-item">
+					{{-- <li class="nav-item">
 						<div class="top-nav-search">
 							<a href="javascript:void(0);" class="responsive-search">
 								<i class="fa fa-search"></i>
@@ -42,11 +42,11 @@
 								<button class="btn" type="submit"><i class="fa fa-search"></i></button>
 							</form>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /Search -->
 				
 					<!-- Flag -->
-					<li class="nav-item dropdown has-arrow flag-nav">
+					{{-- <li class="nav-item dropdown has-arrow flag-nav">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
 							<img src="assets/img/flags/us.png" alt="" height="20"> <span>English</span>
 						</a>
@@ -64,7 +64,7 @@
 								<img src="assets/img/flags/de.png" alt="" height="16"> German
 							</a>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /Flag -->
 				
 					<!-- Notifications -->
@@ -347,16 +347,16 @@
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
 							<li class="menu-title"> 
-								<span>Main</span>
+								<span>Menu</span>
 							</li>
-							<li class="submenu">
+							{{-- <li class="submenu">
 								<a href="#"><i class="la la-dashboard"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a class="active" href="index.html">Admin Dashboard</a></li>
 									<li><a href="employee-dashboard.html">Employee Dashboard</a></li>
 								</ul>
-							</li>
-							<li class="submenu">
+							</li> --}}
+							{{-- <li class="submenu">
 								<a href="#"><i class="la la-cube"></i> <span> Apps</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="chat.html">Chat</a></li>
@@ -374,16 +374,16 @@
 									<li><a href="inbox.html">Email</a></li>
 									<li><a href="file-manager.html">File Manager</a></li>
 								</ul>
-							</li>
-							<li class="menu-title"> 
-								<span>Employees</span>
-							</li>
+							</li> --}}
+							{{-- <li class="menu-title"> 
+								<span>Empleados</span>
+							</li> --}}
 							<li class="submenu">
-								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Employees</span> <span class="menu-arrow"></span></a>
+								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="employees.html">All Employees</a></li>
-									<li><a href="holidays.html">Holidays</a></li>
-									<li><a href="leaves.html">Leaves (Admin) <span class="badge badge-pill bg-primary float-right">1</span></a></li>
+									<li><a href="employees.html">Buscar Empleados</a></li>
+									<li><a href="holidays.html">Vacaciones</a></li>
+									<li><a href="leaves.html">Soliciutd de vacaciones <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="leaves-employee.html">Leaves (Employee)</a></li>
 									<li><a href="leave-settings.html">Leave Settings</a></li>
 									<li><a href="attendance.html">Attendance (Admin)</a></li>
