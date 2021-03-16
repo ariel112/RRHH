@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class team_invitations extends Model
+class tipo_accion extends Model
 {
     use HasFactory;
-    protected $table = 'team_invitations';
-    protected $fillable = ['id', 'team_id', 'email', 'role'];
+    protected $table = 'tipo_accion';
+    protected $fillable = ['id', 'tipo'];
 }
