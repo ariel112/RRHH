@@ -12,7 +12,7 @@
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active">Dashboard</li>
 								</ul>
-							</div>
+							</div> 
 						</div>
 					</div> --}}
 					<!-- /Page Header -->
