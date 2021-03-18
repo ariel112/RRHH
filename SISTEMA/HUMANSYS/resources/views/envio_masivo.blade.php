@@ -7,10 +7,7 @@
 </head>
 <body>
     <p>Hola! Se ha reportado un nuevo caso de emergencia</p>
-    <p>Estos son los datos:</p>
-    <ul>
-        <li>Prueba: {{ $prueba }}</li>
-    </ul>
+
 
 </body>
 </html>

@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class EnvioMasivo extends Mailable
 {
     use Queueable, SerializesModels;
-    public $prueba;
+
 
     /**
      * Create a new message instance.
@@ -19,8 +19,8 @@ class EnvioMasivo extends Mailable
      */
     public function __construct()
     {
-        $this->prueba= $prueba;
-        
+
+
     }
 
     /**
@@ -30,6 +30,6 @@ class EnvioMasivo extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('envio_masivo');
     }
 }

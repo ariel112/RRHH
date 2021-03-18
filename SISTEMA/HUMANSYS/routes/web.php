@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('auth.login');
+});
+
+Route::get('/envio', function () {
+    Mail::to("yefryyo@gmail.com")->send(new EnvioMasivo("Yefry"));
     return view('auth.login');
 });
 
