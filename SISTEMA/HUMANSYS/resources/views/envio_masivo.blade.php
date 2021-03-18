@@ -6,8 +6,10 @@
     <title>Prueba de envio Masivo</title>
 </head>
 <body>
-    <p>Hola! Se ha reportado un nuevo caso de emergencia</p>
-
+    <p></p>
+    <h1>Lorem ipsum dolor sit amet!</h1>
+    <br>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quaerat, facere sequi rem, sunt voluptatum asperiores quisquam possimus dolorem praesentium velit laudantium maiores obcaecati distinctio ullam minus. Voluptate, ut similique?</p>
 
 </body>
 </html>

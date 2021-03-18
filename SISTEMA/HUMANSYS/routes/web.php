@@ -18,10 +18,12 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/envio', function () {
+/* Route::get('/envio', function () {
     Mail::to("yefryyo@gmail.com")->send(new EnvioMasivo("Yefry"));
     return view('auth.login');
-});
+}); */
+
+Route::get('/envio', [EnvioMasivo::class, 'build']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
