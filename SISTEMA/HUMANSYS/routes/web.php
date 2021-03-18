@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnvioController;
 use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,7 @@ Route::get('/', function () {
     return view('auth.login');
 }); */
 
-Route::get('/envio', [EnvioMasivo::class, 'build']);
+Route::get('/envio', [EnvioController::class, 'index'] );
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

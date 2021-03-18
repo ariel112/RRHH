@@ -21,9 +21,9 @@ class EnvioMasivo extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-       /* $this->user = $user; */
+        $this->user = $user; 
     }
 
 
@@ -37,7 +37,7 @@ class EnvioMasivo extends Mailable
      */
     public function build()
     {
-        Mail::to("yefryyo@gmail.com")->send(new EnvioMasivo("email"));
+      
         return $this->view('envio_masivo');
     }
 }

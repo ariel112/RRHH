@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\EnvioMasivo;
 use Illuminate\Http\Request;
+
+use App\Mail\SendMailable;
+use DB;
+use Illuminate\Support\Facades\Mail;
 
 class EnvioController extends Controller
 {
@@ -12,8 +17,9 @@ class EnvioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $user = DB::select('select * from users ');
+        Mail::to("yefryyo@gmail.com")->send(new EnvioMasivo($user));
     }
 
     /**

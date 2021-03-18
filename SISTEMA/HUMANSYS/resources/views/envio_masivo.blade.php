@@ -7,6 +7,9 @@
 </head>
 <body>
     <p></p>
+    @foreach ($user as $item)
+        <li>{{ $item->name }}</li>
+    @endforeach
     <h1>Lorem ipsum dolor sit amet!</h1>
     <br>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quaerat, facere sequi rem, sunt voluptatum asperiores quisquam possimus dolorem praesentium velit laudantium maiores obcaecati distinctio ullam minus. Voluptate, ut similique?</p>
