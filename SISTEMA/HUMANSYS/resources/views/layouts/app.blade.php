@@ -53,8 +53,8 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
-            </main>
-        </div>
+            </main> 
+        </div> 
 
         @stack('modals')
 

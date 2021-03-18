@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\EnvioController;
+use App\Http\Livewire\Empleado\EmpleadoIndex;
+use App\Http\Livewire\Empleado\EmpleadoPerfil;
 use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +31,8 @@ Route::get('/envio', [EnvioController::class, 'index'] );
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::get('/empleado/perfil', EmpleadoPerfil::class )->name('empleado.perfil');
+
+Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');

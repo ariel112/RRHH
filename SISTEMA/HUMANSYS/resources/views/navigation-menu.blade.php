@@ -233,7 +233,7 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="employees.html">Buscar Empleados</a></li>
+									<li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Buscar Empleados</a></li>
 									<li><a href="holidays.html">Vacaciones</a></li>
 									<li><a href="leaves.html">Solicitud de vacaciones <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="leaves-employee.html">Hojas Empleados</a></li>
