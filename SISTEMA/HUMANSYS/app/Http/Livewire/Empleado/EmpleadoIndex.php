@@ -4,10 +4,16 @@ namespace App\Http\Livewire\Empleado;
 
 use Livewire\Component;
 
+use App\Models\User;
+
 class EmpleadoIndex extends Component
 {
     public function render()
     {
-        return view('livewire.empleado.empleado-index');
+        $usuario = User::select('id')
+                        ->get();
+      
+        return view('livewire.empleado.empleado-index', compact("usuario"));
     }
+
 }

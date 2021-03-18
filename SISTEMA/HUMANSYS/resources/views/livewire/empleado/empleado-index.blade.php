@@ -7,7 +7,7 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Employee</h3>
+                    <h3 class="page-title"> </h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                         <li class="breadcrumb-item active">Employee</li>
@@ -60,7 +60,7 @@
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -69,14 +69,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">John Doe</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Doe</a></h4>
                     <div class="small text-muted">Web Designer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -85,14 +85,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Richard Miles</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Richard Miles</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-10.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-10.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -101,14 +101,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">John Smith</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Smith</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -117,14 +117,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Mike Litorus</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Mike Litorus</a></h4>
                     <div class="small text-muted">IOS Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -133,14 +133,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Wilmer Deluna</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Wilmer Deluna</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -149,14 +149,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Jeffrey Warden</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Jeffrey Warden</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -165,14 +165,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Bernardo Galaviz</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Bernardo Galaviz</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-01.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-01.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -181,14 +181,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Lesley Grauer</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Lesley Grauer</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-16.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-16.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -197,14 +197,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Jeffery Lalor</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Jeffery Lalor</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-04.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-04.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -213,14 +213,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Loren Gatlin</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Loren Gatlin</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-03.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-03.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -229,14 +229,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Tarah Shropshire</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Tarah Shropshire</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil') }}" class="avatar"><img src="assets/img/profiles/avatar-08.jpg" alt=""></a>
+                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-08.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -245,7 +245,7 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil') }}">Catherine Manseau</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Catherine Manseau</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>

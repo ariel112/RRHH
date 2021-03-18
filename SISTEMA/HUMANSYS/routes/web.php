@@ -33,6 +33,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 
-Route::get('/empleado/perfil', EmpleadoPerfil::class )->name('empleado.perfil');
+Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
 
 Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');
+// Route::get('/empleado', [EmpleadoIndex::class.'create'],  )->name('empleado.create');
+// Route::get('/empleado', [EmpleadoIndex::class.'delete'],  )->name('empleado.delete');
