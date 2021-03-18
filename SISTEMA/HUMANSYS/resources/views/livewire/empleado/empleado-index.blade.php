@@ -1,8 +1,8 @@
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -23,24 +23,24 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <input type="text" class="form-control floating">
                     <label class="focus-label">Employee ID</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <input type="text" class="form-control floating">
                     <label class="focus-label">Employee Name</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3"> 
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
+                    <select class="select floating">
                         <option>Select Designation</option>
                         <option>Web Developer</option>
                         <option>Web Designer</option>
@@ -50,12 +50,12 @@
                     <label class="focus-label">Designation</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
-                <a href="#" class="btn btn-success btn-block"> Search </a>  
+            <div class="col-sm-6 col-md-3">
+                <a href="#" class="btn btn-success btn-block"> Search </a>
             </div>
         </div>
         <!-- Search Filter -->
-        
+
         <div class="row staff-grid-row">
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
@@ -252,13 +252,13 @@
         </div>
     </div>
     <!-- /Page Content -->
-    
+
     <!-- Add Employee Modal -->
     <div id="add_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Employee</h5>
+                    <h5 class="modal-title">Crear empleado</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -268,19 +268,25 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text">
+                                    <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="pNombre" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Last Name</label>
-                                    <input class="form-control" type="text">
+                                    <label class="col-form-label">Segundo Nombre<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="sNombre" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Username <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Primer Apellido</label>
+                                    <input class="form-control" id="pApellido" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
                                     <input class="form-control" type="text">
                                 </div>
                             </div>
@@ -302,13 +308,13 @@
                                     <input class="form-control" type="password">
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
@@ -546,7 +552,7 @@
         </div>
     </div>
     <!-- /Add Employee Modal -->
-    
+
     <!-- Edit Employee Modal -->
     <div id="edit_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -596,13 +602,13 @@
                                     <input class="form-control" value="johndoe" type="password">
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
                                     <input type="text" value="FT-0001" readonly class="form-control floating">
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
                                     <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
@@ -841,7 +847,7 @@
         </div>
     </div>
     <!-- /Edit Employee Modal -->
-    
+
     <!-- Delete Employee Modal -->
     <div class="modal custom-modal fade" id="delete_employee" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
@@ -866,5 +872,5 @@
         </div>
     </div>
     <!-- /Delete Employee Modal -->
-    
+
 </div>
