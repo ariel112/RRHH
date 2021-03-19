@@ -258,7 +258,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear empleado</h5>
+                    <h5 class="modal-title">Crear Expediente de empleado</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -266,6 +266,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b>Datos personales</b>
+                                    <hr>
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
@@ -290,84 +296,128 @@
                                     <input class="form-control" id="segundo_apellido" type="text">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Grado Académico</label>
+                                    <select class="select">
+                                        <option value="" selected >Seleccione </option>
+                                        <option value="0">Primaria</option>
+                                        <option value="1">Secundaria</option>
+                                        <option value="2">Universidad</option>
+                                        <option value="3">PostGrados</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Numero de Identidad<span class="text-danger">*</span></label>
-                                    <input class="form-control" id="identidad" type="email">
+                                    <input class="form-control" id="identidad" type="text">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                    <input class="form-control" id="email" type="email">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="email_institucional" type="email">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Municipio<span class="text-danger">*</span></label>
-                                    <input type="text" id="municipio" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Telefono Secundario</label>
-                                    <input class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Fecha de Nacimiento</label>
                                     <input class="form-control" type="date">
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label class="col-form-label">Fecha de Ingreso al sistema</label>
-                                    <input class="form-control" type="date">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-2">
                                 <div class="form-group">
                                     <label class="col-form-label">Estado Civil</label>
                                     <select class="select">
-                                        <option value="" selected >Seleccione </option>
+                                        <option value="" selected>Seleccione </option>
                                         <option value="0">Soltero(a)</option>
                                         <option value="1">Casado(a)</option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b>Localización</b>
+                                    <hr>
+                                </div>
+                            </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label class="col-form-label">Estado</label>
+                                    <label class="col-form-label">Municipio</label>
                                     <select class="select">
                                         <option value="" selected >Seleccione </option>
-                                        <option value="0">Activo</option>
-                                        <option value="1">Inactivo</option>
+                                        <option value="0">Tegus</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-form-label">Grado Académico</label>
-                                    <select class="select">
-                                        <option value="" selected >Seleccione </option>
-                                        <option value="0">Primaria Completa</option>
-                                        <option value="1">Secundaria Completa</option>
-                                        <option value="2">Universidad Completa</option>
-                                        <option value="3">PostGrados</option>
-                                    </select>
+                                    <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="descripcion" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="numero_casa" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b>Contácto</b>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="email" type="email">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
+                                    <input class="form-control" id="email_institucional" type="email">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Telefono Secundario</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <b>Gerencial</b>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="col-form-label">Fecha de Ingreso</label>
+                                    <input class="form-control" type="date">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
+                                    <input class="form-control" id="descripcion_laboral" type="text">
                                 </div>
                             </div>
                         </div>
