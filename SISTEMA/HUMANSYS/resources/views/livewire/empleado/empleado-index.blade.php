@@ -267,8 +267,8 @@
                     <form>
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="card border-info ">
-                                    <div class="card-header rounded"><h3 class="card-header bg-info text-white text-center">Información personal</h3></div>
+                                <div class="card border-info">
+                                    <div class="card-header rounded"><h3 class="card-header text-primary text-center">Información personal</h3></div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -337,7 +337,7 @@
                             <div class="col-sm-12">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white text-center">Localización</h3>
+                                        <h3 class="card-header text-primary text-center">Localización</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -379,31 +379,33 @@
                             <div class="col-sm-12">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white text-center">Contácto</h3>
+                                        <h3 class="card-header text-primary text-center">Contácto</h3>
                                     </div>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="email" type="email">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                                        <input class="form-control" id="email" type="email">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="email_institucional" type="email">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
+                                                        <input class="form-control" id="email_institucional" type="email">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                    <input class="form-control" type="text">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
+                                                        <input class="form-control" type="text">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Telefono Secundario</label>
-                                                    <input class="form-control" type="text">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="col-form-label">Telefono Secundario</label>
+                                                        <input class="form-control" type="text">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,10 +413,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-12">
+                            <div class="col-sm-14">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white text-center">Gerencial</h3>
+                                        <h3 class="card-header text-primary text-center">Gerencial</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -437,10 +439,10 @@
                             <hr>
                                 <strong><b><h2>Referencia Personal</h2></b></strong>
                             <hr>
-                            <div class="col-sm-12">
+                            <div class="col-sm-14">
                                 <div class="card border-secondary">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-secondary text-white text-center">Datos de referencia</h3>
+                                        <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
