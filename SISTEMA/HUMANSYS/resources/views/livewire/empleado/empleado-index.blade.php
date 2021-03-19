@@ -268,7 +268,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card border-info ">
-                                    <div class="card-header rounded"><h3 class="card-header bg-info text-white">Información personal</h3></div>
+                                    <div class="card-header rounded"><h3 class="card-header bg-info text-white text-center">Información personal</h3></div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -337,7 +337,7 @@
                             <div class="col-sm-12">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white">Localización</h3>
+                                        <h3 class="card-header bg-info text-white text-center">Localización</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -379,7 +379,7 @@
                             <div class="col-sm-12">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white">Contácto</h3>
+                                        <h3 class="card-header bg-info text-white text-center">Contácto</h3>
                                     </div>
                                         <div class="row">
                                             <div class="col-sm-3">
@@ -414,7 +414,7 @@
                             <div class="col-sm-12">
                                 <div class="card border-info">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-info text-white">Gerencial</h3>
+                                        <h3 class="card-header bg-info text-white text-center">Gerencial</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -440,7 +440,7 @@
                             <div class="col-sm-12">
                                 <div class="card border-secondary">
                                     <div class="card-header">
-                                        <h3 class="card-header bg-secondary text-white">Datos de referencia</h3>
+                                        <h3 class="card-header bg-secondary text-white text-center">Datos de referencia</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
