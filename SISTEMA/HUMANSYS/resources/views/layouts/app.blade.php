@@ -60,6 +60,7 @@
 
         @livewireScripts
 
+
         {{-- etiquetas js del frotnend --}}
         	<!-- jQuery -->
             <script src="{{ asset('assets/js/jquery-3.2.1.min.js')}}"></script>

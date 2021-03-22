@@ -231,11 +231,9 @@
 							</li>
 							
 							<li class="submenu">
-								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
+								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Buscar Empleados</a></li>
-									<li><a href="holidays.html">Vacaciones</a></li>
-									<li><a href="leaves.html">Solicitud de vacaciones <span class="badge badge-pill bg-primary float-right">1</span></a></li>
 									<li><a href="leaves-employee.html">Hojas Empleados</a></li>
 									<li><a href="leave-settings.html">Leave Settings</a></li>
 									<li><a href="attendance.html">Asistencia (Admin)</a></li>
@@ -244,6 +242,23 @@
 									<li><a href="designations.html">Designaciones</a></li>
 									<li><a href="timesheet.html">Hojas de horas</a></li>
 									<li><a href="overtime.html">Horas extra</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
+								<a href="#" ><i class="la la-user"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar empleado</a></li>
+									<li><a href="{{ route('permisos.index_empleado') }}" >Bandeja Empleados</a></li>								
+								</ul>
+							</li>
+						
+							<li class="submenu">
+								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja</a></li>
+									<li><a href="{{ route('permisos.index_empleado') }}"  >Bandeja Empleados</a></li>
+									
+									
 								</ul>
 							</li>
 						

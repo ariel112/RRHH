@@ -1484,11 +1484,11 @@ table.dataTable thead > tr > td.sorting {
 	content: '';
 	width: 5px;
 	height: 5px;
-	border: 5px solid #228ee6;
+	border: 5px solid #fd0d05;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
-	background-color: #228ee6;
+	background-color: #d43f3f;
 	z-index: 10;
 	position: absolute;
 	right: 37px;
@@ -1496,7 +1496,7 @@ table.dataTable thead > tr > td.sorting {
 }
 .noti-dot:after {
 	content: '';
-	border: 4px solid #228ee6;
+	border: 4px solid #b63535;
 	background: transparent;
 	-webkit-border-radius: 60px;
 	-moz-border-radius: 60px;

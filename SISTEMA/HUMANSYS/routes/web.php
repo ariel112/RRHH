@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\EnvioController;
+use App\Http\Livewire\Contratos\Contratos;
 use App\Http\Livewire\Empleado\EmpleadoIndex;
 use App\Http\Livewire\Empleado\EmpleadoPerfil;
+use App\Http\Livewire\Permisos\Permisos;
+use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
@@ -37,8 +40,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //
     Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
+    Route::get('/empleado/listarempleados', [EmpleadoPerfil::class, 'listarempleados'] )->name('listarempleados');
     
     Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');
+
+    //contratos de empleados
+    Route::get('/contratos', Contratos::class)->name('contratos.index');
+
+
+    // permisos empleados
+    Route::get('/permisos', Permisos::class )->name('permisos.index');
+    Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
+
 
 });    
 
