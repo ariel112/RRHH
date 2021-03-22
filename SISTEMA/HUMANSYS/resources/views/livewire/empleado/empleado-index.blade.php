@@ -407,13 +407,13 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                        <input class="form-control" id=""type="text">
+                                                        <input class="form-control" id="telefono_1" name="telefono_1" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="col-form-label">Telefono Secundario</label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" id="telefono_2" name="telefono_2" type="text">
                                                     </div>
                                                 </div>
                                             </div>
@@ -432,14 +432,14 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Ingreso</label>
-                                                    <input class="form-control" type="date">
+                                                    <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
                                                     <select class="select">
-                                                        <option value="" selected="selected">Seleccione Estado</option>
+                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
                                                         <option value="1">ACTIVO</option>
                                                         <option value="2">INACTIVO</option>
                                                     </select>
@@ -448,7 +448,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
-                                                    <textarea id="descripcion_laboral" cols="30" rows="10"></textarea>
+                                                    <textarea id="descripcion_laboral" name="descripcion_laboral cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
                                         </div>
