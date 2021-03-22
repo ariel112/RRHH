@@ -56,7 +56,7 @@ class PermisosEmpleados extends Component
                 $permiso->hora_salida = $request['fechaFinal'];
                 $permiso->empleado_id = $idUser;
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                $permiso->estado_permiso = '3';//pendiente
+                $permiso->estado_permiso_id = '3';//pendiente
                 $permiso->hora_inicio = $request['horaInicio'];
                 $permiso->hora_final = $request['horaFinal'];
                 $permiso->save();
