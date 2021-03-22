@@ -1,8 +1,8 @@
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Leave Statistics -->
         <div class="row">
             <div class="col-md-3">
@@ -48,7 +48,7 @@
             </div>
         </div>
         <!-- /Leave Statistics -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -305,7 +305,7 @@
         </div>
     </div>
     <!-- /Page Content -->
-    
+
     <!-- Add Leave Modal -->
     <div id="add_leave" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -317,7 +317,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="formPermiso">
                         <div class="form-group">
                             <label>Tipo de permiso <span class="text-danger">*</span></label>
                             <select id="permisosEmpleado" class="select">
@@ -330,42 +330,44 @@
                         <div class="form-group">
                             <label>Fecha de inicio<span class="text-danger">*</span></label>
                             <div class="cal-icon">
-                                <input class="form-control datetimepicker" type="text">
+                                <input id="fechaInicio" class="form-control datetimepicker" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Fecha final <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" type="text">
+                            <div class="cal-icon"  >
+                                <input id="fechaFinal" class="form-control datetimepicker"   type="text" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                        <label>Hora de inicio <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control">                            
+                        <div id="horasPermisos" class="d-none">
+                            <div class="form-group">
+                                <label>Hora de inicio <span class="text-danger">*</span></label>
+                                <input id="horaInicial" type="time" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hora de final <span class="text-danger">*</span></label>
+                                <input id="horaFinal" type="time" class="form-control" required>
+                            </div>
+
                         </div>
 
-                        <div class="form-group">
-                        <label>Hora de final <span class="text-danger">*</span></label>
-                            <input type="time" class="form-control">                            
-                        </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Numero de días <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly type="text">
-                        </div>
-                        <div class="form-group">
+                            <input id="numDias" class="form-control" readonly type="text">
+                        </div> -->
+                        <!-- <div class="form-group">
                             <label>Remaining Leaves <span class="text-danger">*</span></label>
                             <input class="form-control" readonly value="12" type="text">
-                        </div>
-                        <!-- <div class="form-group">
+                        </div> -->
+                        <div class="form-group">
                             <label>Leave Reason <span class="text-danger">*</span></label>
                             <textarea rows="4" class="form-control"></textarea>
-                        </div> -->
-
-                        
+                        </div>
 
                         <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Submit</button>
+                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
                         </div>
                     </form>
                 </div>
@@ -373,7 +375,7 @@
         </div>
     </div>
     <!-- /Add Leave Modal -->
-    
+
     <!-- Edit Leave Modal -->
     <div id="edit_leave" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -426,7 +428,7 @@
         </div>
     </div>
     <!-- /Edit Leave Modal -->
-    
+
     <!-- Delete Leave Modal -->
     <div class="modal custom-modal fade" id="delete_approve" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
@@ -451,5 +453,5 @@
         </div>
     </div>
     <!-- /Delete Leave Modal -->
-    
+
 </div>
