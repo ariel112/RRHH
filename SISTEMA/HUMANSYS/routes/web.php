@@ -41,8 +41,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //
     Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
     Route::get('/empleado/listarempleados', [EmpleadoPerfil::class, 'listarempleados'] )->name('listarempleados');
-    
+
     Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');
+
+    //render Empleados
+    Route::get('/empleado', [EmpleadoController::class, 'show']);
 
     //contratos de empleados
     Route::get('/contratos', Contratos::class)->name('contratos.index');
@@ -53,7 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
 
 
-});    
+});
 
 
 
