@@ -35,9 +35,9 @@ class EmpleadoIndex extends Component
         $empleados->descripcion_laboral = $request['descripcion_laboral'];
         $empleados->telefono_1 = $request['telefono_1'];
         $empleados->telefono_2 = $request['telefono_2'];
-        $empleados->estatus_id = $request['estatus_id'];
-        $empleados->grado_academico_id = $request['grado_academico_id'];
-        $empleados->municipio_id = $request['municipio_id'];
+        $empleados->estatus_id = "1";
+        $empleados->grado_academico_id = "1";
+        $empleados->municipio_id = "5";
         $empleados -> save();
 
         return "Exito";
