@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i> Add Leave</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_leave"><i class="fa fa-plus"></i>Solicitar Permiso</a>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Leave</h5>
+                    <h5 class="modal-title">Solicitar Permiso</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -319,7 +319,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label>Leave Type <span class="text-danger">*</span></label>
+                            <label>Tipo de permiso <span class="text-danger">*</span></label>
                             <select id="permisosEmpleado" class="select">
                                 <!-- <option>Select Leave Type</option>
                                 <option>Casual Leave 12 Days</option>
@@ -328,29 +328,42 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>From <span class="text-danger">*</span></label>
+                            <label>Fecha de inicio<span class="text-danger">*</span></label>
                             <div class="cal-icon">
                                 <input class="form-control datetimepicker" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>To <span class="text-danger">*</span></label>
+                            <label>Fecha final <span class="text-danger">*</span></label>
                             <div class="cal-icon">
                                 <input class="form-control datetimepicker" type="text">
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label>Number of days <span class="text-danger">*</span></label>
+                        <label>Hora de inicio <span class="text-danger">*</span></label>
+                            <input type="time" class="form-control">                            
+                        </div>
+
+                        <div class="form-group">
+                        <label>Hora de final <span class="text-danger">*</span></label>
+                            <input type="time" class="form-control">                            
+                        </div>
+                        <div class="form-group">
+                            <label>Numero de días <span class="text-danger">*</span></label>
                             <input class="form-control" readonly type="text">
                         </div>
                         <div class="form-group">
                             <label>Remaining Leaves <span class="text-danger">*</span></label>
                             <input class="form-control" readonly value="12" type="text">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Leave Reason <span class="text-danger">*</span></label>
                             <textarea rows="4" class="form-control"></textarea>
-                        </div>
+                        </div> -->
+
+                        
+
                         <div class="submit-section">
                             <button class="btn btn-primary submit-btn">Submit</button>
                         </div>
