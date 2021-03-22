@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //contratos de empleados
     Route::get('/contratos', Contratos::class)->name('contratos.index');
 
-    Route::get('/contratos/show', [Contratos::class, 'contrato_show'])->name('contratos.show');
+    Route::post('/contratos/show', [Contratos::class, 'contrato_show'])->name('contratos.show');
 
 
     // permisos empleados
