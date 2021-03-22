@@ -1,4 +1,5 @@
 <div class="page-wrapper">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Page Content -->
     <div class="content container-fluid">
@@ -1021,7 +1022,7 @@
         </div>
     </div>
     <!-- /Delete Employee Modal -->
-    @livewireScripts
+
     <script>
         function cargoDeptos_pais(data){
             var html_select_deptos_pais ='';
@@ -1031,8 +1032,7 @@
 
             $('#select_deptos_pais').html(html_select_deptos_pais)
         }
-        (status)()
-
+        (status)();
         function status(){
             $.ajax({
                 type:"GET",
@@ -1049,7 +1049,9 @@
                 }
             })
         }
-
     </script>
+
+
+
 </div>
 
