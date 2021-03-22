@@ -46,6 +46,10 @@ class EmpleadoController extends Controller
      */
     public function show()
     {
+
+    }
+
+    public function getDeptos(){
         $depto_pais = DB::SELECT("select * from departamento_pais;");
         return $depto_pais;
     }

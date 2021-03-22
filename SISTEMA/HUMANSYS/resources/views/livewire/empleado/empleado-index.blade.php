@@ -1021,7 +1021,7 @@
         </div>
     </div>
     <!-- /Delete Employee Modal -->
-
+    @livewireScripts
     <script>
         function cargoDeptos_pais(data){
             var html_select_deptos_pais ='';
@@ -1043,7 +1043,6 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
                     cargoDeptos_pais(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

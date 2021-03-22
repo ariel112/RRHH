@@ -6,6 +6,7 @@ use App\Http\Livewire\Empleado\EmpleadoIndex;
 use App\Http\Livewire\Empleado\EmpleadoPerfil;
 use App\Http\Livewire\Permisos\Permisos;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
+use App\Http\Controllers\EmpleadoController;
 use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +46,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');
 
     //render Empleados
-    Route::get('/empleado', [EmpleadoController::class, 'show']);
+    Route::get('/empleado', [EmpleadoController::class, 'getDeptos']);
 
     //contratos de empleados
     Route::get('/contratos', Contratos::class)->name('contratos.index');
