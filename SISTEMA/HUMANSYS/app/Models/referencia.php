@@ -9,5 +9,13 @@ class referencia extends Model
 {
     use HasFactory;
     protected $table = 'referencia';
-    protected $fillable = ['id', 'nombre', 'identidad', 'telefono', 'email', 'direccion', 'parentezco', 'empleado_id'];
+    protected $fillable = [
+        'id',
+        'nombre',
+        'identidad',
+        'telefono',
+        'email',
+        'direccion',
+        'parentezco',
+        'empleado_id'];
 }

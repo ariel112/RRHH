@@ -50,6 +50,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/deptos_pais', [EmpleadoController::class, 'getDeptos']);
     Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
 
+    //Gestiones de Empleado
+    Route::get('/empleado/store', [EmpleadoController::class, 'store']);
+
 
 
     //contratos de empleados
@@ -60,7 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/permisos', Permisos::class )->name('permisos.index');
     Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
     Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
-    
+
 
 
 });

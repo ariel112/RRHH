@@ -24,10 +24,10 @@ class empleado extends Model
         'email_institucional',
         'estado_civil',
         'lugar_nacimiento',
-        'municipio',
         'descripcion_laboral',
         'telefono_1',
         'telefono_2',
         'estatus_id',
-        'grado_academico_id'];
+        'grado_academico_id',
+        'municipio_id'];
 }

@@ -301,10 +301,11 @@
                                                     <label class="col-form-label">Grado Académico</label>
                                                     <select class="select">
                                                         <option value="" selected >Seleccione </option>
-                                                        <option value="0">Primaria</option>
-                                                        <option value="1">Secundaria</option>
-                                                        <option value="2">Universidad</option>
-                                                        <option value="3">PostGrados</option>
+                                                        <option value="PRIMARIA">PRIMARIA</option>
+                                                        <option value="SECUNDARIA">SECUNDARIA</option>
+                                                        <option value="UNIVERSIDAD COMPLETA">UNIVERSIDAD COMPLETA</option>
+                                                        <option value="UNIVERSIDAD INCOMPLETA">UNIVERSIDAD INCOMPLETA</option>
+                                                        <option value="POSTGRADO">POSTGRADO</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -314,13 +315,19 @@
                                                     <input class="form-control" id="identidad" type="text">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="lugar_nacimiento" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Nacimiento</label>
                                                     <input class="form-control" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-2">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estado Civil</label>
                                                     <select class="select">
@@ -349,12 +356,12 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Municipio</label>
                                                     <select class="select" id="select_municipio">
-                                                        <option value="" selected >Seleccione </option>
-                                                        <option value="0">Tegus</option>
+                                                        <option value="" selected >Seleccione Municipio</option>
+
                                                     </select>
                                                 </div>
                                             </div>
@@ -427,8 +434,18 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
+                                                    <label class="col-form-label">Estatus</label>
+                                                    <select class="select">
+                                                        <option value="" selected="selected">Seleccione Estado</option>
+                                                        <option value="1">ACTIVO</option>
+                                                        <option value="2">INACTIVO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="descripcion_laboral" type="text">
+                                                    <textarea id="descripcion_laboral" cols="80" rows="6"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -471,12 +488,7 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                    <textarea class="form-control" id="direccion" cols="30" rows="10"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
+                                                    <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
                                                     <select name="parentezco" id="parentezco">
                                                         <option selected>Seleccione</option>
                                                         <option value="PADRE">Padre</option>
@@ -501,6 +513,13 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
+                                                    <textarea class="form-control" id="direccion" cols="30" rows="10"></textarea>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
