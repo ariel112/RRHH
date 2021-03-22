@@ -40,14 +40,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //
-    Route::get('/empleado', [EmpleadoController::class, 'getDeptos']);
+
     Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
     Route::get('/empleado/listarempleados', [EmpleadoPerfil::class, 'listarempleados'] )->name('listarempleados');
 
-    Route::get('/empleado', EmpleadoIndex::class,  )->name('empleado.index');
-    /* Route::get('/empleado', [EmpleadoController::class, 'getDeptos']); */
+    Route::get('/empleado', EmpleadoIndex::class,)->name('empleado.index');
 
-    //render Empleados
+    //Departamentos y Municipios
+    Route::get('/empleado/deptos_pais', [EmpleadoController::class, 'getDeptos']);
+    Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
+
 
 
     //contratos de empleados

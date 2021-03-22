@@ -345,14 +345,14 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento</label>
-                                                    <select class="select" id="select_deptos_pais">
+                                                    <select class="select" id="select_deptos_pais" onchange="selectValor()">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Municipio</label>
-                                                    <select class="select">
+                                                    <select class="select" id="select_municipio">
                                                         <option value="" selected >Seleccione </option>
                                                         <option value="0">Tegus</option>
                                                     </select>
@@ -1024,34 +1024,67 @@
     <!-- /Delete Employee Modal -->
 
     <script>
+
         function cargoDeptos_pais(data){
-            var html_select_deptos_pais ='';
+            var html_select_deptos_pais ='<option selected="selected">Seleccione Depto.</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptos_pais += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
-                 }
-
+                }
             $('#select_deptos_pais').html(html_select_deptos_pais)
         }
         (status)();
+
         function status(){
+            /* $.post('/empleado',{},function(data){
+                cargoDeptos_pais(data);
+        }); */
             $.ajax({
                 type:"GET",
-                url: "/empleado",
+                url: "/empleado/deptos_pais",
                 contentType: false,
                 cache: false,
                 processData:false,
                 dataType:"json",
                 success: function(data){
+                    console.log(data);
                     cargoDeptos_pais(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
-            })
+            });
+        }
+
+        function selectValor(){
+            var idDepto = document.getElementById("select_deptos_pais").value;
+            cargoMunicipio(idDepto);
+        }
+
+        function cargoMunicipio(idDepto){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/municipio/"+idDepto,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    renderMunicipio(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderMunicipio(data){
+            var html_select_municipio ='<option selected="selected">Seleccione Municipio</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#select_municipio').html(html_select_municipio)
         }
     </script>
-
-
-
 </div>
 

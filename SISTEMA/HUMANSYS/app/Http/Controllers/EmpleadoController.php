@@ -14,7 +14,7 @@ class EmpleadoController extends Controller
      */
     public function index()
     {
-        //
+        return view("empleado.empleado-index");
     }
 
     /**
@@ -54,6 +54,10 @@ class EmpleadoController extends Controller
         return $depto_pais;
     }
 
+    public function getMunicipios($idDepto){
+        $municipios = DB::SELECT("select * from municipio where departamento_pais_id ='$idDepto'");
+        return $municipios;
+    }
     /**
      * Show the form for editing the specified resource.
      *
