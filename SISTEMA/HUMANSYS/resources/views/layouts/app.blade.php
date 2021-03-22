@@ -123,15 +123,9 @@
         @yield('script')
 
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+¿
 
-    </body>
-</html>
-            <!-- Custom JS -->
-            <script src="{{ asset('assets/js/app.js')}}"></script>
-
-            <!-- Datetimepicker JS -->
-            <script src="{{ asset('assets/js/moment.min.js')}}"></script>
-            <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+      
             
             <!--JS permisos-->
 
