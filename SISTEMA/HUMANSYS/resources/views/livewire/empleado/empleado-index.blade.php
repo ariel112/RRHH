@@ -344,9 +344,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento</label>
-                                                    <select class="select">
-                                                        <option value="" selected >Seleccione </option>
-                                                        <option value="0">Intibuca</option>
+                                                    <select class="select" id="select_deptos_pais">
                                                     </select>
                                                 </div>
                                             </div>
@@ -1024,4 +1022,36 @@
     </div>
     <!-- /Delete Employee Modal -->
 
+    <script>
+        function cargoDeptos_pais(data){
+            var html_select_deptos_pais ='';
+            for (var i=0; i<data.length; ++i){
+                html_select_deptos_pais += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                 }
+
+            $('#select_deptos_pais').html(html_select_deptos_pais)
+        }
+
+        (status)();
+
+        function status(){
+            $.ajax({
+                type:"GET",
+                url: "http://127.0.0.1:8000/empleado",
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    cargoDeptos_pais(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+        }
+
+    </script>
 </div>
+
