@@ -60,11 +60,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //contratos de empleados
     Route::get('/contratos', Contratos::class)->name('contratos.index');
 
+    Route::get('/contratos/show', [Contratos::class, 'contrato_show'])->name('contratos.show');
+
 
     // permisos empleados
     Route::get('/permisos', Permisos::class )->name('permisos.index');
     Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
     Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
+    Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
 
 
 
