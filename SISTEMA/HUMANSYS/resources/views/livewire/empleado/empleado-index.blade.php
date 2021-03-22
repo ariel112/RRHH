@@ -278,65 +278,65 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="primer_nombre" type="text">
+                                                    <input class="form-control" id="primer_nombre" name="primer_nombre" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Segundo Nombre<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="segundo_nombre" type="text">
+                                                    <input class="form-control" id="segundo_nombre" name="segundo_nombre" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="primer_apellido" type="text">
+                                                    <input class="form-control" id="primer_apellido" name="primer_apellido"type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="segundo_apellido" type="text">
+                                                    <input class="form-control" id="segundo_apellido" name="segundo_apellido" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico</label>
-                                                    <select class="select">
+                                                    <select class="select" id="grado_academico_id" name="grado_academico_id">
                                                         <option value="" selected >Seleccione </option>
-                                                        <option value="PRIMARIA">PRIMARIA</option>
-                                                        <option value="SECUNDARIA">SECUNDARIA</option>
-                                                        <option value="UNIVERSIDAD COMPLETA">UNIVERSIDAD COMPLETA</option>
-                                                        <option value="UNIVERSIDAD INCOMPLETA">UNIVERSIDAD INCOMPLETA</option>
-                                                        <option value="POSTGRADO">POSTGRADO</option>
+                                                        <option value="1">PRIMARIA</option>
+                                                        <option value="2">SECUNDARIA</option>
+                                                        <option value="3">UNIVERSIDAD COMPLETA</option>
+                                                        <option value="4">UNIVERSIDAD INCOMPLETA</option>
+                                                        <option value="5">POSTGRADO</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Numero de Identidad<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="identidad" type="text">
+                                                    <input class="form-control" id="identidad" name="identidad" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="lugar_nacimiento" type="text">
+                                                    <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Nacimiento</label>
-                                                    <input class="form-control" type="date">
+                                                    <input class="form-control" name="fecha_naciemiento" id="fecha_naciemiento" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estado Civil</label>
-                                                    <select class="select">
-                                                        <option value="" selected>Seleccione </option>
-                                                        <option value="0">Soltero(a)</option>
-                                                        <option value="1">Casado(a)</option>
+                                                    <select class="select" id="estado_civil" name="estado_civil">
+                                                        <option selected>Seleccione </option>
+                                                        <option value="SOLTERO(a)">SOLTERO(a)</option>
+                                                        <option value="CASADO(a)">CASADO(a)</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -355,14 +355,14 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento</label>
-                                                    <select class="select" id="select_deptos_pais" onchange="selectValor()">
+                                                    <select class="select" id="select_deptos_pais" name="select_deptos_pais" onchange="selectValor()">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Municipio</label>
-                                                    <select class="select" id="select_municipio">
+                                                    <select class="select" id="select_municipio" name="select_municipio">
                                                         <option value="" selected >Seleccione Municipio</option>
 
                                                     </select>
@@ -371,13 +371,13 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="numero_casa" type="text">
+                                                    <input class="form-control" id="numero_casa" name="numero_casa" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                    <textarea class="form-control" id="descripcion" cols="30" rows="5"></textarea>
+                                                    <textarea class="form-control" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -395,19 +395,19 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                        <input class="form-control" id="email" type="email">
+                                                        <input class="form-control" id="email" name="email" type="email">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
-                                                        <input class="form-control" id="email_institucional" type="email">
+                                                        <input class="form-control" id="email_institucional" name="email_institucional" type="email">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
                                                         <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                        <input class="form-control" type="text">
+                                                        <input class="form-control" id=""type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
