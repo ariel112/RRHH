@@ -25,9 +25,23 @@
         <link rel="stylesheet" href="{{ asset('assets/css/line-awesome.min.css')}}">
 		<!-- Chart CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css')}}">
+
+        {{-- herencia de la parte de contratos --}}
+        	<!-- Select2 CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+        {{-- fin de la parte de contratos --}}
+
+
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
         {{-- fin del frontend --}}
+
+
+        {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+      
 
 
         @livewireStyles
@@ -76,9 +90,24 @@
             <script src="{{ asset('assets/plugins/morris/morris.min.js')}}"></script>
             <script src="{{ asset('assets/plugins/raphael/raphael.min.js')}}"></script>
             <script src="{{ asset('assets/js/chart.js')}}"></script>
+
+            {{-- herencia de la parte de contratos --}}
+            <!-- Select2 JS -->
+		    <script src="{{ asset('assets/js/select2.min.js')}}"></script>
+
+                   
+            <!-- Datetimepicker JS -->
+            <script src="{{ asset('assets/js/moment.min.js')}}"></script>
+            <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+            {{-- fin de la parte de contratos --}}
             
             <!-- Custom JS -->
             <script src="{{ asset('assets/js/app.js')}}"></script>
         {{-- fin de frontend --}}
+
+        @yield('script')
+
+        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
     </body>
 </html>
