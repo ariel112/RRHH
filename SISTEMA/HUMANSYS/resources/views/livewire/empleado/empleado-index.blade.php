@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee" ><i class="fa fa-plus"></i>Crear expediente de Empleado</a>
                     <div class="view-icons">
                         <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                         <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -1031,13 +1031,12 @@
 
             $('#select_deptos_pais').html(html_select_deptos_pais)
         }
-
-        (status)();
+        (status)()
 
         function status(){
             $.ajax({
                 type:"GET",
-                url: "http://127.0.0.1:8000/empleado",
+                url: "/empleado",
                 contentType: false,
                 cache: false,
                 processData:false,
