@@ -24,25 +24,25 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="stats-info">
-                    <h6>Annual Leave</h6>
+                    <h6>Vacaciones Anuales</h6>
                     <h4>12</h4>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-info">
-                    <h6>Medical Leave</h6>
+                    <h6>Permisos Medicos</h6>
                     <h4>3</h4>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-info">
-                    <h6>Other Leave</h6>
+                    <h6>Otros Permisos</h6>
                     <h4>4</h4>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="stats-info">
-                    <h6>Remaining Leave</h6>
+                    <h6>Vacaciones Restantes</h6>
                     <h4>5</h4>
                 </div>
             </div>
@@ -55,14 +55,14 @@
                     <table class="table table-striped custom-table mb-0 datatable">
                         <thead>
                             <tr>
-                                <th>Leave Type</th>
-                                <th>From</th>
-                                <th>To</th>
-                                <th>No of Days</th>
-                                <th>Reason</th>
-                                <th class="text-center">Status</th>
-                                <th>Approved by</th>
-                                <th class="text-right">Actions</th>
+                                <th>Tipo de permiso</th>
+                                <th>Fecha de inicio</th>
+                                <th>Fecha final</th>
+                                <th>Numero de dias</th>
+                                <th>Motivo</th>
+                                <th class="text-center">Estado</th>
+                                <th>Aprobado por</th>
+                                <th class="text-right">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -320,11 +320,11 @@
                     <form>
                         <div class="form-group">
                             <label>Leave Type <span class="text-danger">*</span></label>
-                            <select class="select">
-                                <option>Select Leave Type</option>
+                            <select id="permisosEmpleado" class="select">
+                                <!-- <option>Select Leave Type</option>
                                 <option>Casual Leave 12 Days</option>
                                 <option>Medical Leave</option>
-                                <option>Loss of Pay</option>
+                                <option>Loss of Pay</option> -->
                             </select>
                         </div>
                         <div class="form-group">
