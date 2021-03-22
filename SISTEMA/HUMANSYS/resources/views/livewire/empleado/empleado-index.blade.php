@@ -265,7 +265,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form class="form-group" id="formEmpleado">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card border-info">
@@ -442,10 +442,10 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-10">
+                                            <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
-                                                    <textarea id="descripcion_laboral" cols="80" rows="6"></textarea>
+                                                    <textarea id="descripcion_laboral" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -711,7 +711,7 @@
                             </table>
                         </div> --}}
                         <div class="submit-section">
-                            <button class="btn btn-success submit-btn">Agregar al Sistema</button>
+                            <button class="btn btn-success" type="submit" id="btnGuardarEmpleado" onclick="guardarEmpleado()">Agregar al Sistema</button>
                         </div>
                         <br>
                         <br>
@@ -1043,7 +1043,7 @@
     <!-- /Delete Employee Modal -->
 
     <script>
-
+        /* ------------Departamentos y municipios------------------- */
         function cargoDeptos_pais(data){
             var html_select_deptos_pais ='<option selected="selected">Seleccione Depto.</option>';
             for (var i=0; i<data.length; ++i){
@@ -1054,9 +1054,6 @@
         (status)();
 
         function status(){
-            /* $.post('/empleado',{},function(data){
-                cargoDeptos_pais(data);
-        }); */
             $.ajax({
                 type:"GET",
                 url: "/empleado/deptos_pais",
@@ -1104,6 +1101,32 @@
                 }
             $('#select_municipio').html(html_select_municipio)
         }
+        /* ---------------------------------------------------------------------- */
+
+        /* ------------------------Guardar Empleados------------------------------- */
+
+        function guardarEmpleado(){
+            evt.preventDefault();
+            $.ajax({
+                type:"POST",
+                url: "/empleado/store",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                console.log(data);
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+
+            })
+        }
+
+        /* ------------------------------------------------------------------------- */
     </script>
 </div>
 

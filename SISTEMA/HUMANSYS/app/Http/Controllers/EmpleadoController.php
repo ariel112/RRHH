@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\empleado;
+use App\Models\referencia;
 use Illuminate\Http\Request;
 use DB;
 
@@ -55,8 +56,14 @@ class EmpleadoController extends Controller
         $empleados->estatus_id = $request['estatus_id'];
         $empleados->grado_academico_id = $request['grado_academico_id'];
         $empleados->estatus_id = $request['municipio_id'];
-
         $empleados -> save();
+
+       /*  $referencias = new referencia();
+        $referencias->nombre = $request['nombre'];
+        $referencias->telefono = $request['telefono'];
+        $referencias->email = $request['email'];
+        $referencias->direccion = $request['direccion'];
+        $referencias->parentezco = $request['parentezco']; */
 
         return "Exito";
     }

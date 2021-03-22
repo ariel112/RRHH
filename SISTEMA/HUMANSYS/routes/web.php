@@ -51,8 +51,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
 
     //Gestiones de Empleado
-    Route::get('/empleado/store', [EmpleadoController::class, 'store']);
-
+    Route::post('/empleado/store', [EmpleadoController::class, 'store']);
 
 
     //contratos de empleados
