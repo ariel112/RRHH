@@ -1,3 +1,4 @@
+
 $(document).ready(opciones);
 
 function opciones(){
@@ -37,6 +38,13 @@ function opciones(){
 
 function enviarPermiso(){
 
+        let tipoPermiso = document.getElementById('permisosEmpleado').value;
+        let option = document.getElementById('permisosEmpleado');
+        let tipoPermisoText = option.options[option.selectedIndex].text;
+
+        //console.log(tipoPermisoText)
+
+
        let y = document.getElementById('fechaInicio').value;
        let ddi = y.substring(0, 2);
        let mmi = y.substring(3,5);
@@ -65,7 +73,9 @@ function enviarPermiso(){
        if(fechaFinal == fechaInicio){
 
             if(horaInicio && horaFinal){
-                    //guardar datos con hora
+                    axios.post('/permiso/empleado/guardar', {tipoPermisoTexto:tipoPermisoText, fechaInicio:fechaInicio,fechaFinal:fechaFinal, tipoPermiso:tipoPermiso, horaInicio:horaInicio, horaFinal:horaFinal})
+            }else{
+
             }
 
        }else{

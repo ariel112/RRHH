@@ -455,3 +455,7 @@
     <!-- /Delete Leave Modal -->
 
 </div>
+
+@section("script")
+<script src="{{ asset('assets/js/permisos/permisos.js') }}"></script>
+@endsection

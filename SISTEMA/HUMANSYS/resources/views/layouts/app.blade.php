@@ -129,7 +129,7 @@
             
             <!--JS permisos-->
 
-            <script src="{{ asset('assets/js/permisos/permisos.js') }}"></script>
+            
 
     {{-- fin de frontend --}}
 </body>
