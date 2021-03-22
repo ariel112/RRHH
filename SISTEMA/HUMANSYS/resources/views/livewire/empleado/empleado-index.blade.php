@@ -1106,7 +1106,7 @@
         /* ------------------------Guardar Empleados------------------------------- */
 
         function guardarEmpleado(){
-            evt.preventDefault();
+            event.preventDefault();
             $.ajax({
                 type:"POST",
                 url: "/empleado/store",
