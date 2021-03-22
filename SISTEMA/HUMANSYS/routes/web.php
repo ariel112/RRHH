@@ -65,6 +65,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/permisos', Permisos::class )->name('permisos.index');
     Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
     Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
+    Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
 
 
 
