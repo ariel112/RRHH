@@ -133,18 +133,18 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="form_contrato">
                         <div class="row">
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text">
+                                    <input class="form-control" name="num_contrato" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
-                                    <select class="select">
+                                    <select class="select" name="empleado_rrhh">
                                         <option value=""></option>
                                         <option value="2">HAZEL ALEJANDRA ESCOBAR RAMIREZ</option>
                                         <option value="1">ERASMO PORTILLO</option>
@@ -165,15 +165,15 @@
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
                                                 <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" type="text">
+                                                    <input class="form-control floating datetimepicker" type="text" name="fecha_inicio">
                                                 </div>
-                                                <label class="focus-label">Inicio de contrato <span class="text-danger">*</span></label>
+                                                <label class="focus-label">Inicio de contrato <span class="text-danger" >*</span></label>
                                             </div>                                           
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
                                                 <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" type="text">
+                                                    <input class="form-control floating datetimepicker" type="text" name="fecha_fin">
                                                 </div>
                                                 <label class="focus-label">Fin de contrato <span class="text-danger">*</span></label>
                                             </div>
@@ -185,7 +185,7 @@
                             <div class="col-sm-3">  
                                 <div class="form-group">
                                     <label class="col-form-label">Días de vaciones <span class="text-danger">*</span></label>
-                                    <select class="select">
+                                    <select class="select" name="vacaciones">
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -203,7 +203,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Colaborador <span class="text-danger">*</span></label>
-                                    <select class="js-data-example-ajax " style="width: 350px; height:40px;"></select>
+                                    <select class="js-data-example-ajax " style="width: 350px; height:40px;" name="empleado_id"></select>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -215,7 +215,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Sueldo <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" value="15000 LPS">
+                                    <input class="form-control" name="sueldo" type="text" value="15000 LPS">
                                 </div>
                             </div>
                             
@@ -241,8 +241,8 @@
                             
                         </div>
                        
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Crear</button>
+                        <div >
+                            <button id="crearcontrato" class="btn btn-primary submit-btn">Crear</button>
                         </div>
                     </form>
                 </div>
@@ -261,14 +261,36 @@
 <script>
   $(document).ready(function() {
 
-    // $('.js-data-example-ajax').select2({
-    //     ajax: {
-    //         url: 'https://api.github.com/search/repositories',
-    //         dataType: 'json'
-    //         // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
-    //     }
-    //     });
+ $('#crearcontrato').click(function (e) { 
+     e.preventDefault();
+     guardar();
+ });
+    function guardar() {  
+    // console.log('datos: ', $("#idPic").serialize());
+        
+            var data = new FormData($('#form_contrato').get(0));
+            $.ajax({
+            type:"POST",
+            url: "/empleado/store",
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType:"json",
+            success: function(data){  
+             console.log(data);
+                
+        
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+        
+            
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        })
+        }
 
+ 
     $('.js-data-example-ajax').select2({
   ajax: {
     url: 'https://reqres.in/api/users',

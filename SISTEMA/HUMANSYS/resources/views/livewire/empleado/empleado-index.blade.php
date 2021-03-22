@@ -327,7 +327,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Nacimiento</label>
-                                                    <input class="form-control" name="fecha_naciemiento" id="fecha_naciemiento" type="date">
+                                                    <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -362,7 +362,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Municipio</label>
-                                                    <select class="select" id="select_municipio" name="select_municipio">
+                                                    <select class="select" id="municipio_id" name="municipio_id">
                                                         <option value="" selected >Seleccione Municipio</option>
 
                                                     </select>
@@ -448,7 +448,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
-                                                    <textarea id="descripcion_laboral" name="descripcion_laboral cols="30" rows="10"></textarea>
+                                                    <textarea id="descripcion_laboral" name="descripcion_laboral" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -1102,7 +1102,7 @@
             for (var i=0; i<data.length; ++i){
                 html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#select_municipio').html(html_select_municipio)
+            $('#municipio_id').html(html_select_municipio)
         }
         /* ---------------------------------------------------------------------- */
 
