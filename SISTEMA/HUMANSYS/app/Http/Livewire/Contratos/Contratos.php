@@ -24,7 +24,7 @@ class Contratos extends Component
         $contrato->vacaciones = $request->vacaciones;
         $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = $request->horarios_id;
-        $contrato->users_aprueba_id = $request->users_aprueba_id;
+        $contrato->users_aprueba_id = 3;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
 
         $contrato->save();
