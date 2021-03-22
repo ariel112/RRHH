@@ -134,6 +134,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="form_contrato">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
                             <div class="col-sm-2">
                                 <div class="form-group">
@@ -271,7 +272,7 @@
             var data = new FormData($('#form_contrato').get(0));
             $.ajax({
             type:"POST",
-            url: "/empleado/store",
+            url: "/contratos/show",
             data: data,
             contentType: false,
             cache: false,
