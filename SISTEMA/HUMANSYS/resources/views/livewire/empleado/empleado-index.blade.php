@@ -1,6 +1,7 @@
 <div class="page-wrapper">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
     <!-- Page Content -->
     <div class="content container-fluid">
 
@@ -266,6 +267,8 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-group" id="formEmpleado">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                        <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="card border-info">
@@ -1106,7 +1109,8 @@
         /* ------------------------Guardar Empleados------------------------------- */
 
         function guardarEmpleado(){
-            evt.preventDefault();
+            event.preventDefault();
+            var data = new FormData($('#formEmpleado').get(0));
             $.ajax({
                 type:"POST",
                 url: "/empleado/store",
@@ -1124,6 +1128,7 @@
                 }
 
             })
+            $('#formEmpleado').trigger("reset");
         }
 
         /* ------------------------------------------------------------------------- */
