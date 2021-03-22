@@ -59,6 +59,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // permisos empleados
     Route::get('/permisos', Permisos::class )->name('permisos.index');
     Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
+    Route::get('/listado/permisos', PermisosEmpleados::class, 'obtenerPermisos');
+    
 
 
 });
