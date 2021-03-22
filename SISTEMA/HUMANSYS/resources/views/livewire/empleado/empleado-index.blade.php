@@ -1,4 +1,5 @@
 <div class="page-wrapper">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Page Content -->
     <div class="content container-fluid">
@@ -14,7 +15,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee" ><i class="fa fa-plus"></i>Crear expediente de Empleado</a>
                     <div class="view-icons">
                         <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                         <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -344,9 +345,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento</label>
-                                                    <select class="select">
-                                                        <option value="" selected >Seleccione </option>
-                                                        <option value="0">Intibuca</option>
+                                                    <select class="select" id="select_deptos_pais">
                                                     </select>
                                                 </div>
                                             </div>
@@ -1024,4 +1023,35 @@
     </div>
     <!-- /Delete Employee Modal -->
 
+    <script>
+        function cargoDeptos_pais(data){
+            var html_select_deptos_pais ='';
+            for (var i=0; i<data.length; ++i){
+                html_select_deptos_pais += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                 }
+
+            $('#select_deptos_pais').html(html_select_deptos_pais)
+        }
+        (status)();
+        function status(){
+            $.ajax({
+                type:"GET",
+                url: "/empleado",
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    cargoDeptos_pais(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+        }
+    </script>
+
+
+
 </div>
+

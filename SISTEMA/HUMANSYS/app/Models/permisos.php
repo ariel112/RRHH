@@ -9,5 +9,5 @@ class permisos extends Model
 {
     use HasFactory;
     protected $table = 'permisos';
-    protected $fillable = ['id', 'nombre', 'tipo_permiso', 'estado', 'hora_entrada', 'hora_salida', 'empleado_id', 'users_aprueba_id'];
+    protected $fillable = ['id', 'nombre',  'hora_entrada', 'hora_salida', 'empleado_id', 'users_aprueba_id','tipo_permiso',''];
 }
