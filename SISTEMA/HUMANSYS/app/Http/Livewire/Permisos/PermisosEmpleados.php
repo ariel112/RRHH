@@ -115,4 +115,16 @@ class PermisosEmpleados extends Component
 
         }
     }
+
+
+    public function listarPermisosEmpleados(){
+
+        $permisos = permisos::all();
+
+        // return response()->json([
+        //     'empleadoListado' => $permisos,
+        // ]);
+
+        return datatables()->of($permisos)->toJson();
+    }
 }

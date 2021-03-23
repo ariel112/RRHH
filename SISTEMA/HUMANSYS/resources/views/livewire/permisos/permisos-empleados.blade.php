@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0 datatable">
+                    <table id="empleadoListado" class="table table-striped custom-table mb-0">
                         <thead>
                             <tr>
                                 <th>Tipo de permiso</th>
@@ -60,13 +60,13 @@
                                 <th>Fecha final</th>
                                 <th>Numero de dias</th>
                                 <th>Motivo</th>
-                                <th class="text-center">Estado</th>
-                                <th>Aprobado por</th>
-                                <th class="text-right">Acciones</th>
+                                
+                                <!-- <th>Aprobado por</th> -->
+                                <!-- <th class="text-right">Acciones</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td>Casual Leave</td>
                                 <td>8 Mar 2019</td>
                                 <td>9 Mar 2019</td>
@@ -297,7 +297,7 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
