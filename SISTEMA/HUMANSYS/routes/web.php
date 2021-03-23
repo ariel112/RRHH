@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Apicontrollers;
 use App\Http\Controllers\EnvioController;
 use App\Http\Livewire\Contratos\Contratos;
 use App\Http\Livewire\Empleado\EmpleadoIndex;
@@ -55,6 +56,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     });
+
+    // listar gerentes
+    Route::get('/gerente', [Apicontrollers::class, 'gerente']);
 
 
     //contratos de empleados
