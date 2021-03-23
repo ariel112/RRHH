@@ -10,6 +10,7 @@ use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
+use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -83,6 +84,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // cargos crear
     Route::get('/cargos', Cargos::class )->name('cargos.index');
+    //guardar cargos
+    Route::post('/cargos/guardar', [cargo::class, 'cargo_show']);
 
 
 

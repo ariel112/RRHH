@@ -134,13 +134,7 @@
                     <form id="form_contrato">
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="num_contrato" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
                                     <select class="select" name="empleado_rrhh" id="selectDeptos" onchange="selectValor()">
@@ -148,12 +142,28 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Area <span class="text-danger">*</span></label>
                                     <select class="select" name="area" id="area">
                                         <option value=""></option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
+                                    <select class="select" name="tipo_empleado" id="tipo_empleado">
+                                        <option value=""></option>
+                                        <option value="1">Trabajador</option>
+                                        <option value="2">Patrono</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="num_contrato" type="text">
                                 </div>
                             </div>
 
@@ -168,7 +178,7 @@
                                         <div class="">
                                             <div class="input-group mb-3" >
                                                 <span  class="input-group-text reducir_input">1.</span>
-                                                <input type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="1">
+                                                <input type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]">
                                                 {{-- <span class="input-group-text">.00</span> --}}
                                               </div>
                                             
@@ -211,7 +221,7 @@ var campos_max          = 16;   //max de 10 campos
                 e.preventDefault();     //prevenir novos clicks
                 if (x < campos_max) {
                         $('#listas').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input"><b>'+x+'.</b></span>\
-                                <input type="text" class="form-control reducir_input" name="'+x+'" aria-label="Funciones del empleado">\
+                                <input type="text" class="form-control reducir_input" name="funciones[]" aria-label="Funciones del empleado">\
                                 <span class="input-group-text bg-danger reducir_input"><a  class="remover_campo btn btn-danger reducir_input"><i class="fa fa-minus fa-1x text-white reducir_input"></i></a></span></div>');
                         x++;
                 }
@@ -240,7 +250,7 @@ var campos_max          = 16;   //max de 10 campos
             var data = new FormData($('#form_contrato').get(0));
             $.ajax({
             type:"POST",
-            url: "/contratos/show",
+            url: "/cargos/guardar",
             data: data,
             contentType: false,
             cache: false,
@@ -291,7 +301,7 @@ function cargaDeptos(){
         processData:false,
         dataType:"json",
         success: function(data){
-            console.log(data);
+            // console.log(data);
             renderDeptos(data);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -324,7 +334,7 @@ function selectValor(){
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     renderarea(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
