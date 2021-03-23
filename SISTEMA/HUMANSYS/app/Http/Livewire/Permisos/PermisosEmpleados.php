@@ -58,8 +58,8 @@ class PermisosEmpleados extends Component
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
                 $permiso->nombre = $request['tipoPermisoTexto'];
                 $permiso->estado = '3'; //pendiente
-                $permiso->hora_entrada = $request['fechaInicio'];
-                $permiso->hora_salida = $request['fechaFinal'];
+                $permiso->fecha_inicio = $request['fechaInicio'];
+                $permiso->fecha_final = $request['fechaFinal'];
                 $permiso->empleado_id = $idEmpleado[0]['id'];
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
                 $permiso->estado_permiso_jefe_id = '3';//pendiente jefe

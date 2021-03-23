@@ -14,6 +14,6 @@ class permisos extends Model
 
     public $timestamps = true;
 
-    protected $fillable = ['id', 'nombre',  'hora_entrada', 'hora_salida', 'empleado_id',
-     'users_aprueba_id','tipo_permiso','estado_permiso','hora_inicio','hora_final'];
+    protected $fillable = ['id', 'nombre',  'fecha_inicio', 'fecha_final', 'empleado_id',
+     'tipo_permiso','estado_permiso_jefe_id','estado_permiso_jefe_rrhh','empleado_jefe_aprueba_id','empleado_rrhh_aprueba_id','hora_inicio','hora_final','motivo'];
 }
