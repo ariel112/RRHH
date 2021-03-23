@@ -189,8 +189,8 @@ function tableEmpleado(){
         serverSide: true,
             columns: [
                 {data: 'tipo_permiso', name: 'tipo_permiso'},
-                {data: 'hora_entrada', name: 'hora_entrada'},
-                {data: 'hora_salida', name: 'hora_salida'},
+                {data: 'fecha_inicio', name: 'fecha_inicio'},
+                {data: 'fecha_final', name: 'fecha_final'},
                 {data: 'motivo', name: 'motivo'},
                 {data: 'estado_permiso_jefe_id', name: 'estado_permiso_jefe_id'},
                 
