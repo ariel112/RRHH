@@ -8,6 +8,7 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 
 use DataTables;
+use Illuminate\Support\Facades\DB;
 
 class Cargos extends Component
 {
@@ -41,7 +42,7 @@ class Cargos extends Component
     }
 
 
-    public function cargos(){
+    public function cargo_listar(){
         $cargos = DB::select("SELECT A.id A.nombre cargo, B.nombre area, C.nombre gerencia, COUNT(1) funciones
                 FROM cargo A 
                 INNER JOIN area B 
