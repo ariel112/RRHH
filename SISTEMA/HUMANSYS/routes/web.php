@@ -8,6 +8,7 @@ use App\Http\Livewire\Empleado\EmpleadoPerfil;
 use App\Http\Livewire\Permisos\Permisos;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
 
 
+    // cargos crear
+    Route::get('/cargos', Cargos::class )->name('cargos.index');
 
 
 

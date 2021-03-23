@@ -242,6 +242,7 @@
 									<li><a href="designations.html">Designaciones</a></li>
 									<li><a href="timesheet.html">Hojas de horas</a></li>
 									<li><a href="overtime.html">Horas extra</a></li>
+									<li><a href="{{ route('cargos.index') }}" :active="request()->routeIs('cargos.index')" >Cargos</a></li>
 								</ul>
 							</li>
 							<li class="submenu">
