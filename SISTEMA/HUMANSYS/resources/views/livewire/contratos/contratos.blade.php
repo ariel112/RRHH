@@ -219,10 +219,10 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                    <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador">
-                                    {{-- <select class="js-data-example-ajax" wire:model="searchNombre" style="width: 350px; height:40px;" name="empleado_id"> --}}
-                                    <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" >
-                                        @if ($empleados->count())
+                                    {{-- <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador"> --}}
+                                    <select class="js-data-example-ajax" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                    {{-- <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" > --}}
+                                        {{--@if ($empleados->count())
                                             @foreach($empleados as $empleado)
                                                 <option style="width: 350px; height:40px;" class="select floating" value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
                                             @endforeach
@@ -230,7 +230,7 @@
                                             <div class="px-4 py-3 border-t border-gray-200 sm:px-6">
                                                 <option style="width: 350px; height:40px;" class="select floating" >No se encuentran resultados para {{$searchNombre}}</option>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                     </select>
                                 </div>
                             </div>
@@ -284,22 +284,23 @@
 
 
 <script>
-  $(document).ready(function() {
-
-
     $('.js-data-example-ajax').select2({
         ajax: {
-            url: '/empleado_contrato',
-            processResults: function (data) {
-            // Transforms the top-level key of the response object from 'items' to 'results'
-            console.log(data[0].nombre);
+            url:'/empleado_contrato',
 
+            processResults: function (data) {
+            /* console.log(data[0].nombre); */
             return {
                 results: data.nombre.items
-            };
+                };
             }
         }
 });
+
+  $(document).ready(function() {
+
+
+
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
      guardar();
