@@ -80,7 +80,7 @@ class PermisosEmpleados extends Component
 
                 $permiso = new permisos;
 
-                $permiso->tipo_permiso = $request['tipoPermiso'];
+                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
                 $permiso->nombre = $request['tipoPermisoTexto'];
                 $permiso->estado = '3'; //pendiente
                 $permiso->hora_entrada = $request['fechaInicio'];
