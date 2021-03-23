@@ -37,4 +37,13 @@ class Apicontrollers extends Controller
         return $empleado;
         
     }
+
+    public function area($id){
+        $area = DB::select("SELECT A.id, A.nombre
+        FROM area A 
+        WHERE A.departamento_id='$id");
+
+        return $area;
+        
+    }
 }

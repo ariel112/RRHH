@@ -143,7 +143,7 @@
                             <div class="col-sm-5">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
-                                    <select class="select" name="empleado_rrhh" id="selectDeptos">
+                                    <select class="select" name="empleado_rrhh" id="selectDeptos" onchange="selectValor()">
                                      
                                     </select>
                                 </div>
@@ -324,6 +324,41 @@ function cargaDeptos(){
         }
     });
 }
+
+
+// listo las areas
+
+function selectValor(){
+            var idDepto = document.getElementById("selectDeptos").value;
+            cargoMunicipio(idDepto);
+        }
+
+        function cargoMunicipio(idDepto){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/municipio/"+idDepto,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    renderMunicipio(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderMunicipio(data){
+            var html_select_municipio ='<option selected="selected">Seleccione area</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#area').html(html_select_municipio)
+        }
+// fin de las areas
 
 
 
