@@ -57,7 +57,7 @@
             for (var i=0; i<data.length; ++i){
                 html_select_deptos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#selectDeptos').html(html_select_deptos_pais)
+            $('#selectDeptos').html(html_select_deptos)
         }
 
         function cargaDeptos(){

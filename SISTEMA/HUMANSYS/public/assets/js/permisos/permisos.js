@@ -74,6 +74,16 @@ function enviarPermiso() {
                     
                     }).then( response => {
                         console.log(response.data)
+
+                        document.getElementById("formPermiso").reset();
+                        $('#add_leave').modal('hide');
+
+                        document.getElementById("horasPermisos").className = "d-none";  
+                        document.getElementById("enviar").className ="submit-section d-none"; 
+                        document.getElementById("verificar").className ="submit-section d-block";
+
+
+
                     }).catch( err =>{
                         console.error(err.response.data.exception);
                     })
@@ -99,6 +109,12 @@ function enviarPermiso() {
                     
                     }).then( response => {
                         console.log(response.data)
+                        document.getElementById("formPermiso").reset();
+                        $('#add_leave').modal('hide');
+
+                        document.getElementById("horasPermisos").className = "d-none";  
+                        document.getElementById("enviar").className ="submit-section d-none"; 
+                        document.getElementById("verificar").className ="submit-section d-block";
                     }).catch( err =>{
                         console.error(err.response.data.exception);
                     })

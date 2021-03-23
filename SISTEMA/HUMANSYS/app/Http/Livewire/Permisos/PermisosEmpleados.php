@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Permisos;
 
 use App\Models\tipo_permiso;
 use App\Models\permisos;
+use App\Models\empleado;
 use Auth;
 
 use Doctrine\DBAL\Query\QueryException;
@@ -44,17 +45,22 @@ class PermisosEmpleados extends Component
     public function guardarPermiso(Request $request){
         try{
 
-            $idUser = Auth::user()->id;
+            $identidadUser = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad','=',$identidadUser)
+                            ->select('id')
+                            ->get();
 
             if($request['unDia']==1){
 
                 $permiso = new permisos;
 
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
+                $permiso->nombre = $request['tipoPermisoTexto'];
                 $permiso->estado = '3'; //pendiente
                 $permiso->hora_entrada = $request['fechaInicio'];
                 $permiso->hora_salida = $request['fechaFinal'];
-                $permiso->empleado_id = $idUser;
+                $permiso->empleado_id = $idEmpleado[0]['id'];
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
                 $permiso->estado_permiso_jefe_id = '3';//pendiente jefe
                 $permiso->estado_permiso_rrhh_id = '5';//pendiente de recursos humanos
@@ -74,11 +80,12 @@ class PermisosEmpleados extends Component
 
                 $permiso = new permisos;
 
-                $permiso->tipo_permiso = $request['tipoPermiso'];
+                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
+                $permiso->nombre = $request['tipoPermisoTexto'];
                 $permiso->estado = '3'; //pendiente
                 $permiso->hora_entrada = $request['fechaInicio'];
                 $permiso->hora_salida = $request['fechaFinal'];
-                $permiso->empleado_id = $idUser;
+                $permiso->empleado_id = $idEmpleado[0]['id'];
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
                 $permiso->estado_permiso_jefe_id = '3';//pendiente jefe
                 $permiso->estado_permiso_rrhh_id = '5';//pendiente de recursos humanos
