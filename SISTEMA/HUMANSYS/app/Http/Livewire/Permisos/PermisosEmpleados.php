@@ -119,7 +119,10 @@ class PermisosEmpleados extends Component
 
     public function listarPermisosEmpleados(){
 
-        $permisos = permisos::all();
+        $permisos = permisos::join('estado_permiso','permisos.estado_permiso_jefe_id','=','estado_permiso.id')
+                            
+                            
+                            ->get();
 
         // return response()->json([
         //     'empleadoListado' => $permisos,
