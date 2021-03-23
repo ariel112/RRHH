@@ -21,7 +21,7 @@
                     <option>Android Developer</option>
                     <option>Ios Developer</option>
                 </select>
-                <label class="focus-label">Designation</label>
+                <label class="focus-label">Departamento</label>
             </div>
         </div>
         <div class="col-sm-4 col-md-3">
