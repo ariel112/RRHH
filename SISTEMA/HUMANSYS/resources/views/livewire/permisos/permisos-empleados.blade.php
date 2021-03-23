@@ -343,7 +343,7 @@
                         <div id="horasPermisos" class="d-none">
                             <div class="form-group">
                                 <label>Hora de inicio <span class="text-danger">*</span></label>
-                                <input id="horaInicial" type="time" class="form-control" required>
+                                <input id="horaInicio" type="time" class="form-control" required>
                             </div>
 
                             <div class="form-group">
