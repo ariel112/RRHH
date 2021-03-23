@@ -370,7 +370,7 @@
                             <button class="btn btn-success submit-btn" type="button" onclick="verificarData()" >Verificar</button>
                         </div>
 
-                        <div class="submit-section " id="enviar">
+                        <div class="submit-section d-none" id="enviar">
                             <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
                         </div>
                     </form>

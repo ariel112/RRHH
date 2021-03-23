@@ -55,61 +55,65 @@ function enviarPermiso() {
 
 
 
-     if(y && x && (y == x)){
+     if(y && x && (y == x) ){
 
-            if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
+                if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
 
-                axios.post("/permiso/empleado/guardar", {
-                    unDia:1,
-                    tipoPermisoTexto: tipoPermisoText,
-                    fechaInicio: fechaInicio,
-                    fechaFinal: fechaFinal,
-                    tipoPermiso: tipoPermiso,
-                    horaInicio: horaInicio,
-                    horaFinal: horaFinal,
-                    motivo: motivo,
-                   
-                }).then( response => {
-                    console.log(response.data)
-                }).catch( err =>{
-                    console.error(err.response.data.exception);
-                })
+                    axios.post("/permiso/empleado/guardar", {
+                        unDia:1,
+                        tipoPermisoTexto: tipoPermisoText,
+                        fechaInicio: fechaInicio,
+                        fechaFinal: fechaFinal,
+                        tipoPermiso: tipoPermiso,
+                        horaInicio: horaInicio,
+                        horaFinal: horaFinal,
+                        motivo: motivo,
+                    
+                    }).then( response => {
+                        console.log(response.data)
+                    }).catch( err =>{
+                        console.error(err.response.data.exception);
+                    })
 
-            }else{
-                //todos los campos son requeridos
-                console.log("todos los campos son requeridos")
-            }
+                    return;
+                }else{
+                    //todos los campos son requeridos
+                    console.log("todos los campos son requeridos")
+                    return;
+                }
 
      } else if( y && x && (y !== x)){
 
-            axios.post("/permiso/empleado/guardar", {
-                unDia:2,
-                tipoPermisoTexto: tipoPermisoText,
-                fechaInicio: fechaInicio,
-                fechaFinal: fechaFinal,
-                tipoPermiso: tipoPermiso,              
-                motivo: motivo,
-            
-            }).then( response => {
-                console.log(response.data)
-            }).catch( err =>{
-                console.error(err.response.data.exception);
-            })
+                if(tipoPermisoText && tipoPermiso && motivo ){
 
+                    axios.post("/permiso/empleado/guardar", {
+                        unDia:2,
+                        tipoPermisoTexto: tipoPermisoText,
+                        fechaInicio: fechaInicio,
+                        fechaFinal: fechaFinal,
+                        tipoPermiso: tipoPermiso,                       
+                        motivo: motivo,
+                    
+                    }).then( response => {
+                        console.log(response.data)
+                    }).catch( err =>{
+                        console.error(err.response.data.exception);
+                    })
+
+                    return;
+                }else{
+                    //todos los campos son requeridos
+                    console.log("todos los campos son requeridos")
+                    return;
+                }
+
+
+     }else{
+        console.log("todos los campos son requeridos")
+        return;
      }
     
-
-
-  
-
-       
-
-
-
     
-
-
-    return;
 }
 
 
@@ -134,14 +138,19 @@ function verificarData(){
 
 
         if(fechaInicio == fechaFinal){
+            document.getElementById("verificar").className =" d-none";
             document.getElementById("horasPermisos").className = "d-block";   
+            document.getElementById("enviar").className ="submit-section d-block";
+
                   
         }else{
-            document.getElementById("horasPermisos").className = "d-none";          
+            document.getElementById("verificar").className =" d-none";
+            document.getElementById("horasPermisos").className = "d-none";   
+            document.getElementById("enviar").className ="submit-section d-block";       
         }
 
-        document.getElementById("verificar").className =" d-none";
-        document.getElementById("enviar").className ="submit-section d-block";
+        
+       
     }
     
 
