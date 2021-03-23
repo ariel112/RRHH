@@ -43,7 +43,16 @@ class Cargos extends Component
 
 
     public function cargo_listar(){
-        $cargos = DB::select("SELECT A.id A.nombre cargo, B.nombre area, C.nombre gerencia, COUNT(1) funciones
+        // $cargos = DB::select("SELECT A.id, A.nombre cargo, B.nombre area, C.nombre gerencia
+        //         FROM cargo A 
+        //         INNER JOIN area B 
+        //         ON(A.area_id=B.id)
+        //         INNER JOIN departamento C 
+        //         ON(B.departamento_id=C.id)
+        //         LEFT JOIN funciones D 
+        //         ON(A.id=D.cargo_id)
+        //         ");
+        $cargos = DB::select("SELECT A.id, A.nombre cargo, B.nombre area, C.nombre gerencia, COUNT(1) funciones
                 FROM cargo A 
                 INNER JOIN area B 
                 ON(A.area_id=B.id)
@@ -51,12 +60,12 @@ class Cargos extends Component
                 ON(B.departamento_id=C.id)
                 LEFT JOIN funciones D 
                 ON(A.id=D.cargo_id)
-                GROUP by a.nombre");
+                GROUP by A.nombre, A.id, B.nombre, C.nombre");
 
         return Datatables::of($cargos)
         ->addColumn('action', function ($cargos) {
         
-       return '<div class="dropdown dropdown-action">
+       return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>

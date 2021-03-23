@@ -19,57 +19,31 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+{{--         
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">  
-                <div class="form-group form-focus">
-                    <div class="cal-icon">
-                        <input class="form-control floating datetimepicker" type="text">
-                    </div>
-                    <label class="focus-label">Desde</label>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">  
-                <div class="form-group form-focus">
-                    <div class="cal-icon">
-                        <input class="form-control floating datetimepicker" type="text">
-                    </div>
-                    <label class="focus-label">A</label>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3"> 
-                <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
-                        <option>Selecione estatus</option>
-                        <option>Activos</option>
-                        <option>Inactivos</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">  
-                <a href="#" class="btn btn-success btn-block"> Buscar </a>  
-            </div>     
+          
         </div>
         <!-- /Search Filter -->
-        
+         --}}
         
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0">
+                    <table class="table table-striped custom-table mb-0" id="tbl_cargos">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                {{-- <th>#</th> --}}
                                 <th>Cargo</th>
                                 <th>Area</th>
-                                <th>Departamento</th>
-                                <th>Estatus</th>
+                                <th>Gerencia</th>
+                                <th>Funciones</th>
+                                {{-- <th>Estatus</th> --}}
                                 <th class="text-right">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {{-- <tr>
                                 <td>1</td>
                                 <td><a href="invoice-view.html">#INV-0001</a></td>
                                 <td>Global Technologies</td>
@@ -88,7 +62,7 @@
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                            
                         </tbody>
                     </table>
@@ -187,6 +161,36 @@
 
 @section('script')
 
+
+<script>
+    $('#tbl_cargos').DataTable({
+  "language": {
+           "lengthMenu": "Mostrar _MENU_ registros",
+           "zeroRecords": "No se encontraron resultados",
+           "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+           "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+           "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+           "sSearch": "Buscar:",
+           "oPaginate": {
+               "sFirst": "Primero",
+               "sLast":"Último",
+               "sNext":"Siguiente",
+               "sPrevious": "Anterior"
+           },
+           "sProcessing":"Procesando...",},
+  
+  "serverSide": true,
+  processing: true,
+  "autoWidth": false,
+  "ajax": "/cargos/listar",
+  "columns": [
+     {data:'cargo'},
+     {data:'area'},
+     {data:'gerencia'},
+     {data:'funciones'},
+     {data:'action'}
+  ]});
+  </script>
 
 <script>
   $(document).ready(function() {
