@@ -116,11 +116,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        {{-- <div class="col-sm-6">
             <div class="form-group">
                 <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                 <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador">
-                {{-- <select class="js-data-example-ajax" wire:model="searchNombre" style="width: 350px; height:40px;" name="empleado_id"> --}}
+                <select class="js-data-example-ajax" wire:model="searchNombre" style="width: 350px; height:40px;" name="empleado_id">
                 <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" >
                     @if ($empleados->count())
                         @foreach($empleados as $empleado)
@@ -133,7 +133,7 @@
                     @endif
                 </select>
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- /Page Content -->
 
@@ -300,8 +300,6 @@
             }
         }
 });
-
-
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
      guardar();
