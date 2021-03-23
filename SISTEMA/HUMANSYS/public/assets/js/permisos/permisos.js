@@ -28,10 +28,14 @@ function opciones() {
 }
 
 function enviarPermiso() {
+
+    
+
     let tipoPermiso = document.getElementById("permisosEmpleado").value;
     let option = document.getElementById("permisosEmpleado");
     let tipoPermisoText = option.options[option.selectedIndex].text;
 
+    let motivo = document.getElementById("motivoPermiso").value;
     //console.log(tipoPermisoText)
 
     let y = document.getElementById("fechaInicio").value;
@@ -46,59 +50,102 @@ function enviarPermiso() {
     let mmf = x.substring(3, 5);
     let yyf = x.substring(6, 10);
 
+   
     let fechaFinal = yyf + "-" + mmf + "-" + ddf;
 
-        if (fechaFinal == fechaInicio) {
-            document.getElementById("horasPermisos").className = "d-block";
-        } else {
-            document.getElementById("horasPermisos").className = "d-none";
-        }
-
-    let horaInicio = document.getElementById("horaInicial").value;
-    let horaFinal = document.getElementById("horaFinal").value;
-
-                if (fechaFinal == fechaInicio) {
-                    
-                            if (horaInicio && horaFinal) {
-
-                                    axios.post("/permiso/empleado/guardar", {
-                                        unDia:1,
-                                        tipoPermisoTexto: tipoPermisoText,
-                                        fechaInicio: fechaInicio,
-                                        fechaFinal: fechaFinal,
-                                        tipoPermiso: tipoPermiso,
-                                        horaInicio: horaInicio,
-                                        horaFinal: horaFinal,
-                                       
-                                    }).then( response => {
-                                        console.log(response.data)
-                                    }).catch( err =>{
-                                        console.error(err.response.data.exception);
-                                    })
-
-                            } else {
-                                    console.log("horafinal y hora inicial son requeridas")
-                            }
-                } else {
-
-                    axios.post("/permiso/empleado/guardar", {
-                        unDia:2,
-                        tipoPermisoTexto: tipoPermisoText,
-                        fechaInicio: fechaInicio,
-                        fechaFinal: fechaFinal,
-                        tipoPermiso: tipoPermiso,
-                        
-                       
-                    }).then( response => {
-                        console.log(response.data)
-                    }).catch( err =>{
-                        console.error(err.response.data.exception);
-                    })
 
 
-                }
+     if(y && x && (y == x)){
 
-   
+            if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
+
+                axios.post("/permiso/empleado/guardar", {
+                    unDia:1,
+                    tipoPermisoTexto: tipoPermisoText,
+                    fechaInicio: fechaInicio,
+                    fechaFinal: fechaFinal,
+                    tipoPermiso: tipoPermiso,
+                    horaInicio: horaInicio,
+                    horaFinal: horaFinal,
+                    motivo: motivo,
+                   
+                }).then( response => {
+                    console.log(response.data)
+                }).catch( err =>{
+                    console.error(err.response.data.exception);
+                })
+
+            }else{
+                //todos los campos son requeridos
+                console.log("todos los campos son requeridos")
+            }
+
+     } else if( y && x && (y !== x)){
+
+            axios.post("/permiso/empleado/guardar", {
+                unDia:1,
+                tipoPermisoTexto: tipoPermisoText,
+                fechaInicio: fechaInicio,
+                fechaFinal: fechaFinal,
+                tipoPermiso: tipoPermiso,
+                horaInicio: "00:00",
+                horaFinal: horaFinal,
+                motivo: motivo,
+            
+            }).then( response => {
+                console.log(response.data)
+            }).catch( err =>{
+                console.error(err.response.data.exception);
+            })
+
+     }
+    
+
+
+  
+
+       
+
+
+
+    
+
 
     return;
+}
+
+
+function verificarData(){
+
+    let y = document.getElementById("fechaInicio").value;
+    let ddi = y.substring(0, 2);
+    let mmi = y.substring(3, 5);
+    let yyi = y.substring(6, 10);
+
+    let fechaInicio = yyi + "-" + mmi + "-" + ddi;
+
+    let x = document.getElementById("fechaFinal").value;
+    let ddf = x.substring(0, 2);
+    let mmf = x.substring(3, 5);
+    let yyf = x.substring(6, 10);
+
+   
+    let fechaFinal = yyf + "-" + mmf + "-" + ddf;
+
+    if(y && x){
+
+
+        if(fechaInicio == fechaFinal){
+            document.getElementById("horasPermisos").className = "d-block";   
+                  
+        }else{
+            document.getElementById("horasPermisos").className = "d-none";          
+        }
+
+        document.getElementById("verificar").className =" d-none";
+        document.getElementById("enviar").className ="submit-section d-block";
+    }
+    
+
+return;
 }
