@@ -85,7 +85,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // cargos crear
     Route::get('/cargos', Cargos::class )->name('cargos.index');
     //guardar cargos
-    Route::post('/cargos/guardar', [cargo::class, 'cargo_show']);
+    Route::post('/cargos/guardar', [Cargos::class, 'cargo_show']);
 
 
 

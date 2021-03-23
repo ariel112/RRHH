@@ -240,7 +240,7 @@ var campos_max          = 16;   //max de 10 campos
 
 
  $('#crearcargo').click(function (e) { 
-     e.preventDefault();
+    e.preventDefault();
      guardar();
  });
 

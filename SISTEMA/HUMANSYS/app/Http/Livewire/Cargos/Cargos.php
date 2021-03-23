@@ -19,12 +19,12 @@ class Cargos extends Component
 
         $cargo = new cargo();
         $cargo->nombre = $request->cargo;
-        $cargo->area_id = $request->area_id;
-        $cargo->empleado_id = $request->tipo_empleado;
+        $cargo->area_id = $request->area;
+        $cargo->tipo_empleado_id = $request->tipo_empleado;
         $cargo->save();
 
         $funciones = $request->input("funciones");
-        dd($funciones);
+   
         foreach ($funciones as $fun => $val) {
           $funcion = new funciones();
           $funcion->nombre=$val;
