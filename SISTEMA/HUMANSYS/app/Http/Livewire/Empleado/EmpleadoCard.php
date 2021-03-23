@@ -15,7 +15,7 @@ class EmpleadoCard extends Component
     public function render()
     {
         return view('livewire.empleado.empleado-card', [
-            'empleados' => empleado::where('nombre', 'LIKE',"%$this->searchNombre%")->paginate(2)
+            'empleados' => empleado::where('nombre', 'LIKE',"%$this->searchNombre%")->paginate(12)
             /* 'empleados' => empleado::where('identidad', 'LIKE',$this->searchIdentidad)->get() */
         ]);
     }
