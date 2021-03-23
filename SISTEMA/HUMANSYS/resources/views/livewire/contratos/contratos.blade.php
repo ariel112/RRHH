@@ -260,10 +260,27 @@
 <script>
   $(document).ready(function() {
 
+
+    $('.js-data-example-ajax').select2({
+  ajax: {
+    url: '/empleado_contrato',
+    processResults: function (data) {
+      // Transforms the top-level key of the response object from 'items' to 'results'
+      console.log(data[0].nombre);
+
+      return {
+        results: data.nombre.items
+      };
+    }
+  }
+});
+
+
  $('#crearcontrato').click(function (e) { 
      e.preventDefault();
      guardar();
  });
+
     function guardar() {  
     // console.log('datos: ', $("#idPic").serialize());
         
@@ -277,9 +294,8 @@
             processData:false,
             dataType:"json",
             success: function(data){  
-             console.log(data);
-                
-        
+            //  console.log(data);
+    
             },
             error: function (jqXHR, textStatus, errorThrown) {
         
@@ -290,23 +306,6 @@
         }
 
  
-    $('.js-data-example-ajax').select2({
-  ajax: {
-    url: 'https://reqres.in/api/users',
-    processResults: function (data) {
-      // Transforms the top-level key of the response object from 'items' to 'results'
-      console.log(data);
-      console.log(data.data[0].first_name);
-      return {
-        results: data.data.first_name.items
-      };
-    }
-  }
-});
-
-
-
-
 
 
 // cargo el encargado del componente
