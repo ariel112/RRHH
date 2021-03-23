@@ -1,8 +1,8 @@
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -19,10 +19,10 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
                         <input class="form-control floating datetimepicker" type="text">
@@ -30,7 +30,7 @@
                     <label class="focus-label">Desde</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
                         <input class="form-control floating datetimepicker" type="text">
@@ -38,21 +38,21 @@
                     <label class="focus-label">A</label>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3"> 
+            <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus select-focus">
-                    <select class="select floating"> 
+                    <select class="select floating">
                         <option>Selecione estatus</option>
                         <option>Activos</option>
                         <option>Inactivos</option>
                     </select>
                 </div>
             </div>
-            <div class="col-sm-6 col-md-3">  
-                <a href="#" class="btn btn-success btn-block"> Buscar </a>  
-            </div>     
+            <div class="col-sm-6 col-md-3">
+                <a href="#" class="btn btn-success btn-block"> Buscar </a>
+            </div>
         </div>
         <!-- /Search Filter -->
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -110,12 +110,30 @@
                                     </div>
                                 </td>
                             </tr>
-                           
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        {{-- <div class="col-sm-6">
+            <div class="form-group">
+                <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
+                <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador">
+                <select class="js-data-example-ajax" wire:model="searchNombre" style="width: 350px; height:40px;" name="empleado_id">
+                <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" >
+                    @if ($empleados->count())
+                        @foreach($empleados as $empleado)
+                            <option style="width: 350px; height:40px;" class="select floating" value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
+                        @endforeach
+                    @else
+                        <div class="px-4 py-3 border-t border-gray-200 sm:px-6">
+                            <option style="width: 350px; height:40px;" class="select floating" >No se encuentran resultados para {{$searchNombre}}</option>
+                        </div>
+                    @endif
+                </select>
+            </div>
+        </div> --}}
     </div>
     <!-- /Page Content -->
 
@@ -123,7 +141,7 @@
 
 
     <!-- Add Employee Modal -->
-    <div id="crear_contratos" class="modal custom-modal fade" role="dialog">
+    <div id="crear_contratos" class="modal custom-modal fade" role="dialog" >
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -167,7 +185,7 @@
                                                     <input class="form-control floating datetimepicker" type="text" name="fecha_inicio">
                                                 </div>
                                                 <label class="focus-label">Inicio de contrato <span class="text-danger" >*</span></label>
-                                            </div>                                           
+                                            </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
@@ -181,7 +199,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">  
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Días de vaciones <span class="text-danger">*</span></label>
                                     <select class="select" name="vacaciones">
@@ -198,11 +216,22 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Colaborador <span class="text-danger">*</span></label>
-                                    <select class="js-data-example-ajax " style="width: 350px; height:40px;" name="empleado_id"></select>
+                                    <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
+                                    <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador">
+                                    {{-- <select class="js-data-example-ajax" wire:model="searchNombre" style="width: 350px; height:40px;" name="empleado_id"> --}}
+                                    <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" >
+                                        @if ($empleados->count())
+                                            @foreach($empleados as $empleado)
+                                                <option style="width: 350px; height:40px;" class="select floating" value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
+                                            @endforeach
+                                        @else
+                                            <div class="px-4 py-3 border-t border-gray-200 sm:px-6">
+                                                <option style="width: 350px; height:40px;" class="select floating" >No se encuentran resultados para {{$searchNombre}}</option>
+                                            </div>
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -217,8 +246,8 @@
                                     <input class="form-control" name="sueldo" type="text" value="15000 LPS">
                                 </div>
                             </div>
-                            
-                          
+
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Gerencia <span class="text-danger">*</span></label>
@@ -235,11 +264,8 @@
                                     <input class="form-control" type="text" value="Adminstrador de sistemas" disabled>
                                 </div>
                             </div>
-                           
-                           
-                            
                         </div>
-                       
+
                         <div >
                             <button id="crearcontrato" class="btn btn-primary submit-btn">Crear</button>
                         </div>
@@ -250,8 +276,8 @@
     </div>
     <!-- /Add Employee Modal -->
 
-    
-    
+
+
 </div>
 
 @section('script')
@@ -262,28 +288,26 @@
 
 
     $('.js-data-example-ajax').select2({
-  ajax: {
-    url: '/empleado_contrato',
-    processResults: function (data) {
-      // Transforms the top-level key of the response object from 'items' to 'results'
-      console.log(data[0].nombre);
+        ajax: {
+            url: '/empleado_contrato',
+            processResults: function (data) {
+            // Transforms the top-level key of the response object from 'items' to 'results'
+            console.log(data[0].nombre);
 
-      return {
-        results: data.nombre.items
-      };
-    }
-  }
+            return {
+                results: data.nombre.items
+            };
+            }
+        }
 });
-
-
- $('#crearcontrato').click(function (e) { 
+ $('#crearcontrato').click(function (e) {
      e.preventDefault();
      guardar();
  });
 
-    function guardar() {  
+    function guardar() {
     // console.log('datos: ', $("#idPic").serialize());
-        
+
             var data = new FormData($('#form_contrato').get(0));
             $.ajax({
             type:"POST",
@@ -293,36 +317,36 @@
             cache: false,
             processData:false,
             dataType:"json",
-            success: function(data){  
+            success: function(data){
             //  console.log(data);
-    
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-        
-            
+
+
                 console.log(jqXHR, textStatus, errorThrown);
             }
         })
         }
 
- 
+
 
 
 // cargo el encargado del componente
 (gerente)();
 
-function gerente() {  
+function gerente() {
     // console.log('datos: ', $("#idPic").serialize());
-   
-  
+
+
     $.ajax({
     type:"GET",
     url: "/gerente",
-    contentType: false, 
+    contentType: false,
     cache: false,
     processData:false,
     dataType:"json",
-    success: function(data){  
+    success: function(data){
         console.log(data);
         cargo(data);
     },
@@ -338,7 +362,7 @@ function cargo(data){
      var html_select =' <option selected value="" disabled >Seleccione el encargado</option>';
      for (var i=0; i<data.length; ++i)
        html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
-      
+
        $('#empleado_rrhh').html(html_select)
  }
 
