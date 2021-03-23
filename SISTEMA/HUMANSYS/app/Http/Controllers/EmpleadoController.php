@@ -89,6 +89,11 @@ class EmpleadoController extends Controller
         $municipios = DB::SELECT("select * from municipio where departamento_pais_id ='$idDepto'");
         return $municipios;
     }
+
+    public function getDeptosEmpleado(){
+        $departamentos = DB::select("select * from departamento;");
+        return $departamentos;
+    }
     /**
      * Show the form for editing the specified resource.
      *
