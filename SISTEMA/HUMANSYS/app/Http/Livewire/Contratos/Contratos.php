@@ -5,12 +5,16 @@ namespace App\Http\Livewire\Contratos;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\contrato;
-
+use App\Models\empleado;
 class Contratos extends Component
 {
+    public $searchNombre ='';
+
     public function render()
     {
-        return view('livewire.contratos.contratos');
+        return view('livewire.contratos.contratos', [
+            'empleados' => empleado::where('nombre', 'LIKE',"%$this->searchNombre%")->get()
+        ]);
     }
 
     public function contrato_show(Request $request){
