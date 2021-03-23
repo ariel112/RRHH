@@ -26,11 +26,11 @@ class Apicontrollers extends Controller
     public function empleado_contrato(){
         $empleado = DB::select("SELECT A.id, A.identidad, A.nombre, D.nombre departamento, B.nombre cargo
         from empleado A
-        INNER JOIN cargo B
-        ON(A.id=B.empleado_id)
-        INNER JOIN area C
+        INNER JOIN cargo B 
+        ON(A.cargo_id=B.id)
+        INNER JOIN area C 
         ON(B.area_id=C.id)
-        INNER JOIN departamento D
+        INNER JOIN departamento D 
         ON(C.departamento_id=D.id)
         WHERE A.estatus_id = 1");
         return $empleado;
