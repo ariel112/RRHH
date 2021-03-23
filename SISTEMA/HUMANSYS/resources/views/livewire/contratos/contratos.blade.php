@@ -284,22 +284,21 @@
 
 
 <script>
+
+
+  $(document).ready(function() {
+
     $('.js-data-example-ajax').select2({
         ajax: {
             url:'/empleado_contrato',
-
             processResults: function (data) {
-            /* console.log(data[0].nombre); */
+            console.log(data);
             return {
-                results: data.nombre.items
+                results: data.tems.nombre
                 };
             }
         }
 });
-
-  $(document).ready(function() {
-
-
 
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
