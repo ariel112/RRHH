@@ -261,31 +261,6 @@ var campos_max          = 16;   //max de 10 campos
  
 
 
-// cargo el encargado del componente
-(gerente)();
-
-function gerente() {  
-    // console.log('datos: ', $("#idPic").serialize());
-   
-  
-    $.ajax({
-    type:"GET",
-    url: "/gerente",
-    contentType: false, 
-    cache: false,
-    processData:false,
-    dataType:"json",
-    success: function(data){  
-        console.log(data);
-        cargo(data);
-    },
-    error: function (jqXHR, textStatus, errorThrown) {
-
-        console.log(jqXHR, textStatus, errorThrown);
-    }
-})
-}
-
 
 function cargo(data){
      var html_select =' <option selected value="" disabled >Seleccione el departamento</option>';
@@ -326,24 +301,31 @@ function cargaDeptos(){
 }
 
 
-// listo las areas
+});
 
+
+
+
+
+
+// listo las areas
 function selectValor(){
             var idDepto = document.getElementById("selectDeptos").value;
-            cargoMunicipio(idDepto);
+            cargoarea(idDepto);
         }
 
-        function cargoMunicipio(idDepto){
+
+        function cargoarea(idDepto){
             $.ajax({
                 type:"GET",
-                url: "/empleado/municipio/"+idDepto,
+                url: "/area/"+idDepto,
                 contentType: false,
                 cache: false,
                 processData:false,
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-                    renderMunicipio(data);
+                    renderarea(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -351,7 +333,7 @@ function selectValor(){
             });
         }
 
-        function renderMunicipio(data){
+        function renderarea(data){
             var html_select_municipio ='<option selected="selected">Seleccione area</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
@@ -362,6 +344,6 @@ function selectValor(){
 
 
 
-});
+
 </script>
 @endsection
