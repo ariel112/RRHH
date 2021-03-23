@@ -14,13 +14,7 @@
         </div>
         <div class="col-sm-6 col-md-3">
             <div class="form-group form-focus select-focus">
-                <select class="select floating">
-                    <option selected="selected">Buscar por Departamentos</option>
-                    <option>Web Developer</option>
-                    <option>Web Designer</option>
-                    <option>Android Developer</option>
-                    <option>Ios Developer</option>
-                </select>
+                <select class="select floating" id="selectDeptos" name="selectDeptos"></select>
                 <label class="focus-label">Departamento</label>
             </div>
         </div>
@@ -57,8 +51,31 @@
 
     <script>
         (cargaDeptos)()
-        function cargaDeptos(){
 
+        function renderDeptos(data){
+            var html_select_deptos ='<option selected="selected">Mostrar por Departamentos</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_deptos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#selectDeptos').html(html_select_deptos_pais)
+        }
+
+        function cargaDeptos(){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/deptos",
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    renderDeptos(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
         }
     </script>
 
