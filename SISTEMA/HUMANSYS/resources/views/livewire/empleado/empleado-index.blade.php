@@ -11,12 +11,12 @@
                 <div class="col">
                     <h3 class="page-title"> </h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Employee</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Empleados</li>
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee" ><i class="fa fa-plus"></i>Crear expediente de Empleado</a>
+                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee" ><i class="fa fa-plus"></i>Registrar Nuevo Empleado</a>
                     <div class="view-icons">
                         <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                         <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -27,23 +27,23 @@
         <!-- /Page Header -->
 
         <!-- Search Filter -->
-        <div class="row filter-row">
+        {{-- <div class="row filter-row">
             <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
-                    <input type="text" class="form-control floating">
-                    <label class="focus-label">Employee ID</label>
+                    <input type="text" id="identidad" name="identidad" class="form-control floating">
+                    <label class="focus-label">Número de identidad</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
-                    <input type="text" class="form-control floating">
-                    <label class="focus-label">Employee Name</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control floating">
+                    <label class="focus-label">Nombre del empleado</label>
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus select-focus">
                     <select class="select floating">
-                        <option>Select Designation</option>
+                        <option selected="selected">Buscar por Cargos</option>
                         <option>Web Developer</option>
                         <option>Web Designer</option>
                         <option>Android Developer</option>
@@ -53,13 +53,14 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-3">
-                <a href="#" class="btn btn-success btn-block"> Search </a>
+                <a href="#" class="btn btn-success btn-block"> Buscar </a>
             </div>
-        </div>
+        </div> --}}
         <!-- Search Filter -->
 
+        @livewire('empleado.empleado-card')
         <div class="row staff-grid-row">
-            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
@@ -74,8 +75,8 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Doe</a></h4>
                     <div class="small text-muted">Web Designer</div>
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            </div> --}}
+            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
@@ -250,12 +251,12 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Catherine Manseau</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- /Page Content -->
 
-    <!-- Add Employee Modal -->
+    <!-- Crear expediente Modal -->
     <div id="add_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -303,7 +304,7 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico</label>
                                                     <select class="select" id="grado_academico_id" name="grado_academico_id">
-                                                        <option value="" selected >Seleccione </option>
+                                                        <option selected >Seleccione </option>
                                                         <option value="1">PRIMARIA</option>
                                                         <option value="2">SECUNDARIA</option>
                                                         <option value="3">UNIVERSIDAD COMPLETA</option>
@@ -723,9 +724,9 @@
             </div>
         </div>
     </div>
-    <!-- /Add Employee Modal -->
+    <!-- /Crear expediente Modal -->
 
-    <!-- Edit Employee Modal -->
+    <!-- Editar expediente Modal -->
     <div id="edit_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -1018,9 +1019,9 @@
             </div>
         </div>
     </div>
-    <!-- /Edit Employee Modal -->
+    <!-- /Editar expediente Modal -->
 
-    <!-- Delete Employee Modal -->
+    <!-- Eliminar expediente Modal -->
     <div class="modal custom-modal fade" id="delete_employee" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1043,7 +1044,7 @@
             </div>
         </div>
     </div>
-    <!-- /Delete Employee Modal -->
+    <!-- /Eliminar expediente Modal -->
 
     <script>
         /* ------------Departamentos y municipios------------------- */
