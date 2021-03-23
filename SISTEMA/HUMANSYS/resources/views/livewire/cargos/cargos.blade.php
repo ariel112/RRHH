@@ -53,6 +53,7 @@
         </div>
         <!-- /Search Filter -->
         
+        
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -83,26 +84,6 @@
                                             <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>
                                             <a class="dropdown-item" href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> Ver</a>
                                             <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Descargar</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="invoice-view.html">#INV-0002</a></td>
-                                <td>Delta Infotech</td>
-                                <td>11 Mar 2019</td>
-                                <td>17 Mar 2019</td>
-                                <td>$2099</td>
-                                <td><span class="badge bg-inverse-danger">Vencidos</span></td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                                            <a class="dropdown-item" href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> Vista</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Descargas</a>
                                             <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
                                         </div>
                                     </div>
@@ -163,7 +144,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="num_contrato" type="text">
+                                    <input class="form-control" name="cargo" type="text">
                                 </div>
                             </div>
 
