@@ -362,11 +362,15 @@
                             <input class="form-control" readonly value="12" type="text">
                         </div> -->
                         <div class="form-group">
-                            <label>Leave Reason <span class="text-danger">*</span></label>
-                            <textarea rows="4" class="form-control"></textarea>
+                            <label>Motivo<span class="text-danger">*</span></label>
+                            <textarea id="motivoPermiso" rows="4" class="form-control"></textarea>
                         </div>
 
-                        <div class="submit-section">
+                        <div class="submit-section" id="verificar">
+                            <button class="btn btn-success submit-btn" type="button" onclick="verificarData()" >Verificar</button>
+                        </div>
+
+                        <div class="submit-section " id="enviar">
                             <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
                         </div>
                     </form>
