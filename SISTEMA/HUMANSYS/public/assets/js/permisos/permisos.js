@@ -83,13 +83,11 @@ function enviarPermiso() {
      } else if( y && x && (y !== x)){
 
             axios.post("/permiso/empleado/guardar", {
-                unDia:1,
+                unDia:2,
                 tipoPermisoTexto: tipoPermisoText,
                 fechaInicio: fechaInicio,
                 fechaFinal: fechaFinal,
-                tipoPermiso: tipoPermiso,
-                horaInicio: "00:00",
-                horaFinal: horaFinal,
+                tipoPermiso: tipoPermiso,              
                 motivo: motivo,
             
             }).then( response => {
