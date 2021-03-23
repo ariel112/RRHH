@@ -57,6 +57,9 @@ function enviarPermiso() {
 
      if(y && x && (y == x) ){
 
+        let horaInicio = document.getElementById("horaInicio").value;
+        let horaFinal  = document.getElementById("horaFinal").value;
+
                 if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
 
                     axios.post("/permiso/empleado/guardar", {

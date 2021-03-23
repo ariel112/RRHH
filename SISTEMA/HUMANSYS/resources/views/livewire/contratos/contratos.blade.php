@@ -145,10 +145,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
-                                    <select class="select" name="empleado_rrhh">
+                                    <select class="select" name="empleado_rrhh" id="empleado_rrhh">
                                         <option value=""></option>
-                                        <option value="2">HAZEL ALEJANDRA ESCOBAR RAMIREZ</option>
-                                        <option value="1">ERASMO PORTILLO</option>
                                     </select>
                                 </div>
                             </div>
@@ -305,6 +303,53 @@
     }
   }
 });
+
+
+
+
+
+
+// cargo el encargado del componente
+(gerente)();
+
+function gerente() {  
+    // console.log('datos: ', $("#idPic").serialize());
+   
+  
+    $.ajax({
+    type:"GET",
+    url: "/gerente",
+    contentType: false, 
+    cache: false,
+    processData:false,
+    dataType:"json",
+    success: function(data){  
+        console.log(data);
+        cargo(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+
+        console.log(jqXHR, textStatus, errorThrown);
+    }
+})
+}
+
+
+function cargo(data){
+     var html_select =' <option selected value="" disabled >Seleccione el encargado</option>';
+     for (var i=0; i<data.length; ++i)
+       html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+      
+       $('#empleado_rrhh').html(html_select)
+ }
+
+
+
+
+
+
+
+
 
 });
 </script>

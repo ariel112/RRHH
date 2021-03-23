@@ -56,9 +56,11 @@ class PermisosEmpleados extends Component
                 $permiso->hora_salida = $request['fechaFinal'];
                 $permiso->empleado_id = $idUser;
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                $permiso->estado_permiso_id = '3';//pendiente
+                $permiso->estado_permiso_jefe_id = '3';//pendiente jefe
+                $permiso->estado_permiso_rrhh_id = '5';//pendiente de recursos humanos
                 $permiso->hora_inicio = $request['horaInicio'];
                 $permiso->hora_final = $request['horaFinal'];
+                $permiso->motivo = $request['motivo'];
                 $permiso->save();
 
                 return response()->json([
@@ -78,7 +80,9 @@ class PermisosEmpleados extends Component
                 $permiso->hora_salida = $request['fechaFinal'];
                 $permiso->empleado_id = $idUser;
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                $permiso->estado_permiso = '3';//pendiente
+                $permiso->estado_permiso_jefe_id = '3';//pendiente jefe
+                $permiso->estado_permiso_rrhh_id = '5';//pendiente de recursos humanos
+                $permiso->motivo = $request['motivo'];
               
                 $permiso->save();
 
