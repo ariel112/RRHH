@@ -58,10 +58,14 @@
                                 <th class="font-weight-bold">Tipo de permiso</th>
                                 <th class="font-weight-bold">Fecha de inicio</th>
                                 <th class="font-weight-bold">Fecha final</th>                                
-                                <th class="font-weight-bold">Motivo</th>
-                                <th class="font-weight-bold">Estado</th>
-                                
-                              
+                                <th class="font-weight-bold">Motivo</th>                                
+                                <th class="font-weight-bold">Aprobacion jefe inmediato</th>
+                                <th class="font-weight-bold">Aprobado por</th>
+                                <th class="font-weight-bold">Aprobacion talento humano</th>
+                                <th class="font-weight-bold">Aprobado por</th>
+                                <th class="font-weight-bold">Acciones</th>
+                                <!-- <th>Aprobado por</th> -->
+                                <!-- <th class="text-right">Acciones</th> -->
                             </tr>
                         </thead>
                         <tbody>
