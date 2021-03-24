@@ -24,7 +24,7 @@ class Apicontrollers extends Controller
     }
 
 
-    public function empleado_contrato(){
+    public function empleado_contrato(Request $request){
         /* $empleado = DB::select("SELECT A.id, A.identidad, A.nombre, D.nombre departamento, B.nombre cargo
         from empleado A
         INNER JOIN cargo B
@@ -36,8 +36,21 @@ class Apicontrollers extends Controller
         WHERE A.estatus_id = 1");
         return $empleado; */
 
-        $empleado =DB::select("select * from empleado;");
-        return $empleado;
+        $empleado = DB::select("SELECT A.id , D.nombre AS 'depto', A.identidad, A.sueldo, B.nombre, A.nombre AS 'text'
+        from empleado A
+        INNER JOIN cargo B
+        ON(A.cargo_id=B.id)
+        INNER JOIN area C
+        ON(B.area_id=C.id)
+        INNER JOIN departamento D
+        ON(C.departamento_id=D.id)
+        WHERE A.estatus_id = 1 AND ( A.nombre LIKE '%$request->term%')");
+
+        return response()->json($empleado);
+
+
+        /* $empleado =DB::select("select * from empleado;");
+        return $empleado; */
 
 
 
