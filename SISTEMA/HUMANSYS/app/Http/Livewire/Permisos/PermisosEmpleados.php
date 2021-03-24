@@ -84,8 +84,8 @@ class PermisosEmpleados extends Component
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
                 $permiso->nombre = $request['tipoPermisoTexto'];
                 $permiso->estado = '3'; //pendiente
-                $permiso->hora_entrada = $request['fechaInicio'];
-                $permiso->hora_salida = $request['fechaFinal'];
+                $permiso->fecha_inicio = $request['fechaInicio'];
+                $permiso->fecha_final = $request['fechaFinal'];
                 $permiso->empleado_id = $idEmpleado[0]['id'];
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
                 $permiso->estado_permiso_jefe_id = '3';//pendiente jefe
@@ -130,6 +130,13 @@ class PermisosEmpleados extends Component
 
         try{
 
+            $identidadUser =  Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad','=',$identidadUser)
+                            ->select('id')
+                            ->get();
+
+
             $permisos = DB::select('
             select 
             permisos.id as idPermiso,
@@ -153,7 +160,7 @@ class PermisosEmpleados extends Component
           from permisos
           inner join estado_permiso
           on permisos.estado_permiso_jefe_id = estado_permiso.id  
-          where permisos.empleado_id = 1;
+          where permisos.empleado_id = '.$idEmpleado[0]['id'].';
             ');
     
             return datatables()->of($permisos)
@@ -161,8 +168,8 @@ class PermisosEmpleados extends Component
                 $html = '<div class="dropdown dropdown-action">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_leave" onclick="editarPermiso('.$row->idPermiso.')"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_approve"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
+                    <a class="dropdown-item" href="#" onclick="editarPermiso('.$row->idPermiso.')"><i class="fa fa-pencil m-r-5"></i> Editar</a>
+                    <a class="dropdown-item" href="#" ><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
                 </div>
             </div>';
                 return $html;
@@ -178,6 +185,17 @@ class PermisosEmpleados extends Component
 
       
 
+
+    }
+
+
+    public function actualizarPermiso($id){
+
+        $permiso = permisos::where('id','=',$id)
+                            ->get();
+
+        
+        return response()->json(['permiso' => $permiso[0]]); 
 
     }
 }

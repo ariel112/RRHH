@@ -167,38 +167,48 @@
                     <form>
                         <div class="form-group">
                             <label>Leave Type <span class="text-danger">*</span></label>
-                            <select class="select">
-                                <option>Select Leave Type</option>
-                                <option>Casual Leave 12 Days</option>
+                            <select id="selectEdit" class="select" onclick="opciones()">                                
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>From <span class="text-danger">*</span></label>
+                            <label>Fecha de inicio<span class="text-danger">*</span></label>
                             <div class="cal-icon">
-                                <input class="form-control datetimepicker" value="01-01-2019" type="text">
+                                <input id="fechaInicioEdit" class="form-control datetimepicker" type="text" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>To <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker" value="01-01-2019" type="text">
+                            <label>Fecha final <span class="text-danger">*</span></label>
+                            <div class="cal-icon"  >
+                                <input id="fechaFinalEdit" class="form-control datetimepicker"   type="text" required>
                             </div>
                         </div>
+
+                        <div id="horarioEdit" class="d-none">
+                            <div class="form-group">
+                                <label>Hora de inicio <span class="text-danger">*</span></label>
+                                <input id="horaInicioEdit" type="time" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Hora de final <span class="text-danger">*</span></label>
+                                <input id="horaFinalEdit" type="time" class="form-control" required>
+                            </div>
+
+                        </div>
+                    
                         <div class="form-group">
-                            <label>Number of days <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly type="text" value="2">
+                            <label>Motivo<span class="text-danger">*</span></label>
+                            <textarea id="motivoEdit" rows="4" class="form-control"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label>Remaining Leaves <span class="text-danger">*</span></label>
-                            <input class="form-control" readonly value="12" type="text">
+
+                        <div class="submit-section" id="verificar">
+                            <button class="btn btn-success submit-btn" type="button" onclick="verificarData()" >Verificar</button>
                         </div>
-                        <div class="form-group">
-                            <label>Leave Reason <span class="text-danger">*</span></label>
-                            <textarea rows="4" class="form-control">Going to hospital</textarea>
+
+                        <div class="submit-section d-none" id="enviar">
+                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
                         </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Save</button>
-                        </div>
+
                     </form>
                 </div>
             </div>

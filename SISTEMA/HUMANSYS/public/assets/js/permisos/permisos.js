@@ -21,6 +21,7 @@ function opciones() {
             });
 
             document.getElementById("permisosEmpleado").innerHTML = lista;
+            document.getElementById("selectEdit").innerHTML = lista;
         })
         .catch((err) => {
             // console.error(err,"entro");
@@ -84,6 +85,7 @@ function enviarPermiso() {
                         document.getElementById("enviar").className ="submit-section d-none"; 
                         document.getElementById("verificar").className ="submit-section d-block";
 
+                        $('#empleadoListado').DataTable().ajax.reload()
 
 
                     }).catch( err =>{
@@ -117,6 +119,8 @@ function enviarPermiso() {
                         document.getElementById("horasPermisos").className = "d-none";  
                         document.getElementById("enviar").className ="submit-section d-none"; 
                         document.getElementById("verificar").className ="submit-section d-block";
+                        $('#empleadoListado').DataTable().ajax.reload()
+                       
                     }).catch( err =>{
                         console.error(err.response.data.exception);
                     })
@@ -208,7 +212,50 @@ function tableEmpleado(){
 
 
  function editarPermiso(idPermiso){
-     console.log(idPermiso)
+     
+    axios.put('/datos/permiso/'+idPermiso)
+    .then( response =>{
+              console.log(response.data.permiso.fecha_inicio)
+
+            let tipoPermisoEdit = document.getElementById("selectEdit")
+
+           // `<option value="${element.id}">${element.permiso}</option>`;
+          
+            tipoPermisoEdit.innerHTML = `<option value="${response.data.permiso.tipo_permiso_id}">${response.data.permiso.tipo_permiso}</option>`;
+           
+
+
+            let fechaInicioEdit = document.getElementById("fechaInicioEdit");
+            let fechaFinalEdit = document.getElementById("fechaFinalEdit");
+            let motivoEdit = document.getElementById("motivoEdit");
+
+            fechaInicioEdit.value = response.data.permiso.fecha_inicio;
+            fechaFinalEdit.value = response.data.permiso.fecha_final;
+
+            motivoEdit.value = response.data.permiso.motivo;
+
+            let horaInicio = response.data.permiso.hora_inicio;
+            let horaFinal = response.data.permiso.hora_final;
+
+        if( horaFinal && horaInicio ){
+
+                let horaInicioForm = document.getElementById("horaInicioEdit");
+                let horaFinalForm =  document.getElementById("horaFinalEdit");
+
+                horaInicioForm.value = horaInicio;
+                horaFinalForm.value = horaFinal; 
+
+                document.getElementById("horarioEdit").className="d-block";
+
+        }
+
+       // console.log(tipoPermisoEdit.value)
+        $("#edit_leave").modal()
+
+    })
+    .catch( err =>{
+        console.error(err);
+    })
 
 }
 
