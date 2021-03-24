@@ -303,9 +303,9 @@
          }
 
 });
-$('#empleado_id').on('change', function(e){
+/* $('#empleado_id').on('change', function(e){
     @this.set('empleado_id', e.target.value);
-});
+}); */
 
 /* $('#empleado_id').select2({
         source: function(request,response){
