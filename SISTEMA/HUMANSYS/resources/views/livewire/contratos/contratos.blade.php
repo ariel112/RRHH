@@ -244,7 +244,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Sueldo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="sueldo" type="text" value="15000 LPS">
+                                    <input class="form-control" name="sueldo" id="sueldo" type="text" value="15000 LPS">
                                 </div>
                             </div>
 
@@ -295,10 +295,26 @@
             type: 'GET',
             url:'/empleado_contrato',
             processResults: function (data) {
+                /* console.log(data[0].text); */
                 console.log(data);
+                /* console.log(data[1]); */
+
+                if(data.length == 3){
+                    Object.keys(data[0]).forEach(e => {
+                        console.log(data[0].text);
+                        var inputsueldo = document.getElementById("sueldo");
+                            inputsueldo.value = data[0].id;
+                    });
+                }else{
+                    console.log(data);
+                    /* data.forEach(element => {
+                        console.log(element.selected)
+                    }); */
+                }
                 return {
                     results: data
                     };
+
             }
          }
 
