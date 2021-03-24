@@ -131,11 +131,11 @@
                                     <br>
                                     <div id="listas" class="mt-1">
                                         <div class="">
-                                            <div class="input-group mb-3" >
+                                            {{-- <div class="input-group mb-3" >
                                                 <span  class="input-group-text reducir_input">1.</span>
                                                 <input type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]">
-                                                {{-- <span class="input-group-text">.00</span> --}}
-                                              </div>
+                                                 <span class="input-group-text">.00</span> 
+                                              </div> --}}
                                             
                                         </div>
                                         
@@ -357,7 +357,7 @@ var campos_max = 16;   //max de 10 campos
         $('#add_field').click (function(e) {
                 e.preventDefault();     //prevenir novos clicks
                 if (x < campos_max) {
-                        $('#listas').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input"><b>'+x+'.</b></span>\
+                        $('#listas').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input"><b>i.</b></span>\
                                 <input type="text" class="form-control reducir_input" name="funciones[]" aria-label="Funciones del empleado">\
                                 <span class="input-group-text bg-danger reducir_input"><a  class="remover_campo btn btn-danger reducir_input"><i class="fa fa-minus fa-1x text-white reducir_input"></i></a></span></div>');
                         x++;
@@ -403,11 +403,11 @@ var campos_max = 16;   //max de 10 campos
                
               $('#area').empty();
               $('#cargo').val('');
-                $('#listas').html('');
+              $('#listas').html('');
                 
-                 CierraPopup(modalID);
-                 alert();
-                 pintar_tabla();
+              CierraPopup(modalID);
+              alert();
+              pintar_tabla();
     
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -541,7 +541,7 @@ function setcargo(id){
                 i= 0;
                 data.funciones.forEach(dat => {
                     i++;
-                    funciones += '<span class="badge bg-inverse-success mt-1">'+i+'.'+dat.nombre+' </span> <br>';
+                    funciones += '<span class="badge bg-inverse-success mt-1">i.'+dat.nombre+' </span> <br>';
                 });
             $('#areafunciones').html(funciones)
         }
@@ -652,7 +652,7 @@ function editcargo(id){
               i= 0;
               data.funciones.forEach(dat => {
                   i++;
-                  funciones += '<span class="badge bg-inverse-success mt-1">'+i+'.'+dat.nombre+' </span> <br>';
+                  funciones += '<span class="badge bg-inverse-success mt-1">i.'+dat.nombre+' </span> <br>';
               });
           $('#areafunciones').html(funciones)
           
@@ -740,7 +740,7 @@ function selectValor_edit_area(){
  function listarfunciones(data){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
-     list_fun += '<div class="input-group mb-3"><span  class="input-group-text reducir_input">'+i+'.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"></div>'
+     list_fun += '<div class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"></div>'
    
      }
 
