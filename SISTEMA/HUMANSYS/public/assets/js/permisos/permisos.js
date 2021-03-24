@@ -60,7 +60,8 @@ function enviarPermiso() {
 
         let horaInicio = document.getElementById("horaInicio").value;
         let horaFinal  = document.getElementById("horaFinal").value;
-
+        fechaInicio = fechaInicio+" "+horaInicio;
+        fechaFinal = fechaFinal+" "+horaFinal;
                 if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
 
                     axios.post("/permiso/empleado/guardar", {
@@ -192,10 +193,22 @@ function tableEmpleado(){
                 {data: 'fecha_inicio', name: 'fecha_inicio'},
                 {data: 'fecha_final', name: 'fecha_final'},
                 {data: 'motivo', name: 'motivo'},
-                {data: 'estado_permiso_jefe_id', name: 'estado_permiso_jefe_id'},
+                {data: 'estado_jefe_aprueba', name: 'estado_jefe_aprueba'},
+                {data: 'nombre_jefe', name: 'nombre_jefe'},              
+                {data: 'estado_rrhh_aprueba', name: 'estado_rrhh_aprueba'},
+                {data: 'nombre_rrhh', name: 'nombre_rrhh'},
+                {data: 'acciones', name: 'acciones', orderable: false, searchable: false},
+                
+
                 
             ]
         });
     
+}
+
+
+ function editarPermiso(idPermiso){
+     console.log(idPermiso)
+
 }
 
