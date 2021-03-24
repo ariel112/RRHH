@@ -432,11 +432,29 @@
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="form-group">
+                                                    <label class="col-form-label">Departamento</label>
+                                                    <select class="select" id="selectDeptos_Modal" name="selectDeptos_Modal" onchange="selectValor_Deptosmodal()"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Area</label>
+                                                    <select class="select" id="select_area_Moral" name="select_area_Moral" onchange="selectValor_Areamodal()"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Cargo</label>
+                                                    <select class="select" id="select_cargo_Moral" name="select_cargo_Moral"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
                                                     <label class="col-form-label">Fecha de Ingreso</label>
                                                     <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
                                                     <select class="select">
@@ -446,26 +464,10 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Departamento</label>
-                                                    <select class="select" id="selectDeptos_Modal" name="selectDeptos_Modal" onchange="selectValor_Deptosmodal()"></select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Area</label>
-                                                    <select class="select" id="select_area_Moral" name="select_area_Moral"></select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Cargo</label>
-                                                    <select class="select">
-                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
-                                                        <option value="1">ACTIVO</option>
-                                                        <option value="2">INACTIVO</option>
-                                                    </select>
+                                                    <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="sueldo" name="sueldo" type="email">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
@@ -1214,6 +1216,38 @@
                 }
             $('#select_area_Moral').html(html_select_Areas)
         }
+
+        function selectValor_Areamodal(){
+            var idArea = document.getElementById("select_area_Moral").value;
+            cargoCargos(idArea);
+        }
+
+        function cargoCargos(idArea){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/cargo/"+idArea,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    renderCargos(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderCargos(data){
+            var html_select_cargos ='<option selected="selected">Seleccione Area de depto.</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#select_cargo_Moral').html(html_select_cargos)
+        }
+
 
 
         /* --------------------------/Departamentos Gerenciales---------------------------- */
