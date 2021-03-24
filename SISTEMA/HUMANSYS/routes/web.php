@@ -95,6 +95,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       // muestro cargos
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
 
+      Route::post('/cargos/edit', [Cargos::class, 'cargos_edit'])->name('cargos.edit');
 
 
 
