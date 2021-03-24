@@ -256,9 +256,9 @@
     </div>
     <!-- /Page Content -->
 
-    <!-- Crear expediente Modal -->
-    <div id="add_employee" class="modal custom-modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <!-- Crear Empleado Modal -->
+    <div id="add_employee" class="modal custom-modal fade " role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Crear Expediente de empleado</h5>
@@ -272,7 +272,7 @@
                         <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="card border-info">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
                                     <div class="card-header rounded"><h3 class="card-header text-primary text-center">Información personal</h3></div>
                                     <div class="card-body">
                                         <div class="row">
@@ -347,7 +347,7 @@
                             </div>
 
                             <div class="col-sm-12">
-                                <div class="card border-info">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
                                     <div class="card-header">
                                         <h3 class="card-header text-primary text-center">Localización</h3>
                                     </div>
@@ -387,7 +387,7 @@
                             </div>
 
                             <div class="col-sm-12">
-                                <div class="card border-info">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
                                     <div class="card-header">
                                         <h3 class="card-header text-primary text-center">Contácto</h3>
                                     </div>
@@ -424,19 +424,19 @@
                             </div>
 
                             <div class="col-sm-14">
-                                <div class="card border-info">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
                                     <div class="card-header">
                                         <h3 class="card-header text-primary text-center">Gerencial</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Ingreso</label>
                                                     <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
                                                     <select class="select">
@@ -446,10 +446,40 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Departamento</label>
+                                                    <select class="select">
+                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
+                                                        <option value="1">ACTIVO</option>
+                                                        <option value="2">INACTIVO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
+                                                    <label class="col-form-label">Area</label>
+                                                    <select class="select">
+                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
+                                                        <option value="1">ACTIVO</option>
+                                                        <option value="2">INACTIVO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Cargo</label>
+                                                    <select class="select">
+                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
+                                                        <option value="1">ACTIVO</option>
+                                                        <option value="2">INACTIVO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
-                                                    <textarea id="descripcion_laboral" name="descripcion_laboral" cols="30" rows="10"></textarea>
+                                                    <textarea class="form-control" id="descripcion_laboral" name="descripcion_laboral" cols="30" rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -460,7 +490,7 @@
                                 <strong><b><h2>Referencia Personal</h2></b></strong>
                             <hr>
                             <div class="col-sm-14">
-                                <div class="card border-secondary">
+                                <div class="card shadow p-3 mb-5 bg-white rounded">
                                     <div class="card-header">
                                         <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
                                     </div>
@@ -724,9 +754,9 @@
             </div>
         </div>
     </div>
-    <!-- /Crear expediente Modal -->
+    <!-- /Crear Empleado Modal -->
 
-    <!-- Editar expediente Modal -->
+    <!-- Editar Empleado Modal -->
     <div id="edit_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -1019,9 +1049,9 @@
             </div>
         </div>
     </div>
-    <!-- /Editar expediente Modal -->
+    <!-- /Editar Empleado Modal -->
 
-    <!-- Eliminar expediente Modal -->
+    <!-- Eliminar Empleado Modal -->
     <div class="modal custom-modal fade" id="delete_employee" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1044,7 +1074,7 @@
             </div>
         </div>
     </div>
-    <!-- /Eliminar expediente Modal -->
+    <!-- /Eliminar Empleado Modal -->
 
     <script>
         /* ------------Departamentos y municipios------------------- */
