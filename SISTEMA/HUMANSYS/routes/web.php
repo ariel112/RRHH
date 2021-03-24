@@ -58,7 +58,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
-
+    Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);
+    Route::get('/empleado/cargo/{idArea}', [EmpleadoController::class, 'getCargoEmpleado']);
 
 
 
@@ -95,6 +96,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       // muestro cargos
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
 
+      Route::post('/cargos/edit', [Cargos::class, 'cargos_edit'])->name('cargos.edit');
 
 
 

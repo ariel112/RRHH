@@ -220,7 +220,7 @@
                                 <div class="form-group" wire:ignore wire:key="first">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                                     {{-- <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador"> --}}
-                                    <select class="js-data-example-ajax select2-single" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                    <select class="js-data-example-ajax" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
                                     {{-- <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" > --}}
                                         {{--@if ($empleados->count())
                                             @foreach($empleados as $empleado)
@@ -238,31 +238,25 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Identidad <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="text" value="0705199400130" disabled>
+                                    <input class="form-control" id="identidad" name="identidad" type="text" value="" disabled>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Sueldo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="sueldo" id="sueldo" type="text" value="15000 LPS">
+                                    <input class="form-control" name="sueldo" id="sueldo" type="text" value="">
                                 </div>
                             </div>
-
-
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Gerencia <span class="text-danger">*</span></label>
-                                    <select class="select" disabled>
-                                        <option>Administración</option>
-                                        <option>Operaciones</option>
-                                        <option>Comunicaciones</option>
-                                    </select>
+                                    <label class="col-form-label">Gerencia<span class="text-danger">*</span></label>
+                                    <input class="form-control" name="gerencia" id="gerencia" type="text" value="" disabled>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Cargo </label>
-                                    <input class="form-control" type="text" value="Adminstrador de sistemas" disabled>
+                                    <label class="col-form-label">Cargo</label>
+                                    <input class="form-control" id="cargo" name="cargo" type="text" value="" disabled>
                                 </div>
                             </div>
                         </div>
@@ -287,106 +281,64 @@
 <script>
 
 
-  $(document).ready(function() {
-
- $('#empleado_id').select2({
-
-        ajax: {
-            type: 'GET',
-            url:'/empleado_contrato',
-            processResults: function (data) {
-                /* console.log(data[0].text); */
-                console.log(data);
-                /* console.log(data[1]); */
-
-                if(data.length == 3){
-                    Object.keys(data[0]).forEach(e => {
-                        console.log(data[0].text);
-                        var inputsueldo = document.getElementById("sueldo");
-                            inputsueldo.value = data[0].id;
-                    });
-                }else{
-                    console.log(data);
-                    /* data.forEach(element => {
-                        console.log(element.selected)
-                    }); */
-                }
-                return {
-                    results: data
-                    };
-
-            }
-         }
-
-});
-/* $('#empleado_id').on('change', function(e){
-    @this.set('empleado_id', e.target.value);
-}); */
-
-/* $('#empleado_id').select2({
-        source: function(request,response){
-            $.ajax({
-            url: "empleado_contrato",
-            dataType: 'json',
-            data: {
-                term: request.term
-            },
-            success: function(data){
-            response(data)
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR, textStatus, errorThrown);
-            }
-        })
-    }); */
+$(document).ready(function() {
 
 
+    /* --------------------------------Select Colaborador------------------------- */
+    $('#empleado_id').select2({
 
-
-/* var x = 0;
-$( "#empleado_id" ).keydown(function( event ) {
-  x++;
-  console.log(x);
-}); */
- /*    $('#tags').select2({
-            // Activamos la opcion "Tags" del plugin
-            tags: true,
-            tokenSeparators: [','],
             ajax: {
-                type: "POST"
-                dataType: 'json',
-                url: '/empleado_contrato',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        term: params.term
-                    }
-                },
-                processResults: function (data, page) {
-                  return {
-                    results: data
-                  };
-                },
-            }
-        }); */
-/*
-    $('.js-data-example-ajax').select2({
-            ajax: {
+                type: 'GET',
                 url:'/empleado_contrato',
                 processResults: function (data) {
-                console.log(data);
-                    return {
-                        results: $.map(data.data, function(item){
-                                return {
-                                    text: item.nombre
-                                }
-                            });
-                        };
-                    }
-            }
-    }); */
+                    /* console.log(data[0].text); */
+                    console.log(data);
+                    getEm(data);
+                    /* console.log(data[1]); */
 
+                /*  if(data.length == 3){
+                        Object.keys(data[0]).forEach(e => {
+                            console.log(data[0].text);
+                            var inputsueldo = document.getElementById("sueldo");
+                                inputsueldo.value = data[0].id;
+                        });
+                    }else{
+                        console.log(data);
+                        data.forEach(element => {
+                            console.log(element.selected)
+                        });
+                    } */
+                    $('#empleado_id').select2('data')
+                    return {
+                        results: data
+                        };
+
+                }
+            }
+    });
+
+    function getEm(data){
+        $("#empleado_id").on("select2:select", function (e) {
+            var id_select = $(e.currentTarget).val();
+            var inputsueldo = document.getElementById("sueldo");
+            var inputIdentidad = document.getElementById("identidad");
+            var inputGerencia = document.getElementById("gerencia");
+            var inputCargo = document.getElementById("cargo");
+                /* inputsueldo.value = data[0].id; */
+            for (let i = 0; i < data.length; i++) {
+                if(data[i].id == id_select){
+                    inputsueldo.value = data[i].sueldo;
+                    inputIdentidad.value = data[i].identidad;
+                    inputGerencia.value = data[i].depto;
+                    inputCargo.value = data[i].nombre;
+                }
+            }
+
+            console.log(id_select)
+        });
+    }
+
+    /* --------------------------------/Select Colaborador------------------------- */
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
      guardar();

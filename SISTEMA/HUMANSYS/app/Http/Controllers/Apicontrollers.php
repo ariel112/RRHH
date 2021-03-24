@@ -36,7 +36,7 @@ class Apicontrollers extends Controller
         WHERE A.estatus_id = 1");
         return $empleado; */
 
-        $empleado = DB::select("SELECT A.id , B.nombre, A.nombre AS 'text'
+        $empleado = DB::select("SELECT A.id , D.nombre AS 'depto', A.identidad, A.sueldo, B.nombre, A.nombre AS 'text'
         from empleado A
         INNER JOIN cargo B
         ON(A.cargo_id=B.id)
