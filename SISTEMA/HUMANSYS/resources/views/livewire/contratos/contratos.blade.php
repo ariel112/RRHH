@@ -338,7 +338,6 @@ $(document).ready(function() {
         });
     }
 
-
     /* --------------------------------/Select Colaborador------------------------- */
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
