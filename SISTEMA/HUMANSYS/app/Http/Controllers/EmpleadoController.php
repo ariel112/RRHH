@@ -94,6 +94,11 @@ class EmpleadoController extends Controller
         $departamentos = DB::select("select * from departamento;");
         return $departamentos;
     }
+
+    public function getAreaEmpleado($idDepto){
+        $areas = DB::select("select * from area where departamento_id ='$idDepto'");
+        return $areas;
+    }
     /**
      * Show the form for editing the specified resource.
      *

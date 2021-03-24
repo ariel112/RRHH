@@ -455,11 +455,7 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Area</label>
-                                                    <select class="select">
-                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
-                                                        <option value="1">ACTIVO</option>
-                                                        <option value="2">INACTIVO</option>
-                                                    </select>
+                                                    <select class="select" id="select_area_Moral" name="select_area_Moral"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
@@ -1164,16 +1160,11 @@
         (cargaDeptos)()
 
         function renderDeptos(data){
-            var html_select_deptos ='<option selected="selected">Departamentos</option>';
+            var html_select_deptosModal ='<option selected="selected">Seleccione Departamento</option>';
             for (var i=0; i<data.length; ++i){
-                html_select_deptos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                html_select_deptosModal += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#selectDeptos_Modal').html(html_select_deptos)
-        }
-
-        function selectValor_Deptosmodal(){
-            var idDepto = document.getElementById("selectDeptos_Modal").value;
-            console.log(idDepto);
+            $('#selectDeptos_Modal').html(html_select_deptosModal)
         }
 
         function cargaDeptos(){
@@ -1193,6 +1184,38 @@
                 }
             });
         }
+        function selectValor_Deptosmodal(){
+            var idDepto = document.getElementById("selectDeptos_Modal").value;
+            cargoAreas(idDepto);
+        }
+
+        function cargoAreas(idDepto){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/area/"+idDepto,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    renderAreas(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderAreas(data){
+            var html_select_Areas ='<option selected="selected">Seleccione Area de depto.</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_Areas += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#select_area_Moral').html(html_select_Areas)
+        }
+
+
         /* --------------------------/Departamentos Gerenciales---------------------------- */
     </script>
 </div>

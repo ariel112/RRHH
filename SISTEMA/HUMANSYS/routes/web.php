@@ -58,6 +58,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
+    Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);
 
 
 
