@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\contrato;
 
 class Apicontrollers extends Controller
 {
@@ -24,7 +25,7 @@ class Apicontrollers extends Controller
 
 
     public function empleado_contrato(){
-        $empleado = DB::select("SELECT A.id, A.identidad, A.nombre, D.nombre departamento, B.nombre cargo
+        /* $empleado = DB::select("SELECT A.id, A.identidad, A.nombre, D.nombre departamento, B.nombre cargo
         from empleado A
         INNER JOIN cargo B
         ON(A.cargo_id=B.id)
@@ -33,11 +34,20 @@ class Apicontrollers extends Controller
         INNER JOIN departamento D
         ON(C.departamento_id=D.id)
         WHERE A.estatus_id = 1");
+        return $empleado; */
+
+        $empleado =DB::select("select * from empleado;");
         return $empleado;
 
-       /*  $empleado =DB::select("select * from empleado;");
-        return $empleado;
- */
+
+
+           /*  $term = $request->term ?: '';
+            $tags = App\Tag::where('name', 'like', $term.'%')->lists('name', 'id');
+            $valid_tags = [];
+            foreach ($tags as $id => $tag) {
+                $valid_tags[] = ['id' => $id, 'text' => $tag];
+            }
+            return response()->json($valid_tags); */
     }
 
     public function area($id){

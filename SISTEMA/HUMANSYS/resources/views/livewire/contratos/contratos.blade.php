@@ -231,7 +231,8 @@
                                                 <option style="width: 350px; height:40px;" class="select floating" >No se encuentran resultados para {{$searchNombre}}</option>
                                             </div>
                                         @endif --}}
-                                    </select>
+                                    {{-- </select> --}}
+                                    {{-- <select name="tags[]" class="form-control" multiple="multiple" id="tags"></select> --}}
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -288,17 +289,56 @@
 
   $(document).ready(function() {
 
-    $('.js-data-example-ajax').select2({
-        ajax: {
+ $('.js-data-example-ajax').select2({
+         ajax: {
             url:'/empleado_contrato',
             processResults: function (data) {
             console.log(data);
             return {
-                results: data.tems.nombre
+                results: data.items
                 };
             }
-        }
+         }
+
+
+ /*    $('#tags').select2({
+            // Activamos la opcion "Tags" del plugin
+            tags: true,
+            tokenSeparators: [','],
+            ajax: {
+                type: "POST"
+                dataType: 'json',
+                url: '/empleado_contrato',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        term: params.term
+                    }
+                },
+                processResults: function (data, page) {
+                  return {
+                    results: data
+                  };
+                },
+            }
+        }); */
 });
+/*
+    $('.js-data-example-ajax').select2({
+            ajax: {
+                url:'/empleado_contrato',
+                processResults: function (data) {
+                console.log(data);
+                    return {
+                        results: $.map(data.data, function(item){
+                                return {
+                                    text: item.nombre
+                                }
+                            });
+                        };
+                    }
+            }
+    }); */
 
  $('#crearcontrato').click(function (e) {
      e.preventDefault();
