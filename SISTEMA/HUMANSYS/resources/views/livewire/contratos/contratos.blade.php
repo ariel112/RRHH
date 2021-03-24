@@ -217,10 +217,10 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="form-group">
+                                <div class="form-group" wire:ignore wire:key="first">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                                     {{-- <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador"> --}}
-                                    <select class="js-data-example-ajax" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                    <select class="js-data-example-ajax select2-single" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
                                     {{-- <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" > --}}
                                         {{--@if ($empleados->count())
                                             @foreach($empleados as $empleado)
@@ -289,18 +289,50 @@
 
   $(document).ready(function() {
 
- $('.js-data-example-ajax').select2({
-         ajax: {
+ $('#empleado_id').select2({
+
+        ajax: {
+            type: 'GET',
             url:'/empleado_contrato',
             processResults: function (data) {
-            console.log(data);
-            return {
-                results: data.items
-                };
+                console.log(data);
+                return {
+                    results: data
+                    };
             }
          }
 
+});
+/* $('#empleado_id').on('change', function(e){
+    @this.set('empleado_id', e.target.value);
+}); */
 
+/* $('#empleado_id').select2({
+        source: function(request,response){
+            $.ajax({
+            url: "empleado_contrato",
+            dataType: 'json',
+            data: {
+                term: request.term
+            },
+            success: function(data){
+            response(data)
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        })
+    }); */
+
+
+
+
+/* var x = 0;
+$( "#empleado_id" ).keydown(function( event ) {
+  x++;
+  console.log(x);
+}); */
  /*    $('#tags').select2({
             // Activamos la opcion "Tags" del plugin
             tags: true,
@@ -322,7 +354,6 @@
                 },
             }
         }); */
-});
 /*
     $('.js-data-example-ajax').select2({
             ajax: {

@@ -14,7 +14,7 @@
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a href="create-invoice.html" class="btn add-btn" data-toggle="modal" data-target="#crear_cargos" ><i class="fa fa-plus"></i> Crear cargo</a>
+                    <a  class="btn add-btn" data-toggle="modal" data-target="#crear_cargos" ><i class="fa fa-plus"></i> Crear cargo</a>
                 </div>
             </div>
         </div>
@@ -155,7 +155,149 @@
     </div>
     <!-- /Add Employee Modal -->
 
-    
+    {{-- ventana modal edit cargos --}}
+    <div id="editar_cargos" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-yellow">Editar Cargo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form_contrato">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gerencia</label>
+                                    <select class="select" name="empleado_rrhh" id="selectDeptos_edit" onchange="selectValor()">
+                                     
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Area <span class="text-danger">*</span></label>
+                                    <select class="select" name="area" id="area_edit">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
+                                    <select class="select" name="tipo_empleado" id="tipo_empleado_edit">
+                                        <option value=""></option>
+                                        <option value="1">Trabajador</option>
+                                        <option value="2">Patrono</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <input class="form-control" name="cargo" type="text">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Funciones del cargo <span class="text-danger">*</span></label>
+                                     <br>
+
+                                    <span id="add_field_edit" value="adicionar" class="btn btn-success"><i class="fa fa-plus text-white"></i></span>
+                                    <br>
+                                    <div id="listas_edit" class="mt-1">
+                                        <div class="">
+                                            <div class="input-group mb-3" >
+                                                <span  class="input-group-text reducir_input">1.</span>
+                                                <input type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]">
+                                                {{-- <span class="input-group-text">.00</span> --}}
+                                              </div>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                      
+                        </div>
+                       
+                        <div >
+                            <button id="crearcargo" class="btn btn-primary submit-btn">Crear</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{--  Fin ventana modal edit cargos --}}
+
+    {{-- VENTANA MODAL CARGOS --}}
+    <div id="vw_cargos" class="modal custom-modal fade" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success">Cargo</h5>
+                    <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Gerencia <span class="text-danger">*</span></label>
+                                    <select class="select"  id="vwgerencia"  disabled>
+                                     
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Area <span class="text-danger">*</span></label>
+                                    <select class="select"  id="vwarea" disabled>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
+                                    <select class="select" id="vw_empleado" disabled>
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <input class="form-control"  id="vwcargo" type="text" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <td colspan="8" class="text-center">
+                                        <div class="grade-span">
+                                            <h4>Funciones del cargo</h4>                                           
+                                            <span class="badge bg-inverse-success">Above 92 Excellent</span>
+                                        </div>
+                                    </td>
+                                </div>
+                            </div>
+                      
+                        </div>
+                      
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- FIN DE VENTANA MODAL CARGOS --}}
     
 </div>
 
@@ -338,7 +480,40 @@ function selectValor(){
 // fin de las areas
 
 
+// inicio para listar los cargos
+function setcargo(id){
+          
+            cargoarea(id);
+        }
 
+
+        function cargoarea(id){
+            $.ajax({
+                type:"GET",
+                url: "/cargos/muestra/"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    // console.log(data);
+                    rendervista(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function rendervista(data){
+            var html_select_municipio ='<option selected="selected">Seleccione area</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#area').html(html_select_municipio)
+        }
+
+// 
 
 </script>
 @endsection
