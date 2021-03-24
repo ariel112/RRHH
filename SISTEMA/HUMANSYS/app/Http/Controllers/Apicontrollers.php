@@ -36,7 +36,7 @@ class Apicontrollers extends Controller
         WHERE A.estatus_id = 1");
         return $empleado; */
 
-        $empleado = DB::select("SELECT A.id, A.identidad, A.nombre, D.nombre departamento, B.nombre cargo
+        $empleado = DB::select("SELECT A.id , A.nombre AS 'text'
         from empleado A
         INNER JOIN cargo B
         ON(A.cargo_id=B.id)
@@ -44,8 +44,9 @@ class Apicontrollers extends Controller
         ON(B.area_id=C.id)
         INNER JOIN departamento D
         ON(C.departamento_id=D.id)
-        WHERE A.estatus_id = 1 AND LIKE A.nombre %$request%");
-        return $empleado;
+        WHERE A.estatus_id = 1 AND ( A.nombre LIKE '%$request->term%')");
+
+        return response()->json($empleado);
 
 
         /* $empleado =DB::select("select * from empleado;");

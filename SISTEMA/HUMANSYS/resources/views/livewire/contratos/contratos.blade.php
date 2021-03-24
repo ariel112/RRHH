@@ -290,14 +290,14 @@
   $(document).ready(function() {
 
  $('#empleado_id').select2({
-        dropdownParent: $('#crear_contratos'),
+
         ajax: {
-            type: 'POST',
+            type: 'GET',
             url:'/empleado_contrato',
             processResults: function (data) {
                 console.log(data);
                 return {
-                    results: data.items
+                    results: data
                     };
             }
          }

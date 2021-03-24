@@ -66,40 +66,40 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);
      Route::get('/empleado_contrato', [Apicontrollers::class, 'empleado_contrato']);
      Route::get('/area/{id}', [Apicontrollers::class, 'area']);
- 
- 
+
+
      //contratos de empleados
      Route::get('/contratos', Contratos::class)->name('contratos.index');
- 
+
      Route::post('/contratos/show', [Contratos::class, 'contrato_show'])->name('contratos.show');
- 
- 
+
+
      // permisos empleados
      Route::get('/permisos', Permisos::class )->name('permisos.index');
      Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
- 
- 
+
+
 
 
       // cargos crear
       Route::get('/cargos', Cargos::class )->name('cargos.index');
       //guardar cargos
       Route::post('/cargos/guardar', [Cargos::class, 'cargo_show']);
-  
+
       Route::get('/cargos/listar', [Cargos::class, 'cargo_listar']);
-  
-      // muestro cargos  
+
+      // muestro cargos
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
-  
-  
+
+
 
 
     });
 
-   
+
 
 
 // Route::get('/empleado', [EmpleadoIndex::class.'create'],  )->name('empleado.create');
