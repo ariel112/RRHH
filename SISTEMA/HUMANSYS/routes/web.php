@@ -44,7 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //
 
-    Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
+    Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class, 'getEmpleadoPerfil')->name('empleado.perfil');
     Route::get('/empleado/listarempleados', [EmpleadoPerfil::class, 'listarempleados'] )->name('listarempleados');
 
     Route::get('/empleado', EmpleadoIndex::class,)->name('empleado.index');
@@ -54,12 +54,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
 
     //Gestiones de Empleado
-    Route::get('/empleado/store', [EmpleadoIndex::class, 'guardarEmpleado']);
+    Route::post('/empleado/store', [EmpleadoController::class, 'store']);
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
     Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);
-    Route::get('/empleado/cargo/{idArea}', [EmpleadoController::class, 'getCargoEmpleado']);
+    Route::get('/empleado/cargo/{idAreas}', [EmpleadoController::class, 'getCargoEmpleado']);
 
 
 

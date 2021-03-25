@@ -13,6 +13,13 @@ class EmpleadoPerfil extends Component
         return view('livewire.empleado.empleado-perfil');
     }
 
+
+    public function getEmpleadoPerfil($id){
+
+        return $id;
+
+    }
+
     public function listarempleados(){
 
         $USERS = User::all();

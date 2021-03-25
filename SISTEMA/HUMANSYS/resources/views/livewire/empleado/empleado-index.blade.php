@@ -59,8 +59,8 @@
         <!-- Search Filter -->
 
         @livewire('empleado.empleado-card')
-        <div class="row staff-grid-row">
-            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+        {{-- <div class="row staff-grid-row">
+            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
@@ -75,8 +75,8 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Doe</a></h4>
                     <div class="small text-muted">Web Designer</div>
                 </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            </div>
+            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
@@ -251,8 +251,8 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Catherine Manseau</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
-            </div> --}}
-        </div>
+            </div>
+        </div> --}}
     </div>
     <!-- /Page Content -->
 
@@ -300,6 +300,30 @@
                                                     <input class="form-control" id="segundo_apellido" name="segundo_apellido" type="text">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Fecha de Nacimiento</label>
+                                                    <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="identidad" name="identidad" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">RTN<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="rtn" name="rtn" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                </div>
+                                            </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico</label>
@@ -311,24 +335,6 @@
                                                         <option value="4">UNIVERSIDAD INCOMPLETA</option>
                                                         <option value="5">POSTGRADO</option>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Numero de Identidad<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="identidad" name="identidad" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Fecha de Nacimiento</label>
-                                                    <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -445,16 +451,16 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Cargo</label>
-                                                    <select class="select" id="select_cargo_Moral" name="select_cargo_Moral"></select>
+                                                    <select class="select" id="cargo_id" name="cargo_id"></select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Ingreso</label>
                                                     <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
                                                     <select class="select">
@@ -464,7 +470,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
                                                     <input class="form-control" id="sueldo" name="sueldo" type="email">
@@ -1133,6 +1139,7 @@
 
         /* ------------------------Guardar Empleados------------------------------- */
 
+
         function guardarEmpleado(){
             event.preventDefault();
             var data = new FormData($('#formEmpleado').get(0));
@@ -1146,7 +1153,6 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -1161,7 +1167,7 @@
         /* --------------------------Departamentos Gerenciales---------------------------- */
         (cargaDeptos)()
 
-        function renderDeptos(data){
+        function renderDeptosModal(data){
             var html_select_deptosModal ='<option selected="selected">Seleccione Departamento</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptosModal += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
@@ -1179,7 +1185,7 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-                    renderDeptos(data);
+                    renderDeptosModal(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -1245,7 +1251,7 @@
             for (var i=0; i<data.length; ++i){
                 html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#select_cargo_Moral').html(html_select_cargos)
+            $('#cargo_id').html(html_select_cargos)
         }
 
 

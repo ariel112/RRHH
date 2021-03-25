@@ -17,7 +17,7 @@ class EmpleadoIndex extends Component
         return view('livewire.empleado.empleado-index', compact("usuario"));
     }
 
-    public function guardarEmpleado(Request $request){
+    /* public function guardarEmpleado(Request $request){
         $empleados = new empleado();
         $empleados->identidad = $request['identidad'];
         $empleados->nombre = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
@@ -38,11 +38,11 @@ class EmpleadoIndex extends Component
         $empleados->estatus_id = $request['estatus_id'];
         $empleados->grado_academico_id = $request['grado_academico_id'];
         $empleados->municipio_id = $request['municipio_id'];
+        $empleados->cargo_id = $request['cargo_id'];
+        $empleados->sueldo = $request['sueldo'];
+        $empleados->rtn = $request['rtn'];
         $empleados -> save();
 
-
-
-
         return "Exito";
-    }
+    } */
 }
