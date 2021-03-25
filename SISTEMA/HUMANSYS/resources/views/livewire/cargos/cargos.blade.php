@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- /Page Header -->
 {{--         
         <!-- Search Filter -->
@@ -857,7 +858,7 @@ function selectValor_edit(){
  function listarfunciones(data){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
-     list_fun += '<div class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"></div>'
+     list_fun += '<div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a> </div>'
    
      }
 
@@ -896,6 +897,32 @@ $('#listas_edit').on("click",".remover_campo",function(e) {
 
 //  fin funciones del empleado
 
+
+// ================================ DELETE ====================================
+// eliminar funciones 
+
+function eliminar_funciones(id){
+            $.ajax({
+                type:"GET",
+                url: "/cargos/funciones/eliminar/"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                 
+                    $('fun'+data.id_data).hidden();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+
+
+// fin eliminar funciones
 
 
 

@@ -135,10 +135,11 @@ class Cargos extends Component
 
     public function eliminar_funciones($id){
 
+        $id_data=$id;
          funciones::destroy($id);
 
 
-        return response()->json('EXITO');
+        return response()->json($id_data);
 
     }
 
