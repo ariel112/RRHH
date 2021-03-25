@@ -12,6 +12,7 @@ use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
 use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Permisos\PermisosRrhh;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      // permisos empleados
      Route::get('/permisos', Permisos::class )->name('permisos.index');
      Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
+     Route::get('/permisosempleadosrrhh', PermisosRrhh::class )->name('permisos.index_rrhh');
+     
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
