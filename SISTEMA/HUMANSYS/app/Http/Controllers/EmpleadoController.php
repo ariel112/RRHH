@@ -57,6 +57,9 @@ class EmpleadoController extends Controller
         $empleados->estatus_id = $request['estatus_id'];
         $empleados->grado_academico_id = $request['grado_academico_id'];
         $empleados->municipio_id = $request['municipio_id'];
+        $empleados->cargo_id = $request['cargo_id'];
+        $empleados->sueldo = $request['sueldo'];
+        $empleados->rtn = $request['rtn'];
         $empleados -> save();
 
        /*  $referencias = new referencia();

@@ -300,6 +300,30 @@
                                                     <input class="form-control" id="segundo_apellido" name="segundo_apellido" type="text">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Fecha de Nacimiento</label>
+                                                    <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="identidad" name="identidad" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">RTN<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="rtn" name="rtn" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                </div>
+                                            </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico</label>
@@ -311,24 +335,6 @@
                                                         <option value="4">UNIVERSIDAD INCOMPLETA</option>
                                                         <option value="5">POSTGRADO</option>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Numero de Identidad<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="identidad" name="identidad" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Fecha de Nacimiento</label>
-                                                    <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -445,16 +451,16 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Cargo</label>
-                                                    <select class="select" id="select_cargo_Moral" name="select_cargo_Moral"></select>
+                                                    <select class="select" id="cargo_id" name="cargo_id"></select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Fecha de Ingreso</label>
                                                     <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
                                                     <select class="select">
@@ -464,7 +470,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
                                                     <input class="form-control" id="sueldo" name="sueldo" type="email">
@@ -1245,7 +1251,7 @@
             for (var i=0; i<data.length; ++i){
                 html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#select_cargo_Moral').html(html_select_cargos)
+            $('#cargo_id').html(html_select_cargos)
         }
 
 
