@@ -120,4 +120,27 @@ class Cargos extends Component
     }
 
 
+    public function cargos_edit(Request $request){
+
+        $cargo = cargo::find($request->id_cargo);
+        $cargo->nombre = $request->cargo_nombre;
+        $cargo->area_id =$request->area;
+        $cargo->tipo_empleado_id =$request->tipo_empleado;
+        $cargo->save();
+
+        return response()->json('EXITO');
+
+    }
+
+
+    public function eliminar_funciones($id){
+
+         funciones::destroy($id);
+
+
+        return response()->json('EXITO');
+
+    }
+
+
 }

@@ -97,6 +97,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
 
       Route::post('/cargos/edit', [Cargos::class, 'cargos_edit'])->name('cargos.edit');
+      
+      //   eliminar funciones
+      Route::post('/cargos/funciones/eliminar/{id}', [Cargos::class, 'eliminar_funciones'])->name('eliminar_funciones');
+
 
 
 
