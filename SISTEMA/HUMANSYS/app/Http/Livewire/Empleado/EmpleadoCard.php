@@ -11,11 +11,11 @@ class EmpleadoCard extends Component
     use WithPagination;
 
     public $searchNombre = '';
-    public $searchIdentidad = '';
     public function render()
     {
         return view('livewire.empleado.empleado-card', [
-            'empleados' => empleado::where('nombre', 'LIKE',"%$this->searchNombre%")->paginate(12)
+            'empleados' => empleado::where('nombre', 'LIKE',"%$this->searchNombre%")
+            ->orwhere('identidad', 'LIKE',"%$this->searchNombre%")->paginate(12)
         ]);
     }
 }
