@@ -142,6 +142,10 @@ html {
 	height: 100%;
 }
 
+/* ocultar el scroll */
+::-webkit-scrollbar {
+    display: none;
+}
 
 .reducir_input{
  height: 35px!important;

@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- /Page Header -->
 {{--         
         <!-- Search Filter -->
@@ -169,6 +170,7 @@
                     <form id="form_contrato_edit">
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
+                            <input type="text" style="display: none;" name="id_cargo" id="id_cargo">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
@@ -196,7 +198,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="cargo" type="text" id="cargo_edit">
+                                    <input class="form-control" name="cargo_nombre" type="text" id="cargo_edit">
                                 </div>
                             </div>
 
@@ -298,16 +300,6 @@
 
 
 
-
-
-
-  $(document).ready(function() {
-
-
-    (pintar_tabla)();
-
-function pintar_tabla(){
-
 $('#tbl_cargos').DataTable({
 "language": {
        "lengthMenu": "Mostrar _MENU_ registros",
@@ -335,7 +327,20 @@ $('#tbl_cargos').DataTable({
         {data:'funciones'},
         {data:'action'}
     ]});
-}
+
+
+function CierraPopup(modal) {
+    $("#"+modal).modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+  }
+
+
+  $(document).ready(function() {
+
+
+    
+
 
 // funcion para cerra modal
 function CierraPopup(modal) {
@@ -378,7 +383,7 @@ var campos_max = 16;   //max de 10 campos
 
  $('#crearcargo').click(function (e) { 
     e.preventDefault();
-    $('#selectDeptos').val('loco');
+  
      guardar();
  });
 
@@ -407,7 +412,7 @@ var campos_max = 16;   //max de 10 campos
                 
               CierraPopup(modalID);
               alert();
-              pintar_tabla();
+              $('#tbl_cargos').DataTable().ajax.reload();
     
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -460,6 +465,77 @@ function cargaDeptos(){
     });
 }
 // fin de la gerencia
+
+
+
+
+
+
+
+
+// =============================================================================
+
+
+
+// funcion alerta todo bien
+function alert_edit(){
+    Swal.fire({
+  position: 'top-end',
+  icon: 'warning',
+  title: 'Editado Correctamente',
+  showConfirmButton: false,
+  timer: 2500
+});
+}
+// 
+
+
+
+// edito los cargos
+function editar() {  
+    // console.log('datos: ', $("#idPic").serialize());
+          var modalID = 'editar_cargos';
+            var data = new FormData($('#form_contrato_edit').get(0));
+            $.ajax({
+            type:"POST",
+            url: "/cargos/edit",
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType:"json",
+            success: function(data){  
+                // $('#form_contrato').reset();
+                // document.getElementById("form_contrato").reset();
+
+                $('#tbl_cargos').DataTable().ajax.reload();
+              CierraPopup(modalID);
+              alert_edit();
+            
+    
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+        
+            
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        })
+        }
+
+
+
+
+        
+ $('#edit_cargo').click(function (e) { 
+    e.preventDefault();
+    editar();
+ });
+// fin edito los cargos
+// =============================================================================
+
+
+
+
 
 });
 
@@ -529,11 +605,11 @@ function setcargo(id){
         }
 
         function vistafunciones(data){
-            console.log(data.cargo[0].gerencia);
              $('#vwcargo').val(data.cargo[0].cargo);
              $('#vwgerencia').val(data.cargo[0].gerencia);
              $('#vwarea').val(data.cargo[0].area);
              $('#vw_empleado').val(data.cargo[0].tipo_empleado);
+             
 
 
 
@@ -567,7 +643,6 @@ function editcargo(id){
               processData:false,
               dataType:"json",
               success: function(data){
-                console.log('entres');
                   // console.log(data.funciones[0].nombre);
                    vistafunciones_edit(data);
               },
@@ -579,9 +654,10 @@ function editcargo(id){
 
       function vistafunciones_edit(data){
 
-          console.log(data.cargo[0].gerencia);
+        //   console.log(data.cargo[0].gerencia);
            $('#cargo_edit').val(data.cargo[0].cargo);
            $('#vw_empleado').val(data.cargo[0].tipo_empleado);
+           $('#id_cargo').val(data.cargo[0].id_cargo);
 
     //   llamo a la funcion listar funciones
     listarfunciones(data.funciones);
@@ -597,7 +673,7 @@ function editcargo(id){
                     processData:false,
                     dataType:"json",
                     success: function(data){
-                        // console.log(data);
+                         
                         renderDeptos_edit(data, id_gerencia);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -607,15 +683,17 @@ function editcargo(id){
          
         // fin gerencias
         id_area = data.cargo[0].id_area;
+      
         $.ajax({
                 type:"GET",
-                url: "/area/"+id_area,
+                url: "/area/"+id_gerencia,
                 contentType: false,
                 cache: false,
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    // console.log(data);
+                    // console.log(id_area);
+                    //  console.log(data);
                     renderarea_edit_dinamic(data, id_area);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -623,7 +701,7 @@ function editcargo(id){
                 }
             });
 
-
+        
          
         // areas
 
@@ -729,6 +807,46 @@ function selectValor_edit_area(){
 
 
 
+// mostrar departamentos editar
+
+
+// listo las areas
+function selectValor_edit(){
+            var idDepto = document.getElementById("selectDeptos_edit").value;
+            cargoarea_edit_t(idDepto);
+        }
+
+
+        function cargoarea_edit_t(idDepto){
+            $.ajax({
+                type:"GET",
+                url: "/area/"+idDepto,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    // console.log(data);
+                    renderarea_t(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderarea_t(data){
+            var html_select_municipio ='<option selected="selected">Seleccione area</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_municipio += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#area_edit').html(html_select_municipio)
+        }
+// fin de las areas
+
+
+
+
 // fin editar cargos
 
 
@@ -740,7 +858,7 @@ function selectValor_edit_area(){
  function listarfunciones(data){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
-     list_fun += '<div class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"></div>'
+     list_fun += '<div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a> </div>'
    
      }
 
@@ -780,18 +898,32 @@ $('#listas_edit').on("click",".remover_campo",function(e) {
 //  fin funciones del empleado
 
 
+// ================================ DELETE ====================================
+// eliminar funciones 
 
-// funcion alerta todo bien
-function alert(){
-    Swal.fire({
-  position: 'top-end',
-  icon: 'success',
-  title: 'Actualizado Correctamente',
-  showConfirmButton: false,
-  timer: 2500
-});
-}
-// 
+function eliminar_funciones(id){
+            $.ajax({
+                type:"GET",
+                url: "/cargos/funciones/eliminar/"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                 
+                    $('fun'+data.id_data).hidden();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+
+
+// fin eliminar funciones
+
 
 
 
