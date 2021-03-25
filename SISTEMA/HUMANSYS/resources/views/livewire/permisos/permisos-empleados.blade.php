@@ -206,7 +206,7 @@
                         </div>
 
                         <div class="submit-section d-none" id="enviarEdit">
-                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
+                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
                         </div>
 
                     </form>

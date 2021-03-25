@@ -1,6 +1,8 @@
 $(document).ready(opciones);
 $(document).ready(tableEmpleado);
 
+var idEdit = "";
+
 function opciones() {
     //  var opciones = document.getElementById('permisosEmpleado').innerHTML=`
     //  <option>Casual Leave 12 Days</option>
@@ -215,6 +217,8 @@ function tableEmpleado(){
 
  function editarPermiso(idPermiso){
 
+    idEdit = idPermiso;
+
     document.getElementById("permisoEdit").reset();
     document.getElementById("verificarEdit").className =" submit-section d-block";    
     document.getElementById("enviarEdit").className ="d-none";     
@@ -333,13 +337,14 @@ return;
 
 function enviarPermisoEdit() {
 
-    
+    if(idEdit!=""){
 
+                    
     let tipoPermiso = document.getElementById("selectEdit").value;
     let option = document.getElementById("selectEdit");
     let tipoPermisoText = option.options[option.selectedIndex].text;
 
-    let motivo = document.getElementById("motivoEditEdit").value;
+    let motivo = document.getElementById("motivoEdit").value;
     //console.log(tipoPermisoText)
 
     let y = document.getElementById("fechaInicioEdit").value;
@@ -365,9 +370,9 @@ function enviarPermisoEdit() {
         let horaFinal  = document.getElementById("horaFinalEdit").value;
         fechaInicio = fechaInicio+" "+horaInicio;
         fechaFinal = fechaFinal+" "+horaFinal;
-                if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
+        if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
 
-                    axios.post("/permiso/empleado/guardar", {
+                    axios.put("/editar/permiso", {
                         unDia:1,
                         tipoPermisoTexto: tipoPermisoText,
                         fechaInicio: fechaInicio,
@@ -376,17 +381,17 @@ function enviarPermisoEdit() {
                         horaInicio: horaInicio,
                         horaFinal: horaFinal,
                         motivo: motivo,
+                        id: idEdit
                     
                     }).then( response => {
                         console.log(response.data)
+                        document.getElementById("permisoEdit").reset();
 
-                        document.getElementById("formPermiso").reset();
-                        $('#add_leave').modal('hide');
+                        $('#edit_leave').modal('hide');
 
-                        document.getElementById("horasPermisos").className = "d-none";  
-                        document.getElementById("enviar").className ="submit-section d-none"; 
-                        document.getElementById("verificar").className ="submit-section d-block";
-
+                        document.getElementById("horasPermisosEdit").className = "d-none";  
+                        document.getElementById("enviarEdit").className ="submit-section d-none"; 
+                        document.getElementById("enviarEdit").className ="submit-section d-block";
                         $('#empleadoListado').DataTable().ajax.reload()
 
 
@@ -405,22 +410,26 @@ function enviarPermisoEdit() {
 
                 if(tipoPermisoText && tipoPermiso && motivo ){
 
-                    axios.post("/permiso/empleado/guardar", {
+                    axios.put("/editar/permiso", {
                         unDia:2,
                         tipoPermisoTexto: tipoPermisoText,
                         fechaInicio: fechaInicio,
                         fechaFinal: fechaFinal,
                         tipoPermiso: tipoPermiso,                       
                         motivo: motivo,
+                        horaInicio: horaInicio,
+                        horaFinal: horaFinal,
+                        id: idEdit
                     
                     }).then( response => {
                         console.log(response.data)
-                        document.getElementById("formPermiso").reset();
-                        $('#add_leave').modal('hide');
+                        document.getElementById("permisoEdit").reset();
 
-                        document.getElementById("horasPermisos").className = "d-none";  
-                        document.getElementById("enviar").className ="submit-section d-none"; 
-                        document.getElementById("verificar").className ="submit-section d-block";
+                        $('#edit_leave').modal('hide');
+
+                        document.getElementById("horasPermisosEdit").className = "d-none";  
+                        document.getElementById("enviarEdit").className ="submit-section d-none"; 
+                        document.getElementById("enviarEdit").className ="submit-section d-block";
                         $('#empleadoListado').DataTable().ajax.reload()
                        
                     }).catch( err =>{
@@ -439,6 +448,10 @@ function enviarPermisoEdit() {
         console.log("todos los campos son requeridos")
         return;
      }
+
+     //fin del primer if
+     }
+
     
     
 }
