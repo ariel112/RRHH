@@ -44,7 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //
 
-    Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class )->name('empleado.perfil');
+    Route::get('/empleado/perfil/{id}', EmpleadoPerfil::class, 'getEmpleadoPerfil')->name('empleado.perfil');
     Route::get('/empleado/listarempleados', [EmpleadoPerfil::class, 'listarempleados'] )->name('listarempleados');
 
     Route::get('/empleado', EmpleadoIndex::class,)->name('empleado.index');
