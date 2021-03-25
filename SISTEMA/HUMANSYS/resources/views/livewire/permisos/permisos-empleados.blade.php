@@ -158,13 +158,13 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Leave</h5>
+                    <h5 class="modal-title">Editar Permiso</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="permisoEdit">
                         <div class="form-group">
                             <label>Leave Type <span class="text-danger">*</span></label>
                             <select id="selectEdit" class="select" onclick="opciones()">                                
@@ -183,7 +183,7 @@
                             </div>
                         </div>
 
-                        <div id="horarioEdit" class="d-none">
+                        <div id="horasPermisosEdit" class="d-none">
                             <div class="form-group">
                                 <label>Hora de inicio <span class="text-danger">*</span></label>
                                 <input id="horaInicioEdit" type="time" class="form-control" required>
@@ -201,12 +201,12 @@
                             <textarea id="motivoEdit" rows="4" class="form-control"></textarea>
                         </div>
 
-                        <div class="submit-section" id="verificar">
-                            <button class="btn btn-success submit-btn" type="button" onclick="verificarData()" >Verificar</button>
+                        <div class="submit-section" id="verificarEdit">
+                            <button class="btn btn-success submit-btn" type="button" onclick="verificarDataEdit()" >Verificar</button>
                         </div>
 
-                        <div class="submit-section d-none" id="enviar">
-                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermiso()" >Enviar</button>
+                        <div class="submit-section d-none" id="enviarEdit">
+                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
                         </div>
 
                     </form>
