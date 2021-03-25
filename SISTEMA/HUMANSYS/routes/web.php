@@ -81,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
+     Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'actualizarPermiso']);
 
 
 
@@ -96,6 +97,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
 
       Route::post('/cargos/edit', [Cargos::class, 'cargos_edit'])->name('cargos.edit');
+
+
 
 
 
