@@ -18,9 +18,9 @@
                 <label class="focus-label">Departamento</label>
             </div>
         </div>
-        <div class="col-sm-4 col-md-3">
+{{--         <div class="col-sm-4 col-md-3">
             <a href="#" class="btn btn-success btn-block"> Buscar </a>
-        </div>
+        </div> --}}
     </div>
     <div class="row staff-grid-row">
         @if($empleados->count())
@@ -28,7 +28,7 @@
                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div class="profile-widget">
                         <div class="profile-img">
-                            <a href="{{ route('empleado.perfil',$empleado->id) }}" class="avatar"><img src="assets/img/profiles/avatar-0{{$empleado->id}}.jpg" alt=""></a>
+                            <a href="{{ route('empleado.perfil',$empleado->id) }}" class="avatar"><img src="assets/img/profiles/avatar-{{$empleado->id}}.jpg" alt=""></a>
                         </div>
                         <div class="dropdown profile-action">
                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -53,11 +53,11 @@
         (cargaDeptos)()
 
         function renderDeptos(data){
-            var html_select_deptos ='<option selected="selected">Mostrar por Departamentos</option>';
+            var html_select_deptos ='<option selected="selected">Buscar por Departamentos</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
-            $('#selectDeptos').html(html_select_deptos)
+            $('#selectDeptos').html(html_select_deptos);
         }
 
         function cargaDeptos(){

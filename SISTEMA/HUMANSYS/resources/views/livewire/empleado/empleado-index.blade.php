@@ -59,8 +59,8 @@
         <!-- Search Filter -->
 
         @livewire('empleado.empleado-card')
-        <div class="row staff-grid-row">
-            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+        {{-- <div class="row staff-grid-row">
+            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
@@ -75,8 +75,8 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Doe</a></h4>
                     <div class="small text-muted">Web Designer</div>
                 </div>
-            </div> --}}
-            {{-- <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
+            </div>
+            <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
                         <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
@@ -251,8 +251,8 @@
                     <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Catherine Manseau</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
-            </div> --}}
-        </div>
+            </div>
+        </div> --}}
     </div>
     <!-- /Page Content -->
 
@@ -1139,6 +1139,7 @@
 
         /* ------------------------Guardar Empleados------------------------------- */
 
+
         function guardarEmpleado(){
             event.preventDefault();
             var data = new FormData($('#formEmpleado').get(0));
@@ -1152,7 +1153,6 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -1167,7 +1167,7 @@
         /* --------------------------Departamentos Gerenciales---------------------------- */
         (cargaDeptos)()
 
-        function renderDeptos(data){
+        function renderDeptosModal(data){
             var html_select_deptosModal ='<option selected="selected">Seleccione Departamento</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptosModal += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
@@ -1185,7 +1185,7 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-                    renderDeptos(data);
+                    renderDeptosModal(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);

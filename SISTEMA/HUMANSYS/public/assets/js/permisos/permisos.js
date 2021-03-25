@@ -1,6 +1,8 @@
 $(document).ready(opciones);
 $(document).ready(tableEmpleado);
 
+var idEdit = "";
+
 function opciones() {
     //  var opciones = document.getElementById('permisosEmpleado').innerHTML=`
     //  <option>Casual Leave 12 Days</option>
@@ -176,6 +178,8 @@ function verificarData(){
 
         
        
+    }else{
+        console.log(y , x)
     }
     
 
@@ -212,10 +216,17 @@ function tableEmpleado(){
 
 
  function editarPermiso(idPermiso){
-     
+
+    idEdit = idPermiso;
+
+    document.getElementById("permisoEdit").reset();
+    document.getElementById("verificarEdit").className =" submit-section d-block";    
+    document.getElementById("enviarEdit").className ="d-none";     
+
+
     axios.put('/datos/permiso/'+idPermiso)
     .then( response =>{
-              console.log(response.data.permiso.fecha_inicio)
+              //console.log(response.data.permiso.fecha_inicio)
 
             let tipoPermisoEdit = document.getElementById("selectEdit")
 
@@ -229,8 +240,27 @@ function tableEmpleado(){
             let fechaFinalEdit = document.getElementById("fechaFinalEdit");
             let motivoEdit = document.getElementById("motivoEdit");
 
-            fechaInicioEdit.value = response.data.permiso.fecha_inicio;
-            fechaFinalEdit.value = response.data.permiso.fecha_final;
+            let fechaIniEdit = response.data.permiso.fecha_inicio;
+            let yyEditIni = fechaIniEdit.substring(0, 4); 
+            let mmEditiIni = fechaIniEdit.substring(5, 7);
+            let ddEdiIni = fechaIniEdit.substring(8, 10);
+
+
+
+            let fechaFinEdit = response.data.permiso.fecha_final;
+            let yyEditFinal = fechaFinEdit.substring(0, 4); 
+            let mmEditiFinal = fechaFinEdit.substring(5, 7);
+            let ddEditFinal = fechaFinEdit.substring(8, 10);
+
+            fechaInicioEdit.value = ddEdiIni+"/"+mmEditiIni+"/"+yyEditIni;
+            fechaFinalEdit.value = ddEditFinal+"/"+mmEditiFinal+"/"+yyEditFinal;
+
+            
+
+            // fechaInicioEdit.value = response.data.permiso.fecha_inicio;
+            // fechaFinalEdit.value = response.data.permiso.fecha_final;
+
+            
 
             motivoEdit.value = response.data.permiso.motivo;
 
@@ -242,11 +272,15 @@ function tableEmpleado(){
                 let horaInicioForm = document.getElementById("horaInicioEdit");
                 let horaFinalForm =  document.getElementById("horaFinalEdit");
 
+                
+
                 horaInicioForm.value = horaInicio;
                 horaFinalForm.value = horaFinal; 
 
-                document.getElementById("horarioEdit").className="d-block";
+                document.getElementById("horasPermisosEdit").className="d-block";
 
+        }else{
+            document.getElementById("horasPermisosEdit").className="d-none"
         }
 
        // console.log(tipoPermisoEdit.value)
@@ -259,3 +293,165 @@ function tableEmpleado(){
 
 }
 
+function verificarDataEdit(){
+
+    let y = document.getElementById("fechaInicioEdit").value;
+    let ddi = y.substring(0, 2);
+    let mmi = y.substring(3, 5);
+    let yyi = y.substring(6, 10);
+
+    let fechaInicio = yyi + "-" + mmi + "-" + ddi;
+
+    let x = document.getElementById("fechaFinalEdit").value;
+    let ddf = x.substring(0, 2);
+    let mmf = x.substring(3, 5);
+    let yyf = x.substring(6, 10);
+
+   
+    let fechaFinal = yyf + "-" + mmf + "-" + ddf;
+
+    if(y && x){
+
+
+        if(fechaInicio == fechaFinal){
+            document.getElementById("verificarEdit").className =" d-none";
+            document.getElementById("horasPermisosEdit").className = "d-block";   
+            document.getElementById("enviarEdit").className ="submit-section d-block";
+
+                  
+        }else{
+            document.getElementById("verificarEdit").className =" d-none";
+            document.getElementById("horasPermisosEdit").className = "d-none";   
+            document.getElementById("enviarEdit").className ="submit-section d-block";       
+        }
+
+        
+       
+    }else{
+        console.log(y , x)
+    }
+    
+
+return;
+}
+
+function enviarPermisoEdit() {
+
+    if(idEdit!=""){
+
+                    
+    let tipoPermiso = document.getElementById("selectEdit").value;
+    let option = document.getElementById("selectEdit");
+    let tipoPermisoText = option.options[option.selectedIndex].text;
+
+    let motivo = document.getElementById("motivoEdit").value;
+    //console.log(tipoPermisoText)
+
+    let y = document.getElementById("fechaInicioEdit").value;
+    let ddi = y.substring(0, 2);
+    let mmi = y.substring(3, 5);
+    let yyi = y.substring(6, 10);
+
+    let fechaInicio = yyi + "-" + mmi + "-" + ddi;
+
+    let x = document.getElementById("fechaFinalEdit").value;
+    let ddf = x.substring(0, 2);
+    let mmf = x.substring(3, 5);
+    let yyf = x.substring(6, 10);
+
+   
+    let fechaFinal = yyf + "-" + mmf + "-" + ddf;
+
+
+
+     if(y && x && (y == x) ){
+
+        let horaInicio = document.getElementById("horaFinalEdit").value;
+        let horaFinal  = document.getElementById("horaFinalEdit").value;
+        fechaInicio = fechaInicio+" "+horaInicio;
+        fechaFinal = fechaFinal+" "+horaFinal;
+        if(tipoPermisoText && tipoPermiso && motivo && horaInicio && horaFinal){
+
+                    axios.put("/editar/permiso", {
+                        unDia:1,
+                        tipoPermisoTexto: tipoPermisoText,
+                        fechaInicio: fechaInicio,
+                        fechaFinal: fechaFinal,
+                        tipoPermiso: tipoPermiso,
+                        horaInicio: horaInicio,
+                        horaFinal: horaFinal,
+                        motivo: motivo,
+                        id: idEdit
+                    
+                    }).then( response => {
+                        console.log(response.data)
+                        document.getElementById("permisoEdit").reset();
+
+                        $('#edit_leave').modal('hide');
+
+                        document.getElementById("horasPermisosEdit").className = "d-none";  
+                        document.getElementById("enviarEdit").className ="submit-section d-none"; 
+                        document.getElementById("enviarEdit").className ="submit-section d-block";
+                        $('#empleadoListado').DataTable().ajax.reload()
+
+
+                    }).catch( err =>{
+                        console.error(err.response.data.exception);
+                    })
+
+                    return;
+                }else{
+                    //todos los campos son requeridos
+                    console.log("todos los campos son requeridos")
+                    return;
+                }
+
+     } else if( y && x && (y !== x)){
+
+                if(tipoPermisoText && tipoPermiso && motivo ){
+
+                    axios.put("/editar/permiso", {
+                        unDia:2,
+                        tipoPermisoTexto: tipoPermisoText,
+                        fechaInicio: fechaInicio,
+                        fechaFinal: fechaFinal,
+                        tipoPermiso: tipoPermiso,                       
+                        motivo: motivo,
+                        horaInicio: horaInicio,
+                        horaFinal: horaFinal,
+                        id: idEdit
+                    
+                    }).then( response => {
+                        console.log(response.data)
+                        document.getElementById("permisoEdit").reset();
+
+                        $('#edit_leave').modal('hide');
+
+                        document.getElementById("horasPermisosEdit").className = "d-none";  
+                        document.getElementById("enviarEdit").className ="submit-section d-none"; 
+                        document.getElementById("enviarEdit").className ="submit-section d-block";
+                        $('#empleadoListado').DataTable().ajax.reload()
+                       
+                    }).catch( err =>{
+                        console.error(err.response.data.exception);
+                    })
+
+                    return;
+                }else{
+                    //todos los campos son requeridos
+                    console.log("todos los campos son requeridos")
+                    return;
+                }
+
+
+     }else{
+        console.log("todos los campos son requeridos")
+        return;
+     }
+
+     //fin del primer if
+     }
+
+    
+    
+}

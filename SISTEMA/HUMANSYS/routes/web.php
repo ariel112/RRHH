@@ -54,7 +54,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
 
     //Gestiones de Empleado
-    Route::get('/empleado/store', [EmpleadoIndex::class, 'guardarEmpleado']);
+    Route::post('/empleado/store', [EmpleadoController::class, 'store']);
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
@@ -81,7 +81,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
-     Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'actualizarPermiso']);
+     Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'datosActualizarPermiso']);
+     Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);
+
 
 
 
