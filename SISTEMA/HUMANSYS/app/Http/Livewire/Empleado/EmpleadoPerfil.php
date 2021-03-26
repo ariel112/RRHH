@@ -26,19 +26,23 @@ class EmpleadoPerfil extends Component
             $idCargo = $carg->id;
         }
        $area = DB::select('select * from area WHERE id = (select area_id from cargo where id = '.$idCargo.');');
+       $area = DB::select('select * from area WHERE id = (select area_id from cargo where id = '.$idCargo.');');
 
        foreach ($area as $ar) {
                 $idArea = $ar->id;
         }
 
        $departamento = DB::select('select nombre from departamento WHERE id = (select departamento_id from area where id = '.$idArea.');');
+
+       $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
             'referencias' => referencia::where('empleado_id', '=', $request['id'])->get(),
             'cargos' => $cargo,
             'areas' => $area,
-            'departamentos' => $departamento
+            'departamentos' => $departamento,
+            'funciones' => $funcion
            ]);
 
     }
