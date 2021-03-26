@@ -201,7 +201,7 @@
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="javascript:void(0);" class="btn btn-primary continue-btn">Aprobar</a>
+                                    <a href="#" onclick="aprobarPermiso()" class="btn btn-primary continue-btn">Aprobar</a>
                                 </div>
                                 <div class="col-6">
                                     <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-secondary cancel-btn">Cancelar</a>

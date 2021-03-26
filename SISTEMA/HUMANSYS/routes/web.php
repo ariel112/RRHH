@@ -5,7 +5,7 @@ use App\Http\Controllers\EnvioController;
 use App\Http\Livewire\Contratos\Contratos;
 use App\Http\Livewire\Empleado\EmpleadoIndex;
 use App\Http\Livewire\Empleado\EmpleadoPerfil;
-use App\Http\Livewire\Permisos\Permisos;
+use App\Http\Livewire\Permisos\PermisosJefe;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Livewire\Cargos\Cargos;
@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
      // permisos empleados
-     Route::get('/permisos', Permisos::class )->name('permisos.index');
+     Route::get('/permisos', PermisosJefe::class )->name('permisos.index');
      Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
      Route::get('/permisosempleadosrrhh', PermisosRrhh::class )->name('permisos.index_rrhh');
      
@@ -87,7 +87,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'datosActualizarPermiso']);
      Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);     
      //permisos jefe inmediato
-     Route::get('/listar/permisos/jefe',[Permisos::class, 'listarPermisosJefe']);
+     Route::get('/listar/permisos/jefe',[permisosJefe::class, 'listarPermisosJefe']);
+     Route::put('/aprobar/permiso/{id}', [permisosJefe::class, 'aprobarPermiso']);
 
 
 

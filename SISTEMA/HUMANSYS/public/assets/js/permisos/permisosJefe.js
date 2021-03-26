@@ -1,5 +1,6 @@
 
 
+var idAprobar ="";
 $(document).ready(tableEmpleadoJefe);
 
 function tableEmpleadoJefe(){
@@ -30,5 +31,35 @@ function tableEmpleadoJefe(){
 }
 
 function modalAprobar(id){
-    $("#approve_leave").modal()
+
+    console.log(id);
+    idAprobar = id;
+    $("#approve_leave").modal();
+
+
+
+    return;
+    
+
+
+}
+
+ function aprobarPermiso(){
+
+
+
+ axios.put('/aprobar/permiso/'+idAprobar)
+      .then( response =>{
+                console.log( response.data );
+                $('#approve_leave').modal('hide');
+                $('#tablePermisosJefe').DataTable().ajax.reload();
+      })
+      .catch( err =>{
+        console.error(err.response.data.exception);
+
+      })
+
+
+     return;
+
 }

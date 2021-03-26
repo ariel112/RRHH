@@ -2,16 +2,21 @@
 
 
 
-namespace App\Http\Livewire\Permisos;
+namespace App\Http\Livewire\permisos;
 
 
 
 use App\Models\departamento;
+use App\Models\empleado;
+use App\Models\permisos;
+
+
 use Doctrine\DBAL\Query\QueryException;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
-class Permisos extends Component
+class permisosJefe extends Component
 {
     public function render()
     {
@@ -85,4 +90,32 @@ class Permisos extends Component
             ], 402);
         }
     }
+
+
+   
+    public function aprobarPermiso($id){
+        try{
+            
+            $identidad = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad','=', $identidad)
+                                    ->select('id')
+                                    ->get();
+
+
+            $permiso  = permisos::find($id);
+            $permiso->estado_permiso_jefe_id = 1;
+            $permiso->empleado_jefe_aprueba = $idEmpleado[0]['id'];
+            $permiso->save();            
+
+             return response()->json([
+                 'message' =>"Aprobado con exito",
+                 'permiso' => $permiso
+             ],200);
+        }catch(QueryException $e){
+            
+             return response()->json([
+            'error'=>$e, 
+            ],402); }
+        }
 }

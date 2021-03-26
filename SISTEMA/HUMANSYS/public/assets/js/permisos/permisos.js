@@ -15,7 +15,7 @@ function opciones() {
         .then((response) => {
             //console.log(response.data)
 
-            let lista = "";
+            let lista = '<option selected="true" disabled="disabled">--Seleccione un tipo permiso--</option>';
             response.data.tipos.forEach((element) => {
                 lista =
                     lista +
@@ -226,13 +226,8 @@ function tableEmpleado(){
 
     axios.put('/datos/permiso/'+idPermiso)
     .then( response =>{
-              //console.log(response.data.permiso.fecha_inicio)
-
-            let tipoPermisoEdit = document.getElementById("selectEdit")
-
-           // `<option value="${element.id}">${element.permiso}</option>`;
-          
-            tipoPermisoEdit.innerHTML = `<option value="${response.data.permiso.tipo_permiso_id}">${response.data.permiso.tipo_permiso}</option>`;
+             
+        this.opciones();
            
 
 
@@ -340,9 +335,7 @@ function enviarPermisoEdit() {
     if(idEdit!=""){
 
                     
-    let tipoPermiso = document.getElementById("selectEdit").value;
-    let option = document.getElementById("selectEdit");
-    let tipoPermisoText = option.options[option.selectedIndex].text;
+        this.opciones();
 
     let motivo = document.getElementById("motivoEdit").value;
     //console.log(tipoPermisoText)
