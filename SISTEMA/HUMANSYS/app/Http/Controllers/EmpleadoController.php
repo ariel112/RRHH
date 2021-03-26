@@ -72,6 +72,7 @@ class EmpleadoController extends Controller
             $empleados->rtn = $request['rtn'];
             $empleados -> save();
 
+
            /*  $referencias = new referencia();
             $referencias->nombre = $request['nombre'];
             $referencias->telefono = $request['telefono'];
@@ -79,26 +80,26 @@ class EmpleadoController extends Controller
             $referencias->direccion = $request['direccion'];
             $referencias->parentezco = $request['parentezco']; */
 
-            User::create([
-                'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],
-                'email' =>  $request['email_institucional'],
-                //'password' => Hash::make(rand(5, 15))
-                'password' => Hash::make($request['identidad']),
-                'identidad'=> $request['identidad']
-                ]);
+            // User::create([
+            //     'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],
+            //     'email' =>  $request['email_institucional'],
+            //     //'password' => Hash::make(rand(5, 15))
+            //     'password' => Hash::make($request['identidad']),
+            //     'identidad'=> $request['identidad']
+            //     ]);
 
-                $newUser = new User();
-                $newUser->neme = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
-                $newUser->email =$request['email_institucional'];
-                $newUser->password = Hash::make($request['identidad']);
-                $newUser->identidad=$request['identidad'];
+                // $newUser = new User();
+                // $newUser->name = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
+                // $newUser->email =$request['email_institucional'];
+                // $newUser->password = Hash::make($request['identidad']);
+                // $newUser->identidad=$request['identidad'];
 
-                $newUser->save();
+                // $newUser->save();
 
-                Team::forceCreate([
-                'user_id' => $newUser->id,
-                'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
-                'personal_team' => true,]);
+                // Team::forceCreate([
+                // 'user_id' => $newUser->id,
+                // 'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
+                // 'personal_team' => true,]);
 
 
 
@@ -107,7 +108,8 @@ class EmpleadoController extends Controller
             return "Exito";
 
         }catch(QueryException $e){
-
+            DB::rollback();
+            return $e;
         }
 
 

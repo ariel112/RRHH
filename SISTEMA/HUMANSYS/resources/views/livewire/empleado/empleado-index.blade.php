@@ -1141,7 +1141,7 @@
 
 
         function guardarEmpleado(){
-            event.preventDefault();
+             event.preventDefault();
             var data = new FormData($('#formEmpleado').get(0));
             $.ajax({
                 type:"POST",
