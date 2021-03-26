@@ -1,15 +1,15 @@
 <div>
     <div class="row filter-row">
-        <div class="col-sm-6 col-md-3">
+     {{--    <div class="col-sm-6 col-md-3">
             <div class="form-group form-focus">
                 <input wire:model="searchIdentidad" type="text" id="identidad" name="identidad" class="form-control floating">
                 <label class="focus-label">Número de identidad</label>
             </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
+        </div> --}}
+        <div class="col-sm-6 col-md-6">
             <div class="form-group form-focus">
                 <input wire:model="searchNombre" type="text" id="nombre" name="nombre" class="form-control floating">
-                <label class="focus-label">Nombre del empleado</label>
+                <label class="focus-label">Busqueda de empleado por nombre/Identidad</label>
             </div>
         </div>
         <div class="col-sm-6 col-md-3">
@@ -28,7 +28,7 @@
                 <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                     <div class="profile-widget">
                         <div class="profile-img">
-                            <a href="{{ route('empleado.perfil',$empleado->id) }}" class="avatar" {{-- onclick="enviarId({{$empleado->id}})" --}}><img src="assets/img/profiles/avatar-{{$empleado->id}}.jpg" alt="" ></a>
+                            <a href="{{ route('empleado.perfil',$empleado->id) }}" class="avatar" {{-- onclick="enviarId({{$empleado->id}})" --}}><img src="assets/img/user.jpg" alt="" ></a>
                         </div>
                         <div class="dropdown profile-action">
                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>

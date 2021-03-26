@@ -1,8 +1,8 @@
 
     <div class="page-wrapper">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
                     {{--  --}}
-
 @foreach($empleados as $empleado)
     @foreach($direcciones as $direccion)
         @foreach($referencias as $referencia)
@@ -17,7 +17,7 @@
                             <div class="page-header">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <h3 class="page-title">Perfil de Empleado</h3>
+                                        <h3 class="page-title">Perfil de Empleado <i class="far fa-user-circle"></i></h3>
                                         <ul class="breadcrumb">
                                             <li class="breadcrumb-item"><a>Dashboard</a></li>
                                             <li class="breadcrumb-item active">Información</li>
@@ -34,7 +34,7 @@
                                                 <div class="profile-view">
                                                     <div class="profile-img-wrap">
                                                         <div class="profile-img">
-                                                            <a href="#" class="avatar"><img alt="" src="../../assets/img/profiles/avatar-{{$empleado->id}}.jpg"></a>
+                                                            <a href="#" class="avatar"><img alt="" src="../../assets/img/user.jpg"></a>
                                                         </div>
                                                     </div>
                                                     {{-- ------------------------div de informacion basica----------------------------------------- --}}
@@ -47,30 +47,30 @@
                                                                     <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
                                                                     <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5><br>
                                                                     <div class="staff-id">Empleado ID : {{$empleado->id}}</div><br>
-                                                                    <div class="small doj text-muted">Identidad: {{$empleado->identidad}}</div>
+                                                                    <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-7">
                                                                 <ul class="personal-info">
                                                                     <li>
                                                                         <div class="title">Telefono principal:</div>
-                                                                        <div class="text"><a>{{$empleado->telefono_1}}</a></div>
+                                                                        <div class="text"><a><i class="fas fa-phone-square-alt"></i> {{$empleado->telefono_1}}</a></div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="title">Correo Personal:</div>
-                                                                        <div class="text"><a>{{$empleado->email}}</a></div>
+                                                                        <div class="text"><a><i class="fas fa-envelope-open-text"></i> {{$empleado->email}}</a></div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="title">Nacimiento:</div>
-                                                                        <div class="text">{{$empleado->fecha_nacimiento}}</div>
+                                                                        <div class="text"><i class="fas fa-calendar-alt"></i> {{$empleado->fecha_nacimiento}}</div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="title">Dirección:</div>
-                                                                        <div class="text">{{$direccion->descripcion}}</div>
+                                                                        <div class="text"><i class="fas fa-directions"></i> {{$direccion->descripcion}}</div>
                                                                     </li>
                                                                     <li>
                                                                         <div class="title">#Casa:</div>
-                                                                        <div class="text">{{$direccion->numero_casa}}</div>
+                                                                        <div class="text"><i class="fas fa-home"></i> {{$direccion->numero_casa}}</div>
                                                                     </li>
                                                                     {{-- <li>
                                                                         <div class="title">Reports to:</div>
@@ -101,8 +101,8 @@
                                     <div class="row user-tabs">
                                         <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                             <ul class="nav nav-tabs nav-tabs-bottom">
-                                                <li class="nav-item"><a href="#emp_profile" data-toggle="tab" class="nav-link active">Información</a></li>
-                                                <li class="nav-item"><a href="#emp_projects" data-toggle="tab" class="nav-link">Funciones de Trabajo</a></li>
+                                                <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active">Información</a></li>
+                                                <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link">Funciones de Trabajo</a></li>
                                                 <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Detalles de salario y planilla</a></li>
                                             </ul>
                                         </div>
@@ -112,12 +112,12 @@
                                 <div class="tab-content">
 
                                     <!----------------------------- Detalle completo de informacion -------------------------->
-                                    <div id="emp_profile" class="pro-overview tab-pane fade show active">
+                                    <div id="emp_informacion" class="pro-overview tab-pane fade show active">
                                         <div class="row">
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Información detallada<a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a></h3>
                                                         <ul class="personal-info">
                                                             <li>
                                                                 <div class="title">Nombre Completo:</div>
@@ -150,7 +150,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Información Gerencial<a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
 
                                                         <ul class="personal-info">
                                                             <li>
@@ -186,7 +186,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Referencia Personal</h3>
+                                                        <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
                                                         <ul class="personal-info">
                                                             <li>
                                                                 <div class="title">Nombre:</div>
@@ -219,7 +219,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Referencia personal<a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Referencia personal <i class="fas fa-user-check"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a></h3>
                                                         <div class="table-responsive">
                                                             <ul class="personal-info">
                                                                 <li>
@@ -252,127 +252,50 @@
                                                 </div>
                                             </div>
                                         </div>
-            {{--                             <div class="row">
-                                            <div class="col-md-6 d-flex">
-                                                <div class="card profile-box flex-fill">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Education Informations <a href="#" class="edit-icon" data-toggle="modal" data-target="#education_info"><i class="fa fa-pencil"></i></a></h3>
-                                                        <div class="experience-box">
-                                                            <ul class="experience-list">
-                                                                <li>
-                                                                    <div class="experience-user">
-                                                                        <div class="before-circle"></div>
-                                                                    </div>
-                                                                    <div class="experience-content">
-                                                                        <div class="timeline-content">
-                                                                            <a href="#/" class="name">International College of Arts and Science (UG)</a>
-                                                                            <div>Bsc Computer Science</div>
-                                                                            <span class="time">2000 - 2003</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="experience-user">
-                                                                        <div class="before-circle"></div>
-                                                                    </div>
-                                                                    <div class="experience-content">
-                                                                        <div class="timeline-content">
-                                                                            <a href="#/" class="name">International College of Arts and Science (PG)</a>
-                                                                            <div>Msc Computer Science</div>
-                                                                            <span class="time">2000 - 2003</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 d-flex">
-                                                <div class="card profile-box flex-fill">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Experience <a href="#" class="edit-icon" data-toggle="modal" data-target="#experience_info"><i class="fa fa-pencil"></i></a></h3>
-                                                        <div class="experience-box">
-                                                            <ul class="experience-list">
-                                                                <li>
-                                                                    <div class="experience-user">
-                                                                        <div class="before-circle"></div>
-                                                                    </div>
-                                                                    <div class="experience-content">
-                                                                        <div class="timeline-content">
-                                                                            <a href="#/" class="name">Web Designer at Zen Corporation</a>
-                                                                            <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="experience-user">
-                                                                        <div class="before-circle"></div>
-                                                                    </div>
-                                                                    <div class="experience-content">
-                                                                        <div class="timeline-content">
-                                                                            <a href="#/" class="name">Web Designer at Ron-tech</a>
-                                                                            <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="experience-user">
-                                                                        <div class="before-circle"></div>
-                                                                    </div>
-                                                                    <div class="experience-content">
-                                                                        <div class="timeline-content">
-                                                                            <a href="#/" class="name">Web Designer at Dalt Technology</a>
-                                                                            <span class="time">Jan 2013 - Present (5 years 2 months)</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> --}}
+
                                     </div>
                                     <!------------------------- /Detalle completo de informacion ---------------------------------->
 
-                                    <!-- Projects Tab -->
-                                    <div class="tab-pane fade" id="emp_projects">
-                                        <div class="row">
+                                    <!-- Funciones Tab -->
+                                    <div class="tab-pane fade" id="emp_funciones">
+                                        {{-- <div class="row">
+                                            @foreach ($funciones as $funcion)
                                             <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <div class="dropdown profile-action">
                                                             <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                                                <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i>Editar</a>
+                                                                <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i>Elimiar</a>
                                                             </div>
                                                         </div>
-                                                        <h4 class="project-title"><a href="project-view.html">Office Management</a></h4>
+                                                        <h4 class="project-title"><a href="project-view.html">{{$area->nombre}}</a></h4>
                                                         <small class="block text-ellipsis m-b-15">
-                                                            <span class="text-xs">1</span> <span class="text-muted">open tasks, </span>
-                                                            <span class="text-xs">9</span> <span class="text-muted">tasks completed</span>
+                                                            <span class="text-xs">1</span> <span class="text-muted">Proyectos actuales</span>
+                                                            <span class="text-xs">9</span> <span class="text-muted">Proyectos completados</span>
                                                         </small>
                                                         <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
                                                             typesetting industry. When an unknown printer took a galley of type and
                                                             scrambled it...
                                                         </p>
+                                                        <p class="text-muted">{{$funcion->nombre}}
+                                                        </p>
                                                         <div class="pro-deadline m-b-15">
                                                             <div class="sub-title">
-                                                                Deadline:
+                                                                Fecha de Asignación:
                                                             </div>
                                                             <div class="text-muted">
-                                                                17 Apr 2019
+                                                                {{$empleado->fecha_ingreso}}
                                                             </div>
                                                         </div>
-                                                        <div class="project-members m-b-15">
-                                                            <div>Project Leader :</div>
-                                                            <ul class="team-members">
-                                                                <li>
-                                                                    <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                                                </li>
-                                                            </ul>
+                                                        <div class="pro-deadline m-b-15">
+                                                            <div class="sub-title">
+                                                                Jefe inmediato:
+                                                            </div>
+                                                            <div class="text-muted">
+                                                                Ariel Morazán
+                                                            </div>
                                                         </div>
                                                         <div class="project-members m-b-15">
                                                             <div>Team :</div>
@@ -401,8 +324,10 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endforeach
 
-                                            <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
+
+                                               <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <div class="dropdown profile-action">
@@ -586,6 +511,40 @@
                                                         <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
                                                         <div class="progress progress-xs mb-0">
                                                             <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                        <div class="card mb-0">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="profile-view">
+                                                            <div class="profile-basic">
+                                                                <div class="row">
+                                                                    <div class="col-md-5 p-10">
+                                                                        <div class="profile-info-left">
+                                                                            <h3 class="user-name m-t-0 mb-0">AREA DE {{$area->nombre}}</h3><br>
+                                                                            <h5 class="text-muted">Código: {{$area->codigo}}</h5>
+                                                                            <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
+                                                                            <br>
+                                                                            <div class="small doj text-muted">Jefe inmediato: Selvin Morazán</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-7">
+                                                                        <ul class="personal-info list-group list-group-flush">
+                                                                            @foreach ($funciones as $funcion)
+                                                                                <li class="list-group-item">
+                                                                                    <div class="title">Funcion:</div>
+                                                                                    <div class="text"><a>{{$funcion->nombre}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam totam alias, voluptate mollitia hic soluta accusantium doloremque.</a></div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {{-- <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
