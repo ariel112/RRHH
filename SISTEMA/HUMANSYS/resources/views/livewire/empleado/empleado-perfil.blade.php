@@ -782,6 +782,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form class="form-group" id="formEditEmpleado">
+                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-wrap edit-img">
@@ -921,7 +922,7 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="submit-section">
-                                                    <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="editarEmpleado()" >Editar</button>
+                                                    <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="editarEmpleado({{$empleado->id}})" >Editar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1417,7 +1418,7 @@
                             </div>
                             <!-- /Experience Modal -->
                             <script>
-                                function editarEmpleado(){
+                                function editarEmpleado(id){
                                     /* event.preventDefault();
                                     var data = new FormData($('#formEmpleado').get(0));
                                     $.ajax({
@@ -1445,6 +1446,22 @@
                                     event.preventDefault();
                                     var data = new FormData($('#formEditEmpleado').get(0));
                                     console.log(data);
+                                    $.ajax({
+                                        type:"POST",
+                                        url: "/empleado/editar/"+id,
+                                        data: data,
+                                        contentType: false,
+                                        cache: false,
+                                        processData:false,
+                                        dataType:"json",
+                                        success: function(data){
+                                            console.log(data);
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            console.log(jqXHR, textStatus, errorThrown);
+                                        }
+
+                                    })
                                 }
                             </script>
 

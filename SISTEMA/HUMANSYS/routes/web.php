@@ -56,6 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Gestiones de Empleado
     Route::post('/empleado/store', [EmpleadoController::class, 'store']);
+    Route::post('/empleado/editar/{id}', [EmpleadoController::class, 'update']);
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
