@@ -328,7 +328,7 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico</label>
                                                     <select class="select" id="grado_academico_id" name="grado_academico_id">
-                                                        <option selected >Seleccione </option>
+                                                        <option selected value="">Seleccione </option>
                                                         <option value="1">PRIMARIA</option>
                                                         <option value="2">SECUNDARIA</option>
                                                         <option value="3">UNIVERSIDAD COMPLETA</option>
@@ -341,7 +341,7 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estado Civil</label>
                                                     <select class="select" id="estado_civil" name="estado_civil">
-                                                        <option selected>Seleccione </option>
+                                                        <option selected value="">Seleccione </option>
                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                         <option value="CASADO(a)">CASADO(a)</option>
                                                     </select>
@@ -463,8 +463,8 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
-                                                    <select class="select">
-                                                        <option selected="selected" id="estatus_id" name="estatus_id" >Seleccione Estado</option>
+                                                    <select class="select" id="estatus_id" name="estatus_id">
+                                                        <option selected="selected"  value="">Seleccione Estado</option>
                                                         <option value="1">ACTIVO</option>
                                                         <option value="2">INACTIVO</option>
                                                     </select>
@@ -524,7 +524,7 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
                                                     <select name="parentezco" id="parentezco">
-                                                        <option selected>Seleccione</option>
+                                                        <option selected value="">Seleccione</option>
                                                         <option value="PADRE">Padre</option>
                                                         <option value="MADRE">Madre</option>
                                                         <option value="ESPOSO(A)">Esposo(a)</option>
@@ -559,7 +559,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="table-responsive m-t-15">
+                        <!-- <div class="table-responsive m-t-15">
                             <table class="table table-striped custom-table">
                                 <thead>
                                     <tr>
@@ -743,9 +743,9 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> --}}
+                        </div> --> 
                         <div class="submit-section">
-                            <button class="btn btn-success" type="submit" id="btnGuardarEmpleado" onclick="guardarEmpleado()">Agregar al Sistema</button>
+                            <button class="btn btn-success" type="submit" id="btnGuardarEmpleado" onclick="validacion()">Agregar al Sistema</button>
                         </div>
                         <br>
                         <br>
@@ -1139,7 +1139,6 @@
 
         /* ------------------------Guardar Empleados------------------------------- */
 
-
         function guardarEmpleado(){
              event.preventDefault();
             var data = new FormData($('#formEmpleado').get(0));
@@ -1159,16 +1158,217 @@
                 }
 
             })
+            Swal.fire({
+                    icon: 'success',
+                    text: 'Guardado con éxito!',
+                    timer: 1500
+                    });
             $('#formEmpleado').trigger("reset");
+        }
+
+        function validacion(){
+            /* var primer_nombre = document.getElementById('primer_nombre');
+            var segundo_nombre = document.getElementById('segundo_nombre');
+            var primer_apellido = document.getElementById('primer_apellido');
+            var segundo_apellido = document.getElementById('segundo_apellido');
+            var fecha_nacimiento = document.getElementById('fecha_nacimiento');
+            var identidad = document.getElementById('identidad');
+            var rtn = document.getElementById('rtn');
+            var lugar_nacimiento = document.getElementById('lugar_nacimiento');
+            var grado_academico_id = document.getElementById('grado_academico_id');
+            var estado_civil = document.getElementById('estado_civil');
+            var select_deptos_pais = document.getElementById('select_deptos_pais');
+            var municipio_id = document.getElementById('municipio_id');
+            var email = document.getElementById('email');
+            var numero_casa = document.getElementById('numero_casa');
+            var email_institucional = document.getElementById('email_institucional');
+            var telefono_1 = document.getElementById('telefono_1');
+            var telefono_2 = document.getElementById('telefono_2');
+            var selectDeptos_Modal = document.getElementById('selectDeptos_Modal');
+            var select_area_Moral = document.getElementById('select_area_Moral');
+            var cargo_id = document.getElementById('cargo_id');
+            var fecha_ingreso = document.getElementById('fecha_ingreso');
+            var estatus_id = document.getElementById('estatus_id');
+            var sueldo = document.getElementById('sueldo');
+            var descripcion_laboral = document.getElementById('descripcion_laboral'); */
+            var primer_nombre = $('#primer_nombre').val();
+            var segundo_nombre = $('#segundo_nombre').val();
+            var primer_apellido = $('#primer_apellido').val();
+            var segundo_apellido = $('#segundo_apellido').val();
+            var fecha_nacimiento = $('#fecha_nacimiento').val();
+            var identidad = $('#identidad').val();
+            var rtn = $('#rtn').val();
+            var lugar_nacimiento = $('#lugar_nacimiento').val();
+            var grado_academico_id = $('#grado_academico_id').val();
+            var estado_civil = $('#estado_civil').val();
+            var select_deptos_pais = $('#select_deptos_pais').val();
+            var municipio_id = $('#municipio_id').val();
+            var email = $('#email').val();
+            var numero_casa = $('#numero_casa').val();
+            var email_institucional = $('#email_institucional').val();
+            var telefono_1 = $('#telefono_1').val();
+            var telefono_2 = $('#telefono_2').val();
+            var selectDeptos_Modal = $('#selectDeptos_Modal').val();
+            var select_area_Moral = $('#select_area_Moral').val();
+            var cargo_id = $('#cargo_id').val();
+            var fecha_ingreso = $('#fecha_ingreso').val();
+            var estatus_id = $('#estatus_id').val();
+            var sueldo = $('#sueldo').val();
+            var descripcion_laboral = $('#descripcion_laboral').val();
+
+            if(primer_nombre.length == 0){
+                    Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe escribir un nombre',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(primer_apellido.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe escribir el primer apellido',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(segundo_apellido.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe escribir el segundo apellido',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(fecha_nacimiento.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una fecha de nacimiento',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(identidad.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar número de identidad',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(rtn.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar RTN',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(lugar_nacimiento.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Lugar de nacimiento',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(grado_academico_id == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Grado academico',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(estado_civil.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Estado civil',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(select_deptos_pais == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar departamento de pais',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(municipio_id == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Municipio',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(email.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un correo electrónico',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(telefono_1.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe ingresar un número telefónico',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(selectDeptos_Modal == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Depto. de Trabajo',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(select_area_Moral == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Area de Trabajo',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(cargo_id.length == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Cargo',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(fecha_ingreso.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar fecha de inicio del colaborador',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(estatus_id == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Estado del colaborador',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(sueldo.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar Sueld bruto',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(descripcion_laboral.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una descripcion de experiencia laboral',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else{
+                (guardarEmpleado)(); 
+            }
+
         }
 
         /* ------------------------------------------------------------------------- */
 
         /* --------------------------Departamentos Gerenciales---------------------------- */
-        (cargaDeptos)()
+        (cargaDeptos)();
 
         function renderDeptosModal(data){
-            var html_select_deptosModal ='<option selected="selected">Seleccione Departamento</option>';
+            var html_select_deptosModal ='<option selected="selected" value="">Seleccione Departamento</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptosModal += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
@@ -1216,7 +1416,7 @@
         }
 
         function renderAreas(data){
-            var html_select_Areas ='<option selected="selected">Seleccione Area de depto.</option>';
+            var html_select_Areas ='<option selected="selected" value="">Seleccione Area de depto.</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_Areas += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
@@ -1247,7 +1447,7 @@
         }
 
         function renderCargos(data){
-            var html_select_cargos ='<option selected="selected">Seleccione Area de depto.</option>';
+            var html_select_cargos ='<option selected="selected" value="">Seleccione Area de depto.</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }

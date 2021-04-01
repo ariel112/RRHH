@@ -43,7 +43,7 @@ class EmpleadoController extends Controller
     {
 
 
-        DB::beginTransaction();
+        /* DB::beginTransaction(); */
 
         try{
 
@@ -105,7 +105,7 @@ class EmpleadoController extends Controller
 
 
 
-            return "Exito";
+            return "Exito se supone que si guardó";
 
         }catch(QueryException $e){
             DB::rollback();
