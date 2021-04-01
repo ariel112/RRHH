@@ -27,7 +27,7 @@
         <!-- /Page Header -->
 
         <!-- Search Filter -->
-        {{-- <div class="row filter-row">
+        <!-- <div class="row filter-row">
             <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <input type="text" id="identidad" name="identidad" class="form-control floating">
@@ -55,11 +55,11 @@
             <div class="col-sm-6 col-md-3">
                 <a href="#" class="btn btn-success btn-block"> Buscar </a>
             </div>
-        </div> --}}
+        </div>  -->
         <!-- Search Filter -->
 
         @livewire('empleado.empleado-card')
-        {{-- <div class="row staff-grid-row">
+        <!-- <div class="row staff-grid-row">
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
@@ -252,7 +252,7 @@
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
-        </div> --}}
+        </div>  -->
     </div>
     <!-- /Page Content -->
 
@@ -284,7 +284,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Segundo Nombre<span class="text-danger">*</span></label>
+                                                    <label class="col-form-label">Segundo Nombre</label>
                                                     <input class="form-control" id="segundo_nombre" name="segundo_nombre" type="text">
                                                 </div>
                                             </div>
@@ -302,7 +302,7 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Fecha de Nacimiento</label>
+                                                    <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
                                                     <input class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                 </div>
                                             </div>
@@ -326,7 +326,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Grado Académico</label>
+                                                    <label class="col-form-label">Grado Académico<span class="text-danger">*</span></label>
                                                     <select class="select" id="grado_academico_id" name="grado_academico_id">
                                                         <option selected value="">Seleccione </option>
                                                         <option value="1">PRIMARIA</option>
@@ -339,7 +339,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Estado Civil</label>
+                                                    <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
                                                     <select class="select" id="estado_civil" name="estado_civil">
                                                         <option selected value="">Seleccione </option>
                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
@@ -361,14 +361,14 @@
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Departamento</label>
+                                                    <label class="col-form-label">Departamento<span class="text-danger">*</span></label>
                                                     <select class="select" id="select_deptos_pais" name="select_deptos_pais" onchange="selectValor()">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Municipio</label>
+                                                    <label class="col-form-label">Municipio<span class="text-danger">*</span></label>
                                                     <select class="select" id="municipio_id" name="municipio_id">
                                                         <option value="" selected >Seleccione Municipio</option>
 
@@ -407,7 +407,7 @@
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group">
-                                                        <label class="col-form-label">Correo Institucional <span class="text-danger">*</span></label>
+                                                        <label class="col-form-label">Correo Institucional</label>
                                                         <input class="form-control" id="email_institucional" name="email_institucional" type="email">
                                                     </div>
                                                 </div>
@@ -438,32 +438,32 @@
                                         <div class="row">
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Departamento</label>
+                                                    <label class="col-form-label">Departamento<span class="text-danger">*</span></label>
                                                     <select class="select" id="selectDeptos_Modal" name="selectDeptos_Modal" onchange="selectValor_Deptosmodal()"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Area</label>
+                                                    <label class="col-form-label">Area<span class="text-danger">*</span></label>
                                                     <select class="select" id="select_area_Moral" name="select_area_Moral" onchange="selectValor_Areamodal()"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Cargo</label>
+                                                    <label class="col-form-label">Cargo<span class="text-danger">*</span></label>
                                                     <select class="select" id="cargo_id" name="cargo_id"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Fecha de Ingreso</label>
+                                                    <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
                                                     <input class="form-control" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Estatus</label>
-                                                    
+                                                    <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
+
                                                     <select class="select" id="estatus_id" name="estatus_id">
                                                         <option selected="selected"  value="">Seleccione Estado</option>
                                                         <option value="1">ACTIVO</option>
