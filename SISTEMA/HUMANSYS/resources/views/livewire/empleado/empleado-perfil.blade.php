@@ -774,7 +774,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Profile Information</h5>
+                                            <h5 class="modal-title">Profile Information {{$empleado->id}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -784,7 +784,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-wrap edit-img">
-                                                            <img class="inline-block" src="assets/img/profiles/avatar-02.jpg" alt="user">
+                                                            <img class="inline-block" src="assets/img/profiles/user.jpg" alt="user">
                                                             <div class="fileupload btn">
                                                                 <span class="btn-text">edit</span>
                                                                 <input class="upload" type="file">
@@ -793,37 +793,68 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>First Name</label>
-                                                                    <input type="text" class="form-control" value="John">
+                                                                    <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>Last Name</label>
-                                                                    <input type="text" class="form-control" value="Doe">
+                                                                    <label class="col-form-label">Segundo Nombre</label>
+                                                                    <input class="form-control" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>Birth Date</label>
-                                                                    <div class="cal-icon">
-                                                                        <input class="form-control datetimepicker" type="text" value="05/06/1985">
-                                                                    </div>
+                                                                    <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>Gender</label>
-                                                                    <select class="select form-control">
-                                                                        <option value="male selected">Male</option>
-                                                                        <option value="female">Female</option>
-                                                                    </select>
+                                                                    <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
+                                                                    <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
+                                                                    <textarea class="form-control" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                {{-- <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Address</label>
@@ -887,7 +918,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="submit-section">
                                                     <button class="btn btn-primary submit-btn">Submit</button>
                                                 </div>
