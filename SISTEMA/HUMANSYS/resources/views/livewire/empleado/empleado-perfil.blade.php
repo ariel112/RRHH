@@ -1,6 +1,7 @@
 
     <div class="page-wrapper">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
                     {{--  --}}
 @foreach($empleados as $empleado)
@@ -774,42 +775,42 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Profile Information {{$empleado->id}}</h5>
+                                            <h5 class="modal-title">Informacion de: {{$empleado->nombre}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            <form class="form-group" id="formEditEmpleado">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="profile-img-wrap edit-img">
-                                                            <img class="inline-block" src="assets/img/profiles/user.jpg" alt="user">
+                                                            <img class="inline-block" src="../../assets/img//user.jpg" alt="user">
                                                             <div class="fileupload btn">
                                                                 <span class="btn-text">edit</span>
                                                                 <input class="upload" type="file">
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
                                                                     <input class="form-control" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="col-form-label">Segundo Nombre</label>
                                                                     <input class="form-control" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
                                                                     <input class="form-control" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-3">
                                                                 <div class="form-group">
                                                                     <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
                                                                     <input class="form-control" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
@@ -920,7 +921,7 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="submit-section">
-                                                    <button class="btn btn-primary submit-btn">Submit</button>
+                                                    <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="editarEmpleado()" >Editar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1416,7 +1417,35 @@
                             </div>
                             <!-- /Experience Modal -->
                             <script>
+                                function editarEmpleado(){
+                                    /* event.preventDefault();
+                                    var data = new FormData($('#formEmpleado').get(0));
+                                    $.ajax({
+                                        type:"POST",
+                                        url: "/empleado/store",
+                                        data: data,
+                                        contentType: false,
+                                        cache: false,
+                                        processData:false,
+                                        dataType:"json",
+                                        success: function(data){
+                                            console.log(data);
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            console.log(jqXHR, textStatus, errorThrown);
+                                        }
 
+                                    })
+                                    Swal.fire({
+                                            icon: 'success',
+                                            text: 'Guardado con éxito!',
+                                            timer: 1500
+                                            });
+                                    $('#formEmpleado').trigger("reset"); */
+                                    event.preventDefault();
+                                    var data = new FormData($('#formEditEmpleado').get(0));
+                                    console.log(data);
+                                }
                             </script>
 
 
