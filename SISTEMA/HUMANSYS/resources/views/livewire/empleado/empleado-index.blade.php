@@ -463,6 +463,7 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus</label>
+                                                    
                                                     <select class="select" id="estatus_id" name="estatus_id">
                                                         <option selected="selected"  value="">Seleccione Estado</option>
                                                         <option value="1">ACTIVO</option>
