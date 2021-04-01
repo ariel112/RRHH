@@ -118,7 +118,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
                                                         <ul class="personal-info">
                                                             <li>
                                                                 <div class="title">Nombre Completo:</div>
@@ -151,7 +151,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
 
                                                         <ul class="personal-info">
                                                             <li>
@@ -220,7 +220,7 @@
                                             <div class="col-md-6 d-flex">
                                                 <div class="card profile-box flex-fill">
                                                     <div class="card-body">
-                                                        <h3 class="card-title">Referencia personal <i class="fas fa-user-check"></i><a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a></h3>
+                                                        <h3 class="card-title">Referencia personal <i class="fas fa-user-check"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
                                                         <div class="table-responsive">
                                                             <ul class="personal-info">
                                                                 <li>
@@ -775,7 +775,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Informacion de: {{$empleado->nombre}}</h5>
+                                            <h5 class="modal-title">Id Colaborador: {{$empleado->id}}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -792,65 +792,152 @@
                                                                 <input class="upload" type="file">
                                                             </div>
                                                         </div>
-                                                        <div class="row">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                            <div class="card-header">
+                                                                <h3 class="card-header text-primary text-center">Informacion Principal</h3>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Segundo Nombre</label>
+                                                                        <input class="form-control" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
+                                                                        <textarea class="form-control" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                            <div class="card-header">
+                                                                <h3 class="card-header text-primary text-center">Información detallada</h3>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">RTN<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
+                                                                        <select class="select" id="estado_civil" name="estado_civil">
+                                                                            <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
+                                                                            <option value="SOLTERO(a)">SOLTERO(a)</option>
+                                                                            <option value="CASADO(a)">CASADO(a)</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Segundo Nombre</label>
-                                                                    <input class="form-control" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
-                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                            <div class="card-header">
+                                                                <h3 class="card-header text-primary text-center">Gerencia</h3>
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                    </div> 
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
+                                                                        <input class="form-control" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="email">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
+                                                                        <select class="select" id="estatus_id" name="estatus_id">
+                                                                            <option selected="selected"  value="{{$empleado->estatus_id}}">{{$empleado->estatus_id}}</option>
+                                                                            <option value="1">1-ACTIVO</option>
+                                                                            <option value="2">2-INACTIVO</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Telefono Secundario</label>
+                                                                        <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group">
+                                                                        <label class="col-form-label">Correo Institucional</label>
+                                                                        <input class="form-control" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->email}}" id="email" name="email" type="email">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                                    <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                    <textarea class="form-control" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                <div class="col-md-4">
+                                                                    {{-- Lugar asignado/Municipio --}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -922,7 +1009,7 @@
                                                     </div>
                                                 </div> --}}
                                                 <div class="submit-section">
-                                                    <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="editarEmpleado({{$empleado->id}})" >Editar</button>
+                                                    <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -932,17 +1019,18 @@
                             <!-- /Profile Modal -->
 
                             <!-- Personal Info Modal -->
-                            <div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
+                            {{-- <div id="personal_info_modal" class="modal custom-modal fade" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Personal Information</h5>
+                                            <h5 class="modal-title">Información detallada</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form>
+                                            <form class="form-group" id="formEditInfoDetalle">
+                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -1008,11 +1096,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Personal Info Modal -->
 
                             <!-- Family Info Modal -->
-                            <div id="family_info_modal" class="modal custom-modal fade" role="dialog">
+                            {{-- <div id="family_info_modal" class="modal custom-modal fade" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -1098,11 +1186,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Family Info Modal -->
 
                             <!-- Emergency Contact Modal -->
-                            <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
+                            {{-- <div id="emergency_contact_modal" class="modal custom-modal fade" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -1183,11 +1271,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Emergency Contact Modal -->
 
                             <!-- Education Modal -->
-                            <div id="education_info" class="modal custom-modal fade" role="dialog">
+                            {{-- <div id="education_info" class="modal custom-modal fade" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -1305,11 +1393,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Education Modal -->
 
                             <!-- Experience Modal -->
-                            <div id="experience_info" class="modal custom-modal fade" role="dialog">
+                            {{-- <div id="experience_info" class="modal custom-modal fade" role="dialog">
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -1415,35 +1503,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- /Experience Modal -->
                             <script>
-                                function editarEmpleado(id){
-                                    /* event.preventDefault();
-                                    var data = new FormData($('#formEmpleado').get(0));
-                                    $.ajax({
-                                        type:"POST",
-                                        url: "/empleado/store",
-                                        data: data,
-                                        contentType: false,
-                                        cache: false,
-                                        processData:false,
-                                        dataType:"json",
-                                        success: function(data){
-                                            console.log(data);
-                                        },
-                                        error: function (jqXHR, textStatus, errorThrown) {
-                                            console.log(jqXHR, textStatus, errorThrown);
-                                        }
-
-                                    })
-                                    Swal.fire({
-                                            icon: 'success',
-                                            text: 'Guardado con éxito!',
-                                            timer: 1500
-                                            });
-                                    $('#formEmpleado').trigger("reset"); */
-                                    event.preventDefault();
+                                function editarEmpleadoPrincipal(id){
+                                    
                                     var data = new FormData($('#formEditEmpleado').get(0));
                                     console.log(data);
                                     $.ajax({
@@ -1462,6 +1526,133 @@
                                         }
 
                                     })
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'Editado con éxito!',
+                                        timer: 1500
+                                        });
+                                }
+                                function validacionEmpleadoPrincipal(id){
+
+                                    var primer_nombre = $('#primer_nombre').val();
+                                            var segundo_nombre = $('#segundo_nombre').val();
+                                            var primer_apellido = $('#primer_apellido').val();
+                                            var segundo_apellido = $('#segundo_apellido').val();
+                                            var fecha_nacimiento = $('#fecha_nacimiento').val();
+                                            var identidad = $('#identidad').val();
+                                            var rtn = $('#rtn').val();
+                                            var lugar_nacimiento = $('#lugar_nacimiento').val();
+                                            var grado_academico_id = $('#grado_academico_id').val();
+                                            var estado_civil = $('#estado_civil').val();
+                                            var select_deptos_pais = $('#select_deptos_pais').val();
+                                            var municipio_id = $('#municipio_id').val();
+                                            var email = $('#email').val();
+                                            var numero_casa = $('#numero_casa').val();
+                                            var email_institucional = $('#email_institucional').val();
+                                            var telefono_1 = $('#telefono_1').val();
+                                            var telefono_2 = $('#telefono_2').val();
+                                            var selectDeptos_Modal = $('#selectDeptos_Modal').val();
+                                            var select_area_Moral = $('#select_area_Moral').val();
+                                            var cargo_id = $('#cargo_id').val();
+                                            var fecha_ingreso = $('#fecha_ingreso').val();
+                                            var estatus_id = $('#estatus_id').val();
+                                            var sueldo = $('#sueldo').val();
+                                            var descripcion_laboral = $('#descripcion_laboral').val();
+                                            if(primer_nombre.length == 0){
+                                                    Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe escribir un nombre',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(primer_apellido.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe escribir el primer apellido',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(segundo_apellido.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe escribir el segundo apellido',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(fecha_nacimiento.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar una fecha de nacimiento',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(identidad.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar número de identidad',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(email.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un correo electrónico',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(telefono_1.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe ingresar un número telefónico',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(rtn.length == 0){
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar RTN',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(estado_civil.length == 0){
+                                                    Swal.fire({
+                                                        icon: 'warning',
+                                                        text: 'Debe indicar Estado civil',
+                                                        timer: 1000
+                                                        })
+                                                        event.preventDefault();
+                                                }else if(lugar_nacimiento.length == 0){
+                                                    Swal.fire({
+                                                        icon: 'warning',
+                                                        text: 'Debe indicar Lugar de nacimiento',
+                                                        timer: 1000
+                                                        })
+                                                        event.preventDefault();
+                                                }else if(estatus_id == ""){
+                                                        Swal.fire({
+                                                            icon: 'warning',
+                                                            text: 'Debe indicar Estado del colaborador',
+                                                            timer: 1000
+                                                            })
+                                                            event.preventDefault();
+                                                }else if(sueldo.length == 0){
+                                                    Swal.fire({
+                                                        icon: 'warning',
+                                                        text: 'Debe indicar Sueld bruto',
+                                                        timer: 1000
+                                                        })
+                                                        event.preventDefault();
+                                                }else if(fecha_ingreso.length == 0){
+                                                    Swal.fire({
+                                                        icon: 'warning',
+                                                        text: 'Debe indicar fecha de inicio del colaborador',
+                                                        timer: 1000
+                                                        })
+                                                        event.preventDefault();
+                                                }else{
+                                                editarEmpleadoPrincipal(id);
+                                            }
+
                                 }
                             </script>
 
