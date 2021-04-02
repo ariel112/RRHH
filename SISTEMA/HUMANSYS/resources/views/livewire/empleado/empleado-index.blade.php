@@ -758,7 +758,7 @@
     <!-- /Crear Empleado Modal -->
 
     <!-- Editar Empleado Modal -->
-    <div id="edit_employee" class="modal custom-modal fade" role="dialog">
+    {{-- <div id="edit_employee" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1049,16 +1049,16 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- /Editar Empleado Modal -->
 
     <!-- Eliminar Empleado Modal -->
-    <div class="modal custom-modal fade" id="delete_employee" role="dialog">
+    {{-- <div class="modal custom-modal fade" id="delete_employee" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="form-header">
-                        <h3>Delete Employee</h3>
+                        <h3>Eliminar empleado</h3>
                         <p>Are you sure want to delete?</p>
                     </div>
                     <div class="modal-btn delete-action">
@@ -1074,7 +1074,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- /Eliminar Empleado Modal -->
 
     <script>

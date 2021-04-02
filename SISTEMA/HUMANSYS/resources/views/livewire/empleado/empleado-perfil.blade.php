@@ -24,6 +24,9 @@
                                             <li class="breadcrumb-item active">Información</li>
                                         </ul>
                                     </div>
+                                    <div class="col-auto float-right ml-auto">
+                                        <a class="btn btn-danger" style="color: #ffffff;" data-toggle="modal" data-target="#delete_employee">Eliminar <i class="fas fa-user-minus"></i></a>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /Page Header -->
@@ -1012,6 +1015,28 @@
                                                     <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
                                                 </div>
                                             </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal custom-modal fade" id="delete_employee" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="form-header">
+                                                <h3>Eliminar registros de colaborador</h3>
+                                                <p>Está seguro(a) que desea eliminar registros de {{$empleado->nombre}}?</p>
+                                            </div>
+                                            <div class="modal-btn delete-action">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" class="btn btn-danger continue-btn">Eliminar</a>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning cancel-btn">Cancelar</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
