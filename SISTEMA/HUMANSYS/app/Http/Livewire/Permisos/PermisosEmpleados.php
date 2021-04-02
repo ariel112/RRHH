@@ -32,13 +32,13 @@ class PermisosEmpleados extends Component
             return response()->json([
                 'tipos' => $tipos,
 
-            ]);
+            ],200);
         } catch (QueryException $e) {
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al obtener los tipos de permisos',
                 'error' => $e,
-            ]);
+            ],402);
         }
     }
 
