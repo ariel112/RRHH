@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\direccion;
 use App\Models\empleado;
 use App\Models\referencia;
 use Illuminate\Http\Request;
@@ -39,8 +40,9 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function guardar(Request $request){
 
+        /* dd($request); */
 
         /* DB::beginTransaction(); */
 
@@ -69,15 +71,20 @@ class EmpleadoController extends Controller
             $empleados->cargo_id = $request['cargo_id'];
             $empleados->sueldo = $request['sueldo'];
             $empleados->rtn = $request['rtn'];
+
             $empleados -> save();
 
-
+            /* $direccion = new direccion();
+            $direccion->numero_casa = $request['numero_casa'];
+            $direccion->descripcion = $request['descripcion'];
+            $direccion -> save(); */
+/*
             $referencias = new referencia();
             $referencias->nombre = $request['nombre'];
             $referencias->telefono = $request['telefono'];
             $referencias->email = $request['email'];
             $referencias->direccion = $request['direccion'];
-            $referencias->parentezco = $request['parentezco'];
+            $referencias->parentezco = $request['parentezco']; */
 
             /* User::create([
                  'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],
@@ -87,7 +94,7 @@ class EmpleadoController extends Controller
                 'identidad'=> $request['identidad']
                  ]);*/
 
-                 $newUser = new User();
+                /*  $newUser = new User();
                  $newUser->name = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
                  $newUser->email =$request['email_institucional'];
                  $newUser->password = Hash::make($request['identidad']);
@@ -98,13 +105,9 @@ class EmpleadoController extends Controller
                  Team::forceCreate([
                  'user_id' => $newUser->id,
                  'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
-                 'personal_team' => true,]);
+                 'personal_team' => true,]); */
 
-
-
-
-
-            return "Exito se supone que si guardó";
+           return $empleados;
 
         }catch(QueryException $e){
             DB::rollback();

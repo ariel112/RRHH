@@ -339,8 +339,8 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
-                                                    <select class="select" id="estado_civil" name="estado_civil">
+                                                    <label class="col-form-label ">Estado Civil<span class="text-danger">*</span></label>
+                                                    <select class="select custom-select" required id="estado_civil" name="estado_civil">
                                                         <option selected value="">Seleccione </option>
                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                         <option value="CASADO(a)">CASADO(a)</option>
@@ -744,7 +744,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> --> 
+                        </div> -->
                         <div class="submit-section">
                             <button class="btn btn-success" type="submit" id="btnGuardarEmpleado" onclick="validacion()">Agregar al Sistema</button>
                         </div>
@@ -1141,11 +1141,11 @@
         /* ------------------------Guardar Empleados------------------------------- */
 
         function guardarEmpleado(){
-             event.preventDefault();
+            event.preventDefault();
             var data = new FormData($('#formEmpleado').get(0));
             $.ajax({
                 type:"POST",
-                url: "/empleado/store",
+                url: "/empleado/guardar",
                 data: data,
                 contentType: false,
                 cache: false,
@@ -1153,11 +1153,12 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
+                    /* var info = $.parseJSON(data);
+                    console.log(info); */
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
-
             })
             Swal.fire({
                     icon: 'success',
@@ -1193,7 +1194,6 @@
             var sueldo = document.getElementById('sueldo');
             var descripcion_laboral = document.getElementById('descripcion_laboral'); */
             var primer_nombre = $('#primer_nombre').val();
-            var segundo_nombre = $('#segundo_nombre').val();
             var primer_apellido = $('#primer_apellido').val();
             var segundo_apellido = $('#segundo_apellido').val();
             var fecha_nacimiento = $('#fecha_nacimiento').val();
@@ -1358,7 +1358,7 @@
                     })
                     event.preventDefault();
             }else{
-                (guardarEmpleado)(); 
+                (guardarEmpleado)();
             }
 
         }

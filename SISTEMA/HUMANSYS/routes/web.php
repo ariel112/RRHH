@@ -56,7 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/municipio/{idDepto}', [EmpleadoController::class, 'getMunicipios']);
 
     //Gestiones de Empleado
-    Route::post('/empleado/store', [EmpleadoController::class, 'store']);
+    Route::post('/empleado/guardar', [EmpleadoController::class, 'guardar']);
     Route::post('/empleado/editar/{id}', [EmpleadoController::class, 'update']);
     Route::post('/empleado/eliminar/{id}', [EmpleadoController::class, 'destroy']);
 
@@ -83,12 +83,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/permisos', PermisosJefe::class )->name('permisos.index');
      Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
      Route::get('/permisosempleadosrrhh', PermisosRrhh::class )->name('permisos.index_rrhh');
-     
+
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
      Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'datosActualizarPermiso']);
-     Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);     
+     Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);
      //permisos jefe inmediato
      Route::get('/listar/permisos/jefe',[permisosJefe::class, 'listarPermisosJefe']);
      Route::put('/aprobar/permiso/{id}', [permisosJefe::class, 'aprobarPermiso']);
@@ -117,7 +117,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       Route::get('/cargos/muestra/{id}', [Cargos::class, 'cargo_muestra']);
 
       Route::post('/cargos/edit', [Cargos::class, 'cargos_edit'])->name('cargos.edit');
-      
+
       //   eliminar funciones
       Route::get('/cargos/funciones/eliminar/{id}', [Cargos::class, 'eliminar_funciones'])->name('eliminar_funciones');
 
