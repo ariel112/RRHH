@@ -5,13 +5,15 @@ use App\Http\Controllers\EnvioController;
 use App\Http\Livewire\Contratos\Contratos;
 use App\Http\Livewire\Empleado\EmpleadoIndex;
 use App\Http\Livewire\Empleado\EmpleadoPerfil;
-use App\Http\Livewire\Permisos\Permisos;
+use App\Http\Livewire\Permisos\PermisosJefe;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
 use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Permisos\PermisosRrhh;
+use App\Models\permisos;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Gestiones de Empleado
     Route::post('/empleado/store', [EmpleadoController::class, 'store']);
+    Route::post('/empleado/editar/{id}', [EmpleadoController::class, 'update']);
+    Route::post('/empleado/eliminar/{id}', [EmpleadoController::class, 'destroy']);
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
@@ -76,13 +80,27 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
      // permisos empleados
-     Route::get('/permisos', Permisos::class )->name('permisos.index');
+     Route::get('/permisos', PermisosJefe::class )->name('permisos.index');
      Route::get('/permisosempleados', PermisosEmpleados::class )->name('permisos.index_empleado');
+     Route::get('/permisosempleadosrrhh', PermisosRrhh::class )->name('permisos.index_rrhh');
+     
      Route::get('/listado/permisos', [PermisosEmpleados::class, 'obtenerPermisos']);
      Route::post('/permiso/empleado/guardar', [PermisosEmpleados::class, 'guardarPermiso']);
      Route::get('/listar/permisos/solicitados', [PermisosEmpleados::class, 'listarPermisosEmpleados']);
      Route::put('/datos/permiso/{id}', [PermisosEmpleados::class, 'datosActualizarPermiso']);
-     Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);
+     Route::put('/editar/permiso', [PermisosEmpleados::class, 'editarPermiso']);     
+     //permisos jefe inmediato
+     Route::get('/listar/permisos/jefe',[permisosJefe::class, 'listarPermisosJefe']);
+     Route::put('/aprobar/permiso/{id}', [permisosJefe::class, 'aprobarPermiso']);
+     Route::put('/denegar/permiso/{id}', [permisosJefe::class, 'denegarPermiso']);
+     Route::post('guardar/permiso/jefe', [permisosJefe::class, 'guardarPermisoJefe']);
+     //permisos RRHH
+     Route::get('/listar/permisos/rrhh',[PermisosRrhh::class, 'listarPermisosRRHH']);
+     Route::put('/aprobar/permiso/rrhh/{id}', [PermisosRrhh::class, 'aprobarPermisoRRHH']);
+     Route::put('/denegar/permiso/rrhh/{id}', [PermisosRrhh::class, 'denegarPermisoRRHH']);
+     Route::get('/panel/rrhh',[PermisosRrhh::class, 'panelControlRRHH']);
+     Route::post('guardar/permiso/rrhh', [PermisosRrhh::class, 'guardarPermisoRRHH']);
+
 
 
 

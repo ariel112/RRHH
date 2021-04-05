@@ -32,13 +32,13 @@ class PermisosEmpleados extends Component
             return response()->json([
                 'tipos' => $tipos,
 
-            ]);
+            ],200);
         } catch (QueryException $e) {
 
             return response()->json([
                 'message' => 'Ha ocurrido un error al obtener los tipos de permisos',
                 'error' => $e,
-            ]);
+            ],402);
         }
     }
 
@@ -151,18 +151,16 @@ class PermisosEmpleados extends Component
           from permisos
           inner join estado_permiso
           on permisos.estado_permiso_jefe_id = estado_permiso.id  
-          where permisos.empleado_id = ' . $idEmpleado[0]['id'] . ';
+          where permisos.empleado_id = ' . $idEmpleado[0]['id'] .             
+          ' order by permisos.created_at desc;
+         
             ');
 
             return datatables()->of($permisos)
                 ->addColumn('acciones', function ($row) {
-                    $html = '<div class="dropdown dropdown-action">
-                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#" onclick="editarPermiso(' . $row->idPermiso . ')"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                    <a class="dropdown-item" href="#" ><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
-                </div>
-            </div>';
+                    $html = '              
+                <a class="dropdown-item"  href="#" onclick="editarPermiso(' . $row->idPermiso . ')"><i class="fa fa-dot-circle-o text-success"></i> Editar</a>
+          ';
                     return $html;
                 })
                 ->rawColumns(['acciones'])

@@ -256,8 +256,10 @@
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja</a></li>
+									<li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
+									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>									
 									<li><a href="{{ route('permisos.index_empleado') }}"  >Bandeja Empleados</a></li>
+									
 									
 									
 								</ul>

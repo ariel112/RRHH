@@ -54,16 +54,16 @@
                 <div class="table-responsive">
                     <table id="empleadoListado" class="table table-striped custom-table mb-0 ">
                         <thead>
-                            <tr>
-                                <th class="font-weight-bold">Tipo de permiso</th>
-                                <th class="font-weight-bold">Fecha de inicio</th>
-                                <th class="font-weight-bold">Fecha final</th>                                
-                                <th class="font-weight-bold">Motivo</th>                                
-                                <th class="font-weight-bold">Aprobacion de jefe inmediato</th>
-                                <th class="font-weight-bold">Aprobado por</th>
-                                <th class="font-weight-bold">Aprobacion de Talento Humano</th>
-                                <th class="font-weight-bold">Aprobado por</th>
-                                <th class="font-weight-bold">Acciones</th>
+                            <tr>                             
+                                    <th class="font-weight-bold">Tipo de permiso</th>
+                                    <th class="font-weight-bold">Fecha de inicio</th>
+                                    <th class="font-weight-bold">Fecha final</th>                                
+                                    <th class="font-weight-bold">Motivo</th>                                
+                                    <th class="font-weight-bold">Aprobacion de jefe inmediato</th>
+                                    <th class="font-weight-bold">Encargado de Departamento</th>
+                                    <th class="font-weight-bold">Aprobacion de Talento Humano</th>
+                                    <th class="font-weight-bold">Encargado de Talento Humano</th>
+                                    <th class="font-weight-bold">Acciones</th>
                                 <!-- <th class="font-weight-bold">Acciones</th> -->
                                 <!-- <th>Aprobado por</th> -->
                                 <!-- <th class="text-right">Acciones</th> -->
@@ -94,6 +94,7 @@
                         <div class="form-group">
                             <label>Tipo de permiso <span class="text-danger">*</span></label>
                             <select id="permisosEmpleado" class="select">
+                          
                                 <!-- <option>Select Leave Type</option>
                                 <option>Casual Leave 12 Days</option>
                                 <option>Medical Leave</option>
@@ -103,13 +104,13 @@
                         <div class="form-group">
                             <label>Fecha de inicio<span class="text-danger">*</span></label>
                             <div class="cal-icon">
-                                <input id="fechaInicio" class="form-control datetimepicker" type="text" required>
+                                <input id="fechaInicio" class="form-control datetimepicker" type="text" required >
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Fecha final <span class="text-danger">*</span></label>
                             <div class="cal-icon"  >
-                                <input id="fechaFinal" class="form-control datetimepicker"   type="text" required>
+                                <input id="fechaFinal" class="form-control datetimepicker"   type="text" required >
                             </div>
                         </div>
 
@@ -173,13 +174,13 @@
                         <div class="form-group">
                             <label>Fecha de inicio<span class="text-danger">*</span></label>
                             <div class="cal-icon">
-                                <input id="fechaInicioEdit" class="form-control datetimepicker" type="text" required>
+                                <input id="fechaInicioEdit" class="form-control datetimepicker" type="text" required onclick="botonVerificar()">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Fecha final <span class="text-danger">*</span></label>
                             <div class="cal-icon"  >
-                                <input id="fechaFinalEdit" class="form-control datetimepicker"   type="text" required>
+                                <input id="fechaFinalEdit" class="form-control datetimepicker"   type="text" required onclick="botonVerificar()">
                             </div>
                         </div>
 
@@ -206,7 +207,7 @@
                         </div>
 
                         <div class="submit-section d-none" id="enviarEdit">
-                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
+                            <button  class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
                         </div>
 
                     </form>
