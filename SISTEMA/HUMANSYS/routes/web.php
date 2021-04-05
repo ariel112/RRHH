@@ -99,6 +99,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::put('/aprobar/permiso/rrhh/{id}', [PermisosRrhh::class, 'aprobarPermisoRRHH']);
      Route::put('/denegar/permiso/rrhh/{id}', [PermisosRrhh::class, 'denegarPermisoRRHH']);
      Route::get('/panel/rrhh',[PermisosRrhh::class, 'panelControlRRHH']);
+     Route::post('guardar/permiso/rrhh', [PermisosRrhh::class, 'guardarPermisoRRHH']);
 
 
 

@@ -95,7 +95,7 @@
                         <form id="formPermiso">
                             <div class="form-group">
                                 <label>Tipo de permiso <span class="text-danger">*</span></label>
-                                <select id="permisosEmpleado" class="select">
+                                <select id="permisosRRHH" class="select">
                               
                                     <!-- <option>Select Leave Type</option>
                                     <option>Casual Leave 12 Days</option>
