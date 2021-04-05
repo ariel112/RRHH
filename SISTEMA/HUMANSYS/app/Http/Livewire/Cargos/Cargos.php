@@ -128,6 +128,37 @@ class Cargos extends Component
         $cargo->tipo_empleado_id =$request->tipo_empleado;
         $cargo->save();
 
+
+        // editar funciones
+        $funciones = $request->input("funciones_editar");
+        
+        if(empty($funciones)){
+
+            foreach ($funciones as $fun => $val) {
+                $funcion = funciones::find($val);
+                $funcion->nombre=$val;
+                $funcion->cargo_id= $cargo->id;
+                $funcion->save();
+            }
+        }
+
+
+        // agregar funciones
+
+        $funciones_editar = $request->input("funciones");
+        
+        if($funciones_editar){
+
+        foreach ($funciones_editar as $fun => $val) {
+          $funcion = new funciones();
+          $funcion->nombre=$val;
+          $funcion->cargo_id= $cargo->id;
+          $funcion->save();
+        }
+
+    }
+
+
         return response()->json('EXITO');
 
     }
@@ -136,7 +167,7 @@ class Cargos extends Component
     public function eliminar_funciones($id){
 
         $id_data=$id;
-         funciones::destroy($id);
+        funciones::destroy($id);
 
 
         return response()->json($id_data);

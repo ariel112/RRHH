@@ -358,7 +358,7 @@ var campos_max = 16;   //max de 10 campos
 
 
 
-        var x = 2;
+        var x = 0;
         $('#add_field').click (function(e) {
                 e.preventDefault();     //prevenir novos clicks
                 if (x < campos_max) {
@@ -628,8 +628,11 @@ function setcargo(id){
 // editar cargos
 
 function editcargo(id){
-          
-          cargoarea_edit(id);
+    
+    $(document).ready(function(){
+        $('#listas_edit').html();
+        cargoarea_edit(id);
+    });
         
       }
 
@@ -644,6 +647,7 @@ function editcargo(id){
               dataType:"json",
               success: function(data){
                   // console.log(data.funciones[0].nombre);
+                
                    vistafunciones_edit(data);
               },
               error: function (jqXHR, textStatus, errorThrown) {
@@ -653,7 +657,7 @@ function editcargo(id){
       }
 
       function vistafunciones_edit(data){
-
+            
         //   console.log(data.cargo[0].gerencia);
            $('#cargo_edit').val(data.cargo[0].cargo);
            $('#vw_empleado').val(data.cargo[0].tipo_empleado);
@@ -858,7 +862,7 @@ function selectValor_edit(){
  function listarfunciones(data){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
-     list_fun += '<div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a> </div>'
+     list_fun += '<div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones_editar[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a> </div>'
    
      }
 
@@ -872,21 +876,23 @@ function selectValor_edit(){
 
 
 
-var x = data.length;
-$('#add_field_edit').click (function(e) {
+ var x_edit = 0;
+ $('#area_funciones').html();
+ $('#add_field_edit').click (function(e) {
+     console.log('x vale:', x_edit );
         e.preventDefault();     //prevenir novos clicks
-        if (x < campos_max_edit) {
-                $('#listas_edit').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input"><b>'+x+'.</b></span>\
+        if (x_edit < campos_max_edit) {
+                $('#area_funciones').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input">i.</span>\
                         <input type="text" class="form-control reducir_input" name="funciones[]" aria-label="Funciones del empleado">\
                         <span class="input-group-text bg-danger reducir_input"><a  class="remover_campo btn btn-danger reducir_input"><i class="fa fa-minus fa-1x text-white reducir_input"></i></a></span></div>');
-                x++;
+                x_edit++;
         }
 });
 // Remover o div anterior
 $('#listas_edit').on("click",".remover_campo",function(e) {
         e.preventDefault();
         $(this).parent().parent('div').remove();
-        x--;
+        x_edit--;
 });
 
 // fin aumentar funciones edit
@@ -910,8 +916,8 @@ function eliminar_funciones(id){
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                 
-                    $('fun'+data.id_data).hidden();
+                  console.log( data);
+                    $('#fun'+data).hide('slow');
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
