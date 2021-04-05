@@ -15,6 +15,7 @@ use Doctrine\DBAL\Query\QueryException;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Http\Request;
 
 class permisosJefe extends Component
 {
@@ -30,20 +31,20 @@ class permisosJefe extends Component
         //consulta para obtener departamento a cargo
 
         try {
-        
-        $identidadUser = Auth::user()->identidad;
 
-        $idEmpleado = empleado::where('identidad','=',$identidadUser)
-                    ->select('id')
-                    ->get();
-        
-        $idDepartamento = departamento::where('empleado_encargado_id','=',$idEmpleado[0]['id']) 
-                                        ->select('id')
-                                        ->get();           
-            
+            $identidadUser = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad', '=', $identidadUser)
+                ->select('id')
+                ->get();
+
+            $idDepartamento = departamento::where('empleado_encargado_id', '=', $idEmpleado[0]['id'])
+                ->select('id')
+                ->get();
+
 
             $permisos = DB::SELECT('
-    select 
+     select 
             permisos.id as "idPermiso",
             empleado.nombre as "nombre_empleado",
             permisos.id as idPermiso,
@@ -76,25 +77,26 @@ class permisosJefe extends Component
     on empleado.id = permisos.empleado_id
     inner join estado_permiso
     on estado_permiso_jefe_id = estado_permiso.id 
-    where departamento.id ='.$idDepartamento[0]['id'].'  and  permisos.empleado_jefe_aprueba is null
+    where departamento.id =' . $idDepartamento[0]['id'] . '  
+    order by permisos.created_at desc;
         ');
 
-        return datatables()->of($permisos)
-        ->addColumn('acciones', function ($row) {
-            $html = '<div class="dropdown action-label">
+            return datatables()->of($permisos)
+                ->addColumn('acciones', function ($row) {
+                    $html = '<div class="dropdown action-label">
             <a class="btn btn-white btn-sm btn-rounded dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                 <i class="fa fa-dot-circle-o text-purple"></i> Accion
             </a>
             <div class="dropdown-menu dropdown-menu-right">               
-                <a class="dropdown-item"  href="#" onclick="modalAprobar('.$row->idPermiso.')"><i class="fa fa-dot-circle-o text-success"></i> Aprobar</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-dot-circle-o text-danger"></i> Denegar</a>
+                <a class="dropdown-item"  href="#" onclick="modalAprobar(' . $row->idPermiso . ')"><i class="fa fa-dot-circle-o text-success"></i> Aprobar</a>
+                <a class="dropdown-item" href="#" onclick="modalDenegar(' . $row->idPermiso . ')" ><i class="fa fa-dot-circle-o text-danger"></i> Denegar</a>
                
             </div>
         </div>';
-            return $html;
-        })
-        ->rawColumns(['acciones'])
-        ->make(true);
+                    return $html;
+                })
+                ->rawColumns(['acciones'])
+                ->make(true);
         } catch (QueryException $e) {
 
             return response()->json([
@@ -104,30 +106,128 @@ class permisosJefe extends Component
     }
 
 
-   
-    public function aprobarPermiso($id){
-        try{
-            
+
+    public function aprobarPermiso($id)
+    {
+        try {
+
             $identidad = Auth::user()->identidad;
 
-            $idEmpleado = empleado::where('identidad','=', $identidad)
-                                    ->select('id')
-                                    ->get();
+            $idEmpleado = empleado::where('identidad', '=', $identidad)
+                ->select('id')
+                ->get();
 
 
             $permiso  = permisos::find($id);
             $permiso->estado_permiso_jefe_id = 1;
             $permiso->empleado_jefe_aprueba = $idEmpleado[0]['id'];
-            $permiso->save();            
+            $permiso->save();
 
-             return response()->json([
-                 'message' =>"Aprobado con exito",
-                 'permiso' => $permiso
-             ],200);
-        }catch(QueryException $e){
-            
-             return response()->json([
-            'error'=>$e, 
-            ],402); }
+            return response()->json([
+                'message' => "Aprobado con exito",
+                'permiso' => $permiso
+            ], 200);
+        } catch (QueryException $e) {
+
+            return response()->json([
+                'error' => $e,
+            ], 402);
         }
+    }
+
+    public function denegarPermiso($id)
+    {
+        try {
+
+            $identidad = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad', '=', $identidad)
+                ->select('id')
+                ->get();
+
+
+            $permiso  = permisos::find($id);
+            $permiso->estado_permiso_jefe_id = 2;
+            $permiso->empleado_jefe_aprueba = $idEmpleado[0]['id'];
+            $permiso->save();
+
+            return response()->json([
+                'message' => "Denegado con exito",
+                'permiso' => $permiso
+            ], 200);
+        } catch (QueryException $e) {
+
+            return response()->json([
+                'error' => $e,
+            ], 402);
+        }
+    }
+
+
+
+
+    public function guardarPermisoJefe(Request $request)
+    {
+        try {
+
+            $identidadUser = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad', '=', $identidadUser)
+                ->select('id')
+                ->get();
+
+            if ($request['unDia'] == 1) {
+
+                $permiso = new permisos;
+
+                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
+                $permiso->nombre = $request['tipoPermisoTexto'];
+                $permiso->estado = '3'; //pendiente
+                $permiso->fecha_inicio = $request['fechaInicio'];
+                $permiso->fecha_final = $request['fechaFinal'];
+                $permiso->empleado_id = $idEmpleado[0]['id'];
+                $permiso->tipo_permiso_id = $request['tipoPermiso'];
+                $permiso->estado_permiso_jefe_id = '1'; //aprobado jefe inmediato
+                $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                $permiso->hora_inicio = $request['horaInicio'];
+                $permiso->hora_final = $request['horaFinal'];
+                $permiso->motivo = $request['motivo'];
+                $permiso->empleado_jefe_aprueba = $idEmpleado[0]['id'];
+                $permiso->save();
+
+                return response()->json([
+                    'message' => 'Permiso enviado con exito',
+                    'color' => 'success'
+                ], 200);
+            } else {
+
+                $permiso = new permisos;
+
+                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
+                $permiso->nombre = $request['tipoPermisoTexto'];
+                $permiso->estado = '3'; //pendiente
+                $permiso->fecha_inicio = $request['fechaInicio'];
+                $permiso->fecha_final = $request['fechaFinal'];
+                $permiso->empleado_id = $idEmpleado[0]['id'];
+                $permiso->tipo_permiso_id = $request['tipoPermiso'];
+                $permiso->estado_permiso_jefe_id = '1'; //aprobado jefe inmediato
+                $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                $permiso->motivo = $request['motivo'];
+                $permiso->empleado_jefe_aprueba = $idEmpleado[0]['id'];
+                $permiso->save();
+
+                return response()->json([
+                    'message' => 'Permiso enviado con exito',
+                    'color' => 'success'
+                ], 200);
+            }
+        } catch (QueryException $e) {
+
+            return response()->json([
+                'message' => 'Ha ocurrido un error, favor intente de nuevo.',
+                'color' => 'error',
+                'err' => $e
+            ], 404);
+        }
+    }
 }

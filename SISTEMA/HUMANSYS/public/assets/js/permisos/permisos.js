@@ -57,6 +57,10 @@ function enviarPermiso() {
     //funcion para comparar fechas
     let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
 
+ 
+
+  
+
     if (!fechasValidas) {
         Swal.fire({
             title: "Error!",
@@ -69,11 +73,32 @@ function enviarPermiso() {
         return;
     }
 
+   
+
     if (y && x && y == x) {
         let horaInicio = document.getElementById("horaInicio").value;
         let horaFinal = document.getElementById("horaFinal").value;
         fechaInicio = fechaInicio + " " + horaInicio;
         fechaFinal = fechaFinal + " " + horaFinal;
+
+        let horasValidas = this.validarHora(horaInicio, horaFinal)
+
+       
+
+        if(!horasValidas){
+            Swal.fire({
+                title: "Error!",
+                text:
+                    "La hora inicial no puede ser mayor que la hora final, tampoco pueden ser iguales.",
+                icon: "error",
+                confirmButtonText: "Cerrar",
+            });
+            
+            return;
+        }
+
+
+
         if (
             tipoPermisoText &&
             tipoPermiso &&
@@ -296,6 +321,9 @@ function editarPermiso(idPermiso) {
         " submit-section d-block";
     document.getElementById("enviarEdit").className = "d-none";
 
+
+  
+
     axios
         .put("/datos/permiso/" + idPermiso)
         .then((response) => {
@@ -348,6 +376,7 @@ function editarPermiso(idPermiso) {
         .catch((err) => {
             console.error(err);
         });
+
 }
 
 function verificarDataEdit() {
@@ -446,27 +475,48 @@ function enviarPermisoEdit() {
             return;
         }
 
+
+          //verificar fechas
+
+    let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
+ 
+
+    if (!fechasValidas) {
+        Swal.fire({
+            title: "Error!",
+            text:
+                "La fecha de finalizacion no puede ser menor que la fecha de inicio.",
+            icon: "error",
+            confirmButtonText: "Cerrar",
+        });
+
+        return;
+    }    
+
        
            
 
         if (y && x && y == x) {
-            let horaInicio = document.getElementById("horaFinalEdit").value;
+            let horaInicio = document.getElementById("horaInicioEdit").value;
             let horaFinal = document.getElementById("horaFinalEdit").value;
             fechaInicio = fechaInicio + " " + horaInicio;
             fechaFinal = fechaFinal + " " + horaFinal;
 
-                            let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
+            let horasValidas = this.validarHora(horaInicio, horaFinal)
 
-                            if (!fechasValidas) {
-                                Swal.fire({
-                                    title: "Error!",
-                                    text:
-                                        "La fecha de finalizacion no puede ser menor que la fecha de inicio.",
-                                    icon: "error",
-                                    confirmButtonText: "Cerrar",
-                                });
-                        
-                                return;   }         
+       
+
+            if(!horasValidas){
+                Swal.fire({
+                    title: "Error!",
+                    text:
+                        "La hora inicial no puede ser mayor que la hora final, tampoco pueden ser iguales.",
+                    icon: "error",
+                    confirmButtonText: "Cerrar",
+                });
+                
+                return;
+            }
 
            
                         if (tipoPermisoText && tipoPermiso &&  motivo &&  horaInicio &&   horaFinal  ) {
@@ -636,5 +686,38 @@ function compararFecha(yyi, mmi, ddi, yyf, mmf, ddf) {
 
 
 return false;
+
+}
+
+function validarHora(horaInicio, horaFinal){
+
+   console.log(horaInicio,horaFinal)
+
+   let horaInicial = new Date(0,0,0,horaInicio.substring(0,2),horaInicio.substring(3,5),0)
+   let horaFinalizacion = new Date(0,0,0,horaFinal.substring(0,2),horaFinal.substring(3,5),0)
+
+   if(horaFinalizacion > horaInicial){
+    console.log("hora final es mayor")
+       return true
+     
+   }
+
+   if(horaFinalizacion.getTime() == horaInicial.getTime()){
+       console.log("son iguales")
+       return false
+   }
+
+
+
+  console.log("error")
+
+   return false;
+}
+
+
+function botonVerificar(){
+    document.getElementById("enviarEdit").className = " d-none";
+    document.getElementById("verificarEdit").className = "submit-section d-block";
+    
 
 }

@@ -1,4 +1,4 @@
-
+<!--Permiso del feje inmediato -->
     <div class="page-wrapper">
 			
         <!-- Page Content -->
@@ -59,16 +59,16 @@
                         <table id="tablePermisosJefe" class="table table-striped custom-table mb-0 ">
                             <thead>
                                 <tr>
-                                <th class="font-weight-bold">Empleado</th>
-                                <th class="font-weight-bold">Tipo de permiso</th>
-                                <th class="font-weight-bold">Fecha de inicio</th>
-                                <th class="font-weight-bold">Fecha final</th>                                
-                                <th class="font-weight-bold">Motivo</th>                                
-                                <th class="font-weight-bold">Aprobacion de jefe inmediato</th>
-                                <th class="font-weight-bold">Aprobado por</th>
-                                <th class="font-weight-bold">Aprobacion de Talento Humano</th>
-                                <th class="font-weight-bold">Aprobado por</th>
-                                <th class="font-weight-bold">Estado</th>
+                                    <th class="font-weight-bold">Empleado</th>
+                                    <th class="font-weight-bold">Tipo de permiso</th>
+                                    <th class="font-weight-bold">Fecha de inicio</th>
+                                    <th class="font-weight-bold">Fecha de finalización</th>                                
+                                    <th class="font-weight-bold">Motivo</th>                                
+                                    <th class="font-weight-bold">Aprobación de jefe inmediato  </th>
+                                    <th class="font-weight-bold">Encargado de Departamento</th>
+                                    <th class="font-weight-bold">Aprobación de Talento Humano</th>
+                                    <th class="font-weight-bold">Encargado de Talento Humano</th>
+                                    <th class="font-weight-bold">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -226,7 +226,7 @@
                     <div class="modal-body">
                         <div class="form-header">
                             <h3>Aprobación de permiso</h3>
-                            <p>Esta seguro de aprobar este permiso?</p>
+                            <p>¿Está seguro de aprobar este permiso?</p>
                         </div>
                         <div class="modal-btn delete-action">
                             <div class="row">
@@ -250,16 +250,16 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="form-header">
-                            <h3>Delete Leave</h3>
-                            <p>Are you sure want to delete this leave?</p>
+                            <h3>Denegar permiso</h3>
+                            <p>¿Está seguro de denegar este permiso?</p>
                         </div>
                         <div class="modal-btn delete-action">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+                                    <a href="javascript:void(0);" class="btn btn-primary continue-btn" onclick="denegarPermiso()">Denegar</a>
                                 </div>
                                 <div class="col-6">
-                                    <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+                                    <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancelar</a>
                                 </div>
                             </div>
                         </div>

@@ -13,6 +13,7 @@ use App\Mail\EnvioMasivo;
 use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Permisos\PermisosRrhh;
+use App\Models\permisos;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      //permisos jefe inmediato
      Route::get('/listar/permisos/jefe',[permisosJefe::class, 'listarPermisosJefe']);
      Route::put('/aprobar/permiso/{id}', [permisosJefe::class, 'aprobarPermiso']);
+     Route::put('/denegar/permiso/{id}', [permisosJefe::class, 'denegarPermiso']);
+     Route::post('guardar/permiso/jefe', [permisosJefe::class, 'guardarPermisoJefe']);
+     //permisos RRHH
+     Route::get('/listar/permisos/rrhh',[PermisosRrhh::class, 'listarPermisosRRHH']);
+     Route::put('/aprobar/permiso/rrhh/{id}', [PermisosRrhh::class, 'aprobarPermisoRRHH']);
+     Route::put('/denegar/permiso/rrhh/{id}', [PermisosRrhh::class, 'denegarPermisoRRHH']);
+     Route::get('/panel/rrhh',[PermisosRrhh::class, 'panelControlRRHH']);
+
 
 
 
