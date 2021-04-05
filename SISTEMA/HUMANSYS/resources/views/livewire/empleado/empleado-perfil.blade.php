@@ -25,7 +25,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-auto float-right ml-auto">
-                                        <a class="btn btn-danger" style="color: #ffffff;" data-toggle="modal" data-target="#delete_employee">Eliminar <i class="fas fa-user-minus"></i></a>
+                                        <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#delete_employee">Añadir referencia <i class="fas fa-user-plus"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -894,7 +894,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3">
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -909,12 +909,12 @@
                                                                     <div class="form-group">
                                                                         <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
                                                                         <input class="form-control" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
-                                                                    </div> 
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col-md-4">
                                                                     <div class="form-group">
                                                                         <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
-                                                                        <input class="form-control" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="email">
+                                                                        <input class="form-control" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4">
@@ -1030,7 +1030,7 @@
                                             <div class="modal-btn delete-action">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <a href="javascript:void(0);" class="btn btn-danger continue-btn">Eliminar</a>
+                                                        <a href="javascript:void(0);" class="btn btn-danger continue-btn" onclick="eliminarEmpleado({{$empleado->id}})">Eliminar</a>
                                                     </div>
                                                     <div class="col-6">
                                                         <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning cancel-btn">Cancelar</a>
@@ -1532,7 +1532,7 @@
                             <!-- /Experience Modal -->
                             <script>
                                 function editarEmpleadoPrincipal(id){
-                                    
+
                                     var data = new FormData($('#formEditEmpleado').get(0));
                                     console.log(data);
                                     $.ajax({
@@ -1678,6 +1678,10 @@
                                                 editarEmpleadoPrincipal(id);
                                             }
 
+                                }
+
+                                function eliminarEmpleado(id){
+                                    console.log("Eliminando a "+id);
                                 }
                             </script>
 

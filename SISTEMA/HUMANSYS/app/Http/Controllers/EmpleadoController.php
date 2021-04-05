@@ -39,8 +39,7 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
 
         /* DB::beginTransaction(); */
@@ -78,7 +77,7 @@ class EmpleadoController extends Controller
             $referencias->telefono = $request['telefono'];
             $referencias->email = $request['email'];
             $referencias->direccion = $request['direccion'];
-            $referencias->parentezco = $request['parentezco']; 
+            $referencias->parentezco = $request['parentezco'];
 
             /* User::create([
                  'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],
@@ -169,8 +168,7 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {   
+    public function update(Request $request, $id){
 
         $primer_nombre = $request['primer_nombre'];
         $segundo_nombre = $request['segundo_nombre'];
@@ -195,10 +193,10 @@ class EmpleadoController extends Controller
              DB::table('empleado')
             ->where('id', $id)
             ->update(['primer_nombre' => $primer_nombre,
-              'segundo_nombre' => $segundo_nombre, 
-              'primer_apellido' => $primer_apellido, 
-              'segundo_apellido' => $segundo_apellido, 
-              'fecha_nacimiento' => $fecha_nacimiento, 
+              'segundo_nombre' => $segundo_nombre,
+              'primer_apellido' => $primer_apellido,
+              'segundo_apellido' => $segundo_apellido,
+              'fecha_nacimiento' => $fecha_nacimiento,
               'identidad' => $identidad,
               'telefono_1' => $telefono_1,
               'nombre' => $nombre,
