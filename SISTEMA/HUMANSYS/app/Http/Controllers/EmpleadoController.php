@@ -235,6 +235,48 @@ class EmpleadoController extends Controller
               'telefono_2' => $telefono_2]);
     }
 
+    public function updateReferencia(Request $request, $id){
+
+        $primer_nombre = $request['primer_nombre'];
+        $segundo_nombre = $request['segundo_nombre'];
+        $primer_apellido = $request['primer_apellido'];
+        $segundo_apellido = $request['segundo_apellido'];
+        $fecha_nacimiento = $request['fecha_nacimiento'];
+        $identidad = $request['identidad'];
+        $telefono_1 = $request['telefono_1'];
+        $nombre = $primer_nombre.' '.$segundo_nombre.' '.$primer_apellido.' '.$segundo_apellido;
+        $rtn = $request['rtn'];
+        $lugar_nacimiento = $request['lugar_nacimiento'];
+        $estado_civil = $request['estado_civil'];
+        $fecha_ingreso = $request['fecha_ingreso'];
+        $estatus_id = $request['estatus_id'];
+        $sueldo = $request['sueldo'];
+        $email_institucional = $request['email_institucional'];
+        $telefono_2 = $request['telefono_2'];
+        /* DB::table('empleado')
+            ->updateOrInsert(
+                            ['primer_nombre' => $primer_nombre ])
+            ->where('id', $id); */
+             DB::table('empleado')
+            ->where('id', $id)
+            ->update(['primer_nombre' => $primer_nombre,
+              'segundo_nombre' => $segundo_nombre,
+              'primer_apellido' => $primer_apellido,
+              'segundo_apellido' => $segundo_apellido,
+              'fecha_nacimiento' => $fecha_nacimiento,
+              'identidad' => $identidad,
+              'telefono_1' => $telefono_1,
+              'nombre' => $nombre,
+              'rtn' => $rtn,
+              'lugar_nacimiento' => $lugar_nacimiento,
+              'estado_civil' => $estado_civil,
+              'fecha_ingreso' => $fecha_ingreso,
+              'estatus_id' => $estatus_id,
+              'sueldo' => $sueldo,
+              'email_institucional' => $email_institucional,
+              'telefono_2' => $telefono_2]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

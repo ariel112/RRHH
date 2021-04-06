@@ -1028,31 +1028,31 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text">
+                                                                            <input class="form-control " id="nombre_referencia_edit" name="nombre_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="identidad_referencia" name="identidad_referencia" type="text">
+                                                                            <input class="form-control " id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text">
+                                                                            <input class="form-control " id="telefono_referencia_edit" name="telefono_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text">
+                                                                            <input class="form-control " id="email_referencia_edit" name="email_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia" id="parentezco_referencia">
+                                                                            <select name="parentezco_referencia_edit" id="parentezco_referencia_edit">
                                                                                 <option selected value="">Seleccione</option>
                                                                                 <option value="PADRE">Padre</option>
                                                                                 <option value="MADRE">Madre</option>
@@ -1079,7 +1079,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="30" rows="10"></textarea>
+                                                                            <textarea class="form-control" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                         </div>
                                                                     </div>
 
@@ -1099,7 +1099,12 @@
                                     <!-- /Editar Referencia Modal -->
                                     <script>
                                         function renderReferencia(data){
-                                            console.log(data);
+                                            $('#nombre_referencia_edit').val(data[0].nombre);
+                                            $('#identidad_referencia_edit').val(data[0].identidad);
+                                            $('#telefono_referencia_edit').val(data[0].telefono);
+                                            $('#email_referencia_edit').val(data[0].email);
+                                            $('#parentezco_referencia_edit').val(data[0].parentezco);
+                                            $('#direccion_referencia_edit').val(data[0].direccion);
                                         }
 
                                         function cargoReferencia(idReferencia){
