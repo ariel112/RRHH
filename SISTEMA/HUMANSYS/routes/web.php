@@ -58,7 +58,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Gestiones de Empleado
     Route::post('/empleado/guardar', [EmpleadoController::class, 'guardar']);
     Route::post('/empleado/editar/{id}', [EmpleadoController::class, 'update']);
-    Route::post('/empleado/eliminar/{id}', [EmpleadoController::class, 'destroy']);
+    Route::post('/empleado/referencia/{id}', [EmpleadoController::class, 'guardarReferencia']);
+    Route::get('/empleado/referencia/get/{id}', [EmpleadoController::class, 'getReferencias']);
+
 
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);

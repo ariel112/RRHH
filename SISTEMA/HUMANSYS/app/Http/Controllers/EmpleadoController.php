@@ -121,6 +121,25 @@ class EmpleadoController extends Controller
 
     }
 
+    public function guardarReferencia(Request $request, $id){
+        $referencias = new referencia();
+            $referencias->nombre = $request['nombre_referencia'];
+            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->telefono = $request['telefono_referencia'];
+            $referencias->email = $request['email_referencia'];
+            $referencias->direccion = $request['direccion_referencia'];
+            $referencias->parentezco = $request['parentezco_referencia'];
+            $referencias->empleado_id = $id;
+            $referencias -> save();
+
+            return $referencias;
+    }
+
+    public function getReferencias($id){
+        $referencias = DB::SELECT("select * from referencia where id ='$id'");
+        return $referencias;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -226,4 +245,7 @@ class EmpleadoController extends Controller
     {
         //
     }
+
+
+
 }

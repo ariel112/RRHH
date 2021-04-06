@@ -1,11 +1,5 @@
 <div>
     <div class="row filter-row">
-     {{--    <div class="col-sm-6 col-md-3">
-            <div class="form-group form-focus">
-                <input wire:model="searchIdentidad" type="text" id="identidad" name="identidad" class="form-control floating">
-                <label class="focus-label">Número de identidad</label>
-            </div>
-        </div> --}}
         <div class="col-sm-6 col-md-6">
             <div class="form-group form-focus">
                 <input wire:model="searchNombre" type="text" id="nombre" name="nombre" class="form-control floating">
@@ -18,9 +12,6 @@
                 <label class="focus-label">Departamento</label>
             </div>
         </div>
-{{--         <div class="col-sm-4 col-md-3">
-            <a href="#" class="btn btn-success btn-block"> Buscar </a>
-        </div> --}}
     </div>
     <div class="row staff-grid-row">
         @if($empleados->count())
@@ -51,25 +42,6 @@
     </div>
 
     <script>
-       /*  function enviarId(idEmpleado){
-            $.ajax({
-                type:"GET",
-                url: "/empleado/deptos",
-                contentType: false,
-                cache: false,
-                processData:false,
-                dataType:"json",
-                success: function(data){
-                    console.log(data);
-                    renderDeptos(data);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR, textStatus, errorThrown);
-                }
-            });
-
-
-        } */
         (cargaDeptos)()
 
         function renderDeptos(data){

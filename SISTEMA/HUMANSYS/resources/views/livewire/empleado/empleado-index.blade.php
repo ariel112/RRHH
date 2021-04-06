@@ -552,7 +552,7 @@
                                                         <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
                                                     </select>
                                                 </div>
-                                            </div>7,4,3
+                                            </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
@@ -576,32 +576,6 @@
         </div>
     </div>
 
-    <!-- /Editar Empleado Modal -->
-
-    <!-- Eliminar Empleado Modal -->
-    {{-- <div class="modal custom-modal fade" id="delete_employee" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="form-header">
-                        <h3>Eliminar empleado</h3>
-                        <p>Are you sure want to delete?</p>
-                    </div>
-                    <div class="modal-btn delete-action">
-                        <div class="row">
-                            <div class="col-6">
-                                <a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-                            </div>
-                            <div class="col-6">
-                                <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    <!-- /Eliminar Empleado Modal -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
      <script>
         /* ------------Departamentos y municipios------------------- */
@@ -695,30 +669,6 @@
         }
 
         function validacion(){
-            /* var primer_nombre = document.getElementById('primer_nombre');
-            var segundo_nombre = document.getElementById('segundo_nombre');
-            var primer_apellido = document.getElementById('primer_apellido');
-            var segundo_apellido = document.getElementById('segundo_apellido');
-            var fecha_nacimiento = document.getElementById('fecha_nacimiento');
-            var identidad = document.getElementById('identidad');
-            var rtn = document.getElementById('rtn');
-            var lugar_nacimiento = document.getElementById('lugar_nacimiento');
-            var grado_academico_id = document.getElementById('grado_academico_id');
-            var estado_civil = document.getElementById('estado_civil');
-            var select_deptos_pais = document.getElementById('select_deptos_pais');
-            var municipio_id = document.getElementById('municipio_id');
-            var email = document.getElementById('email');
-            var numero_casa = document.getElementById('numero_casa');
-            var email_institucional = document.getElementById('email_institucional');
-            var telefono_1 = document.getElementById('telefono_1');
-            var telefono_2 = document.getElementById('telefono_2');
-            var selectDeptos_Modal = document.getElementById('selectDeptos_Modal');
-            var select_area_Moral = document.getElementById('select_area_Moral');
-            var cargo_id = document.getElementById('cargo_id');
-            var fecha_ingreso = document.getElementById('fecha_ingreso');
-            var estatus_id = document.getElementById('estatus_id');
-            var sueldo = document.getElementById('sueldo');
-            var descripcion_laboral = document.getElementById('descripcion_laboral'); */
             var primer_nombre = $('#primer_nombre').val();
             var primer_apellido = $('#primer_apellido').val();
             var segundo_apellido = $('#segundo_apellido').val();
@@ -911,7 +861,7 @@
                     timer: 1000
                     })
                     event.preventDefault();
-            }else if(parentezco_referencia.length == ""){
+            }else if(parentezco_referencia == ""){
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar un parentezco en la referencia',
@@ -1022,6 +972,8 @@
                 }
             $('#cargo_id').html(html_select_cargos)
         }
+
+
 
 
 
