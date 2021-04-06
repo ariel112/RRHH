@@ -71,20 +71,23 @@ class EmpleadoController extends Controller
             $empleados->cargo_id = $request['cargo_id'];
             $empleados->sueldo = $request['sueldo'];
             $empleados->rtn = $request['rtn'];
-
             $empleados -> save();
 
-            /* $direccion = new direccion();
+            $direccion = new direccion();
             $direccion->numero_casa = $request['numero_casa'];
             $direccion->descripcion = $request['descripcion'];
-            $direccion -> save(); */
-/*
+            $direccion->empleado_id = $empleados -> id;
+            $direccion -> save();
+
             $referencias = new referencia();
-            $referencias->nombre = $request['nombre'];
-            $referencias->telefono = $request['telefono'];
-            $referencias->email = $request['email'];
-            $referencias->direccion = $request['direccion'];
-            $referencias->parentezco = $request['parentezco']; */
+            $referencias->nombre = $request['nombre_referencia'];
+            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->telefono = $request['telefono_referencia'];
+            $referencias->email = $request['email_referencia'];
+            $referencias->direccion = $request['direccion_referencia'];
+            $referencias->parentezco = $request['parentezco_referencia'];
+            $referencias->empleado_id = $empleados -> id;
+            $referencias -> save();
 
             /* User::create([
                  'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],

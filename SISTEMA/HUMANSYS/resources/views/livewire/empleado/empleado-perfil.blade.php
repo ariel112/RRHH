@@ -6,7 +6,6 @@
                     {{--  --}}
 @foreach($empleados as $empleado)
     @foreach($direcciones as $direccion)
-        @foreach($referencias as $referencia)
             @foreach ($cargos as $cargo)
                 @foreach ($areas as $area)
                     @foreach ($departamentos as $deptos)
@@ -187,44 +186,11 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6 d-flex">
-                                                <div class="card profile-box flex-fill">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
-                                                        <ul class="personal-info">
-                                                            <li>
-                                                                <div class="title">Nombre:</div>
-                                                                <div class="text">{{$referencia->nombre}}</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="title">Identidad:</div>
-                                                                <div class="text">{{$referencia->identidad}}</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="title">Telefono:</div>
-                                                                <div class="text">{{$referencia->telefono}}</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="title">Correo:</div>
-                                                                <div class="text">{{$referencia->email}}</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="title">Dirección:</div>
-                                                                <div class="text">{{$referencia->direccion}}</div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="title">Parentezco:</div>
-                                                                <div class="text">{{$referencia->parentezco}}</div>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 d-flex">
-                                                <div class="card profile-box flex-fill">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title">Referencia personal <i class="fas fa-user-check"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#family_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
-                                                        <div class="table-responsive">
+                                            @foreach($referencias as $referencia)
+                                                <div class="col-md-6 d-flex">
+                                                    <div class="card profile-box flex-fill">
+                                                        <div class="card-body">
+                                                            <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
                                                             <ul class="personal-info">
                                                                 <li>
                                                                     <div class="title">Nombre:</div>
@@ -254,7 +220,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
                                         </div>
 
                                     </div>
@@ -1688,7 +1654,7 @@
 
                         @endforeach
                     @endforeach
-                @endforeach
+
             @endforeach
         @endforeach
 @endforeach

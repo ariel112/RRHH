@@ -1,9 +1,13 @@
 <div class="page-wrapper">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
+
+
 
 
     <!-- Page Content -->
     <div class="content container-fluid">
+
 
         <!-- Page Header -->
         <div class="page-header">
@@ -63,7 +67,7 @@
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-02.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -72,14 +76,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Doe</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">John Doe</a></h4>
                     <div class="small text-muted">Web Designer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-09.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -88,14 +92,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Richard Miles</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Richard Miles</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-10.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-10.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -104,14 +108,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">John Smith</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">John Smith</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-05.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -120,14 +124,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Mike Litorus</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Mike Litorus</a></h4>
                     <div class="small text-muted">IOS Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-11.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -136,14 +140,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Wilmer Deluna</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Wilmer Deluna</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-12.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -152,14 +156,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Jeffrey Warden</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Jeffrey Warden</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-13.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -168,14 +172,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Bernardo Galaviz</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Bernardo Galaviz</a></h4>
                     <div class="small text-muted">Web Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-01.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-01.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -184,14 +188,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Lesley Grauer</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Lesley Grauer</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-16.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-16.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -200,14 +204,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Jeffery Lalor</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Jeffery Lalor</a></h4>
                     <div class="small text-muted">Team Leader</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-04.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-04.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -216,14 +220,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Loren Gatlin</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }}" --}}>Loren Gatlin</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-03.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-03.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -232,14 +236,14 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Tarah Shropshire</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Tarah Shropshire</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3">
                 <div class="profile-widget">
                     <div class="profile-img">
-                        <a href="{{ route('empleado.perfil',1) }}" class="avatar"><img src="assets/img/profiles/avatar-08.jpg" alt=""></a>
+                        <a href="{{-- {{ route('empleado.perfil',1) }} --}}" class="avatar"><img src="assets/img/profiles/avatar-08.jpg" alt=""></a>
                     </div>
                     <div class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
@@ -248,7 +252,7 @@
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_employee"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
                         </div>
                     </div>
-                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{ route('empleado.perfil',1) }}">Catherine Manseau</a></h4>
+                    <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="{{-- {{ route('empleado.perfil',1) }} --}}">Catherine Manseau</a></h4>
                     <div class="small text-muted">Android Developer</div>
                 </div>
             </div>
@@ -267,7 +271,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="form-group" id="formEmpleado">
+                    <form class="form-group needs-validation" id="formEmpleado" novalidate>
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                         <div class="row">
@@ -278,8 +282,9 @@
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="primer_nombre" name="primer_nombre" type="text">
+                                                    <label class="form-label">Primer Nombre<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="primer_nombre" name="primer_nombre" type="text" required>
+                                                    <br>
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -327,7 +332,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Grado Académico<span class="text-danger">*</span></label>
-                                                    <select class="select" id="grado_academico_id" name="grado_academico_id">
+                                                    <select class="custom-select" id="grado_academico_id" name="grado_academico_id">
                                                         <option selected value="">Seleccione </option>
                                                         <option value="1">PRIMARIA</option>
                                                         <option value="2">SECUNDARIA</option>
@@ -340,7 +345,7 @@
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label class="col-form-label ">Estado Civil<span class="text-danger">*</span></label>
-                                                    <select class="select custom-select" required id="estado_civil" name="estado_civil">
+                                                    <select class="custom-select" required id="estado_civil" name="estado_civil">
                                                         <option selected value="">Seleccione </option>
                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                         <option value="CASADO(a)">CASADO(a)</option>
@@ -362,14 +367,14 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento<span class="text-danger">*</span></label>
-                                                    <select class="select" id="select_deptos_pais" name="select_deptos_pais" onchange="selectValor()">
+                                                    <select class="custom-select" id="select_deptos_pais" name="select_deptos_pais" onchange="selectValor()">
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Municipio<span class="text-danger">*</span></label>
-                                                    <select class="select" id="municipio_id" name="municipio_id">
+                                                    <select class="custom-select" id="municipio_id" name="municipio_id">
                                                         <option value="" selected >Seleccione Municipio</option>
 
                                                     </select>
@@ -439,19 +444,19 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Departamento<span class="text-danger">*</span></label>
-                                                    <select class="select" id="selectDeptos_Modal" name="selectDeptos_Modal" onchange="selectValor_Deptosmodal()"></select>
+                                                    <select class="custom-select" id="selectDeptos_Modal" name="selectDeptos_Modal" onchange="selectValor_Deptosmodal()"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Area<span class="text-danger">*</span></label>
-                                                    <select class="select" id="select_area_Moral" name="select_area_Moral" onchange="selectValor_Areamodal()"></select>
+                                                    <select class="custom-select" id="select_area_Moral" name="select_area_Moral" onchange="selectValor_Areamodal()"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Cargo<span class="text-danger">*</span></label>
-                                                    <select class="select" id="cargo_id" name="cargo_id"></select>
+                                                    <select class="custom-select" id="cargo_id" name="cargo_id"></select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
@@ -464,7 +469,7 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
 
-                                                    <select class="select" id="estatus_id" name="estatus_id">
+                                                    <select class="custom-select" id="estatus_id" name="estatus_id">
                                                         <option selected="selected"  value="">Seleccione Estado</option>
                                                         <option value="1">ACTIVO</option>
                                                         <option value="2">INACTIVO</option>
@@ -500,31 +505,31 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                    <input class="form-control " id="nombre" type="text">
+                                                    <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                    <input class="form-control " id="identidad" type="text">
+                                                    <input class="form-control " id="identidad_referencia" name="identidad_referencia" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                    <input class="form-control " id="telefono" type="text">
+                                                    <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                    <input class="form-control " id="email" type="text">
+                                                    <input class="form-control " id="email_referencia" name="email_referencia" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                    <select name="parentezco" id="parentezco">
+                                                    <select name="parentezco_referencia" id="parentezco_referencia">
                                                         <option selected value="">Seleccione</option>
                                                         <option value="PADRE">Padre</option>
                                                         <option value="MADRE">Madre</option>
@@ -547,11 +552,11 @@
                                                         <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div>7,4,3
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                    <textarea class="form-control" id="direccion" cols="30" rows="10"></textarea>
+                                                    <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="30" rows="10"></textarea>
                                                 </div>
                                             </div>
 
@@ -560,191 +565,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="table-responsive m-t-15">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Module Permission</th>
-                                        <th class="text-center">Read</th>
-                                        <th class="text-center">Write</th>
-                                        <th class="text-center">Create</th>
-                                        <th class="text-center">Delete</th>
-                                        <th class="text-center">Import</th>
-                                        <th class="text-center">Export</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Holidays</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Leaves</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Clients</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Projects</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tasks</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Chats</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Assets</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Timing Sheets</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> -->
                         <div class="submit-section">
                             <button class="btn btn-success" type="submit" id="btnGuardarEmpleado" onclick="validacion()">Agregar al Sistema</button>
                         </div>
@@ -755,301 +575,7 @@
             </div>
         </div>
     </div>
-    <!-- /Crear Empleado Modal -->
 
-    <!-- Editar Empleado Modal -->
-    {{-- <div id="edit_employee" class="modal custom-modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit Employee</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">First Name <span class="text-danger">*</span></label>
-                                    <input class="form-control" value="John" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Last Name</label>
-                                    <input class="form-control" value="Doe" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Username <span class="text-danger">*</span></label>
-                                    <input class="form-control" value="johndoe" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Email <span class="text-danger">*</span></label>
-                                    <input class="form-control" value="johndoe@example.com" type="email">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Password</label>
-                                    <input class="form-control" value="johndoe" type="password">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Confirm Password</label>
-                                    <input class="form-control" value="johndoe" type="password">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
-                                    <input type="text" value="FT-0001" readonly class="form-control floating">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
-                                    <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Phone </label>
-                                    <input class="form-control" value="9876543210" type="text">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label class="col-form-label">Company</label>
-                                    <select class="select">
-                                        <option>Global Technologies</option>
-                                        <option>Delta Infotech</option>
-                                        <option selected>International Software Inc</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Department <span class="text-danger">*</span></label>
-                                    <select class="select">
-                                        <option>Select Department</option>
-                                        <option>Web Development</option>
-                                        <option>IT Management</option>
-                                        <option>Marketing</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Designation <span class="text-danger">*</span></label>
-                                    <select class="select">
-                                        <option>Select Designation</option>
-                                        <option>Web Designer</option>
-                                        <option>Web Developer</option>
-                                        <option>Android Developer</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive m-t-15">
-                            <table class="table table-striped custom-table">
-                                <thead>
-                                    <tr>
-                                        <th>Module Permission</th>
-                                        <th class="text-center">Read</th>
-                                        <th class="text-center">Write</th>
-                                        <th class="text-center">Create</th>
-                                        <th class="text-center">Delete</th>
-                                        <th class="text-center">Import</th>
-                                        <th class="text-center">Export</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Holidays</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Leaves</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Clients</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Projects</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tasks</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Chats</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Assets</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Timing Sheets</td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input checked="" type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                        <td class="text-center">
-                                            <input type="checkbox">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="submit-section">
-                            <button class="btn btn-primary submit-btn">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <!-- /Editar Empleado Modal -->
 
     <!-- Eliminar Empleado Modal -->
@@ -1076,8 +602,8 @@
         </div>
     </div> --}}
     <!-- /Eliminar Empleado Modal -->
-
-    <script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+     <script>
         /* ------------Departamentos y municipios------------------- */
         function cargoDeptos_pais(data){
             var html_select_deptos_pais ='<option selected="selected">Seleccione Depto.</option>';
@@ -1097,7 +623,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     cargoDeptos_pais(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -1120,7 +646,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     renderMunicipio(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -1357,10 +883,52 @@
                     timer: 1000
                     })
                     event.preventDefault();
+            }else if(nombre_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un nombre de referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(identidad_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(telefono_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un teléfono de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(email_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una correo electrónico de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(parentezco_referencia.length == ""){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un parentezco en la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(direccion_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una direccion de referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
             }else{
                 (guardarEmpleado)();
             }
-
+ /* (guardarEmpleado)(); */
         }
 
         /* ------------------------------------------------------------------------- */
@@ -1385,7 +953,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     renderDeptosModal(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -1407,7 +975,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     renderAreas(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -1438,7 +1006,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     renderCargos(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

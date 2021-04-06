@@ -47,7 +47,7 @@
                 No se encuentran resultados para {{$searchNombre}}
             </div>
         @endif
-        
+
     </div>
 
     <script>
@@ -89,7 +89,7 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     renderDeptos(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
