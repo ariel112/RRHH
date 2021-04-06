@@ -1010,7 +1010,7 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title">Referencia {{ $referencia->id }} de {{ $empleado->primer_nombre }}</h5>
+                                                    <h5 class="modal-title">Referencia de {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -1028,7 +1028,8 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="nombre_referencia_edit" name="nombre_referencia_edit" value="" type="text">
+                                                                            <input class="form-control is-valid" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
+                                                                            <label class="col-form-label" style="display: none; color:red;" id="lblNombre">Debe llenar este campo</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -1087,7 +1088,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="submit-section">
-                                                            <button class="btn btn-primary submit-btn">Editar</button>
+                                                            <button class="btn btn-primary" onclick="editarReferencia()">Editar</button>
+                                                            <input type="hidden" id="idREF" name="idREF" value="">
                                                         </div>
                                                     </form>
                                                 </div>
@@ -1105,6 +1107,40 @@
                                             $('#email_referencia_edit').val(data[0].email);
                                             $('#parentezco_referencia_edit').val(data[0].parentezco);
                                             $('#direccion_referencia_edit').val(data[0].direccion);
+                                            $('#idREF').val(data[0].id);
+                                        }
+
+                                        function editarReferencia(){
+                                            event.preventDefault();
+                                            var id = $('#idREF').val();
+                                            var data = new FormData($('#formEditReferencia').get(0));
+                                            var nom = $('#nombre_referencia_edit').val();
+                                            if(nom.length == 0){
+                                                $("#lblNombre").css("display", "block");
+                                            }else{
+                                                $.ajax({
+                                                type:"POST",
+                                                url: "/empleado/editar/referencia/"+id,
+                                                data: data,
+                                                contentType: false,
+                                                cache: false,
+                                                processData:false,
+                                                dataType:"json",
+                                                success: function(data){
+                                                    console.log(data);
+                                                },
+                                                error: function (jqXHR, textStatus, errorThrown) {
+                                                    console.log(jqXHR, textStatus, errorThrown);
+                                                }
+
+                                            })
+                                            Swal.fire({
+                                                icon: 'success',
+                                                text: 'Editado con éxito!',
+                                                timer: 1500
+                                                });
+                                            }
+
                                         }
 
                                         function cargoReferencia(idReferencia){
@@ -1126,7 +1162,6 @@
                                         }
 
                                         function editarEmpleadoPrincipal(id){
-
                                             var data = new FormData($('#formEditEmpleado').get(0));
                                             console.log(data);
                                             $.ajax({
