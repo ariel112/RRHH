@@ -3,6 +3,7 @@
 use App\Http\Controllers\Apicontrollers;
 use App\Http\Controllers\EnvioController;
 use App\Http\Livewire\Contratos\Contratos;
+use App\Http\Livewire\Deducciones\DeduccionesIndex;
 use App\Http\Livewire\Empleado\EmpleadoIndex;
 use App\Http\Livewire\Empleado\EmpleadoPerfil;
 use App\Http\Livewire\Permisos\PermisosJefe;
@@ -62,12 +63,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/referencia/get/{id}', [EmpleadoController::class, 'getReferencias']);
     Route::post('/empleado/editar/referencia/{id}', [EmpleadoController::class, 'updateReferencia']);
 
+
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
     Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);
     Route::get('/empleado/cargo/{idAreas}', [EmpleadoController::class, 'getCargoEmpleado']);
 
-
+    //Deducciones
+    Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);

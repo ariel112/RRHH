@@ -73,8 +73,6 @@
                                                                                     </button>
                                                                                 @endif
                                                                             @endif
-
-
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-7">
@@ -115,9 +113,9 @@
                                             <div class="row user-tabs">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                     <ul class="nav nav-tabs nav-tabs-bottom">
-                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active">INFORMACÓN</a></li>
-                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link">FUNCIONES DE TRABAJO</a></li>
-                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">DETALLE DE PLANILLA</a></li>
+                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
+                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
+                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i> DETALLE DE PLANILLA</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -236,7 +234,6 @@
                                                         @endif
                                                     @endforeach
                                                 </div>
-
                                             </div>
                                             <!------------------------- /Detalle completo de informacion ---------------------------------->
 
