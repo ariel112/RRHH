@@ -933,7 +933,7 @@
                                     </div>
                                     <!-- añadir referencia -->
                                     <div class="modal custom-modal fade" id="referencia_modal" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-body">
                                                     <div class="form-header">
@@ -1002,7 +1002,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="30" rows="10"></textarea>
+                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3"></textarea>
                                                                         </div>
                                                                     </div>
 
