@@ -141,6 +141,7 @@ class EmpleadoController extends Controller
             $referencias->direccion = $request['direccion_referencia'];
             $referencias->parentezco = $request['parentezco_referencia'];
             $referencias->empleado_id = $id;
+            $referencias->estatus_referencia_id = 1;
             $referencias -> save();
 
             return $referencias;
@@ -254,6 +255,7 @@ class EmpleadoController extends Controller
         $email = $request['email_referencia_edit'];
         $parentezco = $request['parentezco_referencia_edit'];
         $direccion = $request['direccion_referencia_edit'];
+        $estatus_referencia_id =$request['estado_referencia_edit'];
         /* DB::table('empleado')
             ->updateOrInsert(
                             ['primer_nombre' => $primer_nombre ])
@@ -265,7 +267,8 @@ class EmpleadoController extends Controller
               'telefono' => $telefono,
               'email' => $email,
               'direccion' => $direccion,
-              'parentezco' => $parentezco]);
+              'parentezco' => $parentezco,
+              'estatus_referencia_id' => $estatus_referencia_id]);
     }
 
     /**

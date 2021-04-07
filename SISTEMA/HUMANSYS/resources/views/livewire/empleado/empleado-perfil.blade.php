@@ -40,6 +40,7 @@
                                                                     <a href="#" class="avatar"><img alt="" src="../../assets/img/user.jpg"></a>
                                                                 </div>
                                                             </div>
+
                                                             {{-- ------------------------div de informacion basica----------------------------------------- --}}
                                                             <div class="profile-basic">
                                                                 <div class="row">
@@ -48,9 +49,32 @@
                                                                             <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3><br>
                                                                             <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
                                                                             <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
-                                                                            <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5><br>
-                                                                            <div class="staff-id">Empleado ID : {{$empleado->id}}</div><br>
-                                                                            <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div>
+                                                                            <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
+                                                                            <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
+                                                                            <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
+                                                                            @if ($cargo->tipo_empleado_id == 1)
+                                                                                @if ($empleado->estatus_id == 1)
+                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                        ACTIVO
+                                                                                    </button>
+                                                                                @else
+                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                        INACTIVO
+                                                                                    </button>
+                                                                                @endif
+                                                                            @else
+                                                                                @if ($empleado->estatus_id == 1)
+                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                        ACTIVO
+                                                                                    </button>
+                                                                                @else
+                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                        INACTIVO
+                                                                                    </button>
+                                                                                @endif
+                                                                            @endif
+
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-7">
@@ -91,9 +115,9 @@
                                             <div class="row user-tabs">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                     <ul class="nav nav-tabs nav-tabs-bottom">
-                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active">Información</a></li>
-                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link">Funciones de Trabajo</a></li>
-                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Detalles de salario y planilla</a></li>
+                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active">INFORMACÓN</a></li>
+                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link">FUNCIONES DE TRABAJO</a></li>
+                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">DETALLE DE PLANILLA</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -174,43 +198,43 @@
                                                 </div>
                                                 <div class="row">
                                                     @foreach($referencias as $referencia)
-                                                        <div class="col-md-6 d-flex">
-                                                            <div class="card profile-box flex-fill">
-                                                                <div class="card-body">
-                                                                    <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
-                                                                    <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
-                                                                    <ul class="personal-info">
-                                                                        <li>
-                                                                            <div class="title">Nombre:</div>
-                                                                            <div class="text">{{$referencia->nombre}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Identidad:</div>
-                                                                            <div class="text">{{$referencia->identidad}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Telefono:</div>
-                                                                            <div class="text">{{$referencia->telefono}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Correo:</div>
-                                                                            <div class="text">{{$referencia->email}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Dirección:</div>
-                                                                            <div class="text">{{$referencia->direccion}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Parentezco:</div>
-                                                                            <div class="text">{{$referencia->parentezco}}</div>
-                                                                        </li>
-                                                                    </ul>
+                                                        @if ($referencia->estatus_referencia_id == 1)
+                                                            <div class="col-md-6 d-flex">
+                                                                <div class="card profile-box flex-fill">
+                                                                    <div class="card-body">
+                                                                        <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
+                                                                        <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
+                                                                        <ul class="personal-info">
+                                                                            <li>
+                                                                                <div class="title">Nombre:</div>
+                                                                                <div class="text">{{$referencia->nombre}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Identidad:</div>
+                                                                                <div class="text">{{$referencia->identidad}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Telefono:</div>
+                                                                                <div class="text">{{$referencia->telefono}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Correo:</div>
+                                                                                <div class="text">{{$referencia->email}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Dirección:</div>
+                                                                                <div class="text">{{$referencia->direccion}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Parentezco:</div>
+                                                                                <div class="text">{{$referencia->parentezco}}</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
+                                                        @endif
                                                     @endforeach
-
                                                 </div>
 
                                             </div>
@@ -877,7 +901,7 @@
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                                                 <select class="form-select is-valid" id="estatus_id" name="estatus_id">
-                                                                                    <option selected="selected"  value="{{$empleado->estatus_id}}">{{$empleado->estatus_id}}</option>
+                                                                                    <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
                                                                                     <option value="1">1-ACTIVO</option>
                                                                                     <option value="2">2-INACTIVO</option>
                                                                                 </select>
@@ -1078,6 +1102,16 @@
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
+                                                                            <label class="col-form-label">Estado<span class="text-danger">*</span></label>
+                                                                            <select name="estado_referencia_edit" id="estado_referencia_edit">
+                                                                                <option selected value="">Seleccione estado</option>
+                                                                                <option value="1">1-ACTIVO</option>
+                                                                                <option value="2">2-INACTIVO</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
                                                                             <textarea class="form-control is-valid" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                         </div>
@@ -1119,6 +1153,7 @@
                                             $('#email_referencia_edit').val(data[0].email);
                                             $('#parentezco_referencia_edit').val(data[0].parentezco);
                                             $('#direccion_referencia_edit').val(data[0].direccion);
+                                            $('#estado_referencia_edit').val(data[0].estatus_referencia_id);
                                             $('#idREF').val(data[0].id);
                                         }
 
