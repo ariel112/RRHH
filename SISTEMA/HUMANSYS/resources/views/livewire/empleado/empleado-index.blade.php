@@ -694,6 +694,9 @@
             var descripcion_laboral = $('#descripcion_laboral').val();
 
             if(primer_nombre.length == 0){
+                let primer_nombre = document.getElementById('primer_nombre');
+                primer_nombre.className = 'form-control is-invalid';
+
                     Swal.fire({
                     icon: 'warning',
                     text: 'Debe escribir un nombre',
@@ -701,6 +704,8 @@
                     })
                     event.preventDefault();
             }else if(primer_apellido.length == 0){
+                let primer_apellido = document.getElementById('primer_apellido');
+                primer_apellido.className = 'form-control is-invalid';
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe escribir el primer apellido',
@@ -708,6 +713,8 @@
                     })
                     event.preventDefault();
             }else if(segundo_apellido.length == 0){
+                let segundo_apellido = document.getElementById('segundo_apellido');
+                segundo_apellido.className = 'form-control is-invalid';
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe escribir el segundo apellido',
@@ -715,6 +722,8 @@
                     })
                     event.preventDefault();
             }else if(fecha_nacimiento.length == 0){
+                let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                fecha_nacimiento.className = 'form-control is-invalid';
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar una fecha de nacimiento',
@@ -722,6 +731,10 @@
                     })
                     event.preventDefault();
             }else if(identidad.length == 0){
+
+                let identidad = document.getElementById('identidad');
+                identidad.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar número de identidad',
@@ -729,6 +742,10 @@
                     })
                     event.preventDefault();
             }else if(rtn.length == 0){
+
+                let rtn = document.getElementById('rtn');
+                rtn.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar RTN',
@@ -736,6 +753,10 @@
                     })
                     event.preventDefault();
             }else if(lugar_nacimiento.length == 0){
+
+                let lugar_nacimiento = document.getElementById('lugar_nacimiento');
+                lugar_nacimiento.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Lugar de nacimiento',
@@ -743,6 +764,10 @@
                     })
                     event.preventDefault();
             }else if(grado_academico_id == ""){
+
+                let grado_academico_id = document.getElementById('grado_academico_id');
+                grado_academico_id.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Grado academico',
@@ -750,6 +775,10 @@
                     })
                     event.preventDefault();
             }else if(estado_civil.length == 0){
+
+                let estado_civil = document.getElementById('estado_civil');
+                estado_civil.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Estado civil',
@@ -757,6 +786,10 @@
                     })
                     event.preventDefault();
             }else if(select_deptos_pais == ""){
+
+                let select_deptos_pais = document.getElementById('select_deptos_pais');
+                select_deptos_pais.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar departamento de pais',
@@ -764,6 +797,10 @@
                     })
                     event.preventDefault();
             }else if(municipio_id == ""){
+
+                let municipio_id = document.getElementById('municipio_id');
+                municipio_id.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Municipio',
@@ -771,6 +808,10 @@
                     })
                     event.preventDefault();
             }else if(email.length == 0){
+
+                let email = document.getElementById('email');
+                email.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar un correo electrónico',
@@ -778,6 +819,10 @@
                     })
                     event.preventDefault();
             }else if(telefono_1.length == 0){
+
+                let telefono_1 = document.getElementById('telefono_1');
+                telefono_1.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe ingresar un número telefónico',
@@ -785,6 +830,10 @@
                     })
                     event.preventDefault();
             }else if(selectDeptos_Modal == ""){
+
+                let selectDeptos_Modal = document.getElementById('selectDeptos_Modal');
+                selectDeptos_Modal.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Depto. de Trabajo',
@@ -792,6 +841,10 @@
                     })
                     event.preventDefault();
             }else if(select_area_Moral == ""){
+
+                let select_area_Moral = document.getElementById('select_area_Moral');
+                select_area_Moral.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Area de Trabajo',
@@ -799,6 +852,10 @@
                     })
                     event.preventDefault();
             }else if(cargo_id.length == ""){
+
+                let cargo_id = document.getElementById('cargo_id');
+                cargo_id.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Cargo',
@@ -806,6 +863,10 @@
                     })
                     event.preventDefault();
             }else if(fecha_ingreso.length == 0){
+
+                let fecha_ingreso = document.getElementById('fecha_ingreso');
+                fecha_ingreso.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar fecha de inicio del colaborador',
@@ -813,6 +874,10 @@
                     })
                     event.preventDefault();
             }else if(estatus_id == ""){
+
+                let estatus_id = document.getElementById('estatus_id');
+                estatus_id.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Estado del colaborador',
@@ -820,6 +885,10 @@
                     })
                     event.preventDefault();
             }else if(sueldo.length == 0){
+
+                let sueldo = document.getElementById('sueldo');
+                sueldo.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar Sueld bruto',
@@ -827,6 +896,10 @@
                     })
                     event.preventDefault();
             }else if(descripcion_laboral.length == 0){
+
+                let descripcion_laboral = document.getElementById('descripcion_laboral');
+                descripcion_laboral.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar una descripcion de experiencia laboral',
@@ -834,6 +907,10 @@
                     })
                     event.preventDefault();
             }else if(nombre_referencia.length == 0){
+
+                let nombre_referencia = document.getElementById('nombre_referencia');
+                nombre_referencia.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar un nombre de referencia',
@@ -841,6 +918,10 @@
                     })
                     event.preventDefault();
             }else if(identidad_referencia.length == 0){
+
+                let identidad_referencia = document.getElementById('identidad_referencia');
+                identidad_referencia.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar la identidad de la referencia',
@@ -848,6 +929,10 @@
                     })
                     event.preventDefault();
             }else if(telefono_referencia.length == 0){
+
+                let telefono_referencia = document.getElementById('telefono_referencia');
+                telefono_referencia.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar un teléfono de la referencia',
@@ -855,6 +940,10 @@
                     })
                     event.preventDefault();
             }else if(email_referencia.length == 0){
+
+                let email_referencia = document.getElementById('email_referencia');
+                email_referencia.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar una correo electrónico de la referencia',
@@ -862,6 +951,10 @@
                     })
                     event.preventDefault();
             }else if(parentezco_referencia == ""){
+
+                let parentezco_referencia = document.getElementById('parentezco_referencia');
+                parentezco_referencia.className = 'form-control is-invalid';
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar un parentezco en la referencia',
@@ -869,6 +962,10 @@
                     })
                     event.preventDefault();
             }else if(direccion_referencia.length == 0){
+                let direccion_referencia = document.getElementById('direccion_referencia');
+                direccion_referencia.className = 'form-control is-invalid';
+
+
                 Swal.fire({
                     icon: 'warning',
                     text: 'Debe indicar una direccion de referencia',
@@ -876,6 +973,80 @@
                     })
                     event.preventDefault();
             }else{
+                let primer_nombre = document.getElementById('primer_nombre');
+                primer_nombre.className = 'form-control is-valid';
+
+                let segundo_apellido = document.getElementById('segundo_apellido');
+                segundo_apellido.className = 'form-control is-valid';
+
+                let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                fecha_nacimiento.className = 'form-control is-valid';
+
+                let identidad = document.getElementById('identidad');
+                identidad.className = 'form-control is-valid';
+
+                let rtn = document.getElementById('rtn');
+                rtn.className = 'form-control is-valid';
+
+                let lugar_nacimiento = document.getElementById('lugar_nacimiento');
+                lugar_nacimiento.className = 'form-control is-valid';
+
+                let grado_academico_id = document.getElementById('grado_academico_id');
+                grado_academico_id.className = 'form-control is-valid';
+
+                let estado_civil = document.getElementById('estado_civil');
+                estado_civil.className = 'form-control is-valid';
+
+                let select_deptos_pais = document.getElementById('select_deptos_pais');
+                select_deptos_pais.className = 'form-control is-valid';
+
+                let municipio_id = document.getElementById('municipio_id');
+                municipio_id.className = 'form-control is-valid';
+
+                let email = document.getElementById('email');
+                email.className = 'form-control is-valid';
+
+                let telefono_1 = document.getElementById('telefono_1');
+                telefono_1.className = 'form-control is-valid';
+
+                let selectDeptos_Modal = document.getElementById('selectDeptos_Modal');
+                selectDeptos_Modal.className = 'form-control is-valid';
+
+                let select_area_Moral = document.getElementById('select_area_Moral');
+                select_area_Moral.className = 'form-control is-valid';
+
+                let cargo_id = document.getElementById('cargo_id');
+                cargo_id.className = 'form-control is-valid';
+
+                let fecha_ingreso = document.getElementById('fecha_ingreso');
+                fecha_ingreso.className = 'form-control is-valid';
+
+                let estatus_id = document.getElementById('estatus_id');
+                estatus_id.className = 'form-control is-valid';
+
+                let sueldo = document.getElementById('sueldo');
+                sueldo.className = 'form-control is-valid';
+
+                let descripcion_laboral = document.getElementById('descripcion_laboral');
+                descripcion_laboral.className = 'form-control is-valid';
+
+                let nombre_referencia = document.getElementById('nombre_referencia');
+                nombre_referencia.className = 'form-control is-valid';
+
+                let identidad_referencia = document.getElementById('identidad_referencia');
+                identidad_referencia.className = 'form-control is-valid';
+
+                let telefono_referencia = document.getElementById('telefono_referencia');
+                telefono_referencia.className = 'form-control is-valid';
+
+                let email_referencia = document.getElementById('email_referencia');
+                email_referencia.className = 'form-control is-valid';
+
+                let parentezco_referencia = document.getElementById('parentezco_referencia');
+                parentezco_referencia.className = 'form-control is-valid';
+
+                let direccion_referencia = document.getElementById('direccion_referencia');
+                direccion_referencia.className = 'form-control is-valid';
                 (guardarEmpleado)();
             }
  /* (guardarEmpleado)(); */
@@ -972,10 +1143,6 @@
                 }
             $('#cargo_id').html(html_select_cargos)
         }
-
-
-
-
 
         /* --------------------------/Departamentos Gerenciales---------------------------- */
     </script>

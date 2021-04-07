@@ -759,61 +759,61 @@
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Segundo Nombre</label>
-                                                                                <input class="form-control" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                                <input class="form-control is-valid" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                                <input class="form-control is-valid" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                                <input class="form-control is-valid" value="{{$empleado->email}}" id="email" name="email" type="email">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-6">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                                <textarea class="form-control" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                <textarea class="form-control is-valid" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
                                                                             </div>
                                                                         </div>
 
@@ -830,13 +830,13 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">RTN<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
-                                                                                <select class="select" id="estado_civil" name="estado_civil">
+                                                                                <select class="form-select is-valid" id="estado_civil" name="estado_civil">
                                                                                     <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
                                                                                     <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                                                     <option value="CASADO(a)">CASADO(a)</option>
@@ -846,7 +846,7 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-3">
@@ -864,19 +864,19 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                                <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
-                                                                                <select class="select" id="estatus_id" name="estatus_id">
+                                                                                <select class="form-select is-valid" id="estatus_id" name="estatus_id">
                                                                                     <option selected="selected"  value="{{$empleado->estatus_id}}">{{$empleado->estatus_id}}</option>
                                                                                     <option value="1">1-ACTIVO</option>
                                                                                     <option value="2">2-INACTIVO</option>
@@ -886,13 +886,13 @@
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Telefono Secundario</label>
-                                                                                <input class="form-control" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                                <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Correo Institucional</label>
-                                                                                <input class="form-control" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
+                                                                                <input class="form-control is-valid" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-4">
@@ -1029,25 +1029,24 @@
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
                                                                             <input class="form-control is-valid" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
-                                                                            <label class="col-form-label" style="display: none; color:red;" id="lblNombre">Debe llenar este campo</label>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text">
+                                                                            <input class="form-control is-valid" id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="telefono_referencia_edit" name="telefono_referencia_edit" value="" type="text">
+                                                                            <input class="form-control is-valid" id="telefono_referencia_edit" name="telefono_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="email_referencia_edit" name="email_referencia_edit" value="" type="text">
+                                                                            <input class="form-control is-valid" id="email_referencia_edit" name="email_referencia_edit" value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
@@ -1080,7 +1079,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
+                                                                            <textarea class="form-control is-valid" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                         </div>
                                                                     </div>
 
@@ -1114,9 +1113,44 @@
                                             event.preventDefault();
                                             var id = $('#idREF').val();
                                             var data = new FormData($('#formEditReferencia').get(0));
-                                            var nom = $('#nombre_referencia_edit').val();
-                                            if(nom.length == 0){
-                                                $("#lblNombre").css("display", "block");
+                                            var nombre_referencia_edit = $('#nombre_referencia_edit').val();
+                                            var identidad_referencia_edit = $('#identidad_referencia_edit').val();
+                                            var telefono_referencia_edit = $('#telefono_referencia_edit').val();
+                                            var email_referencia_edit = $('#email_referencia_edit').val();
+                                            var parentezco_referencia_edit = $('#parentezco_referencia_edit').val();
+                                            var direccion_referencia_edit = $('#direccion_referencia_edit').val();
+
+
+                                            if(nombre_referencia_edit.length == 0){
+
+                                                let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
+                                                nombre_referencia_edit.className = 'form-control is-invalid';
+
+                                            }else if(identidad_referencia_edit.length == 0){
+
+                                                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
+                                                identidad_referencia_edit.className = 'form-control is-invalid';
+
+                                            }else if(telefono_referencia_edit.length == 0){
+
+                                                let telefono_referencia_edit = document.getElementById('telefono_referencia_edit');
+                                                telefono_referencia_edit.className = 'form-control is-invalid';
+
+                                            }else if(email_referencia_edit.length == 0){
+
+                                                let email_referencia_edit = document.getElementById('email_referencia_edit');
+                                                email_referencia_edit.className = 'form-control is-invalid';
+
+                                            }else if(parentezco_referencia_edit == ''){
+
+                                                let parentezco_referencia_edit = document.getElementById('parentezco_referencia_edit');
+                                                parentezco_referencia_edit.className = 'form-control is-invalid';
+
+                                            }else if(direccion_referencia_edit.length == 0){
+
+                                                let direccion_referencia_edit = document.getElementById('direccion_referencia_edit');
+                                                direccion_referencia_edit.className = 'form-control is-invalid';
+
                                             }else{
                                                 $.ajax({
                                                 type:"POST",
@@ -1213,6 +1247,10 @@
                                                     var sueldo = $('#sueldo').val();
                                                     var descripcion_laboral = $('#descripcion_laboral').val();
                                                     if(primer_nombre.length == 0){
+
+                                                        let primer_nombre = document.getElementById('primer_nombre');
+                                                        primer_nombre.className = 'form-control is-invalid';
+
                                                             Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe escribir un nombre',
@@ -1220,6 +1258,10 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(primer_apellido.length == 0){
+
+                                                        let segundo_apellido = document.getElementById('segundo_apellido');
+                                                        segundo_apellido.className = 'form-control is-invalid';
+
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe escribir el primer apellido',
@@ -1227,6 +1269,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(segundo_apellido.length == 0){
+                                                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                										fecha_nacimiento.className = 'form-control is-invalid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe escribir el segundo apellido',
@@ -1234,6 +1278,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(fecha_nacimiento.length == 0){
+                                                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                										fecha_nacimiento.className = 'form-control is-invalid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe indicar una fecha de nacimiento',
@@ -1241,6 +1287,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(identidad.length == 0){
+                                                        let identidad = document.getElementById('identidad');
+                										identidad.className = 'form-control is-invalid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe indicar número de identidad',
@@ -1248,6 +1296,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(email.length == 0){
+                                                        let email = document.getElementById('email');
+                										email.className = 'form-control is-invalid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe indicar un correo electrónico',
@@ -1255,6 +1305,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(telefono_1.length == 0){
+                                                        let telefono_1 = document.getElementById('telefono_1');
+                										telefono_1.className = 'form-control is-invalid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe ingresar un número telefónico',
@@ -1262,6 +1314,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(rtn.length == 0){
+                                                        let rtn = document.getElementById('rtn');
+                										rtn.className = 'form-control is-valid';
                                                         Swal.fire({
                                                             icon: 'warning',
                                                             text: 'Debe indicar RTN',
@@ -1269,6 +1323,8 @@
                                                             })
                                                             event.preventDefault();
                                                     }else if(estado_civil.length == 0){
+                                                        let estado_civil = document.getElementById('estado_civil');
+                										estado_civil.className = 'form-control is-valid';
                                                             Swal.fire({
                                                                 icon: 'warning',
                                                                 text: 'Debe indicar Estado civil',
@@ -1276,6 +1332,8 @@
                                                                 })
                                                                 event.preventDefault();
                                                         }else if(lugar_nacimiento.length == 0){
+                                                            let lugar_nacimiento = document.getElementById('lugar_nacimiento');
+                										    lugar_nacimiento.className = 'form-control is-invalid';
                                                             Swal.fire({
                                                                 icon: 'warning',
                                                                 text: 'Debe indicar Lugar de nacimiento',
@@ -1283,6 +1341,8 @@
                                                                 })
                                                                 event.preventDefault();
                                                         }else if(estatus_id == ""){
+                                                            let estado_civil = document.getElementById('estado_civil');
+                										    estado_civil.className = 'form-control is-valid';
                                                                 Swal.fire({
                                                                     icon: 'warning',
                                                                     text: 'Debe indicar Estado del colaborador',
@@ -1290,6 +1350,8 @@
                                                                     })
                                                                     event.preventDefault();
                                                         }else if(sueldo.length == 0){
+                                                            let sueldo = document.getElementById('sueldo');
+                										sueldo.className = 'form-control is-invalid';
                                                             Swal.fire({
                                                                 icon: 'warning',
                                                                 text: 'Debe indicar Sueld bruto',
@@ -1297,6 +1359,8 @@
                                                                 })
                                                                 event.preventDefault();
                                                         }else if(fecha_ingreso.length == 0){
+                                                            let fecha_ingreso = document.getElementById('fecha_ingreso');
+                										fecha_ingreso.className = 'form-control is-invalid';
                                                             Swal.fire({
                                                                 icon: 'warning',
                                                                 text: 'Debe indicar fecha de inicio del colaborador',
@@ -1317,6 +1381,8 @@
                                             var parentezco_referencia = $('#parentezco_referencia').val();
                                             var direccion_referencia = $('#direccion_referencia').val();
                                             if(nombre_referencia.length == 0){
+                                                let nombre_referencia = document.getElementById('nombre_referencia');
+                                                nombre_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar un nombre de referencia',
@@ -1324,6 +1390,8 @@
                                                     })
                                                     event.preventDefault();
                                             }else if(identidad_referencia.length == 0){
+                                                let identidad_referencia = document.getElementById('identidad_referencia');
+                                                identidad_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar la identidad de la referencia',
@@ -1331,6 +1399,8 @@
                                                     })
                                                     event.preventDefault();
                                             }else if(telefono_referencia.length == 0){
+                                                let telefono_referencia = document.getElementById('telefono_referencia');
+                                                telefono_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar un teléfono de la referencia',
@@ -1338,6 +1408,8 @@
                                                     })
                                                     event.preventDefault();
                                             }else if(email_referencia.length == 0){
+                                                let email_referencia = document.getElementById('email_referencia');
+                                                email_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar una correo electrónico de la referencia',
@@ -1345,6 +1417,8 @@
                                                     })
                                                     event.preventDefault();
                                             }else if(parentezco_referencia == ""){
+                                                let parentezco_referencia = document.getElementById('parentezco_referencia');
+                                                parentezco_referencia.className = 'form-control is-valid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar un parentezco en la referencia',
@@ -1352,6 +1426,8 @@
                                                     })
                                                     event.preventDefault();
                                             }else if(direccion_referencia.length == 0){
+                                                let direccion_referencia = document.getElementById('direccion_referencia');
+                                                ddireccion_referencia.className = 'form-control is-valid';
                                                 Swal.fire({
                                                     icon: 'warning',
                                                     text: 'Debe indicar una direccion de referencia',
@@ -1359,35 +1435,36 @@
                                                     })
                                                     event.preventDefault();
                                             }else{
-                                                añadirReferencia(id);
+                                                anadirReferencia(id);
                                             }
                                         }
-                                        function añadirReferencia(id){
-                                            event.preventDefault();
+                                        function anadirReferencia(id){
                                             var data = new FormData($('#formReferencia').get(0));
-                                            $.ajax({
-                                                type:"POST",
-                                                url: "/empleado/referencia/"+id,
-                                                data: data,
-                                                contentType: false,
-                                                cache: false,
-                                                processData:false,
-                                                dataType:"json",
-                                                success: function(data){
-                                                    console.log(data);
-                                                    /* var info = $.parseJSON(data);
-                                                    console.log(info); */
-                                                },
-                                                error: function (jqXHR, textStatus, errorThrown) {
-                                                    console.log(jqXHR, textStatus, errorThrown);
-                                                }
-                                            })
-                                            Swal.fire({
-                                                    icon: 'success',
-                                                    text: 'Referencia guardada con éxito!',
-                                                    timer: 1500
-                                                    });
-                                            $('#formReferencia').trigger("reset");
+                                                    $.ajax({
+                                                    type:"POST",
+                                                    url: "/empleado/referencia/"+id,
+                                                    data: data,
+                                                    contentType: false,
+                                                    cache: false,
+                                                    processData:false,
+                                                    dataType:"json",
+                                                    success: function(data){
+                                                        console.log(data);
+                                                        /* var info = $.parseJSON(data);
+                                                        console.log(info); */
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        console.log(jqXHR, textStatus, errorThrown);
+                                                    }
+                                                })
+                                                Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Referencia guardada con éxito!',
+                                                        timer: 1500
+                                                        });
+                                                $('#formReferencia').trigger("reset");
+
+
                                         }
                                     </script>
                         @endforeach
