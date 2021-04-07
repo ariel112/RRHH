@@ -577,7 +577,15 @@
     </div>
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
-     <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+        var  idE  = document.getElementById("identidad");
+        var  imE = new Inputmask("9999-9999-99999");
+        Idr = imE.mask(idE);
+
+        var  idER  = document.getElementById("identidad_referencia");
+        var  imER = new Inputmask("9999-9999-99999");
+        IdrR = imER.mask(idER);
         /* ------------Departamentos y municipios------------------- */
         function cargoDeptos_pais(data){
             var html_select_deptos_pais ='<option selected="selected">Seleccione Depto.</option>';
@@ -693,7 +701,16 @@
             var sueldo = $('#sueldo').val();
             var descripcion_laboral = $('#descripcion_laboral').val();
 
-            if(primer_nombre.length == 0){
+            if(/_/g.test(identidad)){
+                let identidad = document.getElementById('identidad');
+                identidad.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa',
+                    timer: 1000
+                })
+                event.preventDefault();
+            }else if(primer_nombre.length == 0){
                 let primer_nombre = document.getElementById('primer_nombre');
                 primer_nombre.className = 'form-control is-invalid';
 
@@ -928,6 +945,15 @@
                     timer: 1000
                     })
                     event.preventDefault();
+            }else if(/_/g.test(identidad_referencia)){
+                let identidad_referencia = document.getElementById('identidad_referencia');
+                identidad_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                })
+                event.preventDefault();
             }else if(telefono_referencia.length == 0){
 
                 let telefono_referencia = document.getElementById('telefono_referencia');
@@ -1049,7 +1075,7 @@
                 direccion_referencia.className = 'form-control is-valid';
                 (guardarEmpleado)();
             }
- /* (guardarEmpleado)(); */
+
         }
 
         /* ------------------------------------------------------------------------- */

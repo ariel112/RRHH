@@ -45,11 +45,18 @@ class EmpleadoController extends Controller
         /* dd($request); */
 
         /* DB::beginTransaction(); */
+        $identidadEmpl = $request['identidad'];
+        $ident = str_replace ( "-" , "", $identidadEmpl );
+        $identResult = str_replace ( "_" , "", $ident);
+
+        $identidadRe = $request['identidad_referencia'];
+        $identRE = str_replace ( "-" , "",$identidadRe);
+        $identResultRE = str_replace ( "_" , "", $identRE);
 
         try{
 
             $empleados = new empleado();
-            $empleados->identidad = $request['identidad'];
+            $empleados->identidad = $identResult;
             $empleados->nombre = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
             $empleados->primer_nombre = $request['primer_nombre'];
             $empleados->segundo_nombre = $request['segundo_nombre'];
@@ -81,7 +88,7 @@ class EmpleadoController extends Controller
 
             $referencias = new referencia();
             $referencias->nombre = $request['nombre_referencia'];
-            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->identidad= $identResultRE;
             $referencias->telefono = $request['telefono_referencia'];
             $referencias->email = $request['email_referencia'];
             $referencias->direccion = $request['direccion_referencia'];
@@ -122,9 +129,13 @@ class EmpleadoController extends Controller
     }
 
     public function guardarReferencia(Request $request, $id){
+        $identidadRef = $request['identidad_referencia'];
+        $ident = str_replace ( "-" , "", $identidadRef);
+        $identResult = str_replace ( "_" , "", $ident);
+
         $referencias = new referencia();
             $referencias->nombre = $request['nombre_referencia'];
-            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->identidad = $identResult;
             $referencias->telefono = $request['telefono_referencia'];
             $referencias->email = $request['email_referencia'];
             $referencias->direccion = $request['direccion_referencia'];

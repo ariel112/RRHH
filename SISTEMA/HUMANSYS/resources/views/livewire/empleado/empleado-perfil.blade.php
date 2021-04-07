@@ -873,7 +873,7 @@
                                                                                 <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                                                 <select class="form-select is-valid" id="estatus_id" name="estatus_id">
@@ -930,31 +930,31 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text">
+                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="identidad_referencia" name="identidad_referencia" type="text">
+                                                                            <input class="form-control " id="identidad_referencia" maxlength="15" minlength="15" name="identidad_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text">
+                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text">
+                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia" id="parentezco_referencia">
+                                                                            <select name="parentezco_referencia" id="parentezco_referencia" required>
                                                                                 <option selected value="">Seleccione</option>
                                                                                 <option value="PADRE">Padre</option>
                                                                                 <option value="MADRE">Madre</option>
@@ -1098,7 +1098,20 @@
 
 
                                     <!-- /Editar Referencia Modal -->
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
                                     <script>
+                                        var  idRef  = document.getElementById("identidad_referencia");
+                                        var  imRef = new Inputmask("9999-9999-99999");
+                                        Idr = imRef.mask(idRef );
+
+                                        var  idrefEdit  = document.getElementById("identidad_referencia_edit");
+                                        var  imidrefEdit = new Inputmask("9999-9999-99999");
+                                        idfE = im.mask(idrefEdit);
+
+                                        var  idEditEmpl  = document.getElementById("identidad_referencia");
+                                        var  imidEditEmpl = new Inputmask("9999-9999-99999");
+                                        idEE = imidEditEmpl.mask(idEditEmpl);
+
                                         function renderReferencia(data){
                                             $('#nombre_referencia_edit').val(data[0].nombre);
                                             $('#identidad_referencia_edit').val(data[0].identidad);
@@ -1121,7 +1134,16 @@
                                             var direccion_referencia_edit = $('#direccion_referencia_edit').val();
 
 
-                                            if(nombre_referencia_edit.length == 0){
+                                            if(/_/g.test(identidad_referencia_edit)){
+                                                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
+                                                identidad_referencia_edit.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_referencia_edit.length == 0){
 
                                                 let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
                                                 nombre_referencia_edit.className = 'form-control is-invalid';
@@ -1173,7 +1195,9 @@
                                                 text: 'Editado con éxito!',
                                                 timer: 1500
                                                 });
+                                            location.reload();
                                             }
+
 
                                         }
 
@@ -1246,7 +1270,17 @@
                                                     var estatus_id = $('#estatus_id').val();
                                                     var sueldo = $('#sueldo').val();
                                                     var descripcion_laboral = $('#descripcion_laboral').val();
-                                                    if(primer_nombre.length == 0){
+
+                                                    if(/_/g.test(identidad)){
+                                                            let identidad = document.getElementById('identidad');
+                                                            identidad.className = 'form-control is-invalid';
+                                                            Swal.fire({
+                                                                icon: 'warning',
+                                                                text: 'Debe indicar la identidad completa',
+                                                                timer: 1000
+                                                            })
+                                                            event.preventDefault();
+                                                    }else if(primer_nombre.length == 0){
 
                                                         let primer_nombre = document.getElementById('primer_nombre');
                                                         primer_nombre.className = 'form-control is-invalid';
@@ -1331,7 +1365,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(lugar_nacimiento.length == 0){
+                                                    }else if(lugar_nacimiento.length == 0){
                                                             let lugar_nacimiento = document.getElementById('lugar_nacimiento');
                 										    lugar_nacimiento.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1340,7 +1374,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(estatus_id == ""){
+                                                    }else if(estatus_id == ""){
                                                             let estado_civil = document.getElementById('estado_civil');
                 										    estado_civil.className = 'form-control is-valid';
                                                                 Swal.fire({
@@ -1349,7 +1383,7 @@
                                                                     timer: 1000
                                                                     })
                                                                     event.preventDefault();
-                                                        }else if(sueldo.length == 0){
+                                                    }else if(sueldo.length == 0){
                                                             let sueldo = document.getElementById('sueldo');
                 										sueldo.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1358,7 +1392,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(fecha_ingreso.length == 0){
+                                                    }else if(fecha_ingreso.length == 0){
                                                             let fecha_ingreso = document.getElementById('fecha_ingreso');
                 										fecha_ingreso.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1367,7 +1401,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else{
+                                                    }else{
                                                         editarEmpleadoPrincipal(id);
                                                     }
 
@@ -1380,7 +1414,17 @@
                                             var email_referencia = $('#email_referencia').val();
                                             var parentezco_referencia = $('#parentezco_referencia').val();
                                             var direccion_referencia = $('#direccion_referencia').val();
-                                            if(nombre_referencia.length == 0){
+
+                                            if(/_/g.test(identidad_referencia)){
+                                                let identidad_referencia = document.getElementById('identidad_referencia');
+                                                identidad_referencia.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_referencia.length == 0){
                                                 let nombre_referencia = document.getElementById('nombre_referencia');
                                                 nombre_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
@@ -1389,12 +1433,12 @@
                                                     timer: 1000
                                                     })
                                                     event.preventDefault();
-                                            }else if(identidad_referencia.length == 0){
+                                            }else if(identidad_referencia.length == 0 ){
                                                 let identidad_referencia = document.getElementById('identidad_referencia');
                                                 identidad_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
-                                                    text: 'Debe indicar la identidad de la referencia',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
                                                     timer: 1000
                                                     })
                                                     event.preventDefault();
@@ -1440,6 +1484,7 @@
                                         }
                                         function anadirReferencia(id){
                                             var data = new FormData($('#formReferencia').get(0));
+                                            location.reload()
                                                     $.ajax({
                                                     type:"POST",
                                                     url: "/empleado/referencia/"+id,
@@ -1463,8 +1508,6 @@
                                                         timer: 1500
                                                         });
                                                 $('#formReferencia').trigger("reset");
-
-
                                         }
                                     </script>
                         @endforeach
