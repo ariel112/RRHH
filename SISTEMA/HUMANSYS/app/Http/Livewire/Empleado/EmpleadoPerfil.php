@@ -8,6 +8,7 @@ use App\Models\empleado;
 use Illuminate\Http\Request;
 use App\Models\direccion;
 use App\Models\referencia;
+use App\Models\deducciones_empleado;
 use DB;
 use LengthException;
 
@@ -39,6 +40,7 @@ class EmpleadoPerfil extends Component
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
             'referencias' => referencia::where('empleado_id', '=', $request['id'])->get(),
+            'deducciones_emps' => deducciones_empleado::where('empleado_id', '=', $request['id'])->get(),
             'cargos' => $cargo,
             'areas' => $area,
             'departamentos' => $departamento,

@@ -2,7 +2,7 @@
 <div class="main-wrapper">
 <!-- Header -->
             <div class="header">
-			
+
 				<!-- Logo -->
                 <div class="header-left">
                     <a href="index.html" class="logo">
@@ -10,7 +10,7 @@
 					</a>
                 </div>
 				<!-- /Logo -->
-				
+
 				<a id="toggle_btn" href="javascript:void(0);">
 					<span class="bar-icon">
 						<span></span>
@@ -18,20 +18,20 @@
 						<span></span>
 					</span>
 				</a>
-				
+
 				<!-- Header Title -->
                 <div class="page-title-box">
 					<h3>HUMANSYS</h3>
                 </div>
 				<!-- /Header Title -->
-				
+
 				<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
-				
+
 				<!-- Header Menu -->
 				<ul class="nav user-menu">
-				
-				
-				
+
+
+
 					<!-- Notifications -->
 					<li class="nav-item dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -117,29 +117,29 @@
 						</div>
 					</li>
 					<!-- /Notifications -->
-					
-				
+
+
 					<!-- /Message Notifications -->
 
 					<li class="nav-item dropdown has-arrow main-drop">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                               
-                            <span class="user-img mt-3"> 
+
+                            <span class="user-img mt-3">
                                 <img  src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                             <span class="status online"></span>
                             </span>
-                                
+
                             @endif
-						
+
 
 							{{-- <span class="status online"></span> --}}
 							</span>
 							<span>{{ Auth::user()->name }}</span>
 						</a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" > 
+							<a class="dropdown-item" >
                                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                                 {{ __('Profile') }}
                                 </x-jet-responsive-nav-link>
@@ -155,7 +155,7 @@
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                
+
                                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                     this.closest('form').submit();">
@@ -164,30 +164,30 @@
                                 </form>
                             </a>
 						</div>
-                       
+
 					</li>
 				</ul>
 				<!-- /Header Menu -->
-				
+
 				<!-- Mobile Menu -->
 				<div class="dropdown mobile-user-menu">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					  	
+
 
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                               
-                            <span class="user-img" style="width:30px; heigth:35px; margin-top:12px;"> 
+
+                            <span class="user-img" style="width:30px; heigth:35px; margin-top:12px;">
                                 <img  src="{{ Auth::user()->profile_photo_url }}" style="border-radius:60%;"  />
                             <span class="status online"></span>
                             </span>
-                                
+
                             @endif
-						
+
 
 							{{-- <span class="status online"></span> --}}
 							</span>
-							
-						
+
+
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" >
@@ -206,7 +206,7 @@
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-            
+
                                 <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                 this.closest('form').submit();">
@@ -217,19 +217,19 @@
 					</div>
 				</div>
 				<!-- /Mobile Menu -->
-				
+
             </div>
 			<!-- /Header -->
-			
+
 			<!-- Sidebar -->
             <div class="sidebar" id="sidebar">
                 <div class="sidebar-inner slimscroll">
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
-							<li class="menu-title"> 
+							<li class="menu-title">
 								<span>Menu</span>
 							</li>
-							
+
 							<li class="submenu">
 								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -249,28 +249,34 @@
 								<a href="#" ><i class="la la-user"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar empleado</a></li>
-									<li><a href="{{ route('permisos.index_empleado') }}" >Bandeja Empleados</a></li>								
+									<li><a href="{{ route('permisos.index_empleado') }}" >Bandeja Empleados</a></li>
 								</ul>
 							</li>
-						
+
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
-									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>									
+									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>
 									<li><a href="{{ route('permisos.index_empleado') }}"  >Bandeja Empleados</a></li>
-									
-									
-									
+
+
+
 								</ul>
 							</li>
-						
-						
-							
-							<li class="menu-title"> 
+							<li class="menu-title">
 								<span>HR</span>
 							</li>
 							<li class="submenu">
+								<a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
+									<li><a href="invoices.html">RAP</a></li>
+									<li><a href="payments.html">ISR</a></li>
+									<li><a href="expenses.html">Otros</a></li>
+								</ul>
+							</li>
+                            <li class="submenu">
 								<a href="#"><i class="la la-files-o"></i> <span> Cuentas </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="estimates.html">Estimados</a></li>
@@ -289,7 +295,7 @@
 									<li><a href="payroll-items.html"> Elementos de nómina </a></li>
 								</ul>
 							</li>
-							<li> 
+							<li>
 								<a href="policies.html"><i class="la la-file-pdf-o"></i> <span>Politicas</span></a>
 							</li>
 							<li class="submenu">
@@ -299,11 +305,11 @@
 									<li><a href="invoice-reports.html"> Informe de facturas </a></li>
 								</ul>
 							</li>
-							
-							<li class="menu-title"> 
+
+							<li class="menu-title">
 								<span>Administration</span>
 							</li>
-							<li> 
+							<li>
 								<a href="assets.html"><i class="la la-object-ungroup"></i> <span>Activos</span></a>
 							</li>
 							<li class="submenu">
@@ -313,16 +319,16 @@
 									<li><a href="job-applicants.html"> Candidatos Aplicados</a></li>
 								</ul>
 							</li>
-							<li> 
+							<li>
 								<a href="activities.html"><i class="la la-bell"></i> <span>Actividades</span></a>
 							</li>
-							<li> 
+							<li>
 								<a href="users.html"><i class="la la-user-plus"></i> <span>Usuarios</span></a>
 							</li>
-							<li> 
+							<li>
 								<a href="settings.html"><i class="la la-cog"></i> <span>Ajustes</span></a>
 							</li>
-						
+
 						</ul>
 					</div>
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\direccion;
 use App\Models\empleado;
 use App\Models\referencia;
+use App\Models\deducciones_empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
@@ -45,11 +46,18 @@ class EmpleadoController extends Controller
         /* dd($request); */
 
         /* DB::beginTransaction(); */
+        $identidadEmpl = $request['identidad'];
+        $ident = str_replace ( "-" , "", $identidadEmpl );
+        $identResult = str_replace ( "_" , "", $ident);
+
+        $identidadRe = $request['identidad_referencia'];
+        $identRE = str_replace ( "-" , "",$identidadRe);
+        $identResultRE = str_replace ( "_" , "", $identRE);
 
         try{
 
             $empleados = new empleado();
-            $empleados->identidad = $request['identidad'];
+            $empleados->identidad = $identResult;
             $empleados->nombre = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
             $empleados->primer_nombre = $request['primer_nombre'];
             $empleados->segundo_nombre = $request['segundo_nombre'];
@@ -81,7 +89,7 @@ class EmpleadoController extends Controller
 
             $referencias = new referencia();
             $referencias->nombre = $request['nombre_referencia'];
-            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->identidad= $identResultRE;
             $referencias->telefono = $request['telefono_referencia'];
             $referencias->email = $request['email_referencia'];
             $referencias->direccion = $request['direccion_referencia'];
@@ -121,15 +129,33 @@ class EmpleadoController extends Controller
 
     }
 
+    public function guardarDeduccion(Request $request){
+        $deduc = new deducciones_empleado();
+        $deduc->nombre = $request['nombre_deduc'];
+        $deduc->descripcion = $request['descripcion_deduc'];
+        $deduc->tipo_deducciones_id = 1;
+        $deduc->empleado_id = $request['idEmpleadoDe'];
+        $deduc->monto = $request['monto_deduc'];
+        $deduc->porcentaje = $request['porcentaje_deduc'];
+        $deduc -> save();
+
+        return $deduc;
+    }
+
     public function guardarReferencia(Request $request, $id){
+        $identidadRef = $request['identidad_referencia'];
+        $ident = str_replace ( "-" , "", $identidadRef);
+        $identResult = str_replace ( "_" , "", $ident);
+
         $referencias = new referencia();
             $referencias->nombre = $request['nombre_referencia'];
-            $referencias->identidad= $request['identidad_referencia'];
+            $referencias->identidad = $identResult;
             $referencias->telefono = $request['telefono_referencia'];
             $referencias->email = $request['email_referencia'];
             $referencias->direccion = $request['direccion_referencia'];
             $referencias->parentezco = $request['parentezco_referencia'];
             $referencias->empleado_id = $id;
+            $referencias->estatus_referencia_id = 1;
             $referencias -> save();
 
             return $referencias;
@@ -139,6 +165,8 @@ class EmpleadoController extends Controller
         $referencias = DB::SELECT("select * from referencia where id ='$id'");
         return $referencias;
     }
+
+
 
     /**
      * Display the specified resource.
@@ -243,6 +271,7 @@ class EmpleadoController extends Controller
         $email = $request['email_referencia_edit'];
         $parentezco = $request['parentezco_referencia_edit'];
         $direccion = $request['direccion_referencia_edit'];
+        $estatus_referencia_id =$request['estado_referencia_edit'];
         /* DB::table('empleado')
             ->updateOrInsert(
                             ['primer_nombre' => $primer_nombre ])
@@ -254,7 +283,8 @@ class EmpleadoController extends Controller
               'telefono' => $telefono,
               'email' => $email,
               'direccion' => $direccion,
-              'parentezco' => $parentezco]);
+              'parentezco' => $parentezco,
+              'estatus_referencia_id' => $estatus_referencia_id]);
     }
 
     /**

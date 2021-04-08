@@ -2,8 +2,6 @@
     <div class="page-wrapper">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-                    {{--  --}}
 @foreach($empleados as $empleado)
     @foreach($direcciones as $direccion)
             @foreach ($cargos as $cargo)
@@ -30,7 +28,7 @@
                                     </div>
                                     <!-- /Page Header -->
 
-                                        <div class="card mb-0">
+                                        <div class="card mb-0 ">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -40,6 +38,7 @@
                                                                     <a href="#" class="avatar"><img alt="" src="../../assets/img/user.jpg"></a>
                                                                 </div>
                                                             </div>
+
                                                             {{-- ------------------------div de informacion basica----------------------------------------- --}}
                                                             <div class="profile-basic">
                                                                 <div class="row">
@@ -48,9 +47,30 @@
                                                                             <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3><br>
                                                                             <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
                                                                             <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
-                                                                            <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5><br>
-                                                                            <div class="staff-id">Empleado ID : {{$empleado->id}}</div><br>
-                                                                            <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div>
+                                                                            <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
+                                                                            <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
+                                                                            <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
+                                                                            @if ($cargo->tipo_empleado_id == 1)
+                                                                                @if ($empleado->estatus_id == 1)
+                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                        ACTIVO
+                                                                                    </button>
+                                                                                @else
+                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                        INACTIVO
+                                                                                    </button>
+                                                                                @endif
+                                                                            @else
+                                                                                @if ($empleado->estatus_id == 1)
+                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                        ACTIVO
+                                                                                    </button>
+                                                                                @else
+                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                        INACTIVO
+                                                                                    </button>
+                                                                                @endif
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-7">
@@ -87,13 +107,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="card tab-box">
+                                        <div class="card  tab-box">
                                             <div class="row user-tabs">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                     <ul class="nav nav-tabs nav-tabs-bottom">
-                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active">Información</a></li>
-                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link">Funciones de Trabajo</a></li>
-                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link">Detalles de salario y planilla</a></li>
+                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
+                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
+                                                        <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -105,7 +125,7 @@
                                             <div id="emp_informacion" class="pro-overview tab-pane fade show active">
                                                 <div class="row">
                                                     <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill">
+                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
                                                                 <ul class="personal-info">
@@ -138,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill">
+                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
 
@@ -174,309 +194,50 @@
                                                 </div>
                                                 <div class="row">
                                                     @foreach($referencias as $referencia)
-                                                        <div class="col-md-6 d-flex">
-                                                            <div class="card profile-box flex-fill">
-                                                                <div class="card-body">
-                                                                    <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
-                                                                    <h3 class="card-title">Referencia Personal <i class="fas fa-user-check"></i></h3>
-                                                                    <ul class="personal-info">
-                                                                        <li>
-                                                                            <div class="title">Nombre:</div>
-                                                                            <div class="text">{{$referencia->nombre}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Identidad:</div>
-                                                                            <div class="text">{{$referencia->identidad}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Telefono:</div>
-                                                                            <div class="text">{{$referencia->telefono}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Correo:</div>
-                                                                            <div class="text">{{$referencia->email}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Dirección:</div>
-                                                                            <div class="text">{{$referencia->direccion}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Parentezco:</div>
-                                                                            <div class="text">{{$referencia->parentezco}}</div>
-                                                                        </li>
-                                                                    </ul>
+                                                        @if ($referencia->estatus_referencia_id == 1)
+                                                            <div class="col-md-6 d-flex">
+                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                                    <div class="card-body">
+                                                                        <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
+                                                                        <h3 class="card-title ">Referencia Personal <i class="fas fa-user-check"></i></h3>
+                                                                        <ul class="personal-info">
+                                                                            <li>
+                                                                                <div class="title">Nombre:</div>
+                                                                                <div class="text">{{$referencia->nombre}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Identidad:</div>
+                                                                                <div class="text">{{$referencia->identidad}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Telefono:</div>
+                                                                                <div class="text">{{$referencia->telefono}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Correo:</div>
+                                                                                <div class="text">{{$referencia->email}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Dirección:</div>
+                                                                                <div class="text">{{$referencia->direccion}}</div>
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="title">Parentezco:</div>
+                                                                                <div class="text">{{$referencia->parentezco}}</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-
+                                                        @endif
                                                     @endforeach
-
                                                 </div>
-
                                             </div>
                                             <!------------------------- /Detalle completo de informacion ---------------------------------->
 
                                             <!-- Funciones Tab -->
                                             <div class="tab-pane fade" id="emp_funciones">
-                                                {{-- <div class="row">
-                                                    @foreach ($funciones as $funcion)
-                                                    <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="dropdown profile-action">
-                                                                    <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i>Editar</a>
-                                                                        <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i>Elimiar</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h4 class="project-title"><a href="project-view.html">{{$area->nombre}}</a></h4>
-                                                                <small class="block text-ellipsis m-b-15">
-                                                                    <span class="text-xs">1</span> <span class="text-muted">Proyectos actuales</span>
-                                                                    <span class="text-xs">9</span> <span class="text-muted">Proyectos completados</span>
-                                                                </small>
-                                                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                                                    typesetting industry. When an unknown printer took a galley of type and
-                                                                    scrambled it...
-                                                                </p>
-                                                                <p class="text-muted">{{$funcion->nombre}}
-                                                                </p>
-                                                                <div class="pro-deadline m-b-15">
-                                                                    <div class="sub-title">
-                                                                        Fecha de Asignación:
-                                                                    </div>
-                                                                    <div class="text-muted">
-                                                                        {{$empleado->fecha_ingreso}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pro-deadline m-b-15">
-                                                                    <div class="sub-title">
-                                                                        Jefe inmediato:
-                                                                    </div>
-                                                                    <div class="text-muted">
-                                                                        Ariel Morazán
-                                                                    </div>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Team :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="all-users">+15</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                                                <div class="progress progress-xs mb-0">
-                                                                    <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @endforeach
-
-
-                                                    <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="dropdown profile-action">
-                                                                    <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                        <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h4 class="project-title"><a href="project-view.html">Project Management</a></h4>
-                                                                <small class="block text-ellipsis m-b-15">
-                                                                    <span class="text-xs">2</span> <span class="text-muted">open tasks, </span>
-                                                                    <span class="text-xs">5</span> <span class="text-muted">tasks completed</span>
-                                                                </small>
-                                                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                                                    typesetting industry. When an unknown printer took a galley of type and
-                                                                    scrambled it...
-                                                                </p>
-                                                                <div class="pro-deadline m-b-15">
-                                                                    <div class="sub-title">
-                                                                        Deadline:
-                                                                    </div>
-                                                                    <div class="text-muted">
-                                                                        17 Apr 2019
-                                                                    </div>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Project Leader :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Team :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="all-users">+15</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                                                <div class="progress progress-xs mb-0">
-                                                                    <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="dropdown profile-action">
-                                                                    <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                        <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h4 class="project-title"><a href="project-view.html">Video Calling App</a></h4>
-                                                                <small class="block text-ellipsis m-b-15">
-                                                                    <span class="text-xs">3</span> <span class="text-muted">open tasks, </span>
-                                                                    <span class="text-xs">3</span> <span class="text-muted">tasks completed</span>
-                                                                </small>
-                                                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                                                    typesetting industry. When an unknown printer took a galley of type and
-                                                                    scrambled it...
-                                                                </p>
-                                                                <div class="pro-deadline m-b-15">
-                                                                    <div class="sub-title">
-                                                                        Deadline:
-                                                                    </div>
-                                                                    <div class="text-muted">
-                                                                        17 Apr 2019
-                                                                    </div>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Project Leader :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Team :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="all-users">+15</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                                                <div class="progress progress-xs mb-0">
-                                                                    <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-sm-6 col-md-4 col-xl-3">
-                                                        <div class="card">
-                                                            <div class="card-body">
-                                                                <div class="dropdown profile-action">
-                                                                    <a aria-expanded="false" data-toggle="dropdown" class="action-icon dropdown-toggle" href="#"><i class="material-icons">more_vert</i></a>
-                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                        <a data-target="#edit_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                                                        <a data-target="#delete_project" data-toggle="modal" href="#" class="dropdown-item"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                                                    </div>
-                                                                </div>
-                                                                <h4 class="project-title"><a href="project-view.html">Hospital Administration</a></h4>
-                                                                <small class="block text-ellipsis m-b-15">
-                                                                    <span class="text-xs">12</span> <span class="text-muted">open tasks, </span>
-                                                                    <span class="text-xs">4</span> <span class="text-muted">tasks completed</span>
-                                                                </small>
-                                                                <p class="text-muted">Lorem Ipsum is simply dummy text of the printing and
-                                                                    typesetting industry. When an unknown printer took a galley of type and
-                                                                    scrambled it...
-                                                                </p>
-                                                                <div class="pro-deadline m-b-15">
-                                                                    <div class="sub-title">
-                                                                        Deadline:
-                                                                    </div>
-                                                                    <div class="text-muted">
-                                                                        17 Apr 2019
-                                                                    </div>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Project Leader :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Jeffery Lalor"><img alt="" src="assets/img/profiles/avatar-16.jpg"></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="project-members m-b-15">
-                                                                    <div>Team :</div>
-                                                                    <ul class="team-members">
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Doe"><img alt="" src="assets/img/profiles/avatar-02.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Richard Miles"><img alt="" src="assets/img/profiles/avatar-09.jpg"></a></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="John Smith"><img alt="" src="assets/img/profiles/avatar-10.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" data-toggle="tooltip" title="Mike Litorus"><img alt="" src="assets/img/profiles/avatar-05.jpg"></a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="#" class="all-users">+15</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <p class="m-b-5">Progress <span class="text-success float-right">40%</span></p>
-                                                                <div class="progress progress-xs mb-0">
-                                                                    <div style="width: 40%" title="" data-toggle="tooltip" role="progressbar" class="progress-bar bg-success" data-original-title="40%"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                                <div class="card mb-0">
+                                                <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info">
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -512,219 +273,103 @@
                                                 </div>
                                             </div>
                                             <!-- /Projects Tab -->
-
-                                            <!-- Bank Statutory Tab -->
-                                            <div class="tab-pane fade" id="bank_statutory">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title"> Basic Salary Information</h3>
-                                                        <form>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Salary basis <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select salary basis type</option>
-                                                                            <option>Hourly</option>
-                                                                            <option>Daily</option>
-                                                                            <option>Weekly</option>
-                                                                            <option>Monthly</option>
-                                                                        </select>
-                                                                </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Salary amount <small class="text-muted">per month</small></label>
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
+                                            {{-- deducciones empleado modal --}}
+                                            <div id="Deduccion_modal" class="modal custom-modal fade" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">DEDUCCIÓN PERSONAL</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-group" id="formDeduccion">
+                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        {{-- <div class="card-header">
+                                                                            <h3 class="card-header text-secondary text-center">DEDUCCIÓN PERSONAL</h3>
+                                                                        </div> --}}
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
+                                                                                        <input class="form-control" id="nombre_deduc" name="nombre_deduc" type="text">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Porcentaje %<span class="text-danger">*</span></label>
+                                                                                        <select class="select-form" name="porcentaje_deduc" id="porcentaje_deduc" required>
+                                                                                            <option selected value="">Seleccione Porcentaje</option>
+                                                                                            <option value="1">1%</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Monto fijo catorcenal<span class="text-danger">*</span></label>
+                                                                                        <input class="form-control" id="monto_deduc" name="monto_deduc" type="text">
+                                                                                        <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Descripción sobre la deducción<span class="text-danger">*</span></label>
+                                                                                        <textarea class="form-control" id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="Type your salary amount" value="0.00">
                                                                         </div>
                                                                     </div>
+                                                                <div class="submit-section">
+                                                                    <button class="btn btn-warning" onclick="validarDeduccionesEmp()">Agregar</button>
+                                                                    {{-- <input type="hidden" id="idEmpleado" name="idEmpleado" value="{{ $empleado->id }}"> --}}
                                                                 </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Payment type</label>
-                                                                        <select class="select">
-                                                                            <option>Select payment type</option>
-                                                                            <option>Bank transfer</option>
-                                                                            <option>Check</option>
-                                                                            <option>Cash</option>
-                                                                        </select>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <h3 class="card-title"> PF Information</h3>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">PF contribution</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">PF No. <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee PF rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
+                                                            </form>
                                                         </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee PF rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <hr>
-                                                            <h3 class="card-title"> ESI Information</h3>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">ESI contribution</label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">ESI No. <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee ESI rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-
-                                                            <div class="submit-section">
-                                                                <button class="btn btn-primary submit-btn" type="submit">Save</button>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Bank Statutory Tab -->
-
+                                            {{-- /deducciones empleado modal --}}
+                                            <!--Deducciones Tab -->
+                                            <div class="tab-pane fade" id="emp_detalle">
+                                                <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
+                                                <br><br><br>
+                                                    <div class="row" id="grillDeducciones">
+                                                            @foreach ($deducciones_emps as $deduc)
+                                                            <div class="col-md-6 d-flex">
+                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success">
+                                                                    <div class="card-body">
+                                                                        {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
+                                                                        <h3 class="card-title ">Deduccion Activa <i class="fas fa-file-invoice-dollar"></i></h3>
+                                                                        <ul class="list-group list-group-flush">
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Nombre:</div>
+                                                                                <div class="text">{{$deduc->nombre}}</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Monto:</div>
+                                                                                <div class="text">Lps. {{$deduc->monto}}</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Porcentaje:</div>
+                                                                                <div class="text">{{$deduc->porcentaje}}%</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Descripción:</div>
+                                                                                <div class="text">{{$deduc->descripcion}}</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                    </div>
+                                            </div>
+                                            <!-- /Deducciones Tab -->
                                         </div>
                                     </div>
                                     <!-- /Page Content -->
@@ -873,11 +518,11 @@
                                                                                 <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                                                 <select class="form-select is-valid" id="estatus_id" name="estatus_id">
-                                                                                    <option selected="selected"  value="{{$empleado->estatus_id}}">{{$empleado->estatus_id}}</option>
+                                                                                    <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
                                                                                     <option value="1">1-ACTIVO</option>
                                                                                     <option value="2">2-INACTIVO</option>
                                                                                 </select>
@@ -912,7 +557,7 @@
                                     </div>
                                     <!-- añadir referencia -->
                                     <div class="modal custom-modal fade" id="referencia_modal" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-body">
                                                     <div class="form-header">
@@ -930,31 +575,31 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text">
+                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="identidad_referencia" name="identidad_referencia" type="text">
+                                                                            <input class="form-control " id="identidad_referencia" maxlength="15" minlength="15" name="identidad_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text">
+                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text">
+                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text" required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia" id="parentezco_referencia">
+                                                                            <select name="parentezco_referencia" id="parentezco_referencia" required>
                                                                                 <option selected value="">Seleccione</option>
                                                                                 <option value="PADRE">Padre</option>
                                                                                 <option value="MADRE">Madre</option>
@@ -981,7 +626,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="30" rows="10"></textarea>
+                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3"></textarea>
                                                                         </div>
                                                                     </div>
 
@@ -1078,6 +723,16 @@
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
+                                                                            <label class="col-form-label">Estado<span class="text-danger">*</span></label>
+                                                                            <select name="estado_referencia_edit" id="estado_referencia_edit">
+                                                                                <option selected value="">Seleccione estado</option>
+                                                                                <option value="1">1-ACTIVO</option>
+                                                                                <option value="2">2-INACTIVO</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
                                                                             <textarea class="form-control is-valid" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                         </div>
@@ -1098,7 +753,20 @@
 
 
                                     <!-- /Editar Referencia Modal -->
+                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
                                     <script>
+                                        var  idRef  = document.getElementById("identidad_referencia");
+                                        var  imRef = new Inputmask("9999-9999-99999");
+                                        Idr = imRef.mask(idRef );
+
+                                        var  idrefEdit  = document.getElementById("identidad_referencia_edit");
+                                        var  imidrefEdit = new Inputmask("9999-9999-99999");
+                                        idfE = im.mask(idrefEdit);
+
+                                        var  idEditEmpl  = document.getElementById("identidad_referencia");
+                                        var  imidEditEmpl = new Inputmask("9999-9999-99999");
+                                        idEE = imidEditEmpl.mask(idEditEmpl);
+
                                         function renderReferencia(data){
                                             $('#nombre_referencia_edit').val(data[0].nombre);
                                             $('#identidad_referencia_edit').val(data[0].identidad);
@@ -1106,6 +774,7 @@
                                             $('#email_referencia_edit').val(data[0].email);
                                             $('#parentezco_referencia_edit').val(data[0].parentezco);
                                             $('#direccion_referencia_edit').val(data[0].direccion);
+                                            $('#estado_referencia_edit').val(data[0].estatus_referencia_id);
                                             $('#idREF').val(data[0].id);
                                         }
 
@@ -1121,7 +790,16 @@
                                             var direccion_referencia_edit = $('#direccion_referencia_edit').val();
 
 
-                                            if(nombre_referencia_edit.length == 0){
+                                            if(/_/g.test(identidad_referencia_edit)){
+                                                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
+                                                identidad_referencia_edit.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_referencia_edit.length == 0){
 
                                                 let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
                                                 nombre_referencia_edit.className = 'form-control is-invalid';
@@ -1173,7 +851,9 @@
                                                 text: 'Editado con éxito!',
                                                 timer: 1500
                                                 });
+                                            location.reload();
                                             }
+
 
                                         }
 
@@ -1246,7 +926,17 @@
                                                     var estatus_id = $('#estatus_id').val();
                                                     var sueldo = $('#sueldo').val();
                                                     var descripcion_laboral = $('#descripcion_laboral').val();
-                                                    if(primer_nombre.length == 0){
+
+                                                    if(/_/g.test(identidad)){
+                                                            let identidad = document.getElementById('identidad');
+                                                            identidad.className = 'form-control is-invalid';
+                                                            Swal.fire({
+                                                                icon: 'warning',
+                                                                text: 'Debe indicar la identidad completa',
+                                                                timer: 1000
+                                                            })
+                                                            event.preventDefault();
+                                                    }else if(primer_nombre.length == 0){
 
                                                         let primer_nombre = document.getElementById('primer_nombre');
                                                         primer_nombre.className = 'form-control is-invalid';
@@ -1331,7 +1021,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(lugar_nacimiento.length == 0){
+                                                    }else if(lugar_nacimiento.length == 0){
                                                             let lugar_nacimiento = document.getElementById('lugar_nacimiento');
                 										    lugar_nacimiento.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1340,7 +1030,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(estatus_id == ""){
+                                                    }else if(estatus_id == ""){
                                                             let estado_civil = document.getElementById('estado_civil');
                 										    estado_civil.className = 'form-control is-valid';
                                                                 Swal.fire({
@@ -1349,7 +1039,7 @@
                                                                     timer: 1000
                                                                     })
                                                                     event.preventDefault();
-                                                        }else if(sueldo.length == 0){
+                                                    }else if(sueldo.length == 0){
                                                             let sueldo = document.getElementById('sueldo');
                 										sueldo.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1358,7 +1048,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else if(fecha_ingreso.length == 0){
+                                                    }else if(fecha_ingreso.length == 0){
                                                             let fecha_ingreso = document.getElementById('fecha_ingreso');
                 										fecha_ingreso.className = 'form-control is-invalid';
                                                             Swal.fire({
@@ -1367,7 +1057,7 @@
                                                                 timer: 1000
                                                                 })
                                                                 event.preventDefault();
-                                                        }else{
+                                                    }else{
                                                         editarEmpleadoPrincipal(id);
                                                     }
 
@@ -1380,7 +1070,17 @@
                                             var email_referencia = $('#email_referencia').val();
                                             var parentezco_referencia = $('#parentezco_referencia').val();
                                             var direccion_referencia = $('#direccion_referencia').val();
-                                            if(nombre_referencia.length == 0){
+
+                                            if(/_/g.test(identidad_referencia)){
+                                                let identidad_referencia = document.getElementById('identidad_referencia');
+                                                identidad_referencia.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
+                                                    timer: 1000
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_referencia.length == 0){
                                                 let nombre_referencia = document.getElementById('nombre_referencia');
                                                 nombre_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
@@ -1389,12 +1089,12 @@
                                                     timer: 1000
                                                     })
                                                     event.preventDefault();
-                                            }else if(identidad_referencia.length == 0){
+                                            }else if(identidad_referencia.length == 0 ){
                                                 let identidad_referencia = document.getElementById('identidad_referencia');
                                                 identidad_referencia.className = 'form-control is-invalid';
                                                 Swal.fire({
                                                     icon: 'warning',
-                                                    text: 'Debe indicar la identidad de la referencia',
+                                                    text: 'Debe indicar la identidad completa de la referencia',
                                                     timer: 1000
                                                     })
                                                     event.preventDefault();
@@ -1438,8 +1138,85 @@
                                                 anadirReferencia(id);
                                             }
                                         }
+
+                                        function validarDeduccionesEmp(){
+                                            var nombre_deduc = $('#nombre_deduc').val();
+                                            var porcentaje_deduc = $('#porcentaje_deduc').val();
+                                            var monto_deduc = $('#monto_deduc').val();
+                                            var descripcion_deduc = $('#descripcion_deduc').val();
+                                            var idEmpleadoDe = $('#idEmpleadoDe').val();
+
+                                            if(descripcion_deduc.length == 0){
+                                                let descripcion_deduc = document.getElementById('descripcion_deduc');
+                                                descripcion_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar una breve descripción de la deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_deduc.length == 0){
+                                                let nombre_deduc = document.getElementById('nombre_deduc');
+                                                nombre_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un nombre especifico de la deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(porcentaje_deduc == ""){
+                                                let porcentaje_deduc = document.getElementById('porcentaje_deduc');
+                                                porcentaje_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un porcentaje de deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(monto_deduc.length == 0){
+                                                let monto_deduc = document.getElementById('monto_deduc');
+                                                monto_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un monto fijo',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else{
+                                                agregarDeducEmp(idEmpleadoDe);
+                                            }
+                                        }
+
+                                        function agregarDeducEmp(idEmpleadoDe){
+                                            var data = new FormData($('#formDeduccion').get(0));
+                                            event.preventDefault();
+                                                    $.ajax({
+                                                    type:"POST",
+                                                    url: "/empleado/deducciones",
+                                                    data: data,
+                                                    contentType: false,
+                                                    cache: false,
+                                                    processData:false,
+                                                    dataType:"json",
+                                                    success: function(data){
+                                                        console.log(data);/*
+                                                        $("#grillDeducciones").load('/empleado/perfil/'+idEmpleadoDe); */
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        console.log(jqXHR, textStatus, errorThrown);
+                                                    }
+                                                })
+                                                Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Deducción guardada con éxito!',
+                                                        timer: 1500
+                                                        });
+                                                $('#formDeduccion').trigger("reset");
+                                        }
+
                                         function anadirReferencia(id){
                                             var data = new FormData($('#formReferencia').get(0));
+                                            location.reload()
                                                     $.ajax({
                                                     type:"POST",
                                                     url: "/empleado/referencia/"+id,
@@ -1463,8 +1240,6 @@
                                                         timer: 1500
                                                         });
                                                 $('#formReferencia').trigger("reset");
-
-
                                         }
                                     </script>
                         @endforeach
