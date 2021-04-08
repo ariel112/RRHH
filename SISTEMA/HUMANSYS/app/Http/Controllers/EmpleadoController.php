@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\direccion;
 use App\Models\empleado;
 use App\Models\referencia;
+use App\Models\deducciones_empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\QueryException;
@@ -128,6 +129,19 @@ class EmpleadoController extends Controller
 
     }
 
+    public function guardarDeduccion(Request $request){
+        $deduc = new deducciones_empleado();
+        $deduc->nombre = $request['nombre_deduc'];
+        $deduc->descripcion = $request['descripcion_deduc'];
+        $deduc->tipo_deducciones_id = 1;
+        $deduc->empleado_id = $request['idEmpleadoDe'];
+        $deduc->monto = $request['monto_deduc'];
+        $deduc->porcentaje = $request['porcentaje_deduc'];
+        $deduc -> save();
+
+        return $deduc;
+    }
+
     public function guardarReferencia(Request $request, $id){
         $identidadRef = $request['identidad_referencia'];
         $ident = str_replace ( "-" , "", $identidadRef);
@@ -151,6 +165,8 @@ class EmpleadoController extends Controller
         $referencias = DB::SELECT("select * from referencia where id ='$id'");
         return $referencias;
     }
+
+
 
     /**
      * Display the specified resource.

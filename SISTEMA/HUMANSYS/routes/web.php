@@ -62,6 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/empleado/referencia/{id}', [EmpleadoController::class, 'guardarReferencia']);
     Route::get('/empleado/referencia/get/{id}', [EmpleadoController::class, 'getReferencias']);
     Route::post('/empleado/editar/referencia/{id}', [EmpleadoController::class, 'updateReferencia']);
+    Route::post('/empleado/deducciones', [EmpleadoController::class, 'guardarDeduccion']);
 
 
     //BusquedaEmpleados

@@ -2,8 +2,6 @@
     <div class="page-wrapper">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-                    {{--  --}}
 @foreach($empleados as $empleado)
     @foreach($direcciones as $direccion)
             @foreach ($cargos as $cargo)
@@ -115,7 +113,7 @@
                                                     <ul class="nav nav-tabs nav-tabs-bottom">
                                                         <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
                                                         <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
-                                                        <li class="nav-item"><a href="#bank_statutory" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i> DETALLE DE PLANILLA</a></li>
+                                                        <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -127,7 +125,7 @@
                                             <div id="emp_informacion" class="pro-overview tab-pane fade show active">
                                                 <div class="row">
                                                     <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded">
+                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
                                                                 <ul class="personal-info">
@@ -160,7 +158,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded">
+                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                             <div class="card-body">
                                                                 <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
 
@@ -198,7 +196,7 @@
                                                     @foreach($referencias as $referencia)
                                                         @if ($referencia->estatus_referencia_id == 1)
                                                             <div class="col-md-6 d-flex">
-                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded">
+                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                     <div class="card-body">
                                                                         <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
                                                                         <h3 class="card-title ">Referencia Personal <i class="fas fa-user-check"></i></h3>
@@ -239,7 +237,7 @@
 
                                             <!-- Funciones Tab -->
                                             <div class="tab-pane fade" id="emp_funciones">
-                                                <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded">
+                                                <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info">
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -275,218 +273,103 @@
                                                 </div>
                                             </div>
                                             <!-- /Projects Tab -->
-
-                                            <!-- Bank Statutory Tab -->
-                                            <div class="tab-pane fade" id="bank_statutory">
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h3 class="card-title"> Basic Salary Information</h3>
-                                                        <form>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Salary basis <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select salary basis type</option>
-                                                                            <option>Hourly</option>
-                                                                            <option>Daily</option>
-                                                                            <option>Weekly</option>
-                                                                            <option>Monthly</option>
-                                                                        </select>
-                                                                </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Salary amount <small class="text-muted">per month</small></label>
-                                                                        <div class="input-group">
-                                                                            <div class="input-group-prepend">
-                                                                                <span class="input-group-text">$</span>
+                                            {{-- deducciones empleado modal --}}
+                                            <div id="Deduccion_modal" class="modal custom-modal fade" role="dialog">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">DEDUCCIÓN PERSONAL</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="form-group" id="formDeduccion">
+                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        {{-- <div class="card-header">
+                                                                            <h3 class="card-header text-secondary text-center">DEDUCCIÓN PERSONAL</h3>
+                                                                        </div> --}}
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
+                                                                                        <input class="form-control" id="nombre_deduc" name="nombre_deduc" type="text">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Porcentaje %<span class="text-danger">*</span></label>
+                                                                                        <select class="select-form" name="porcentaje_deduc" id="porcentaje_deduc" required>
+                                                                                            <option selected value="">Seleccione Porcentaje</option>
+                                                                                            <option value="1">1%</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Monto fijo catorcenal<span class="text-danger">*</span></label>
+                                                                                        <input class="form-control" id="monto_deduc" name="monto_deduc" type="text">
+                                                                                        <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Descripción sobre la deducción<span class="text-danger">*</span></label>
+                                                                                        <textarea class="form-control" id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <input type="text" class="form-control" placeholder="Type your salary amount" value="0.00">
                                                                         </div>
                                                                     </div>
+                                                                <div class="submit-section">
+                                                                    <button class="btn btn-warning" onclick="validarDeduccionesEmp()">Agregar</button>
+                                                                    {{-- <input type="hidden" id="idEmpleado" name="idEmpleado" value="{{ $empleado->id }}"> --}}
                                                                 </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Payment type</label>
-                                                                        <select class="select">
-                                                                            <option>Select payment type</option>
-                                                                            <option>Bank transfer</option>
-                                                                            <option>Check</option>
-                                                                            <option>Cash</option>
-                                                                        </select>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <h3 class="card-title"> PF Information</h3>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">PF contribution</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">PF No. <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee PF rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
+                                                            </form>
                                                         </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee PF rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select PF contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <hr>
-                                                            <h3 class="card-title"> ESI Information</h3>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">ESI contribution</label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">ESI No. <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Employee ESI rate</label>
-                                                                        <select class="select">
-                                                                            <option>Select ESI contribution</option>
-                                                                            <option>Yes</option>
-                                                                            <option>No</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Additional rate <span class="text-danger">*</span></label>
-                                                                        <select class="select">
-                                                                            <option>Select additional rate</option>
-                                                                            <option>0%</option>
-                                                                            <option>1%</option>
-                                                                            <option>2%</option>
-                                                                            <option>3%</option>
-                                                                            <option>4%</option>
-                                                                            <option>5%</option>
-                                                                            <option>6%</option>
-                                                                            <option>7%</option>
-                                                                            <option>8%</option>
-                                                                            <option>9%</option>
-                                                                            <option>10%</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-4">
-                                                                    <div class="form-group">
-                                                                        <label class="col-form-label">Total rate</label>
-                                                                        <input type="text" class="form-control" placeholder="N/A" value="11%">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-
-                                                            <div class="submit-section">
-                                                                <button class="btn btn-primary submit-btn" type="submit">Save</button>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- /Bank Statutory Tab -->
+                                            {{-- /deducciones empleado modal --}}
+                                            <!--Deducciones Tab -->
+                                            <div class="tab-pane fade" id="emp_detalle">
+                                                <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
+                                                <br><br><br>
+                                                    <div class="row" id="grillDeducciones">
+                                                            @foreach ($deducciones_emps as $deduc)
+                                                            <div class="col-md-6 d-flex">
+                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success">
+                                                                    <div class="card-body">
+                                                                        {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
+                                                                        <h3 class="card-title ">Deduccion Activa <i class="fas fa-file-invoice-dollar"></i></h3>
+                                                                        <ul class="list-group list-group-flush">
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Nombre:</div>
+                                                                                <div class="text">{{$deduc->nombre}}</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Monto:</div>
+                                                                                <div class="text">Lps. {{$deduc->monto}}</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Porcentaje:</div>
+                                                                                <div class="text">{{$deduc->porcentaje}}%</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                <div class="title">Descripción:</div>
+                                                                                <div class="text">{{$deduc->descripcion}}</div>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            @endforeach
+                                                    </div>
+                                            </div>
+                                            <!-- /Deducciones Tab -->
                                         </div>
                                     </div>
                                     <!-- /Page Content -->
@@ -1255,6 +1138,82 @@
                                                 anadirReferencia(id);
                                             }
                                         }
+
+                                        function validarDeduccionesEmp(){
+                                            var nombre_deduc = $('#nombre_deduc').val();
+                                            var porcentaje_deduc = $('#porcentaje_deduc').val();
+                                            var monto_deduc = $('#monto_deduc').val();
+                                            var descripcion_deduc = $('#descripcion_deduc').val();
+                                            var idEmpleadoDe = $('#idEmpleadoDe').val();
+
+                                            if(descripcion_deduc.length == 0){
+                                                let descripcion_deduc = document.getElementById('descripcion_deduc');
+                                                descripcion_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar una breve descripción de la deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(nombre_deduc.length == 0){
+                                                let nombre_deduc = document.getElementById('nombre_deduc');
+                                                nombre_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un nombre especifico de la deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(porcentaje_deduc == ""){
+                                                let porcentaje_deduc = document.getElementById('porcentaje_deduc');
+                                                porcentaje_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un porcentaje de deducción',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else if(monto_deduc.length == 0){
+                                                let monto_deduc = document.getElementById('monto_deduc');
+                                                monto_deduc.className = 'form-control is-invalid';
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    text: 'Debe indicar un monto fijo',
+                                                    timer: 1200
+                                                    })
+                                                    event.preventDefault();
+                                            }else{
+                                                agregarDeducEmp(idEmpleadoDe);
+                                            }
+                                        }
+
+                                        function agregarDeducEmp(idEmpleadoDe){
+                                            var data = new FormData($('#formDeduccion').get(0));
+                                            event.preventDefault();
+                                                    $.ajax({
+                                                    type:"POST",
+                                                    url: "/empleado/deducciones",
+                                                    data: data,
+                                                    contentType: false,
+                                                    cache: false,
+                                                    processData:false,
+                                                    dataType:"json",
+                                                    success: function(data){
+                                                        console.log(data);/*
+                                                        $("#grillDeducciones").load('/empleado/perfil/'+idEmpleadoDe); */
+                                                    },
+                                                    error: function (jqXHR, textStatus, errorThrown) {
+                                                        console.log(jqXHR, textStatus, errorThrown);
+                                                    }
+                                                })
+                                                Swal.fire({
+                                                        icon: 'success',
+                                                        text: 'Deducción guardada con éxito!',
+                                                        timer: 1500
+                                                        });
+                                                $('#formDeduccion').trigger("reset");
+                                        }
+
                                         function anadirReferencia(id){
                                             var data = new FormData($('#formReferencia').get(0));
                                             location.reload()
