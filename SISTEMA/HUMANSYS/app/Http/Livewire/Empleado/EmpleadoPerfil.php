@@ -37,12 +37,12 @@ class EmpleadoPerfil extends Component
 
        $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
 
-       if(Request::ajax()) {
+       /* if(Request::ajax()) {
         $sections = $view->renderSections(); // returns an associative array of 'content', 'head' and 'footer'
 
         return $sections['content']; // this will only return whats in the content section
 
-    }
+    } */
 
 
         return view('livewire.empleado.empleado-perfil', [
