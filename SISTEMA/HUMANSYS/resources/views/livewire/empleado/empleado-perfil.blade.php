@@ -565,7 +565,7 @@
                                                     <div class="form-header">
                                                         <h3>Añadir referencia a {{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3>
                                                     </div>
-                                                    <form id="formReferencia" class="form-group">
+                                                    <form id="formReferencia" class="form-group" data-parsley-validate>
                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                         <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                                                         <div class="card shadow p-3 mb-5 bg-white rounded">
