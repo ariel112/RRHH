@@ -338,6 +338,7 @@
                                             <div class="tab-pane fade" id="emp_detalle">
                                                 <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
                                                 <br><br><br>
+                                                <section id="seccionDedu">
                                                     <div class="row" id="grillDeducciones">
                                                             @foreach ($deducciones_emps as $deduc)
                                                             <div class="col-md-6 d-flex">
@@ -368,6 +369,7 @@
                                                             </div>
                                                             @endforeach
                                                     </div>
+                                                </section>
                                             </div>
                                             <!-- /Deducciones Tab -->
                                         </div>
@@ -1189,7 +1191,6 @@
 
                                         function agregarDeducEmp(idEmpleadoDe){
                                             var data = new FormData($('#formDeduccion').get(0));
-                                            event.preventDefault();
                                                     $.ajax({
                                                     type:"POST",
                                                     url: "/empleado/deducciones",
@@ -1199,8 +1200,9 @@
                                                     processData:false,
                                                     dataType:"json",
                                                     success: function(data){
-                                                        console.log(data);/*
-                                                        $("#grillDeducciones").load('/empleado/perfil/'+idEmpleadoDe); */
+                                                        console.log(data);
+                                                        /* $("#seccionDedu").load('/empleado/perfil/'+idEmpleadoDe); */
+                                                        location.reload();
                                                     },
                                                     error: function (jqXHR, textStatus, errorThrown) {
                                                         console.log(jqXHR, textStatus, errorThrown);
@@ -1216,7 +1218,7 @@
 
                                         function anadirReferencia(id){
                                             var data = new FormData($('#formReferencia').get(0));
-                                            location.reload()
+
                                                     $.ajax({
                                                     type:"POST",
                                                     url: "/empleado/referencia/"+id,
@@ -1229,6 +1231,7 @@
                                                         console.log(data);
                                                         /* var info = $.parseJSON(data);
                                                         console.log(info); */
+                                                        location.reload();
                                                     },
                                                     error: function (jqXHR, textStatus, errorThrown) {
                                                         console.log(jqXHR, textStatus, errorThrown);
