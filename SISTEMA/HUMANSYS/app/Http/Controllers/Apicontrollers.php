@@ -11,13 +11,21 @@ class Apicontrollers extends Controller
 
     public function gerente(){
 
+        // $gerente = DB::select("SELECT A.identidad, A.nombre, A.rtn, A.id
+        // FROM empleado A
+        // INNER JOIN cargo B
+        // ON(A.cargo_id=B.id)
+        // INNER JOIN area C
+        // ON(C.id=B.area_id)
+        // WHERE C.id=35");
+
         $gerente = DB::select("SELECT A.identidad, A.nombre, A.rtn, A.id
         FROM empleado A
         INNER JOIN cargo B
         ON(A.cargo_id=B.id)
         INNER JOIN area C
         ON(C.id=B.area_id)
-        WHERE C.id=35");
+        WHERE A.id=52");
 
         return $gerente;
 

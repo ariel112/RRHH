@@ -272,8 +272,7 @@
 
 
 
-<!-- parsley -->
-<script src="{{ asset('js/parsley.js')}}"></script>
+
 
 <script>
 
