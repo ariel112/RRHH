@@ -52,15 +52,15 @@ class Cargos extends Component
         //         LEFT JOIN funciones D 
         //         ON(A.id=D.cargo_id)
         //         ");
-        $cargos = DB::select("SELECT A.id, A.nombre cargo, B.nombre area, C.nombre gerencia, COUNT(1) funciones
-                FROM cargo A 
-                INNER JOIN area B 
-                ON(A.area_id=B.id)
-                INNER JOIN departamento C 
-                ON(B.departamento_id=C.id)
-                LEFT JOIN funciones D 
-                ON(A.id=D.cargo_id)
-                GROUP by A.nombre, A.id, B.nombre, C.nombre");
+        $cargos = DB::select("SELECT A.id, A.nombre cargo, B.nombre area, C.nombre gerencia, (SELECT COUNT(Z.id) FROM funciones Z WHERE Z.cargo_id =A.id) funciones
+                                FROM cargo A 
+                                INNER JOIN area B 
+                                ON(A.area_id=B.id)
+                                INNER JOIN departamento C 
+                                ON(B.departamento_id=C.id)
+                                LEFT JOIN funciones D 
+                                ON(A.id=D.cargo_id)
+                                GROUP by A.nombre, A.id, B.nombre, C.nombre");
 
         return Datatables::of($cargos)
         ->addColumn('action', function ($cargos) {
@@ -122,6 +122,9 @@ class Cargos extends Component
 
     public function cargos_edit(Request $request){
 
+  
+        
+
         $cargo = cargo::find($request->id_cargo);
         $cargo->nombre = $request->cargo_nombre;
         $cargo->area_id =$request->area;
@@ -129,17 +132,21 @@ class Cargos extends Component
         $cargo->save();
 
 
+       
         // editar funciones
         $funciones = $request->input("funciones_editar");
+        $id_funcion = $request->input("id_funcion");
+        if(!empty($funciones)){
         
-        if(empty($funciones)){
+            for ($i=0; $i <sizeof($id_funcion) ; $i++) { 
+                   $funcion = funciones::find($id_funcion[$i]);
+                   $funcion->nombre=$funciones[$i];
+                   $funcion->save();
 
-            foreach ($funciones as $fun => $val) {
-                $funcion = funciones::find($val);
-                $funcion->nombre=$val;
-                $funcion->cargo_id= $cargo->id;
-                $funcion->save();
             }
+
+            
+            
         }
 
 
@@ -159,7 +166,8 @@ class Cargos extends Component
     }
 
 
-        return response()->json('EXITO');
+       return response()->json('EXITO');
+
 
     }
 

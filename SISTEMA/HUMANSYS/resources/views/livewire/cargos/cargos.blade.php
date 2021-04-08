@@ -44,26 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
-                                <td>1</td>
-                                <td><a href="invoice-view.html">#INV-0001</a></td>
-                                <td>Global Technologies</td>
-                                <td>11 Mar 2019</td>
-                                <td>17 Mar 2019</td>
-                                <td>$2099</td>
-                                <td><span class="badge bg-inverse-success">Activos</span></td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                                            <a class="dropdown-item" href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> Ver</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Descargar</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr> --}}
+                          
                            
                         </tbody>
                     </table>
@@ -81,19 +62,19 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear Cargo</h5>
+                    <h5 class="modal-title text-success">Crear cargo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form_contrato">
+                    <form id="form_contrato" data-parsley-validate >
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
-                                    <select class="select" name="empleado_rrhh" id="selectDeptos" onchange="selectValor()">
+                                    <select  class="form-control" required name="empleado_rrhh" id="selectDeptos" onchange="selectValor()">
                                      
                                     </select>
                                 </div>
@@ -101,7 +82,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Area <span class="text-danger">*</span></label>
-                                    <select class="select" name="area" id="area">
+                                    <select required class="form-control" name="area" id="area">
                                         <option selected value="">Selecione el area</option>
                                     </select>
                                 </div>
@@ -109,7 +90,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
-                                    <select class="select" name="tipo_empleado" id="tipo_empleado">
+                                    <select required class="form-control" name="tipo_empleado" id="tipo_empleado">
                                         <option selected value="">Seleccione el tipo</option>
                                         <option value="1">Trabajador</option>
                                         <option value="2">Patrono</option>
@@ -119,7 +100,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="cargo" name="cargo" type="text">
+                                    <input class="form-control" required id="cargo" name="cargo" type="text">
                                 </div>
                             </div>
 
@@ -131,12 +112,7 @@
                                     <span id="add_field" value="adicionar" class="btn btn-success"><i class="fa fa-plus text-white"></i></span>
                                     <br>
                                     <div id="listas" class="mt-1">
-                                        <div class="">
-                                            {{-- <div class="input-group mb-3" >
-                                                <span  class="input-group-text reducir_input">1.</span>
-                                                <input type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones[]">
-                                                 <span class="input-group-text">.00</span> 
-                                              </div> --}}
+                                        <div class="">                                       
                                             
                                         </div>
                                         
@@ -167,14 +143,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form_contrato_edit">
+                    <form id="form_contrato_edit" data-parsley-validate>
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
                             <input type="text" style="display: none;" name="id_cargo" id="id_cargo">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
-                                    <select class="select" name="empleado_rrhh" id="selectDeptos_edit" onchange="selectValor_edit()">
+                                    <select required class="form-control" name="empleado_rrhh" id="selectDeptos_edit" onchange="selectValor_edit()">
                                       <option value="">Seleccione la gerenica</option>
                                     </select>
                                 </div>
@@ -182,7 +158,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Area <span class="text-danger">*</span></label>
-                                    <select class="select" name="area" id="area_edit">
+                                    <select required class="form-control" name="area" id="area_edit">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -190,7 +166,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
-                                    <select class="select" name="tipo_empleado" id="tipo_empleado_edit">
+                                    <select required class="form-control" name="tipo_empleado" id="tipo_empleado_edit">
                                         
                                     </select>
                                 </div>
@@ -198,7 +174,7 @@
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="cargo_nombre" type="text" id="cargo_edit">
+                                    <input required class="form-control" name="cargo_nombre" type="text" id="cargo_edit">
                                 </div>
                             </div>
 
@@ -296,6 +272,9 @@
 
 
 
+<!-- parsley -->
+<script src="{{ asset('js/parsley.js')}}"></script>
+
 <script>
 
 
@@ -363,7 +342,7 @@ var campos_max = 16;   //max de 10 campos
                 e.preventDefault();     //prevenir novos clicks
                 if (x < campos_max) {
                         $('#listas').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input"><b>i.</b></span>\
-                                <input type="text" class="form-control reducir_input" name="funciones[]" aria-label="Funciones del empleado">\
+                                <input type="text" class="form-control reducir_input" required name="funciones[]" aria-label="Funciones del empleado">\
                                 <span class="input-group-text bg-danger reducir_input"><a  class="remover_campo btn btn-danger reducir_input"><i class="fa fa-minus fa-1x text-white reducir_input"></i></a></span></div>');
                         x++;
                 }
@@ -379,13 +358,22 @@ var campos_max = 16;   //max de 10 campos
 
 
   
-
+/*
 
  $('#crearcargo').click(function (e) { 
+
     e.preventDefault();
   
      guardar();
  });
+ */
+
+
+ $('#form_contrato').submit(function (e) { 
+     e.preventDefault();
+     guardar();
+ });
+
 
     function guardar() {  
     // console.log('datos: ', $("#idPic").serialize());
@@ -411,7 +399,7 @@ var campos_max = 16;   //max de 10 campos
               $('#listas').html('');
                 
               CierraPopup(modalID);
-              alert();
+              alert_bien();
               $('#tbl_cargos').DataTable().ajax.reload();
     
             },
@@ -478,6 +466,17 @@ function cargaDeptos(){
 
 
 // funcion alerta todo bien
+function alert_bien(){
+    Swal.fire({
+  position: 'top-end',
+  icon: 'success',
+  title: '¡Creado Correctamente!',
+  showConfirmButton: false,
+  timer: 2500
+});
+}
+// 
+// funcion alerta edit
 function alert_edit(){
     Swal.fire({
   position: 'top-end',
@@ -505,6 +504,9 @@ function editar() {
             processData:false,
             dataType:"json",
             success: function(data){  
+                
+               
+
                 // $('#form_contrato').reset();
                 // document.getElementById("form_contrato").reset();
 
@@ -526,8 +528,8 @@ function editar() {
 
 
         
- $('#edit_cargo').click(function (e) { 
-    e.preventDefault();
+ $('#form_contrato_edit').submit(function (e) { 
+     e.preventDefault();
     editar();
  });
 // fin edito los cargos
@@ -862,7 +864,7 @@ function selectValor_edit(){
  function listarfunciones(data){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
-     list_fun += '<div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones_editar[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a> </div>'
+     list_fun += ' <div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones_editar[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a>                      <input  style="display:none;" value="'+data[i].id+'" type="text"    name="id_funcion[]"> </div>'
    
      }
 
@@ -879,11 +881,11 @@ function selectValor_edit(){
  var x_edit = 0;
  $('#area_funciones').html();
  $('#add_field_edit').click (function(e) {
-     console.log('x vale:', x_edit );
+    //  console.log('x vale:', x_edit );
         e.preventDefault();     //prevenir novos clicks
         if (x_edit < campos_max_edit) {
                 $('#area_funciones').append('<div class="input-group mb-3 mt-1 reducir_input"><span class="input-group-text reducir_input">i.</span>\
-                        <input type="text" class="form-control reducir_input" name="funciones[]" aria-label="Funciones del empleado">\
+                        <input type="text" class="form-control  reducir_input"  required name="funciones[]" aria-label="Funciones del empleado">\
                         <span class="input-group-text bg-danger reducir_input"><a  class="remover_campo btn btn-danger reducir_input"><i class="fa fa-minus fa-1x text-white reducir_input"></i></a></span></div>');
                 x_edit++;
         }
@@ -916,8 +918,8 @@ function eliminar_funciones(id){
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                  console.log( data);
-                    $('#fun'+data).hide('slow');
+                  
+                    $('#fun'+data).hide('slow').remove();
 
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

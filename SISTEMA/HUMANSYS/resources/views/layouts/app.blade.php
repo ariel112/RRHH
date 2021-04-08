@@ -54,6 +54,8 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+     {{-- css parsley --}}
+     <link rel="stylesheet" href="{{ asset('css/parsley.css')}}">
 </head>
 
 <body class="font-sans antialiased">
