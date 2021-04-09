@@ -284,49 +284,51 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form class="form-group" id="formDeduccion">
+                                                            <form  id="formDeduccion" data-parsley-validate >
                                                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                                        {{-- <div class="card-header">
-                                                                            <h3 class="card-header text-secondary text-center">DEDUCCIÓN PERSONAL</h3>
-                                                                        </div> --}}
                                                                         <div class="card-body">
                                                                             <div class="row">
-                                                                                <div class="col-md-4">
+                                                                                <div class="col-md-6">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
-                                                                                        <input class="form-control" id="nombre_deduc" name="nombre_deduc" type="text">
+                                                                                        <input class="form-control" required  id="nombre_deduc" name="nombre_deduc" type="text">
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-sm-4">
+                                                                                <div class="col-sm-6">
                                                                                     <div class="form-group">
-                                                                                        <label class="col-form-label">Porcentaje %<span class="text-danger">*</span></label>
-                                                                                        <select class="select-form" name="porcentaje_deduc" id="porcentaje_deduc" required>
-                                                                                            <option selected value="">Seleccione Porcentaje</option>
-                                                                                            <option value="1">1%</option>
+                                                                                        <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
+                                                                                        <select class="form-control" required  name="TipodeducSelect" id="TipodeducSelect" onchange="selectValor_TipoDeduc()">
+                                                                                            <option selected value=""> <b>Seleccione tipo de deducción</b></option>
+                                                                                            <option value="0">PORCENTAJE</option>
+                                                                                            <option value="1">MONTO FIJO</option>
                                                                                         </select>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-md-4">
+                                                                                <div class="col-sm-6">
                                                                                     <div class="form-group">
-                                                                                        <label class="col-form-label">Monto fijo catorcenal<span class="text-danger">*</span></label>
-                                                                                        <input class="form-control" id="monto_deduc" name="monto_deduc" type="text">
+                                                                                        <label class="col-form-label" style="display: none;" id="porcentajelbl_deduc" name="porcentajelbl_deduc">Porcentaje %<span class="text-danger">*</span></label>
+                                                                                        <input {{-- class="form-control" required  --}} style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label" style="display: none;" id="montolbl_deduc" name="montolbl_deduc">Monto fijo catorcenal<span class="text-danger">*</span></label>
+                                                                                        <input {{-- class="form-control" required  --}} id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
                                                                                         <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-12">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label">Descripción sobre la deducción<span class="text-danger">*</span></label>
-                                                                                        <textarea class="form-control" id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
+                                                                                        <textarea class="form-control" required id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                <div class="submit-section">
-                                                                    <button class="btn btn-warning" onclick="validarDeduccionesEmp()">Agregar</button>
-                                                                    {{-- <input type="hidden" id="idEmpleado" name="idEmpleado" value="{{ $empleado->id }}"> --}}
+                                                                <div>
+                                                                    <button class="btn btn-primary submit-btn">Agregar</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -755,502 +757,568 @@
 
 
                                     <!-- /Editar Referencia Modal -->
-                                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
-                                    <script>
-                                        var  idRef  = document.getElementById("identidad_referencia");
-                                        var  imRef = new Inputmask("9999-9999-99999");
-                                        Idr = imRef.mask(idRef );
-
-                                        var  idrefEdit  = document.getElementById("identidad_referencia_edit");
-                                        var  imidrefEdit = new Inputmask("9999-9999-99999");
-                                        idfE = im.mask(idrefEdit);
-
-                                        var  idEditEmpl  = document.getElementById("identidad_referencia");
-                                        var  imidEditEmpl = new Inputmask("9999-9999-99999");
-                                        idEE = imidEditEmpl.mask(idEditEmpl);
-
-                                        function renderReferencia(data){
-                                            $('#nombre_referencia_edit').val(data[0].nombre);
-                                            $('#identidad_referencia_edit').val(data[0].identidad);
-                                            $('#telefono_referencia_edit').val(data[0].telefono);
-                                            $('#email_referencia_edit').val(data[0].email);
-                                            $('#parentezco_referencia_edit').val(data[0].parentezco);
-                                            $('#direccion_referencia_edit').val(data[0].direccion);
-                                            $('#estado_referencia_edit').val(data[0].estatus_referencia_id);
-                                            $('#idREF').val(data[0].id);
-                                        }
-
-                                        function editarReferencia(){
-                                            event.preventDefault();
-                                            var id = $('#idREF').val();
-                                            var data = new FormData($('#formEditReferencia').get(0));
-                                            var nombre_referencia_edit = $('#nombre_referencia_edit').val();
-                                            var identidad_referencia_edit = $('#identidad_referencia_edit').val();
-                                            var telefono_referencia_edit = $('#telefono_referencia_edit').val();
-                                            var email_referencia_edit = $('#email_referencia_edit').val();
-                                            var parentezco_referencia_edit = $('#parentezco_referencia_edit').val();
-                                            var direccion_referencia_edit = $('#direccion_referencia_edit').val();
 
 
-                                            if(/_/g.test(identidad_referencia_edit)){
-                                                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
-                                                identidad_referencia_edit.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar la identidad completa de la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(nombre_referencia_edit.length == 0){
-
-                                                let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
-                                                nombre_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else if(identidad_referencia_edit.length == 0){
-
-                                                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
-                                                identidad_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else if(telefono_referencia_edit.length == 0){
-
-                                                let telefono_referencia_edit = document.getElementById('telefono_referencia_edit');
-                                                telefono_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else if(email_referencia_edit.length == 0){
-
-                                                let email_referencia_edit = document.getElementById('email_referencia_edit');
-                                                email_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else if(parentezco_referencia_edit == ''){
-
-                                                let parentezco_referencia_edit = document.getElementById('parentezco_referencia_edit');
-                                                parentezco_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else if(direccion_referencia_edit.length == 0){
-
-                                                let direccion_referencia_edit = document.getElementById('direccion_referencia_edit');
-                                                direccion_referencia_edit.className = 'form-control is-invalid';
-
-                                            }else{
-                                                $.ajax({
-                                                type:"POST",
-                                                url: "/empleado/editar/referencia/"+id,
-                                                data: data,
-                                                contentType: false,
-                                                cache: false,
-                                                processData:false,
-                                                dataType:"json",
-                                                success: function(data){
-                                                    console.log(data);
-                                                },
-                                                error: function (jqXHR, textStatus, errorThrown) {
-                                                    console.log(jqXHR, textStatus, errorThrown);
-                                                }
-
-                                            })
-                                            Swal.fire({
-                                                icon: 'success',
-                                                text: 'Editado con éxito!',
-                                                timer: 1500
-                                                });
-                                            location.reload();
-                                            }
-
-
-                                        }
-
-                                        function cargoReferencia(idReferencia){
-                                            $.ajax({
-                                                type:"GET",
-                                                url: "/empleado/referencia/get/"+idReferencia,
-                                                contentType: false,
-                                                cache: false,
-                                                processData:false,
-                                                dataType:"json",
-                                                success: function(data){
-                                                    /* console.log(data); */
-                                                    renderReferencia(data);
-                                                },
-                                                error: function (jqXHR, textStatus, errorThrown) {
-                                                    console.log(jqXHR, textStatus, errorThrown);
-                                                }
-                                            });
-                                        }
-
-                                        function editarEmpleadoPrincipal(id){
-                                            var data = new FormData($('#formEditEmpleado').get(0));
-                                            console.log(data);
-                                            $.ajax({
-                                                type:"POST",
-                                                url: "/empleado/editar/"+id,
-                                                data: data,
-                                                contentType: false,
-                                                cache: false,
-                                                processData:false,
-                                                dataType:"json",
-                                                success: function(data){
-                                                    console.log(data);
-                                                },
-                                                error: function (jqXHR, textStatus, errorThrown) {
-                                                    console.log(jqXHR, textStatus, errorThrown);
-                                                }
-
-                                            })
-                                            Swal.fire({
-                                                icon: 'success',
-                                                text: 'Editado con éxito!',
-                                                timer: 1500
-                                                });
-                                        }
-                                        function validacionEmpleadoPrincipal(id){
-
-                                            var primer_nombre = $('#primer_nombre').val();
-                                                    var segundo_nombre = $('#segundo_nombre').val();
-                                                    var primer_apellido = $('#primer_apellido').val();
-                                                    var segundo_apellido = $('#segundo_apellido').val();
-                                                    var fecha_nacimiento = $('#fecha_nacimiento').val();
-                                                    var identidad = $('#identidad').val();
-                                                    var rtn = $('#rtn').val();
-                                                    var lugar_nacimiento = $('#lugar_nacimiento').val();
-                                                    var grado_academico_id = $('#grado_academico_id').val();
-                                                    var estado_civil = $('#estado_civil').val();
-                                                    var select_deptos_pais = $('#select_deptos_pais').val();
-                                                    var municipio_id = $('#municipio_id').val();
-                                                    var email = $('#email').val();
-                                                    var numero_casa = $('#numero_casa').val();
-                                                    var email_institucional = $('#email_institucional').val();
-                                                    var telefono_1 = $('#telefono_1').val();
-                                                    var telefono_2 = $('#telefono_2').val();
-                                                    var selectDeptos_Modal = $('#selectDeptos_Modal').val();
-                                                    var select_area_Moral = $('#select_area_Moral').val();
-                                                    var cargo_id = $('#cargo_id').val();
-                                                    var fecha_ingreso = $('#fecha_ingreso').val();
-                                                    var estatus_id = $('#estatus_id').val();
-                                                    var sueldo = $('#sueldo').val();
-                                                    var descripcion_laboral = $('#descripcion_laboral').val();
-
-                                                    if(/_/g.test(identidad)){
-                                                            let identidad = document.getElementById('identidad');
-                                                            identidad.className = 'form-control is-invalid';
-                                                            Swal.fire({
-                                                                icon: 'warning',
-                                                                text: 'Debe indicar la identidad completa',
-                                                                timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(primer_nombre.length == 0){
-
-                                                        let primer_nombre = document.getElementById('primer_nombre');
-                                                        primer_nombre.className = 'form-control is-invalid';
-
-                                                            Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe escribir un nombre',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(primer_apellido.length == 0){
-
-                                                        let segundo_apellido = document.getElementById('segundo_apellido');
-                                                        segundo_apellido.className = 'form-control is-invalid';
-
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe escribir el primer apellido',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(segundo_apellido.length == 0){
-                                                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
-                										fecha_nacimiento.className = 'form-control is-invalid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe escribir el segundo apellido',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(fecha_nacimiento.length == 0){
-                                                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
-                										fecha_nacimiento.className = 'form-control is-invalid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe indicar una fecha de nacimiento',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(identidad.length == 0){
-                                                        let identidad = document.getElementById('identidad');
-                										identidad.className = 'form-control is-invalid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe indicar número de identidad',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(email.length == 0){
-                                                        let email = document.getElementById('email');
-                										email.className = 'form-control is-invalid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe indicar un correo electrónico',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(telefono_1.length == 0){
-                                                        let telefono_1 = document.getElementById('telefono_1');
-                										telefono_1.className = 'form-control is-invalid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe ingresar un número telefónico',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(rtn.length == 0){
-                                                        let rtn = document.getElementById('rtn');
-                										rtn.className = 'form-control is-valid';
-                                                        Swal.fire({
-                                                            icon: 'warning',
-                                                            text: 'Debe indicar RTN',
-                                                            timer: 1000
-                                                            })
-                                                            event.preventDefault();
-                                                    }else if(estado_civil.length == 0){
-                                                        let estado_civil = document.getElementById('estado_civil');
-                										estado_civil.className = 'form-control is-valid';
-                                                            Swal.fire({
-                                                                icon: 'warning',
-                                                                text: 'Debe indicar Estado civil',
-                                                                timer: 1000
-                                                                })
-                                                                event.preventDefault();
-                                                    }else if(lugar_nacimiento.length == 0){
-                                                            let lugar_nacimiento = document.getElementById('lugar_nacimiento');
-                										    lugar_nacimiento.className = 'form-control is-invalid';
-                                                            Swal.fire({
-                                                                icon: 'warning',
-                                                                text: 'Debe indicar Lugar de nacimiento',
-                                                                timer: 1000
-                                                                })
-                                                                event.preventDefault();
-                                                    }else if(estatus_id == ""){
-                                                            let estado_civil = document.getElementById('estado_civil');
-                										    estado_civil.className = 'form-control is-valid';
-                                                                Swal.fire({
-                                                                    icon: 'warning',
-                                                                    text: 'Debe indicar Estado del colaborador',
-                                                                    timer: 1000
-                                                                    })
-                                                                    event.preventDefault();
-                                                    }else if(sueldo.length == 0){
-                                                            let sueldo = document.getElementById('sueldo');
-                										sueldo.className = 'form-control is-invalid';
-                                                            Swal.fire({
-                                                                icon: 'warning',
-                                                                text: 'Debe indicar Sueld bruto',
-                                                                timer: 1000
-                                                                })
-                                                                event.preventDefault();
-                                                    }else if(fecha_ingreso.length == 0){
-                                                            let fecha_ingreso = document.getElementById('fecha_ingreso');
-                										fecha_ingreso.className = 'form-control is-invalid';
-                                                            Swal.fire({
-                                                                icon: 'warning',
-                                                                text: 'Debe indicar fecha de inicio del colaborador',
-                                                                timer: 1000
-                                                                })
-                                                                event.preventDefault();
-                                                    }else{
-                                                        editarEmpleadoPrincipal(id);
-                                                    }
-
-                                        }
-
-                                        function validacionReferencia(id){
-                                            var nombre_referencia = $('#nombre_referencia').val();
-                                            var identidad_referencia = $('#identidad_referencia').val();
-                                            var telefono_referencia = $('#telefono_referencia').val();
-                                            var email_referencia = $('#email_referencia').val();
-                                            var parentezco_referencia = $('#parentezco_referencia').val();
-                                            var direccion_referencia = $('#direccion_referencia').val();
-
-                                            if(/_/g.test(identidad_referencia)){
-                                                let identidad_referencia = document.getElementById('identidad_referencia');
-                                                identidad_referencia.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar la identidad completa de la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(nombre_referencia.length == 0){
-                                                let nombre_referencia = document.getElementById('nombre_referencia');
-                                                nombre_referencia.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un nombre de referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(identidad_referencia.length == 0 ){
-                                                let identidad_referencia = document.getElementById('identidad_referencia');
-                                                identidad_referencia.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar la identidad completa de la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(telefono_referencia.length == 0){
-                                                let telefono_referencia = document.getElementById('telefono_referencia');
-                                                telefono_referencia.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un teléfono de la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(email_referencia.length == 0){
-                                                let email_referencia = document.getElementById('email_referencia');
-                                                email_referencia.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar una correo electrónico de la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(parentezco_referencia == ""){
-                                                let parentezco_referencia = document.getElementById('parentezco_referencia');
-                                                parentezco_referencia.className = 'form-control is-valid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un parentezco en la referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(direccion_referencia.length == 0){
-                                                let direccion_referencia = document.getElementById('direccion_referencia');
-                                                ddireccion_referencia.className = 'form-control is-valid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar una direccion de referencia',
-                                                    timer: 1000
-                                                    })
-                                                    event.preventDefault();
-                                            }else{
-                                                anadirReferencia(id);
-                                            }
-                                        }
-
-                                        function validarDeduccionesEmp(){
-                                            var nombre_deduc = $('#nombre_deduc').val();
-                                            var porcentaje_deduc = $('#porcentaje_deduc').val();
-                                            var monto_deduc = $('#monto_deduc').val();
-                                            var descripcion_deduc = $('#descripcion_deduc').val();
-                                            var idEmpleadoDe = $('#idEmpleadoDe').val();
-
-                                            if(descripcion_deduc.length == 0){
-                                                let descripcion_deduc = document.getElementById('descripcion_deduc');
-                                                descripcion_deduc.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar una breve descripción de la deducción',
-                                                    timer: 1200
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(nombre_deduc.length == 0){
-                                                let nombre_deduc = document.getElementById('nombre_deduc');
-                                                nombre_deduc.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un nombre especifico de la deducción',
-                                                    timer: 1200
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(porcentaje_deduc == ""){
-                                                let porcentaje_deduc = document.getElementById('porcentaje_deduc');
-                                                porcentaje_deduc.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un porcentaje de deducción',
-                                                    timer: 1200
-                                                    })
-                                                    event.preventDefault();
-                                            }else if(monto_deduc.length == 0){
-                                                let monto_deduc = document.getElementById('monto_deduc');
-                                                monto_deduc.className = 'form-control is-invalid';
-                                                Swal.fire({
-                                                    icon: 'warning',
-                                                    text: 'Debe indicar un monto fijo',
-                                                    timer: 1200
-                                                    })
-                                                    event.preventDefault();
-                                            }else{
-                                                agregarDeducEmp(idEmpleadoDe);
-                                            }
-                                        }
-
-                                        function agregarDeducEmp(idEmpleadoDe){
-                                            var data = new FormData($('#formDeduccion').get(0));
-                                                    $.ajax({
-                                                    type:"POST",
-                                                    url: "/empleado/deducciones",
-                                                    data: data,
-                                                    contentType: false,
-                                                    cache: false,
-                                                    processData:false,
-                                                    dataType:"json",
-                                                    success: function(data){
-                                                        console.log(data);
-                                                        /* $("#seccionDedu").load('/empleado/perfil/'+idEmpleadoDe); */
-                                                        location.reload();
-                                                    },
-                                                    error: function (jqXHR, textStatus, errorThrown) {
-                                                        console.log(jqXHR, textStatus, errorThrown);
-                                                    }
-                                                })
-                                                Swal.fire({
-                                                        icon: 'success',
-                                                        text: 'Deducción guardada con éxito!',
-                                                        timer: 1500
-                                                        });
-                                                $('#formDeduccion').trigger("reset");
-                                        }
-
-                                        function anadirReferencia(id){
-                                            var data = new FormData($('#formReferencia').get(0));
-
-                                                    $.ajax({
-                                                    type:"POST",
-                                                    url: "/empleado/referencia/"+id,
-                                                    data: data,
-                                                    contentType: false,
-                                                    cache: false,
-                                                    processData:false,
-                                                    dataType:"json",
-                                                    success: function(data){
-                                                        console.log(data);
-                                                        /* var info = $.parseJSON(data);
-                                                        console.log(info); */
-                                                        location.reload();
-                                                    },
-                                                    error: function (jqXHR, textStatus, errorThrown) {
-                                                        console.log(jqXHR, textStatus, errorThrown);
-                                                    }
-                                                })
-                                                Swal.fire({
-                                                        icon: 'success',
-                                                        text: 'Referencia guardada con éxito!',
-                                                        timer: 1500
-                                                        });
-                                                $('#formReferencia').trigger("reset");
-                                        }
-                                    </script>
                         @endforeach
                     @endforeach
             @endforeach
         @endforeach
 @endforeach
     </div>
+    @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+
+    <script>
+        $('#formDeduccion').submit(function(e){
+            console.log("Entra al submit");
+            e.preventDefault();
+            var selectTipoDeduccion = document.getElementById("TipodeducSelect").value;
+            if(selectTipoDeduccion){
+                agregarDeducEmp();
+            }
+
+        });
+       /* $('#formDeduccion').submit(function (e) {
+            e.preventDefault();
+            agregarDeducEmp();
+        }); */
+        var  idRef  = document.getElementById("identidad_referencia");
+        var  imRef = new Inputmask("9999-9999-99999");
+        Idr = imRef.mask(idRef );
+
+        var  idrefEdit  = document.getElementById("identidad_referencia_edit");
+        var  imidrefEdit = new Inputmask("9999-9999-99999");
+        idfE = im.mask(idrefEdit);
+
+        var  idEditEmpl  = document.getElementById("identidad_referencia");
+        var  imidEditEmpl = new Inputmask("9999-9999-99999");
+        idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function selectValor_TipoDeduc(){
+            var select = document.getElementById("TipodeducSelect").value;
+            if(select == 0){
+                $('#porcentaje_deduc').css('display', 'block');
+                $('#porcentajelbl_deduc').css('display', 'block');
+                $('#monto_deduc').css('display', 'none');
+                $('#montolbl_deduc').css('display', 'none');
+            } else if(select == 1){
+                $('#porcentaje_deduc').css('display', 'none');
+                $('#porcentajelbl_deduc').css('display', 'none');
+                $('#monto_deduc').css('display', 'block');
+                $('#montolbl_deduc').css('display', 'block');
+            }else if(select == ""){
+                $('#porcentaje_deduc').css('display', 'none');
+                $('#porcentajelbl_deduc').css('display', 'none');
+                $('#monto_deduc').css('display', 'none');
+                $('#montolbl_deduc').css('display', 'none');
+            }
+        }
+
+        function renderReferencia(data){
+            $('#nombre_referencia_edit').val(data[0].nombre);
+            $('#identidad_referencia_edit').val(data[0].identidad);
+            $('#telefono_referencia_edit').val(data[0].telefono);
+            $('#email_referencia_edit').val(data[0].email);
+            $('#parentezco_referencia_edit').val(data[0].parentezco);
+            $('#direccion_referencia_edit').val(data[0].direccion);
+            $('#estado_referencia_edit').val(data[0].estatus_referencia_id);
+            $('#idREF').val(data[0].id);
+        }
+
+        function editarReferencia(){
+            event.preventDefault();
+            var id = $('#idREF').val();
+            var data = new FormData($('#formEditReferencia').get(0));
+            var nombre_referencia_edit = $('#nombre_referencia_edit').val();
+            var identidad_referencia_edit = $('#identidad_referencia_edit').val();
+            var telefono_referencia_edit = $('#telefono_referencia_edit').val();
+            var email_referencia_edit = $('#email_referencia_edit').val();
+            var parentezco_referencia_edit = $('#parentezco_referencia_edit').val();
+            var direccion_referencia_edit = $('#direccion_referencia_edit').val();
+
+
+            if(/_/g.test(identidad_referencia_edit)){
+                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
+                identidad_referencia_edit.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(nombre_referencia_edit.length == 0){
+
+                let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
+                nombre_referencia_edit.className = 'form-control is-invalid';
+
+            }else if(identidad_referencia_edit.length == 0){
+
+                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
+                identidad_referencia_edit.className = 'form-control is-invalid';
+
+            }else if(telefono_referencia_edit.length == 0){
+
+                let telefono_referencia_edit = document.getElementById('telefono_referencia_edit');
+                telefono_referencia_edit.className = 'form-control is-invalid';
+
+            }else if(email_referencia_edit.length == 0){
+
+                let email_referencia_edit = document.getElementById('email_referencia_edit');
+                email_referencia_edit.className = 'form-control is-invalid';
+
+            }else if(parentezco_referencia_edit == ''){
+
+                let parentezco_referencia_edit = document.getElementById('parentezco_referencia_edit');
+                parentezco_referencia_edit.className = 'form-control is-invalid';
+
+            }else if(direccion_referencia_edit.length == 0){
+
+                let direccion_referencia_edit = document.getElementById('direccion_referencia_edit');
+                direccion_referencia_edit.className = 'form-control is-invalid';
+
+            }else{
+                $.ajax({
+                type:"POST",
+                url: "/empleado/editar/referencia/"+id,
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+
+            })
+            Swal.fire({
+                icon: 'success',
+                text: 'Editado con éxito!',
+                timer: 1500
+                });
+            location.reload();
+            }
+
+
+        }
+
+        function cargoReferencia(idReferencia){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/referencia/get/"+idReferencia,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    /* console.log(data); */
+                    renderReferencia(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function editarEmpleadoPrincipal(id){
+            var data = new FormData($('#formEditEmpleado').get(0));
+            console.log(data);
+            $.ajax({
+                type:"POST",
+                url: "/empleado/editar/"+id,
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+
+            })
+            Swal.fire({
+                icon: 'success',
+                text: 'Editado con éxito!',
+                timer: 1500
+                });
+        }
+        function validacionEmpleadoPrincipal(id){
+
+            var primer_nombre = $('#primer_nombre').val();
+                    var segundo_nombre = $('#segundo_nombre').val();
+                    var primer_apellido = $('#primer_apellido').val();
+                    var segundo_apellido = $('#segundo_apellido').val();
+                    var fecha_nacimiento = $('#fecha_nacimiento').val();
+                    var identidad = $('#identidad').val();
+                    var rtn = $('#rtn').val();
+                    var lugar_nacimiento = $('#lugar_nacimiento').val();
+                    var grado_academico_id = $('#grado_academico_id').val();
+                    var estado_civil = $('#estado_civil').val();
+                    var select_deptos_pais = $('#select_deptos_pais').val();
+                    var municipio_id = $('#municipio_id').val();
+                    var email = $('#email').val();
+                    var numero_casa = $('#numero_casa').val();
+                    var email_institucional = $('#email_institucional').val();
+                    var telefono_1 = $('#telefono_1').val();
+                    var telefono_2 = $('#telefono_2').val();
+                    var selectDeptos_Modal = $('#selectDeptos_Modal').val();
+                    var select_area_Moral = $('#select_area_Moral').val();
+                    var cargo_id = $('#cargo_id').val();
+                    var fecha_ingreso = $('#fecha_ingreso').val();
+                    var estatus_id = $('#estatus_id').val();
+                    var sueldo = $('#sueldo').val();
+                    var descripcion_laboral = $('#descripcion_laboral').val();
+
+                    if(/_/g.test(identidad)){
+                            let identidad = document.getElementById('identidad');
+                            identidad.className = 'form-control is-invalid';
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Debe indicar la identidad completa',
+                                timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(primer_nombre.length == 0){
+
+                        let primer_nombre = document.getElementById('primer_nombre');
+                        primer_nombre.className = 'form-control is-invalid';
+
+                            Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe escribir un nombre',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(primer_apellido.length == 0){
+
+                        let segundo_apellido = document.getElementById('segundo_apellido');
+                        segundo_apellido.className = 'form-control is-invalid';
+
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe escribir el primer apellido',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(segundo_apellido.length == 0){
+                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                        fecha_nacimiento.className = 'form-control is-invalid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe escribir el segundo apellido',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(fecha_nacimiento.length == 0){
+                        let fecha_nacimiento = document.getElementById('fecha_nacimiento');
+                        fecha_nacimiento.className = 'form-control is-invalid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe indicar una fecha de nacimiento',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(identidad.length == 0){
+                        let identidad = document.getElementById('identidad');
+                        identidad.className = 'form-control is-invalid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe indicar número de identidad',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(email.length == 0){
+                        let email = document.getElementById('email');
+                        email.className = 'form-control is-invalid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe indicar un correo electrónico',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(telefono_1.length == 0){
+                        let telefono_1 = document.getElementById('telefono_1');
+                        telefono_1.className = 'form-control is-invalid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe ingresar un número telefónico',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(rtn.length == 0){
+                        let rtn = document.getElementById('rtn');
+                        rtn.className = 'form-control is-valid';
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Debe indicar RTN',
+                            timer: 1000
+                            })
+                            event.preventDefault();
+                    }else if(estado_civil.length == 0){
+                        let estado_civil = document.getElementById('estado_civil');
+                        estado_civil.className = 'form-control is-valid';
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Debe indicar Estado civil',
+                                timer: 1000
+                                })
+                                event.preventDefault();
+                    }else if(lugar_nacimiento.length == 0){
+                            let lugar_nacimiento = document.getElementById('lugar_nacimiento');
+                            lugar_nacimiento.className = 'form-control is-invalid';
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Debe indicar Lugar de nacimiento',
+                                timer: 1000
+                                })
+                                event.preventDefault();
+                    }else if(estatus_id == ""){
+                            let estado_civil = document.getElementById('estado_civil');
+                            estado_civil.className = 'form-control is-valid';
+                                Swal.fire({
+                                    icon: 'warning',
+                                    text: 'Debe indicar Estado del colaborador',
+                                    timer: 1000
+                                    })
+                                    event.preventDefault();
+                    }else if(sueldo.length == 0){
+                            let sueldo = document.getElementById('sueldo');
+                        sueldo.className = 'form-control is-invalid';
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Debe indicar Sueld bruto',
+                                timer: 1000
+                                })
+                                event.preventDefault();
+                    }else if(fecha_ingreso.length == 0){
+                            let fecha_ingreso = document.getElementById('fecha_ingreso');
+                        fecha_ingreso.className = 'form-control is-invalid';
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Debe indicar fecha de inicio del colaborador',
+                                timer: 1000
+                                })
+                                event.preventDefault();
+                    }else{
+                        editarEmpleadoPrincipal(id);
+                    }
+
+        }
+
+        function validacionReferencia(id){
+            var nombre_referencia = $('#nombre_referencia').val();
+            var identidad_referencia = $('#identidad_referencia').val();
+            var telefono_referencia = $('#telefono_referencia').val();
+            var email_referencia = $('#email_referencia').val();
+            var parentezco_referencia = $('#parentezco_referencia').val();
+            var direccion_referencia = $('#direccion_referencia').val();
+
+            if(/_/g.test(identidad_referencia)){
+                let identidad_referencia = document.getElementById('identidad_referencia');
+                identidad_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(nombre_referencia.length == 0){
+                let nombre_referencia = document.getElementById('nombre_referencia');
+                nombre_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un nombre de referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(identidad_referencia.length == 0 ){
+                let identidad_referencia = document.getElementById('identidad_referencia');
+                identidad_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(telefono_referencia.length == 0){
+                let telefono_referencia = document.getElementById('telefono_referencia');
+                telefono_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un teléfono de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(email_referencia.length == 0){
+                let email_referencia = document.getElementById('email_referencia');
+                email_referencia.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una correo electrónico de la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(parentezco_referencia == ""){
+                let parentezco_referencia = document.getElementById('parentezco_referencia');
+                parentezco_referencia.className = 'form-control is-valid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un parentezco en la referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(direccion_referencia.length == 0){
+                let direccion_referencia = document.getElementById('direccion_referencia');
+                ddireccion_referencia.className = 'form-control is-valid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una direccion de referencia',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else{
+                anadirReferencia(id);
+            }
+        }
+
+        /* function validarDeduccionesEmp(){
+            var nombre_deduc = $('#nombre_deduc').val();
+            var porcentaje_deduc = $('#porcentaje_deduc').val();
+            var monto_deduc = $('#monto_deduc').val();
+            var descripcion_deduc = $('#descripcion_deduc').val();
+            var idEmpleadoDe = $('#idEmpleadoDe').val();
+            var TipodeducSelect = document.getElementById("TipodeducSelect").value;
+            var prueba = 3;
+
+            if(descripcion_deduc.length == 0){
+                let descripcion_deduc = document.getElementById('descripcion_deduc');
+                descripcion_deduc.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar una breve descripción de la deducción',
+                    timer: 1200
+                    })
+                    event.preventDefault();
+            }else if(TipodeducSelect == 20){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe Escoger un tipo de deduccion',
+                    timer: 1200
+                    })
+                    event.preventDefault();
+            }else if(nombre_deduc.length == 0){
+                let nombre_deduc = document.getElementById('nombre_deduc');
+                nombre_deduc.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un nombre especifico de la deducción',
+                    timer: 1200
+                    })
+                    event.preventDefault();
+            }else if(porcentaje_deduc.length == 0 && TipodeducSelect == 0){
+                let porcentaje_deduc = document.getElementById('porcentaje_deduc');
+                porcentaje_deduc.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un porcentaje de deducción',
+                    timer: 1200
+                    })
+                    event.preventDefault();
+            }else if(monto_deduc.length == 0 && TipodeducSelect == 1){
+                let monto_deduc = document.getElementById('monto_deduc');
+                monto_deduc.className = 'form-control is-invalid';
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar un monto fijo',
+                    timer: 1200
+                    })
+                    event.preventDefault();
+            }else{
+                agregarDeducEmp(idEmpleadoDe);
+            }
+        } */
+
+        /* function valDeducciones(){
+            var selectTipoDeduccion = document.getElementById("TipodeducSelect").value;
+            console.log(selectTipoDeduccion);
+
+                $("#monto_deduc").removeAttr("required");
+                $("#porcentaje_deduc").removeAttr("required");
+            if(selectTipoDeduccion){
+                if(selectTipoDeduccion == 0){
+                    $("porcentaje_deduc").prop("required", true);
+                    $("#monto_deduc").removeAttr("required");
+                    agregarDeducEmp();
+                }else if(selectTipoDeduccion == 1){
+                    $("monto_deduc").prop("required", true);
+                    $("#porcentaje_deduc").removeAttr("required");
+                    agregarDeducEmp();
+                }
+            }else{
+                $("#TipodeducSelect").removeAttr("required");
+            }
+        }
+            */
+        function agregarDeducEmp(){
+            var data = new FormData($('#formDeduccion').get(0));
+                    $.ajax({
+                    type:"POST",
+                    url: "/empleado/deducciones",
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
+                        console.log(data);
+                            Swal.fire({
+                            icon: 'success',
+                            text: 'Deducción guardada con éxito!',
+                            timer: 1500
+                            });
+                    $('#formDeduccion').trigger("reset");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                })
+        }
+
+        function anadirReferencia(id){
+            var data = new FormData($('#formReferencia').get(0));
+
+                    $.ajax({
+                    type:"POST",
+                    url: "/empleado/referencia/"+id,
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
+                        console.log(data);
+                        /* var info = $.parseJSON(data);
+                        console.log(info); */
+                        location.reload();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                })
+                Swal.fire({
+                        icon: 'success',
+                        text: 'Referencia guardada con éxito!',
+                        timer: 1500
+                        });
+                $('#formReferencia').trigger("reset");
+        }
+    </script>
+@endsection
     <!-- /Page Wrapper -->
 
 

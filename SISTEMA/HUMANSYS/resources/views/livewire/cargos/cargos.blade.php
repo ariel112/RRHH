@@ -1,8 +1,8 @@
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -18,16 +18,16 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- /Page Header -->
-{{--         
+{{--
         <!-- Search Filter -->
         <div class="row filter-row">
-          
+
         </div>
         <!-- /Search Filter -->
          --}}
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -44,8 +44,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                          
-                           
+
+
                         </tbody>
                     </table>
                 </div>
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Gerencia</label>
                                     <select  class="form-control" required name="empleado_rrhh" id="selectDeptos" onchange="selectValor()">
-                                     
+
                                     </select>
                                 </div>
                             </div>
@@ -112,16 +112,16 @@
                                     <span id="add_field" value="adicionar" class="btn btn-success"><i class="fa fa-plus text-white"></i></span>
                                     <br>
                                     <div id="listas" class="mt-1">
-                                        <div class="">                                       
-                                            
+                                        <div class="">
+
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
-                      
+
                         </div>
-                       
+
                         <div >
                             <button id="crearcargo" class="btn btn-primary submit-btn">Crear</button>
                         </div>
@@ -167,7 +167,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
                                     <select required class="form-control" name="tipo_empleado" id="tipo_empleado_edit">
-                                        
+
                                     </select>
                                 </div>
                             </div>
@@ -187,16 +187,16 @@
                                     <br>
                                     <div id="listas_edit" class="mt-1">
                                         <div id="area_funciones" class="">
-                                           
-                                            
+
+
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
-                      
+
                         </div>
-                       
+
                         <div class="text-center" >
                             <button id="edit_cargo" class="btn btn-warning submit-btn text-white text-center">Editar</button>
                         </div>
@@ -249,23 +249,23 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <td colspan="8" class="text-center">
-                                        <h4>Funciones del cargo:</h4>                                           
+                                        <h4>Funciones del cargo:</h4>
                                         <div id="areafunciones" class="grade-span">
-                                            
+
                                         </div>
                                     </td>
                                 </div>
                             </div>
-                      
+
                         </div>
-                      
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
     {{-- FIN DE VENTANA MODAL CARGOS --}}
-    
+
 </div>
 
 @section('script')
@@ -317,7 +317,7 @@ function CierraPopup(modal) {
   $(document).ready(function() {
 
 
-    
+
 
 
 // funcion para cerra modal
@@ -356,25 +356,25 @@ var campos_max = 16;   //max de 10 campos
 
 
 
-  
+
 /*
 
- $('#crearcargo').click(function (e) { 
+ $('#crearcargo').click(function (e) {
 
     e.preventDefault();
-  
+
      guardar();
  });
  */
 
 
- $('#form_contrato').submit(function (e) { 
+ $('#form_contrato').submit(function (e) {
      e.preventDefault();
      guardar();
  });
 
 
-    function guardar() {  
+    function guardar() {
     // console.log('datos: ', $("#idPic").serialize());
           var modalID = 'crear_cargos';
             var data = new FormData($('#form_contrato').get(0));
@@ -386,31 +386,31 @@ var campos_max = 16;   //max de 10 campos
             cache: false,
             processData:false,
             dataType:"json",
-            success: function(data){  
+            success: function(data){
                 // $('#form_contrato').reset();
                 // document.getElementById("form_contrato").reset();
-                
-               
+
+
              cargaDeptos();
-               
+
               $('#area').empty();
               $('#cargo').val('');
               $('#listas').html('');
-                
+
               CierraPopup(modalID);
               alert_bien();
               $('#tbl_cargos').DataTable().ajax.reload();
-    
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-        
-            
+
+
                 console.log(jqXHR, textStatus, errorThrown);
             }
         })
         }
 
- 
+
 
 
 
@@ -418,7 +418,7 @@ function cargo(data){
      var html_select =' <option selected value="" disabled >Seleccione la gerencia</option>';
      for (var i=0; i<data.length; ++i)
        html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
-      
+
        $('#empleado_rrhh').html(html_select)
  }
 
@@ -474,7 +474,7 @@ function alert_bien(){
   timer: 2500
 });
 }
-// 
+//
 // funcion alerta edit
 function alert_edit(){
     Swal.fire({
@@ -485,12 +485,12 @@ function alert_edit(){
   timer: 2500
 });
 }
-// 
+//
 
 
 
 // edito los cargos
-function editar() {  
+function editar() {
     // console.log('datos: ', $("#idPic").serialize());
           var modalID = 'editar_cargos';
             var data = new FormData($('#form_contrato_edit').get(0));
@@ -502,9 +502,9 @@ function editar() {
             cache: false,
             processData:false,
             dataType:"json",
-            success: function(data){  
-                
-               
+            success: function(data){
+
+
 
                 // $('#form_contrato').reset();
                 // document.getElementById("form_contrato").reset();
@@ -512,12 +512,12 @@ function editar() {
                 $('#tbl_cargos').DataTable().ajax.reload();
               CierraPopup(modalID);
               alert_edit();
-            
-    
+
+
             },
             error: function (jqXHR, textStatus, errorThrown) {
-        
-            
+
+
                 console.log(jqXHR, textStatus, errorThrown);
             }
         })
@@ -526,8 +526,8 @@ function editar() {
 
 
 
-        
- $('#form_contrato_edit').submit(function (e) { 
+
+ $('#form_contrato_edit').submit(function (e) {
      e.preventDefault();
     editar();
  });
@@ -582,7 +582,7 @@ function selectValor(){
 
 // inicio para listar los cargos
 function setcargo(id){
-          
+
             cargoarea_vista(id);
         }
 
@@ -610,7 +610,7 @@ function setcargo(id){
              $('#vwgerencia').val(data.cargo[0].gerencia);
              $('#vwarea').val(data.cargo[0].area);
              $('#vw_empleado').val(data.cargo[0].tipo_empleado);
-             
+
 
 
 
@@ -623,18 +623,18 @@ function setcargo(id){
             $('#areafunciones').html(funciones)
         }
 
-// 
+//
 
 
 // editar cargos
 
 function editcargo(id){
-    
+
     $(document).ready(function(){
         $('#listas_edit').html();
         cargoarea_edit(id);
     });
-        
+
       }
 
 
@@ -648,7 +648,7 @@ function editcargo(id){
               dataType:"json",
               success: function(data){
                   // console.log(data.funciones[0].nombre);
-                
+
                    vistafunciones_edit(data);
               },
               error: function (jqXHR, textStatus, errorThrown) {
@@ -658,7 +658,7 @@ function editcargo(id){
       }
 
       function vistafunciones_edit(data){
-            
+
         //   console.log(data.cargo[0].gerencia);
            $('#cargo_edit').val(data.cargo[0].cargo);
            $('#vw_empleado').val(data.cargo[0].tipo_empleado);
@@ -669,7 +669,7 @@ function editcargo(id){
 
             //    listo gerencias
             id_gerencia = data.cargo[0].id_gerencia;
-            
+
                 $.ajax({
                     type:"GET",
                     url: "/empleado/deptos",
@@ -678,17 +678,17 @@ function editcargo(id){
                     processData:false,
                     dataType:"json",
                     success: function(data){
-                         
+
                         renderDeptos_edit(data, id_gerencia);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
                     }
                 });
-         
+
         // fin gerencias
         id_area = data.cargo[0].id_area;
-      
+
         $.ajax({
                 type:"GET",
                 url: "/area/"+id_gerencia,
@@ -706,8 +706,8 @@ function editcargo(id){
                 }
             });
 
-        
-         
+
+
         // areas
 
         // fin areas
@@ -727,7 +727,7 @@ function editcargo(id){
 
                 }
             $('#tipo_empleado_edit').html(tipo_empleado)
-         
+
         // fin tipo empleado
 
 
@@ -738,7 +738,7 @@ function editcargo(id){
                   funciones += '<span class="badge bg-inverse-success mt-1">i.'+dat.nombre+' </span> <br>';
               });
           $('#areafunciones').html(funciones)
-          
+
       }
 
 
@@ -864,11 +864,11 @@ function selectValor_edit(){
     var list_fun ='';
  for (var i=0; i<data.length; ++i){
      list_fun += ' <div id="fun'+data[i].id+'" class="input-group mb-3"><span  class="input-group-text reducir_input">i.</span><input value="'+data[i].nombre+'" type="text" class="form-control reducir_input"  aria-label="Funciones del empleado" name="funciones_editar[]"><a  class="btn bg-danger text-white"> <i onclick="eliminar_funciones('+data[i].id+')" class="fa fa-trash"></i></a>                      <input  style="display:none;" value="'+data[i].id+'" type="text"    name="id_funcion[]"> </div>'
-   
+
      }
 
  $('#area_funciones').html(list_fun);
- 
+
 
 
  // aumentar funciones edit
@@ -906,7 +906,7 @@ $('#listas_edit').on("click",".remover_campo",function(e) {
 
 
 // ================================ DELETE ====================================
-// eliminar funciones 
+// eliminar funciones
 
 function eliminar_funciones(id){
             $.ajax({
@@ -917,7 +917,7 @@ function eliminar_funciones(id){
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                  
+
                     $('#fun'+data).hide('slow').remove();
 
                 },
