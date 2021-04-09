@@ -13,6 +13,7 @@ class contrato extends Model
     protected $fillable = [
                             'num_contrato',
                             'tipo_contrato',
+                            'num_delagacion',
                             'fecha_inicio',
                             'fecha_fin',
                             'sueldo',

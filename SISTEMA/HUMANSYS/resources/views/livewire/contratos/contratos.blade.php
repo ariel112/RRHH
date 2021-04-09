@@ -145,25 +145,25 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Crear contratos</h5>
+                    <h5 class="modal-title text-success">Crear contratos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="form_contrato">
+                    <form id="form_contrato" data-parsley-validate>
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="row">
                             <div class="col-sm-2">
                                 <div class="form-group">
                                     <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="num_contrato" type="text">
+                                    <input required class="form-control" name="num_contrato" id="num_contrato" type="text">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
-                                    <select class="select" name="empleado_rrhh" id="empleado_rrhh">
+                                    <select required class="form-control" name="empleado_rrhh" id="empleado_rrhh">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -171,7 +171,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="col-form-label"># delegación <span class="text-danger">*</span></label>
-                                    <input class="form-control"  type="text">
+                                    <input required class="form-control" name="num_delegacion"  type="text">
                                 </div>
                             </div>
 
@@ -182,7 +182,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
                                                 <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" type="text" name="fecha_inicio">
+                                                    <input required class="form-control floating datetimepicker" type="text" name="fecha_inicio">
                                                 </div>
                                                 <label class="focus-label">Inicio de contrato <span class="text-danger" >*</span></label>
                                             </div>
@@ -190,7 +190,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
                                                 <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" type="text" name="fecha_fin">
+                                                    <input class="form-control floating datetimepicker" required type="text" name="fecha_fin">
                                                 </div>
                                                 <label class="focus-label">Fin de contrato <span class="text-danger">*</span></label>
                                             </div>
@@ -202,7 +202,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Días de vaciones <span class="text-danger">*</span></label>
-                                    <select class="select" name="vacaciones">
+                                    <select class="form-control" name="vacaciones" required>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -220,7 +220,7 @@
                                 <div class="form-group" wire:ignore wire:key="first">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                                     {{-- <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador"> --}}
-                                    <select class="js-data-example-ajax" style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                    <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
                                     {{-- <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" > --}}
                                         {{--@if ($empleados->count())
                                             @foreach($empleados as $empleado)
@@ -238,13 +238,13 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Identidad <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="identidad" name="identidad" type="text" value="" disabled>
+                                    <input class="form-control" id="identidad" name="identidad" type="text" value=""  disabled>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label class="col-form-label">Sueldo <span class="text-danger">*</span></label>
-                                    <input class="form-control" name="sueldo" id="sueldo" type="text" value="">
+                                    <input class="form-control" required name="sueldo" id="sueldo" type="text" value="">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -260,7 +260,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div >
                             <button id="crearcontrato" class="btn btn-primary submit-btn">Crear</button>
                         </div>
@@ -270,8 +269,6 @@
         </div>
     </div>
     <!-- /Add Employee Modal -->
-
-
 
 </div>
 
@@ -283,9 +280,47 @@
 
 $(document).ready(function() {
 
+// cerrar modal
+
+function CierraPopup(modal) {
+    $("#"+modal).modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+  }
+
+
+
+
+
+  
+            // funcion alerta todo bien
+            function alert_bien(){
+                Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '¡Creado Correctamente!',
+            showConfirmButton: false,
+            timer: 2500
+            });
+            }
+            // 
+            // funcion alerta edit
+            function alert_edit(){
+                Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Editado Correctamente',
+            showConfirmButton: false,
+            timer: 2500
+            });
+            }
+            // 
+
+
 
     /* --------------------------------Select Colaborador------------------------- */
     $('#empleado_id').select2({
+
 
             ajax: {
                 type: 'GET',
@@ -315,7 +350,7 @@ $(document).ready(function() {
 
                 }
             }
-    });
+    }); 
 
     function getEm(data){
         $("#empleado_id").on("select2:select", function (e) {
@@ -339,14 +374,14 @@ $(document).ready(function() {
     }
 
     /* --------------------------------/Select Colaborador------------------------- */
- $('#crearcontrato').click(function (e) {
+ $('#form_contrato').submit(function (e) { 
      e.preventDefault();
      guardar();
  });
 
     function guardar() {
     // console.log('datos: ', $("#idPic").serialize());
-
+            var modalID ='crear_contratos'
             var data = new FormData($('#form_contrato').get(0));
             $.ajax({
             type:"POST",
@@ -357,6 +392,12 @@ $(document).ready(function() {
             processData:false,
             dataType:"json",
             success: function(data){
+                CierraPopup(modalID);
+                $('input[type="text"]').val('');
+                $('select').empty();
+                alert_bien();
+               
+                // $('#tbl_cargos').DataTable().ajax.reload();
             //  console.log(data);
 
             },
