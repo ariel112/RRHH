@@ -346,10 +346,16 @@
                                                             @foreach ($deducciones_emps as $deduc)
                                                             <div class="col-md-6 d-flex">
                                                                 <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
+                                                                    <div class="dropdown profile-action">
+                                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
+                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar()" ><i class="fas fa-ban"></i> Inactivar</a>
+                                                                        </div>
+                                                                    </div>
                                                                     <div class="card-body">
                                                                         {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
                                                                         <div class="pro-edit">
-                                                                            <h3 class="card-title">Deducción<i class="fas fa-file-invoice-dollar"></i></h3>
+                                                                            <h3 class="card-title">Deducción</h3>
                                                                         </div>
 
                                                                         <ul class="list-group list-group-flush">
@@ -833,6 +839,10 @@
         var  idEditEmpl  = document.getElementById("identidad_referencia");
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function desactivar(){
+            console.log("Desactivado");
+        }
 
         function renderReferencia(data){
             $('#nombre_referencia_edit').val(data[0].nombre);
