@@ -21,7 +21,7 @@
         <!-- /Page Header -->
 
         <!-- Search Filter -->
-        <div class="row filter-row">
+        {{-- <div class="row filter-row">
             <div class="col-sm-6 col-md-3">
                 <div class="form-group form-focus">
                     <div class="cal-icon">
@@ -50,17 +50,16 @@
             <div class="col-sm-6 col-md-3">
                 <a href="#" class="btn btn-success btn-block"> Buscar </a>
             </div>
-        </div>
+        </div> --}}
         <!-- /Search Filter -->
 
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0">
+                    <table id="tbl_contrato" class="table table-striped custom-table mb-0">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Numero de Memo</th>
+                                <th># Contrato</th>
                                 <th>Empleado</th>
                                 <th>Inicio contrato</th>
                                 <th>Fin contrato</th>
@@ -70,47 +69,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td><a href="invoice-view.html">#INV-0001</a></td>
-                                <td>Global Technologies</td>
-                                <td>11 Mar 2019</td>
-                                <td>17 Mar 2019</td>
-                                <td>$2099</td>
-                                <td><span class="badge bg-inverse-success">Activos</span></td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                                            <a class="dropdown-item" href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> Ver</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Descargar</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td><a href="invoice-view.html">#INV-0002</a></td>
-                                <td>Delta Infotech</td>
-                                <td>11 Mar 2019</td>
-                                <td>17 Mar 2019</td>
-                                <td>$2099</td>
-                                <td><span class="badge bg-inverse-danger">Vencidos</span></td>
-                                <td class="text-right">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="edit-invoice.html"><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                                            <a class="dropdown-item" href="invoice-view.html"><i class="fa fa-eye m-r-5"></i> Vista</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5"></i> Descargas</a>
-                                            <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5"></i> Eliminar</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
+                            
                         </tbody>
                     </table>
                 </div>
@@ -181,18 +140,15 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
-                                                <div class="cal-icon">
-                                                    <input required class="form-control floating datetimepicker" type="text" name="fecha_inicio">
-                                                </div>
-                                                <label class="focus-label">Inicio de contrato <span class="text-danger" >*</span></label>
+                                                 <label for="">Inicio:</label>
+                                                    <input required class="form-control" type="date" name="fecha_inicio">
+                                                
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group form-focus">
-                                                <div class="cal-icon">
-                                                    <input class="form-control floating datetimepicker" required type="text" name="fecha_fin">
-                                                </div>
-                                                <label class="focus-label">Fin de contrato <span class="text-danger">*</span></label>
+                                                    <label for="">Final:</label>
+                                                    <input class="form-control" required type="date" name="fecha_fin">
                                             </div>
                                         </div>
                                     </div>
@@ -276,6 +232,55 @@
 
 
 <script>
+
+
+
+
+
+$('#tbl_contrato').DataTable({
+"language": {
+       "lengthMenu": "Mostrar _MENU_ registros",
+       "zeroRecords": "No se encontraron resultados",
+       "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+       "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+       "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+       "sSearch": "Buscar:",
+       "oPaginate": {
+           "sFirst": "Primero",
+           "sLast":"Último",
+           "sNext":"Siguiente",
+           "sPrevious": "Anterior"
+       },
+       "sProcessing":"Procesando...",},
+
+    "serverSide": true,
+    processing: true,
+    "autoWidth": false,
+    "ajax": "/contratos/listar",
+    "columns": [
+        {data:'num_contrato'},
+        {data:'nombre'},
+        {data:'fecha_inicio'},
+        {data:'fecha_fin'},
+        {data:'dif_mes'},
+        {data:'item'},
+        {data:'action'}
+    ]});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $(document).ready(function() {

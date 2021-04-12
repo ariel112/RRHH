@@ -84,6 +84,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
      Route::post('/contratos/show', [Contratos::class, 'contrato_show'])->name('contratos.show');
 
+     Route::get('/contratos/listar', [Contratos::class, 'contrato_listar'])->name('contratos.listar');
+
 
      // permisos empleados
      Route::get('/permisos', PermisosJefe::class )->name('permisos.index');
