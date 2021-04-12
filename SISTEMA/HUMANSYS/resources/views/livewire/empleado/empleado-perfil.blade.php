@@ -851,6 +851,7 @@
         function editarReferencia(){
             var id = $('#idREF').val();
             var data = new FormData($('#formEditReferencia').get(0));
+
                 $.ajax({
                     type:"POST",
                     url: "/empleado/editar/referencia/"+id,
@@ -860,8 +861,7 @@
                     processData:false,
                     dataType:"json",
                     success: function(data){
-                        $('#formEditReferencia').trigger("reset");
-                        $("#edit_ref_modal").modal("hide");
+
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
@@ -910,23 +910,20 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
-                    $('#formEditEmpleado').trigger("reset");
-                    $("#profile_info").modal("hide");
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Editado con éxito!',
-                    timer: 1500
-                    });
 
             })
-
+            Swal.fire({
+                icon: 'success',
+                text: 'Editado con éxito!',
+                timer: 1500
+                });
         }
         function validacionEmpleadoPrincipal(id){
+
             var primer_nombre = $('#primer_nombre').val();
                     var segundo_nombre = $('#segundo_nombre').val();
                     var primer_apellido = $('#primer_apellido').val();
@@ -1253,14 +1250,12 @@
                     dataType:"json",
                     success: function(data){
                         console.log(data);
-
-                        $('#formDeduccion').trigger("reset");
-                        $("#Deduccion_modal").modal("hide");
                             Swal.fire({
                             icon: 'success',
                             text: 'Deducción guardada con éxito!',
                             timer: 1500
                             });
+                    $('#formDeduccion').trigger("reset");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
@@ -1280,15 +1275,12 @@
                     dataType:"json",
                     success: function(data){
                         console.log(data);
-                        $('#formReferencia').trigger("reset");
-                        $("#referencia_modal").modal("hide");
                         Swal.fire({
                             icon: 'success',
                             text: 'Referencia guardada con éxito!',
                             timer: 1500
                             });
-
-
+                        $('#formReferencia').trigger("reset");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
