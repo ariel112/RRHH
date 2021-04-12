@@ -138,6 +138,7 @@ class EmpleadoController extends Controller
         $deduc->empleado_id = $request['idEmpleadoDe'];
         $deduc->monto = $request['monto_deduc'];
         $deduc->porcentaje = $request['porcentaje_deduc'];
+        $deduc->estado = 0;
         $deduc -> save();
 
         return $deduc;

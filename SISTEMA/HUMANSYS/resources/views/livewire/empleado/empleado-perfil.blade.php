@@ -286,6 +286,7 @@
                                                         <div class="modal-body">
                                                             <form  id="formDeduccion" data-parsley-validate >
                                                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                         <div class="card-body">
                                                                             <div class="row">
@@ -298,7 +299,7 @@
                                                                                 <div class="col-sm-6">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
-                                                                                        <select class="form-control" required  name="TipodeducSelect" id="TipodeducSelect" onchange="selectValor_TipoDeduc()">
+                                                                                        <select class="custom-select form-control" required id="TipodeducSelect" name="TipodeducSelect" onchange="selecteValor_TipoDeduc()">
                                                                                             <option selected value=""> <b>Seleccione tipo de deducción</b></option>
                                                                                             <option value="0">PORCENTAJE</option>
                                                                                             <option value="1">MONTO FIJO</option>
@@ -344,10 +345,13 @@
                                                     <div class="row" id="grillDeducciones">
                                                             @foreach ($deducciones_emps as $deduc)
                                                             <div class="col-md-6 d-flex">
-                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success">
+                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
                                                                     <div class="card-body">
                                                                         {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
-                                                                        <h3 class="card-title ">Deduccion Activa <i class="fas fa-file-invoice-dollar"></i></h3>
+                                                                        <div class="pro-edit">
+                                                                            <h3 class="card-title">Deducción<i class="fas fa-file-invoice-dollar"></i></h3>
+                                                                        </div>
+
                                                                         <ul class="list-group list-group-flush">
                                                                             <li class="list-group-item">
                                                                                 <div class="title">Nombre:</div>
@@ -367,6 +371,13 @@
                                                                             <li class="list-group-item">
                                                                                 <div class="title">Descripción:</div>
                                                                                 <div class="text">{{$deduc->descripcion}}</div>
+                                                                            </li>
+                                                                            <li class="list-group-item">
+                                                                                @if($deduc->estado == 0)
+                                                                                    <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
+                                                                                @elseif($deduc->estado == 1)
+                                                                                    <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
+                                                                                @endif
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -773,6 +784,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
 
     <script>
+
         $('#formReferencia').submit(function(e){
             e.preventDefault();
             var id = document.getElementById("Idemploye").value;
@@ -791,7 +803,7 @@
         $('#formDeduccion').submit(function(e){
             e.preventDefault();
             var selectTipoDeduccion = document.getElementById("TipodeducSelect").value;
-            if(selectTipoDeduccion){
+            if(selectTipoDeduccion == 0 || selectTipoDeduccion == 1){
                 agregarDeducEmp();
             }
         });
@@ -811,37 +823,6 @@
             }
         });
 
-        /* $('#formReferencia').submit(function(e){
-            e.preventDefault();
-            var id = document.getElementById("Idemploye").value;
-            var identidad_referencia = document.getElementById("identidad_referencia").value;
-            var nombre_referencia = $('#nombre_referencia').val();
-            var telefono_referencia = $('#telefono_referencia').val();
-            var email_referencia = $('#email_referencia').val();
-            var parentezco_referencia = $('#parentezco_referencia').val();
-            var direccion_referencia = $('#direccion_referencia').val();
-            if(/_/g.test(identidad_referencia) || identidad_referencia.length == 0){
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar la identidad completa de la referencia',
-                    timer: 1000
-                    })
-                    e.preventDefault();
-            }else if(nombre_referencia.length == 0){
-                e.preventDefault();
-            }else if(telefono_referencia.length == 0){
-                e.preventDefault();
-            }else if(email_referencia.length == 0){
-                e.preventDefault();
-            }else if(parentezco_referencia == ""){
-                e.preventDefault();
-            }else if(direccion_referencia.length == 0){
-                e.preventDefault();
-            }else{
-                anadirReferencia(id);
-            }
-        }); */
-
         var  idRef  = document.getElementById("identidad_referencia");
         var  imRef = new Inputmask("9999-9999-99999");
         Idr = imRef.mask(idRef );
@@ -854,25 +835,7 @@
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
 
-        function selectValor_TipoDeduc(){
-            var select = document.getElementById("TipodeducSelect").value;
-            if(select == 0){
-                $('#porcentaje_deduc').css('display', 'block');
-                $('#porcentajelbl_deduc').css('display', 'block');
-                $('#monto_deduc').css('display', 'none');
-                $('#montolbl_deduc').css('display', 'none');
-            } else if(select == 1){
-                $('#porcentaje_deduc').css('display', 'none');
-                $('#porcentajelbl_deduc').css('display', 'none');
-                $('#monto_deduc').css('display', 'block');
-                $('#montolbl_deduc').css('display', 'block');
-            }else if(select == ""){
-                $('#porcentaje_deduc').css('display', 'none');
-                $('#porcentajelbl_deduc').css('display', 'none');
-                $('#monto_deduc').css('display', 'none');
-                $('#montolbl_deduc').css('display', 'none');
-            }
-        }
+
 
         function renderReferencia(data){
             $('#nombre_referencia_edit').val(data[0].nombre);
