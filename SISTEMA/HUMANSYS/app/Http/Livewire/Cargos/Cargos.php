@@ -68,7 +68,7 @@ class Cargos extends Component
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_cargos" onclick="editcargo('.$cargos->id.')"  ><i class="fa fa-pencil m-r-5"></i> Editar</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_cargos" onclick="editcontrato('.$cargos->id.')"  ><i class="fa fa-pencil m-r-5"></i> Editar</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#vw_cargos" onclick="setcargo('.$cargos->id.')" ><i class="fa fa-eye m-r-5"></i> Ver</a>
                 </div>
             </div>';

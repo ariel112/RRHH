@@ -66,8 +66,10 @@ class Contratos extends Component
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_cargos" onclick="editcargo('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5"></i> Editar</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#vw_cargos" onclick="setcargo('.$contrato->id.')" ><i class="fa fa-eye m-r-5"></i> Ver</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcargo('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
+                    <a class="dropdown-item" data-toggle="modal" data-target="#vw_contrato" onclick="setcargo('.$contrato->id.')" ><i class="fa fa-eye m-r-5 text-primary"></i> Ver</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5 text-danger"></i> Descargar</a>
+                    <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5 text-danger"></i > Eliminar</a>
                 </div>
                </div>';              
                 })
@@ -85,6 +87,17 @@ class Contratos extends Component
         ->make(true);
 
         
+
+    }
+
+
+
+    public function contrato_muestra($id){
+
+        $contrato = DB::select("SELECT * FROM contrato WHERE id='$id'");
+
+        // return response()->json($contrato);
+        return $contrato;
 
     }
 
