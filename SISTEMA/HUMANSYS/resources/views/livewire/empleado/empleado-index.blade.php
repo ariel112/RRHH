@@ -469,6 +469,8 @@
                     console.log(data);
                     /* var info = $.parseJSON(data);
                     console.log(info); */
+                    $('#formEmpleado').trigger("reset");
+                    $('#add_employee').modal('hide');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);

@@ -286,7 +286,7 @@
                                                         <div class="modal-body">
                                                             <form  id="formDeduccion" data-parsley-validate >
                                                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                                {{-- <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none"> --}}
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                         <div class="card-body">
                                                                             <div class="row">
@@ -834,8 +834,6 @@
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
 
-
-
         function renderReferencia(data){
             $('#nombre_referencia_edit').val(data[0].nombre);
             $('#identidad_referencia_edit').val(data[0].identidad);
@@ -909,11 +907,12 @@
                 dataType:"json",
                 success: function(data){
                     console.log(data);
+                    $('#formEditEmpleado').trigger("reset");
+                    $('#profile_info').modal('hide');
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
-
             })
             Swal.fire({
                 icon: 'success',
@@ -922,7 +921,6 @@
                 });
         }
         function validacionEmpleadoPrincipal(id){
-
             var primer_nombre = $('#primer_nombre').val();
                     var segundo_nombre = $('#segundo_nombre').val();
                     var primer_apellido = $('#primer_apellido').val();
@@ -1248,13 +1246,15 @@
                     processData:false,
                     dataType:"json",
                     success: function(data){
-                        console.log(data);
+                        $('#formDeduccion').trigger("reset");
+                        $('#Deduccion_modal').modal('hide')
+                        /* console.log(data); */
                             Swal.fire({
                             icon: 'success',
                             text: 'Deducción guardada con éxito!',
                             timer: 1500
                             });
-                    $('#formDeduccion').trigger("reset");
+
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
@@ -1274,17 +1274,22 @@
                     dataType:"json",
                     success: function(data){
                         console.log(data);
+                        $('#formReferencia').trigger("reset");
+                        $('#referencia_modal').modal('hide');
                         Swal.fire({
                             icon: 'success',
                             text: 'Referencia guardada con éxito!',
                             timer: 1500
                             });
-                        $('#formReferencia').trigger("reset");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
                     }
                 })
+        }
+
+        function selecteValor_TipoDeduc(){
+            console.log("Encuentra la función");
         }
     </script>
 @endsection
