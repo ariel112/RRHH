@@ -782,7 +782,6 @@
     </div>
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
-
     <script>
 
         $('#formReferencia').submit(function(e){
