@@ -353,14 +353,17 @@
                                                                                 <div class="title">Nombre:</div>
                                                                                 <div class="text">{{$deduc->nombre}}</div>
                                                                             </li>
-                                                                            <li class="list-group-item">
-                                                                                <div class="title">Monto:</div>
-                                                                                <div class="text">Lps. {{$deduc->monto}}</div>
-                                                                            </li>
-                                                                            <li class="list-group-item">
-                                                                                <div class="title">Porcentaje:</div>
-                                                                                <div class="text">{{$deduc->porcentaje}}%</div>
-                                                                            </li>
+                                                                            @if ($deduc->monto == NULL)
+                                                                                <li class="list-group-item">
+                                                                                    <div class="title">Porcentaje:</div>
+                                                                                    <div class="text">{{$deduc->porcentaje}}%</div>
+                                                                                </li>
+                                                                            @elseif ($deduc->porcentaje == NULL)
+                                                                                <li class="list-group-item">
+                                                                                    <div class="title">Monto:</div>
+                                                                                    <div class="text">Lps. {{$deduc->monto}}</div>
+                                                                                </li>
+                                                                            @endif
                                                                             <li class="list-group-item">
                                                                                 <div class="title">Descripción:</div>
                                                                                 <div class="text">{{$deduc->descripcion}}</div>
@@ -630,7 +633,8 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3"></textarea>
+                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3" required></textarea>
+                                                                            <input type="hidden" id="Idemploye" name="Idemploye" value="{{$empleado->id}}">
                                                                         </div>
                                                                     </div>
 
@@ -641,7 +645,7 @@
                                                             <div class="submit-section">
                                                                 <div class="row">
                                                                     <div class="col-6">
-                                                                        <button href="javascript:void(0);" class="btn btn-success btn-lg" type="submit" id="btnGuardarReferencia" onclick="validacionReferencia({{$empleado->id}})">Añadir</button>
+                                                                        <button href="javascript:void(0);" class="btn btn-success btn-lg" type="submit" id="btnGuardarReferencia" {{-- onclick="anadirReferencia()" --}}>Añadir</button>
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-lg">Cancelar</a>
@@ -665,7 +669,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form class="form-group" id="formEditReferencia">
+                                                    <form  id="formEditReferencia" class="form-group" data-parsley-validate>
                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                         <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                                                         <div class="card shadow p-3 mb-5 bg-white rounded">
@@ -677,31 +681,31 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control is-valid" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
+                                                                            <input class="form-control" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control is-valid" id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text">
+                                                                            <input class="form-control" required id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text" maxlength="13">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control is-valid" id="telefono_referencia_edit" name="telefono_referencia_edit" value="" type="text">
+                                                                            <input class="form-control" id="telefono_referencia_edit" name="telefono_referencia_edit" required value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control is-valid" id="email_referencia_edit" name="email_referencia_edit" value="" type="text">
+                                                                            <input class="form-control" id="email_referencia_edit" name="email_referencia_edit"  required value="" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia_edit" id="parentezco_referencia_edit">
+                                                                            <select name="parentezco_referencia_edit" id="parentezco_referencia_edit" class="form-control" required>
                                                                                 <option selected value="">Seleccione</option>
                                                                                 <option value="PADRE">Padre</option>
                                                                                 <option value="MADRE">Madre</option>
@@ -728,7 +732,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Estado<span class="text-danger">*</span></label>
-                                                                            <select name="estado_referencia_edit" id="estado_referencia_edit">
+                                                                            <select name="estado_referencia_edit" id="estado_referencia_edit" class="form-control" required>
                                                                                 <option selected value="">Seleccione estado</option>
                                                                                 <option value="1">1-ACTIVO</option>
                                                                                 <option value="2">2-INACTIVO</option>
@@ -738,7 +742,7 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control is-valid" id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
+                                                                            <textarea class="form-control" required id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                         </div>
                                                                     </div>
 
@@ -746,7 +750,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="submit-section">
-                                                            <button class="btn btn-primary" onclick="editarReferencia()">Editar</button>
+                                                            <button class="btn btn-primary" {{-- onclick="editarReferencia()" --}}>Editar</button>
                                                             <input type="hidden" id="idREF" name="idREF" value="">
                                                         </div>
                                                     </form>
@@ -765,23 +769,79 @@
         @endforeach
 @endforeach
     </div>
-    @section('script')
+@section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
 
     <script>
+        $('#formReferencia').submit(function(e){
+            e.preventDefault();
+            var id = document.getElementById("Idemploye").value;
+            var identidad_referencia = document.getElementById("identidad_referencia").value;
+            if(/_/g.test(identidad_referencia) || identidad_referencia.length == 0 || identidad_referencia.length < 13){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                    })
+                    e.preventDefault();
+            }else{
+                anadirReferencia(id);
+            }
+        });
         $('#formDeduccion').submit(function(e){
-            console.log("Entra al submit");
             e.preventDefault();
             var selectTipoDeduccion = document.getElementById("TipodeducSelect").value;
             if(selectTipoDeduccion){
                 agregarDeducEmp();
             }
-
         });
-       /* $('#formDeduccion').submit(function (e) {
+        $('#formEditReferencia').submit(function(e){
+            console.log("entro porque si");
             e.preventDefault();
-            agregarDeducEmp();
+            var identidad_referencia_edit = $('#identidad_referencia_edit').val();
+            if(/_/g.test(identidad_referencia_edit) || identidad_referencia_edit.length != 13){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else{
+                editarReferencia();
+            }
+        });
+
+        /* $('#formReferencia').submit(function(e){
+            e.preventDefault();
+            var id = document.getElementById("Idemploye").value;
+            var identidad_referencia = document.getElementById("identidad_referencia").value;
+            var nombre_referencia = $('#nombre_referencia').val();
+            var telefono_referencia = $('#telefono_referencia').val();
+            var email_referencia = $('#email_referencia').val();
+            var parentezco_referencia = $('#parentezco_referencia').val();
+            var direccion_referencia = $('#direccion_referencia').val();
+            if(/_/g.test(identidad_referencia) || identidad_referencia.length == 0){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe indicar la identidad completa de la referencia',
+                    timer: 1000
+                    })
+                    e.preventDefault();
+            }else if(nombre_referencia.length == 0){
+                e.preventDefault();
+            }else if(telefono_referencia.length == 0){
+                e.preventDefault();
+            }else if(email_referencia.length == 0){
+                e.preventDefault();
+            }else if(parentezco_referencia == ""){
+                e.preventDefault();
+            }else if(direccion_referencia.length == 0){
+                e.preventDefault();
+            }else{
+                anadirReferencia(id);
+            }
         }); */
+
         var  idRef  = document.getElementById("identidad_referencia");
         var  imRef = new Inputmask("9999-9999-99999");
         Idr = imRef.mask(idRef );
@@ -826,80 +886,32 @@
         }
 
         function editarReferencia(){
-            event.preventDefault();
             var id = $('#idREF').val();
             var data = new FormData($('#formEditReferencia').get(0));
-            var nombre_referencia_edit = $('#nombre_referencia_edit').val();
-            var identidad_referencia_edit = $('#identidad_referencia_edit').val();
-            var telefono_referencia_edit = $('#telefono_referencia_edit').val();
-            var email_referencia_edit = $('#email_referencia_edit').val();
-            var parentezco_referencia_edit = $('#parentezco_referencia_edit').val();
-            var direccion_referencia_edit = $('#direccion_referencia_edit').val();
 
-
-            if(/_/g.test(identidad_referencia_edit)){
-                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
-                identidad_referencia_edit.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar la identidad completa de la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(nombre_referencia_edit.length == 0){
-
-                let nombre_referencia_edit = document.getElementById('nombre_referencia_edit');
-                nombre_referencia_edit.className = 'form-control is-invalid';
-
-            }else if(identidad_referencia_edit.length == 0){
-
-                let identidad_referencia_edit = document.getElementById('identidad_referencia_edit');
-                identidad_referencia_edit.className = 'form-control is-invalid';
-
-            }else if(telefono_referencia_edit.length == 0){
-
-                let telefono_referencia_edit = document.getElementById('telefono_referencia_edit');
-                telefono_referencia_edit.className = 'form-control is-invalid';
-
-            }else if(email_referencia_edit.length == 0){
-
-                let email_referencia_edit = document.getElementById('email_referencia_edit');
-                email_referencia_edit.className = 'form-control is-invalid';
-
-            }else if(parentezco_referencia_edit == ''){
-
-                let parentezco_referencia_edit = document.getElementById('parentezco_referencia_edit');
-                parentezco_referencia_edit.className = 'form-control is-invalid';
-
-            }else if(direccion_referencia_edit.length == 0){
-
-                let direccion_referencia_edit = document.getElementById('direccion_referencia_edit');
-                direccion_referencia_edit.className = 'form-control is-invalid';
-
-            }else{
                 $.ajax({
-                type:"POST",
-                url: "/empleado/editar/referencia/"+id,
-                data: data,
-                contentType: false,
-                cache: false,
-                processData:false,
-                dataType:"json",
-                success: function(data){
-                    console.log(data);
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR, textStatus, errorThrown);
-                }
+                    type:"POST",
+                    url: "/empleado/editar/referencia/"+id,
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
 
-            })
-            Swal.fire({
-                icon: 'success',
-                text: 'Editado con éxito!',
-                timer: 1500
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+
+                    }
+
+                })
+                Swal.fire({
+                            icon: 'success',
+                            text: 'Editado con éxito!',
+                            timer: 1500
                 });
-            location.reload();
-            }
+                location.reload();
 
 
         }
@@ -1110,7 +1122,7 @@
 
         }
 
-        function validacionReferencia(id){
+        /* function validacionReferencia(id){
             var nombre_referencia = $('#nombre_referencia').val();
             var identidad_referencia = $('#identidad_referencia').val();
             var telefono_referencia = $('#telefono_referencia').val();
@@ -1184,7 +1196,7 @@
             }else{
                 anadirReferencia(id);
             }
-        }
+        } */
 
         /* function validarDeduccionesEmp(){
             var nombre_deduc = $('#nombre_deduc').val();
@@ -1262,8 +1274,7 @@
             }else{
                 $("#TipodeducSelect").removeAttr("required");
             }
-        }
-            */
+        } */
         function agregarDeducEmp(){
             var data = new FormData($('#formDeduccion').get(0));
                     $.ajax({
@@ -1291,7 +1302,6 @@
 
         function anadirReferencia(id){
             var data = new FormData($('#formReferencia').get(0));
-
                     $.ajax({
                     type:"POST",
                     url: "/empleado/referencia/"+id,
@@ -1302,20 +1312,17 @@
                     dataType:"json",
                     success: function(data){
                         console.log(data);
-                        /* var info = $.parseJSON(data);
-                        console.log(info); */
-                        location.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Referencia guardada con éxito!',
+                            timer: 1500
+                            });
+                        $('#formReferencia').trigger("reset");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
                     }
                 })
-                Swal.fire({
-                        icon: 'success',
-                        text: 'Referencia guardada con éxito!',
-                        timer: 1500
-                        });
-                $('#formReferencia').trigger("reset");
         }
     </script>
 @endsection
