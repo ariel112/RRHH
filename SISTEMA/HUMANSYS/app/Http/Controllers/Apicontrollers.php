@@ -25,7 +25,9 @@ class Apicontrollers extends Controller
         ON(A.cargo_id=B.id)
         INNER JOIN area C
         ON(C.id=B.area_id)
-        WHERE A.id=52");
+        INNER JOIN departamento D
+        ON(C.departamento_id=D.id)
+        WHERE C.id=2");
 
         return $gerente;
 
