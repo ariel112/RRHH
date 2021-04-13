@@ -309,13 +309,9 @@
                                                                                 <div class="col-sm-6">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label" style="display: none;" id="porcentajelbl_deduc" name="porcentajelbl_deduc">Porcentaje %<span class="text-danger">*</span></label>
-                                                                                        <input {{-- class="form-control" required  --}} style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
+                                                                                        <input style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
                                                                                         <label class="col-form-label" style="display: none;" id="montolbl_deduc" name="montolbl_deduc">Monto fijo catorcenal<span class="text-danger">*</span></label>
-                                                                                        <input {{-- class="form-control" required  --}} id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
+                                                                                        <input id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
                                                                                         <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
                                                                                     </div>
                                                                                 </div>
@@ -349,7 +345,8 @@
                                                                     <div class="dropdown profile-action">
                                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
                                                                         <div class="dropdown-menu dropdown-menu-right">
-                                                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar()" ><i class="fas fa-ban"></i> Inactivar</a>
+                                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
                                                                         </div>
                                                                     </div>
                                                                     <div class="card-body">
@@ -840,8 +837,24 @@
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
 
-        function desactivar(){
-            console.log("Desactivado");
+        function desactivar(id){
+            $.ajax({
+                    type:"GET",
+                    url: "/empleado/deducciones/desactivar/"+id,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(){
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Deducción inactivada!',
+                            timer: 1500
+                            });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                })
         }
 
         function renderReferencia(data){
@@ -1299,7 +1312,23 @@
         }
 
         function selecteValor_TipoDeduc(){
-            console.log("Encuentra la función");
+            let select = document.getElementById("TipodeducSelect").value;
+            if(select == 0){
+                $('#monto_deduc').css('display', 'none');
+                $('#montolbl_deduc').css('display', 'none');
+                $('#porcentaje_deduc').css('display', 'block');
+                $('#porcentajelbl_deduc').css('display', 'block');
+            }else if(select == 1){
+                $('#monto_deduc').css('display', 'block');
+                $('#montolbl_deduc').css('display', 'block');
+                $('#porcentaje_deduc').css('display', 'none');
+                $('#porcentajelbl_deduc').css('display', 'none');
+            }else if(select == ""){
+                $('#monto_deduc').css('display', 'none');
+                $('#montolbl_deduc').css('display', 'none');
+                $('#porcentaje_deduc').css('display', 'none');
+                $('#porcentajelbl_deduc').css('display', 'none');
+            }
         }
     </script>
 @endsection
