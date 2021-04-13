@@ -8,6 +8,7 @@
 </head>
 <body>
     <h1>Contrato de {{ $contrato->nombre }}</h1>
-    
+    <h1>sjsjsjsjsjs</h1>
+    <img   src="{{ asset('img/1.png')}}" class="imagenperfil"  alt="Alan Smith" />
 </body>
 </html>
