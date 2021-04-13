@@ -44,7 +44,8 @@
                                                                 <div class="row">
                                                                     <div class="col-md-5">
                                                                         <div class="profile-info-left">
-                                                                            <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3><br>
+                                                                            <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3> <br>
+                                                                            <h5 class="text-muted">Género: {{$empleado->genero}}</h5>
                                                                             <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
                                                                             <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
                                                                             <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
@@ -499,13 +500,23 @@
                                                                                 <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-md-3">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
                                                                                 <select class="form-select is-valid" id="estado_civil" name="estado_civil">
                                                                                     <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
                                                                                     <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                                                     <option value="CASADO(a)">CASADO(a)</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-3">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Género<span class="text-danger">*</span></label>
+                                                                                <select class="form-select is-valid" id="genero" name="genero">
+                                                                                    <option selected value="{{$empleado->genero}}">{{$empleado->genero}}</option>
+                                                                                    <option value="MASCULINO">MASCULINO</option>
+                                                                                    <option value="FEMENINO">FEMENINO</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>

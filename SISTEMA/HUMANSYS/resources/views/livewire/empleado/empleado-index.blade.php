@@ -129,9 +129,9 @@
                                                     <input class="form-control" id="rtn" name="rtn" type="text">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                    <label class="col-form-label">Lugar Nacimiento<span class="text-danger">*</span></label>
                                                     <input class="form-control" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
                                                 </div>
                                             </div>
@@ -155,6 +155,16 @@
                                                         <option selected value="">Seleccione </option>
                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                         <option value="CASADO(a)">CASADO(a)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="col-form-label ">Género<span class="text-danger">*</span></label>
+                                                    <select class="custom-select" required id="genero" name="genero">
+                                                        <option selected value="">Seleccione </option>
+                                                        <option value="MASCULINO">MASCULINO</option>
+                                                        <option value="FEMENINO">FEMENINO</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -489,6 +499,7 @@
             var primer_apellido = $('#primer_apellido').val();
             var segundo_apellido = $('#segundo_apellido').val();
             var fecha_nacimiento = $('#fecha_nacimiento').val();
+            var genero = $('#genero').val();
             var identidad = $('#identidad').val();
             var rtn = $('#rtn').val();
             var lugar_nacimiento = $('#lugar_nacimiento').val();
@@ -525,6 +536,15 @@
                     Swal.fire({
                     icon: 'warning',
                     text: 'Debe escribir un nombre',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(genero == ""){
+                let genero = document.getElementById('genero');
+                genero.className = 'form-control is-invalid';
+                    Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe escribir un genero',
                     timer: 1000
                     })
                     event.preventDefault();
