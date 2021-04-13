@@ -75,9 +75,9 @@ class Contratos extends Component
                 })
         ->addColumn('item', function ($contrato) {
         if($contrato->dif_dia>=0){
-            return '<td><span class="badge bg-inverse-success">Activos</span></td>';
+            return '<td><span class="badge bg-inverse-success">Activo</span></td>';
         } else{
-            return '<td><span class="badge bg-inverse-danger">Vencidos</span></td>';
+            return '<td><span class="badge bg-inverse-danger">Vencido</span></td>';
         }
                  
                 })
@@ -94,10 +94,44 @@ class Contratos extends Component
 
     public function contrato_muestra($id){
 
-        $contrato = DB::select("SELECT * FROM contrato WHERE id='$id'");
+        $contrato = DB::select("SELECT A.num_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
+                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo
+                                FROM contrato A 
+                                INNER JOIN empleado B 
+                                ON(A.empleado_id=B.id)
+                                INNER JOIN cargo C 
+                                ON(B.cargo_id=C.id)
+                                INNER JOIN area D 
+                                ON(C.area_id=D.id)
+                                INNER JOIN departamento E 
+                                ON(D.departamento_id=E.id)
+                                WHERE A.id='$id'");
 
         return response()->json($contrato);
         // return $contrato;
+
+    }
+
+
+    public function contratos_edit(Request $request){
+
+        $contrato = contrato::find($request->id);
+        $contrato->num_contrato = $request->num_contrato;
+        $contrato->num_delegacion = $request->num_delegacion;
+        $contrato->tipo_contrato = $request->tipo_contrato;
+        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->fecha_fin = $request->fecha_fin;
+        $contrato->sueldo = $request->sueldo;
+        $contrato->vacaciones = $request->vacaciones;
+        $contrato->empleado_id= $request->empleado_id;
+        $contrato->horarios_id = 1;
+        // $contrato->users_aprueba_id = Auth::user()->id;
+        $contrato->empleado_rrhh = $request->empleado_rrhh;
+
+        $contrato->save();
+ 
+        return response()->json('EXITO');
+ 
 
     }
 

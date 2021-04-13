@@ -89,7 +89,7 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
-                                    <select required class="form-control" name="empleado_rrhh" id="empleado_rrhh">
+                                    <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh">
                                         <option value=""></option>
                                     </select>
                                 </div>
@@ -183,8 +183,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div >
-                            <button id="crearcontrato" class="btn btn-primary submit-btn">Crear</button>
+                        <div class="text-center" >
+                            <button id="crearcontrato" class="btn btn-success submit-btn">Crear</button>
                         </div>
                     </form>
                 </div>
@@ -200,7 +200,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-success">Crear contratos</h5>
+                <h5 class="modal-title text-success text-warning"> <i class="fa fa-edit"></i> Editar contratos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -208,6 +208,7 @@
             <div class="modal-body">
                 <form id="form_contrato_edit" data-parsley-validate>
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                    <input type="hidden" name="id" id="id_contrato">
                     <div class="row">
                         <div class="col-sm-2"> 
                             <div class="form-group">
@@ -218,7 +219,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Gerente de Talento Humano</label>
-                                <select required class="form-control" name="empleado_rrhh" id="empleado_rrhh_edit">
+                                <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh_edit">
                                     <option value=""></option>
                                 </select>
                             </div>
@@ -238,7 +239,6 @@
                                         <div class="form-group form-focus">
                                              <label for="">Inicio:</label>
                                                 <input required class="form-control" type="date" id="fecha_inicio_edit" name="fecha_inicio">
-                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -271,8 +271,7 @@
                         <div class="col-sm-6">
                             <div class="form-group" wire:ignore wire:key="first">
                                 <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-                                
+                                <input type="text" id="empleado_id_edit" class="form-control" disabled >
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -300,8 +299,8 @@
                             </div>
                         </div>
                     </div>
-                    <div >
-                        <button id="editar_contrato" class="btn btn-primary submit-btn">Crear</button>
+                    <div class="text-center" >
+                        <button id="editar_contrato" class="btn btn-warning submit-btn text-white ">Editar</button>
                     </div>
                 </form>
             </div>
@@ -457,8 +456,7 @@ $('#tbl_contrato').DataTable({
            "sPrevious": "Anterior"
        },
        "sProcessing":"Procesando...",},
-
-    "serverSide": true,
+       "serverSide": true,
     processing: true,
     "autoWidth": false,
     "ajax": "/contratos/listar",
@@ -541,18 +539,6 @@ function CierraPopup(modal) {
                     getEm(data);
                     /* console.log(data[1]); */
 
-                /*  if(data.length == 3){
-                        Object.keys(data[0]).forEach(e => {
-                            console.log(data[0].text);
-                            var inputsueldo = document.getElementById("sueldo");
-                                inputsueldo.value = data[0].id;
-                        });
-                    }else{
-                        console.log(data);
-                        data.forEach(element => {
-                            console.log(element.selected)
-                        });
-                    } */
                     $('#empleado_id').select2('data')
                     return {
                         results: data
@@ -583,7 +569,13 @@ function CierraPopup(modal) {
         });
     }
 
+
     /* --------------------------------/Select Colaborador------------------------- */
+
+
+
+
+
  $('#form_contrato').submit(function (e) { 
      e.preventDefault();
      guardar();
@@ -637,7 +629,7 @@ function gerente() {
     processData:false,
     dataType:"json",
     success: function(data){
-        console.log(data);
+        // console.log(data);
         cargo(data);
     },
     error: function (jqXHR, textStatus, errorThrown) {
@@ -668,7 +660,6 @@ function cargo(data){
 function editcontrato(id){
 
 $(document).ready(function(){
-
     contratoarea_edit(id);
 });
 
@@ -685,7 +676,7 @@ $(document).ready(function(){
           dataType:"json",
           success: function(data){
               // console.log(data.funciones[0].nombre);
-              console.log(data[0]);
+            //   console.log(data[0]);
 
                vistacontrato_edit(data[0]);
           },
@@ -703,13 +694,61 @@ $(document).ready(function(){
         $('#fecha_final_edit').val(data.fecha_fin);
         $('#vacaciones_edit').val(data.vacaciones);
         $('#sueldo_edit').val(data.sueldo);
-        // $('#').val();
-        // $('#').val();  
+
+        $('#empleado_rrhh_edit').val(data.sueldo);
+
+        $('#empleado_id_edit').val(data.nombre);
+        $('#identidad_edit').val(data.identidad);
+        $('#gerencia_edit').val(data.gerencia);
+        $('#cargo_edit').val(data.cargo);
+        $('#id_contrato').val(data.id);
+
+       
+        
+// llamo el gerente para editarlo
+    $.ajax({
+    type:"GET",
+    url: "/gerente",
+    contentType: false,
+    cache: false,
+    processData:false,
+    dataType:"json",
+    success: function(data){
+        // console.log(data);
+        cargo(data, data.empleado_rrhh);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+
+        console.log(jqXHR, textStatus, errorThrown);
+    }
+})
 
 
 
+function cargo(data, id){
+    var html_select = '';
+     for (var i=0; i<data.length; ++i)
+       if(data[i].id=id){
+       html_select += '<option selected value="'+data[i].id+'">'+data[i].nombre +'</option>'
+
+       }else{
+       html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+
+       }
+
+       $('#empleado_rrhh_edit').html(html_select);
+ }
+
+  
   }
+
+
+
+  
+  
 //  =================== fin editar contratos ===========================
+
+
 
 </script>
 @endsection
