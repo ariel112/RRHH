@@ -69,7 +69,7 @@ class Contratos extends Component
                     <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#vw_contrato" onclick="setcargo('.$contrato->id.')" ><i class="fa fa-eye m-r-5 text-primary"></i> Ver</a>
                     <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5 text-danger"></i> Descargar</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-trash-o m-r-5 text-danger"></i > Eliminar</a>
+                    <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
                 </div>
                </div>';              
                 })

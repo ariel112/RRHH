@@ -539,7 +539,7 @@ function CierraPopup(modal) {
                 url:'/empleado_contrato',
                 processResults: function (data) {
                     /* console.log(data[0].text); */
-                    console.log(data);
+                    // console.log(data);
                     getEm(data);
                     /* console.log(data[1]); */
 
@@ -792,25 +792,53 @@ function cargo(data, id){
 
 
 
+
+  
+
+
+
 // eliminar contrato
 
 function eliminar_contrato(id){
-            $.ajax({
-                type:"GET",
-                url: "/contratos/elimina"+id,
-                contentType: false,
-                cache: false,
-                processData:false,
-                dataType:"json",
-                success: function(data){
+ 
+    Swal.fire({
+            title: '¿Está seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Sí, borralo!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+              
+            //    ajax para eliminar el contrato
+                $.ajax({
+                    type:"GET",
+                    url: "/contratos/elimina/"+id,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
 
-                    $('#fun'+data).hide('slow').remove();
+                        $('#tbl_contrato').DataTable().ajax.reload();
 
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR, textStatus, errorThrown);
-                }
-            });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                });
+                
+                Swal.fire(
+                '!Eliminado!',
+                'El contrato ha sido eliminado.',
+                'success'
+                )
+
+            }
+            })
+            
         }
 
 
