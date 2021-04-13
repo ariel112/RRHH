@@ -267,6 +267,14 @@
 								<span>HR</span>
 							</li>
 							<li class="submenu">
+								<a href="#"><i class="la la-money"></i> <span> Asistencias </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
+									<li><a href="invoices.html">Cargar</a></li>
+									<li><a href="expenses.html">Otros</a></li>
+								</ul>
+							</li>
+							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
