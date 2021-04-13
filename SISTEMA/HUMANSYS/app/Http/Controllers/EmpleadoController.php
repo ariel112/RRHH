@@ -143,6 +143,12 @@ class EmpleadoController extends Controller
         return $deduc;
     }
 
+    public function desactivarDeduccion($id){
+        DB::table('deducciones_empleado')
+            ->where('id', $id)
+            ->update(['estado' => 1]);
+    }
+
     public function guardarReferencia(Request $request, $id){
         $identidadRef = $request['identidad_referencia'];
         $ident = str_replace ( "-" , "", $identidadRef);
