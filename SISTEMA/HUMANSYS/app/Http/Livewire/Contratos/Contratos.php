@@ -11,6 +11,7 @@ use DataTables;
 use Illuminate\Support\Facades\DB;
 
 use Auth;
+use PDF;
 
 class Contratos extends Component
 {
@@ -69,7 +70,7 @@ class Contratos extends Component
                 <div class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
                     <a class="dropdown-item" data-toggle="modal" data-target="#vw_contrato" onclick="setcargo('.$contrato->id.')" ><i class="fa fa-eye m-r-5 text-primary"></i> Ver</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o m-r-5 text-danger"></i> Descargar</a>
+                    <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-danger"></i> Descargar</a>
                     <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
                 </div>
                </div>';              
@@ -149,6 +150,45 @@ class Contratos extends Component
 
 
         return response()->json('Eliminado');
+    }
+
+
+    public function generatePDF($id){
+
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
+                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id
+                                FROM contrato A 
+                                INNER JOIN empleado B 
+                                ON(A.empleado_id=B.id)
+                                INNER JOIN cargo C 
+                                ON(B.cargo_id=C.id)
+                                INNER JOIN area D 
+                                ON(C.area_id=D.id)
+                                INNER JOIN departamento E 
+                                ON(D.departamento_id=E.id)
+                                WHERE A.id='$id'
+        ");
+
+        $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
+
+        $gerente_rh = DB::select("SELECT A.nombre, A.identidad, A.rtn 
+                                             FROM empleado A 
+                                 WHERE A.id='$contrato->empleado_rrhh'");
+        
+        
+        
+
+        $data = [
+            'title' => 'Contrato',
+            'contrato' => $contrato,
+            'funciones' => $funciones,
+            'gerente_rh' => $gerente_rh
+        ];
+          
+        $pdf = PDF::loadView('pdf/contrato', $data);
+    
+        return $pdf->download('Contrato.pdf');
+    
     }
 
 }
