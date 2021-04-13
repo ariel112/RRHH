@@ -21,6 +21,7 @@ class contrato extends Model
                             'empleado_id',
                             'horarios_id',
                             'users_aprueba_id',
-                            'empleado_rrhh'
+                            'empleado_rrhh',
+                            'estado_contrato'
                           ];
 }

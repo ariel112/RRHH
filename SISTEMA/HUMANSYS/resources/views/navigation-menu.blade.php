@@ -246,15 +246,14 @@
 								</ul>
 							</li>
 							<li class="submenu">
-								<a href="#" ><i class="la la-user"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
+								<a href="#" ><i class="la la-file-text"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar empleado</a></li>
-									<li><a href="{{ route('permisos.index_empleado') }}" >Bandeja Empleados</a></li>
+									<li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar</a></li>
 								</ul>
 							</li>
 
 							<li class="submenu">
-								<a href="#" class="noti-dot"><i class="la la-user"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
+								<a href="#" class="noti-dot"><i class="la la-credit-card"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
 									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>

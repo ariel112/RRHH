@@ -210,6 +210,15 @@
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <input type="hidden" name="id" id="id_contrato">
                     <div class="row">
+                        <div class="col-sm-6"> 
+                            <div class="form-group">
+                                <label class="col-form-label">Estado del contrato<span class="text-danger">*</span></label>
+                                <select required class="form-control" name="estado_contrato" id="estado_contrato">
+                                    <option value="Activo"> Activo</option>
+                                    <option value="Cancelado">Cancelado</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-sm-2"> 
                             <div class="form-group">
                                 <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
@@ -741,6 +750,7 @@ $(document).ready(function(){
         $('#fecha_inicio_edit').val(data.fecha_inicio);
         $('#fecha_final_edit').val(data.fecha_fin);
         $('#vacaciones_edit').val(data.vacaciones);
+        $('#estado_contrato').val(data.estado_contrato);
         $('#sueldo_edit').val(data.sueldo);
 
         $('#empleado_rrhh_edit').val(data.sueldo);

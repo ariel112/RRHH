@@ -37,6 +37,7 @@ class Contratos extends Component
         $contrato->vacaciones = $request->vacaciones;
         $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
+        $contrato->estado_contrato = 'Activo';
         $contrato->users_aprueba_id = Auth::user()->id;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
 
@@ -55,7 +56,7 @@ class Contratos extends Component
         $contrato = DB::select("SELECT A.num_contrato, B.nombre, 
                                        A.fecha_inicio, A.fecha_fin, 
                                        A.id,TIMESTAMPDIFF(MONTH, A.fecha_inicio, A.fecha_fin) dif_mes, 
-                                       TIMESTAMPDIFF(DAY, NOW(), A.fecha_fin) dif_dia
+                                       TIMESTAMPDIFF(DAY, NOW(), A.fecha_fin) dif_dia, estado_contrato
                                     FROM contrato A 
                                     INNER JOIN empleado B 
                                     ON(A.empleado_id=B.id)");
@@ -74,10 +75,15 @@ class Contratos extends Component
                </div>';              
                 })
         ->addColumn('item', function ($contrato) {
-        if($contrato->dif_dia>=0){
-            return '<td><span class="badge bg-inverse-success">Activo</span></td>';
-        } else{
-            return '<td><span class="badge bg-inverse-danger">Vencido</span></td>';
+        if ($contrato->estado_contrato === 'Cancelado') {
+            return '<td><span class="badge bg-inverse-danger">Cancelado</span></td>';
+        } else {
+
+            if($contrato->dif_dia>=0){
+                return '<td><span class="badge bg-inverse-success">Activo</span></td>';
+            } else{
+                return '<td><span class="badge bg-inverse-danger">Vencido</span></td>';
+            }
         }
                  
                 })
@@ -94,7 +100,7 @@ class Contratos extends Component
 
     public function contrato_muestra($id){
 
-        $contrato = DB::select("SELECT A.num_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
+        $contrato = DB::select("SELECT A.num_contrato, A.estado_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo
                                 FROM contrato A 
                                 INNER JOIN empleado B 
@@ -123,6 +129,7 @@ class Contratos extends Component
         $contrato->fecha_fin = $request->fecha_fin;
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
+        $contrato->estado_contrato = $request->estado_contrato;
         // $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;
