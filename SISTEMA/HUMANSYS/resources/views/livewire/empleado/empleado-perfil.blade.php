@@ -4,794 +4,790 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @foreach($empleados as $empleado)
     @foreach($direcciones as $direccion)
-            @foreach ($cargos as $cargo)
-                @foreach ($areas as $area)
-                    @foreach ($departamentos as $deptos)
-                            <!-- Page Content -->
-                            {{-- <h1>Departamento: {{$deptos->nombre}} Area:{{$area->nombre}}  con cargo:{{$cargo->nombre}}</h1> --}}
-                                <div class="content container-fluid">
+                @foreach ($cargos as $cargo)
+                    @foreach ($areas as $area)
+                        @foreach ($departamentos as $deptos)}
+                                <!-- Page Content -->
+                                {{-- <h1>Departamento: {{$deptos->nombre}} Area:{{$area->nombre}}  con cargo:{{$cargo->nombre}}</h1> --}}
+                                    <div class="content container-fluid">
 
-                                    <!-- Page Header -->
-                                    <div class="page-header">
-                                        <div class="row">
-                                            <div class="col-sm-12">
-                                                <h3 class="page-title">Perfil de Empleado <i class="far fa-user-circle"></i></h3>
-                                                <ul class="breadcrumb">
-                                                    <li class="breadcrumb-item"><a>Dashboard</a></li>
-                                                    <li class="breadcrumb-item active">Información</li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-auto float-right ml-auto">
-                                                <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Page Header -->
-
-                                        <div class="card mb-0 ">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="profile-view">
-                                                            <div class="profile-img-wrap">
-                                                                <div class="profile-img">
-                                                                    <a href="#" class="avatar"><img alt="" src="../../assets/img/user.jpg"></a>
-                                                                </div>
-                                                            </div>
-
-                                                            {{-- ------------------------div de informacion basica----------------------------------------- --}}
-                                                            <div class="profile-basic">
-                                                                <div class="row">
-                                                                    <div class="col-md-5">
-                                                                        <div class="profile-info-left">
-                                                                            <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3> <br>
-                                                                            <h5 class="text-muted">Género: {{$empleado->genero}}</h5>
-                                                                            <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
-                                                                            <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
-                                                                            <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
-                                                                            <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
-                                                                            <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
-                                                                            @if ($cargo->tipo_empleado_id == 1)
-                                                                                @if ($empleado->estatus_id == 1)
-                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                        ACTIVO
-                                                                                    </button>
-                                                                                @else
-                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                        INACTIVO
-                                                                                    </button>
-                                                                                @endif
-                                                                            @else
-                                                                                @if ($empleado->estatus_id == 1)
-                                                                                    <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                        ACTIVO
-                                                                                    </button>
-                                                                                @else
-                                                                                    <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                        INACTIVO
-                                                                                    </button>
-                                                                                @endif
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-7">
-                                                                        <ul class="personal-info">
-                                                                            <li>
-                                                                                <div class="title">Telefono principal:</div>
-                                                                                <div class="text"><a><i class="fas fa-phone-square-alt"></i> {{$empleado->telefono_1}}</a></div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Correo Personal:</div>
-                                                                                <div class="text"><a><i class="fas fa-envelope-open-text"></i> {{$empleado->email}}</a></div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Nacimiento:</div>
-                                                                                <div class="text"><i class="fas fa-calendar-alt"></i> {{$empleado->fecha_nacimiento}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Dirección:</div>
-                                                                                <div class="text"><i class="fas fa-directions"></i> {{$direccion->descripcion}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">#Casa:</div>
-                                                                                <div class="text"><i class="fas fa-home"></i> {{$direccion->numero_casa}}</div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            {{-- ------------------------div de informacion basica----------------------------------------- --}}
-                                                            <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card  tab-box">
-                                            <div class="row user-tabs">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
-                                                    <ul class="nav nav-tabs nav-tabs-bottom">
-                                                        <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
-                                                        <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
-                                                        <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
+                                        <!-- Page Header -->
+                                        <div class="page-header">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <h3 class="page-title">Perfil de Empleado <i class="far fa-user-circle"></i></h3>
+                                                    <ul class="breadcrumb">
+                                                        <li class="breadcrumb-item"><a>Dashboard</a></li>
+                                                        <li class="breadcrumb-item active">Información</li>
                                                     </ul>
                                                 </div>
+                                                <div class="col-auto float-right ml-auto">
+                                                    <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- /Page Header -->
 
-                                        <div class="tab-content">
-
-                                            <!----------------------------- Detalle completo de informacion -------------------------->
-                                            <div id="emp_informacion" class="pro-overview tab-pane fade show active">
-                                                <div class="row">
-                                                    <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
-                                                            <div class="card-body">
-                                                                <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
-                                                                <ul class="personal-info">
-                                                                    <li>
-                                                                        <div class="title">Nombre Completo:</div>
-                                                                        <div class="text">{{$empleado->nombre}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">RTN:</div>
-                                                                        <div class="text">{{$empleado->rtn}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Fecha de Nacimiento.</div>
-                                                                        <div class="text">{{$empleado->fecha_nacimiento}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Lugar de Nacimiento</div>
-                                                                        <div class="text">{{$empleado->lugar_nacimiento}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Estado Civil</div>
-                                                                        <div class="text">{{$empleado->estado_civil}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Nacionalidad</div>
-                                                                        <div class="text">Hondureña</div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 d-flex">
-                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
-                                                            <div class="card-body">
-                                                                <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
-
-                                                                <ul class="personal-info">
-                                                                    <li>
-                                                                        <div class="title">Telefono Secundario:</div>
-                                                                        <div class="text">{{$empleado->telefono_2}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Correo Institucional:</div>
-                                                                        <div class="text">{{$empleado->email_institucional}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Fecha de ingreso:</div>
-                                                                        <div class="text">{{$empleado->fecha_ingreso}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Sueldo</div>
-                                                                        <div class="text">Lps. {{$empleado->sueldo}}</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Estado</div>
-                                                                        <div class="text">Activo</div>
-                                                                    </li>
-                                                                    <li>
-                                                                        <div class="title">Lugar de asignación</div>
-                                                                        <div class="text">Distrito Central</div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    @foreach($referencias as $referencia)
-                                                        @if ($referencia->estatus_referencia_id == 1)
-                                                            <div class="col-md-6 d-flex">
-                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
-                                                                    <div class="card-body">
-                                                                        <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
-                                                                        <h3 class="card-title ">Referencia Personal <i class="fas fa-user-check"></i></h3>
-                                                                        <ul class="personal-info">
-                                                                            <li>
-                                                                                <div class="title">Nombre:</div>
-                                                                                <div class="text">{{$referencia->nombre}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Identidad:</div>
-                                                                                <div class="text">{{$referencia->identidad}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Telefono:</div>
-                                                                                <div class="text">{{$referencia->telefono}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Correo:</div>
-                                                                                <div class="text">{{$referencia->email}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Dirección:</div>
-                                                                                <div class="text">{{$referencia->direccion}}</div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <div class="title">Parentezco:</div>
-                                                                                <div class="text">{{$referencia->parentezco}}</div>
-                                                                            </li>
-                                                                        </ul>
+                                            <div class="card mb-0 ">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="profile-view">
+                                                                <div class="profile-img-wrap">
+                                                                    <div class="profile-img">
+                                                                        <a href="#" class="avatar"><img alt="" src="../../assets/img/user.jpg"></a>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        @endif
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                            <!------------------------- /Detalle completo de informacion ---------------------------------->
 
-                                            <!-- Funciones Tab -->
-                                            <div class="tab-pane fade" id="emp_funciones">
-                                                <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info">
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="profile-view">
-                                                                    <div class="profile-basic">
-                                                                        <div class="row">
-                                                                            <div class="col-md-5 p-10">
-                                                                                <div class="profile-info-left">
-                                                                                    <h3 class="user-name m-t-0 mb-0">AREA DE {{$area->nombre}}</h3><br>
-                                                                                    <h5 class="text-muted">Código: {{$area->codigo}}</h5>
-                                                                                    <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
-                                                                                    <br>
-                                                                                    <div class="small doj text-muted">Jefe inmediato: Selvin Morazán</div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-md-7">
-                                                                                <ul class="personal-info list-group list-group-flush">
-                                                                                    @foreach ($funciones as $funcion)
-                                                                                        <li class="list-group-item">
-                                                                                            <div class="title">Funcion:</div>
-                                                                                            <div class="text"><a>{{$funcion->nombre}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam totam alias, voluptate mollitia hic soluta accusantium doloremque.</a></div>
-                                                                                        </li>
-                                                                                    @endforeach
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    {{-- <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div> --}}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- /Projects Tab -->
-                                            {{-- deducciones empleado modal --}}
-                                            <div id="Deduccion_modal" class="modal custom-modal fade" role="dialog">
-                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title">DEDUCCIÓN PERSONAL</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form  id="formDeduccion" data-parsley-validate >
-                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                {{-- <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none"> --}}
-                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                                        <div class="card-body">
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
-                                                                                        <input class="form-control" required  id="nombre_deduc" name="nombre_deduc" type="text">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
-                                                                                        <select class="custom-select form-control" required id="TipodeducSelect" name="TipodeducSelect" onchange="selecteValor_TipoDeduc()">
-                                                                                            <option selected value=""> <b>Seleccione tipo de deducción</b></option>
-                                                                                            <option value="0">PORCENTAJE</option>
-                                                                                            <option value="1">MONTO FIJO</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label" style="display: none;" id="porcentajelbl_deduc" name="porcentajelbl_deduc">Porcentaje %<span class="text-danger">*</span></label>
-                                                                                        <input style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
-                                                                                        <label class="col-form-label" style="display: none;" id="montolbl_deduc" name="montolbl_deduc">Monto fijo catorcenal<span class="text-danger">*</span></label>
-                                                                                        <input id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
-                                                                                        <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label">Descripción sobre la deducción<span class="text-danger">*</span></label>
-                                                                                        <textarea class="form-control" required id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                <div>
-                                                                    <button class="btn btn-primary submit-btn">Agregar</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{-- /deducciones empleado modal --}}
-                                            <!--Deducciones Tab -->
-                                            <div class="tab-pane fade" id="emp_detalle">
-                                                <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
-                                                <br><br><br>
-                                                <section id="seccionDedu">
-                                                    <div class="row" id="grillDeducciones">
-                                                            @foreach ($deducciones_emps as $deduc)
-                                                            <div class="col-md-6 d-flex">
-                                                                <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
-                                                                    <div class="dropdown profile-action">
-                                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
-                                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
-                                                                        <div class="pro-edit">
-                                                                            <h3 class="card-title">Deducción</h3>
-                                                                        </div>
-
-                                                                        <ul class="list-group list-group-flush">
-                                                                            <li class="list-group-item">
-                                                                                <div class="title">Nombre:</div>
-                                                                                <div class="text">{{$deduc->nombre}}</div>
-                                                                            </li>
-                                                                            @if ($deduc->monto == NULL)
-                                                                                <li class="list-group-item">
-                                                                                    <div class="title">Porcentaje:</div>
-                                                                                    <div class="text">{{$deduc->porcentaje}}%</div>
-                                                                                </li>
-                                                                            @elseif ($deduc->porcentaje == NULL)
-                                                                                <li class="list-group-item">
-                                                                                    <div class="title">Monto:</div>
-                                                                                    <div class="text">Lps. {{$deduc->monto}}</div>
-                                                                                </li>
-                                                                            @endif
-                                                                            <li class="list-group-item">
-                                                                                <div class="title">Descripción:</div>
-                                                                                <div class="text">{{$deduc->descripcion}}</div>
-                                                                            </li>
-                                                                            <li class="list-group-item">
-                                                                                @if($deduc->estado == 0)
-                                                                                    <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
-                                                                                @elseif($deduc->estado == 1)
-                                                                                    <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
-                                                                                @endif
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            @endforeach
-                                                    </div>
-                                                </section>
-                                            </div>
-                                            <!-- /Deducciones Tab -->
-                                        </div>
-                                    </div>
-                                    <!-- /Page Content -->
-
-                                    <!-- edit empleado -->
-                                    <div id="profile_info" class="modal custom-modal fade" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Id Colaborador: {{$empleado->id}}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form class="form-group" id="formEditEmpleado">
-                                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="profile-img-wrap edit-img">
-                                                                    <img class="inline-block" src="../../assets/img//user.jpg" alt="user">
-                                                                    <div class="fileupload btn">
-                                                                        <span class="btn-text">edit</span>
-                                                                        <input class="upload" type="file">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                                    <div class="card-header">
-                                                                        <h3 class="card-header text-primary text-center">Informacion Principal</h3>
-                                                                    </div>
+                                                                {{-- ------------------------div de informacion basica----------------------------------------- --}}
+                                                                <div class="profile-basic">
                                                                     <div class="row">
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                        <div class="col-md-5">
+                                                                            <div class="profile-info-left">
+                                                                                <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3> <br>
+                                                                                <h5 class="text-muted">Género: {{$empleado->genero}}</h5>
+                                                                                <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
+                                                                                <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
+                                                                                <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
+                                                                                <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
+                                                                                <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
+                                                                                @if ($cargo->tipo_empleado_id == 1)
+                                                                                    @if ($empleado->estatus_id == 1)
+                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                            ACTIVO
+                                                                                        </button>
+                                                                                    @else
+                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
+                                                                                            INACTIVO
+                                                                                        </button>
+                                                                                    @endif
+                                                                                @else
+                                                                                    @if ($empleado->estatus_id == 1)
+                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                            ACTIVO
+                                                                                        </button>
+                                                                                    @else
+                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                            INACTIVO
+                                                                                        </button>
+                                                                                    @endif
+                                                                                @endif
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Segundo Nombre</label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                        <div class="col-md-7">
+                                                                            <ul class="personal-info">
+                                                                                <li>
+                                                                                    <div class="title">Telefono principal:</div>
+                                                                                    <div class="text"><a><i class="fas fa-phone-square-alt"></i> {{$empleado->telefono_1}}</a></div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Correo Personal:</div>
+                                                                                    <div class="text"><a><i class="fas fa-envelope-open-text"></i> {{$empleado->email}}</a></div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Nacimiento:</div>
+                                                                                    <div class="text"><i class="fas fa-calendar-alt"></i> {{$empleado->fecha_nacimiento}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Dirección:</div>
+                                                                                    <div class="text"><i class="fas fa-directions"></i> {{$direccion->descripcion}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">#Casa:</div>
+                                                                                    <div class="text"><i class="fas fa-home"></i> {{$direccion->numero_casa}}</div>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{-- ------------------------div de informacion basica----------------------------------------- --}}
+                                                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card  tab-box">
+                                                <div class="row user-tabs">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                                                        <ul class="nav nav-tabs nav-tabs-bottom">
+                                                            <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
+                                                            <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
+                                                            <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="tab-content">
+
+                                                <!----------------------------- Detalle completo de informacion -------------------------->
+                                                <div id="emp_informacion" class="pro-overview tab-pane fade show active">
+                                                    <div class="row">
+                                                        <div class="col-md-6 d-flex">
+                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                                <div class="card-body">
+                                                                    <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
+                                                                    <ul class="personal-info">
+                                                                        <li>
+                                                                            <div class="title">Nombre Completo:</div>
+                                                                            <div class="text">{{$empleado->nombre}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">RTN:</div>
+                                                                            <div class="text">{{$empleado->rtn}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Fecha de Nacimiento.</div>
+                                                                            <div class="text">{{$empleado->fecha_nacimiento}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Lugar de Nacimiento</div>
+                                                                            <div class="text">{{$empleado->lugar_nacimiento}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Estado Civil</div>
+                                                                            <div class="text">{{$empleado->estado_civil}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Nacionalidad</div>
+                                                                            <div class="text">Hondureña</div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 d-flex">
+                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                                <div class="card-body">
+                                                                    <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
+
+                                                                    <ul class="personal-info">
+                                                                        <li>
+                                                                            <div class="title">Telefono Secundario:</div>
+                                                                            <div class="text">{{$empleado->telefono_2}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Correo Institucional:</div>
+                                                                            <div class="text">{{$empleado->email_institucional}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Fecha de ingreso:</div>
+                                                                            <div class="text">{{$empleado->fecha_ingreso}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Sueldo</div>
+                                                                            <div class="text">Lps. {{$empleado->sueldo}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Estado</div>
+                                                                            <div class="text">Activo</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Lugar de asignación</div>
+                                                                            <div class="text">Distrito Central</div>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        @foreach($referencias as $referencia)
+                                                            @if ($referencia->estatus_referencia_id == 1)
+                                                                <div class="col-md-6 d-flex">
+                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                                        <div class="card-body">
+                                                                            <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
+                                                                            <h3 class="card-title ">Referencia Personal <i class="fas fa-user-check"></i></h3>
+                                                                            <ul class="personal-info">
+                                                                                <li>
+                                                                                    <div class="title">Nombre:</div>
+                                                                                    <div class="text">{{$referencia->nombre}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Identidad:</div>
+                                                                                    <div class="text">{{$referencia->identidad}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Telefono:</div>
+                                                                                    <div class="text">{{$referencia->telefono}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Correo:</div>
+                                                                                    <div class="text">{{$referencia->email}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Dirección:</div>
+                                                                                    <div class="text">{{$referencia->direccion}}</div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Parentezco:</div>
+                                                                                    <div class="text">{{$referencia->parentezco}}</div>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                                <!------------------------- /Detalle completo de informacion ---------------------------------->
+
+                                                <!-- Funciones Tab -->
+                                                <div class="tab-pane fade" id="emp_funciones">
+                                                    <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="profile-view">
+                                                                        <div class="profile-basic">
+                                                                            <div class="row">
+                                                                                <div class="col-md-5 p-10">
+                                                                                    <div class="profile-info-left">
+                                                                                        <h3 class="user-name m-t-0 mb-0">AREA DE {{$area->nombre}}</h3><br>
+                                                                                        <h5 class="text-muted">Código: {{$area->codigo}}</h5>
+                                                                                        <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
+                                                                                        <br>
+                                                                                        <div class="small doj text-muted">Jefe inmediato: Selvin Morazán</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-7">
+                                                                                    <ul class="personal-info list-group list-group-flush">
+                                                                                        @foreach ($funciones as $funcion)
+                                                                                            <li class="list-group-item">
+                                                                                                <div class="title">Funcion:</div>
+                                                                                                <div class="text"><a>{{$funcion->nombre}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam totam alias, voluptate mollitia hic soluta accusantium doloremque.</a></div>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                    </ul>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                        {{-- <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div> --}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- /Projects Tab -->
+                                                {{-- deducciones empleado modal --}}
+                                                <div id="Deduccion_modal" class="modal custom-modal fade" role="dialog">
+                                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">DEDUCCIÓN PERSONAL</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form  id="formDeduccion" data-parsley-validate >
+                                                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                    {{-- <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none"> --}}
+                                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                            <div class="card-body">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
+                                                                                            <input class="form-control" required  id="nombre_deduc" name="nombre_deduc" type="text">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
+                                                                                            <select class="custom-select form-control" required id="TipodeducSelect" name="TipodeducSelect" onchange="selecteValor_TipoDeduc()">
+                                                                                                <option selected value=""> <b>Seleccione tipo de deducción</b></option>
+                                                                                                <option value="0">PORCENTAJE</option>
+                                                                                                <option value="1">MONTO FIJO</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-form-label" style="display: none;" id="porcentajelbl_deduc" name="porcentajelbl_deduc">Porcentaje %<span class="text-danger">*</span></label>
+                                                                                            <input style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
+                                                                                            <label class="col-form-label" style="display: none;" id="montolbl_deduc" name="montolbl_deduc">Monto fijo catorcenal<span class="text-danger">*</span></label>
+                                                                                            <input id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
+                                                                                            <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-12">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-form-label">Descripción sobre la deducción<span class="text-danger">*</span></label>
+                                                                                            <textarea class="form-control" required id="descripcion_deduc" name="descripcion_deduc" cols="30" rows="3"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                    <div>
+                                                                        <button class="btn btn-primary submit-btn">Agregar</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- /deducciones empleado modal --}}
+                                                <!--Deducciones Tab -->
+                                                <div class="tab-pane fade" id="emp_detalle">
+                                                    <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
+                                                    <br><br><br>
+                                                        <div class="row" id="grillDeducciones">
+                                                                @foreach ($deducciones_emps as $deduc)
+                                                                <div class="col-md-6 d-flex">
+                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
+                                                                        <div class="dropdown profile-action">
+                                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
+                                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                                <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                        <div class="card-body">
+                                                                            {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
+                                                                            <div class="pro-edit">
+                                                                                <h3 class="card-title">Deducción</h3>
+                                                                            </div>
+
+                                                                            <ul class="list-group list-group-flush">
+                                                                                <li class="list-group-item">
+                                                                                    <div class="title">Nombre:</div>
+                                                                                    <div class="text">{{$deduc->nombre}}</div>
+                                                                                </li>
+                                                                                @if ($deduc->monto == NULL)
+                                                                                    <li class="list-group-item">
+                                                                                        <div class="title">Porcentaje:</div>
+                                                                                        <div class="text">{{$deduc->porcentaje}}%</div>
+                                                                                    </li>
+                                                                                @elseif ($deduc->porcentaje == NULL)
+                                                                                    <li class="list-group-item">
+                                                                                        <div class="title">Monto:</div>
+                                                                                        <div class="text">Lps. {{$deduc->monto}}</div>
+                                                                                    </li>
+                                                                                @endif
+                                                                                <li class="list-group-item">
+                                                                                    <div class="title">Descripción:</div>
+                                                                                    <div class="text">{{$deduc->descripcion}}</div>
+                                                                                </li>
+                                                                                <li class="list-group-item">
+                                                                                    @if($deduc->estado == 0)
+                                                                                        <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
+                                                                                    @elseif($deduc->estado == 1)
+                                                                                        <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
+                                                                                    @endif
+                                                                                </li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @endforeach
+                                                        </div>
+                                                </div>
+                                                <!-- /Deducciones Tab -->
+                                            </div>
+                                        </div>
+                                        <!-- /Page Content -->
+
+                                        <!-- edit empleado -->
+                                        <div id="profile_info" class="modal custom-modal fade" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Id Colaborador: {{$empleado->id}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="form-group" id="formEditEmpleado">
+                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="profile-img-wrap edit-img">
+                                                                        <img class="inline-block" src="../../assets/img//user.jpg" alt="user">
+                                                                        <div class="fileupload btn">
+                                                                            <span class="btn-text">edit</span>
+                                                                            <input class="upload" type="file">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-header text-primary text-center">Informacion Principal</h3>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Segundo Nombre</label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
+                                                                                    <textarea class="form-control is-valid" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-header text-primary text-center">Información detallada</h3>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">RTN<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
+                                                                                    <select class="form-select is-valid" id="estado_civil" name="estado_civil">
+                                                                                        <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
+                                                                                        <option value="SOLTERO(a)">SOLTERO(a)</option>
+                                                                                        <option value="CASADO(a)">CASADO(a)</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Género<span class="text-danger">*</span></label>
+                                                                                    <select class="form-select is-valid" id="genero" name="genero">
+                                                                                        <option selected value="{{$empleado->genero}}">{{$empleado->genero}}</option>
+                                                                                        <option value="MASCULINO">MASCULINO</option>
+                                                                                        <option value="FEMENINO">FEMENINO</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-header text-primary text-center">Gerencia</h3>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
+                                                                                    <select class="form-select is-valid" id="estatus_id" name="estatus_id">
+                                                                                        <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
+                                                                                        <option value="1">1-ACTIVO</option>
+                                                                                        <option value="2">2-INACTIVO</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Telefono Secundario</label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Correo Institucional</label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                {{-- Lugar asignado/Municipio --}}
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="submit-section">
+                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- añadir referencia -->
+                                        <div class="modal custom-modal fade" id="referencia_modal" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <div class="form-header">
+                                                            <h3>Añadir referencia a {{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3>
+                                                        </div>
+                                                        <form id="formReferencia" class="form-group" data-parsley-validate>
+                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                            <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                                <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
+                                                                                <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text" required>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
+                                                                                <input class="form-control " id="identidad_referencia" maxlength="15" minlength="15" name="identidad_referencia" type="text" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
+                                                                                <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                                <input class="form-control " id="email_referencia" name="email_referencia" type="text" required>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-6">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
+                                                                                <select name="parentezco_referencia" id="parentezco_referencia" required>
+                                                                                    <option selected value="">Seleccione</option>
+                                                                                    <option value="PADRE">Padre</option>
+                                                                                    <option value="MADRE">Madre</option>
+                                                                                    <option value="ESPOSO(A)">Esposo(a)</option>
+                                                                                    <option value="HERMANO(A)">Hermano(a)</option>
+                                                                                    <option value="HIJO(O)">Hijo(a)</option>
+                                                                                    <option value="HIJASTRO(A)">Hijastro(a)</option>
+                                                                                    <option value="ABUELO(A)">Abuelo(a)</option>
+                                                                                    <option value="SUEGRO(A)">Suegro(a)</option>
+                                                                                    <option value="NIETO(A)">Nieto(a)</option>
+                                                                                    <option value="SOBRINO(A)">Sobrino(a)</option>
+                                                                                    <option value="NUERA/YERNO">Nuera/Yerno</option>
+                                                                                    <option value="PADRINO/MADRINA">Padrino/Madrina</option>
+                                                                                    <option value="CUÑADO">Cuñado(a)</option>
+                                                                                    <option value="TIO(A)">Tio(a)</option>
+                                                                                    <option value="PRIMO(A)">Primo(a)</option>
+                                                                                    <option value="AMIGO(A)">Amigo(a)</option>
+                                                                                    <option value="VECINO">Vecino</option>
+                                                                                    <option value="COMPADRE/COMADRE">Compadre/comadre</option>
+                                                                                    <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
+                                                                                </select>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                                <textarea class="form-control is-valid" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
+                                                                                <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3" required></textarea>
+                                                                                <input type="hidden" id="Idemploye" name="Idemploye" value="{{$empleado->id}}">
                                                                             </div>
                                                                         </div>
-
 
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                                    <div class="card-header">
-                                                                        <h3 class="card-header text-primary text-center">Información detallada</h3>
-                                                                    </div>
+                                                            <div class="modal-btn">
+                                                                <div class="submit-section">
                                                                     <div class="row">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">RTN<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
-                                                                            </div>
+                                                                        <div class="col-6">
+                                                                            <button href="javascript:void(0);" class="btn btn-success btn-lg" type="submit" id="btnGuardarReferencia" {{-- onclick="anadirReferencia()" --}}>Añadir</button>
                                                                         </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
-                                                                                <select class="form-select is-valid" id="estado_civil" name="estado_civil">
-                                                                                    <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
-                                                                                    <option value="SOLTERO(a)">SOLTERO(a)</option>
-                                                                                    <option value="CASADO(a)">CASADO(a)</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Género<span class="text-danger">*</span></label>
-                                                                                <select class="form-select is-valid" id="genero" name="genero">
-                                                                                    <option selected value="{{$empleado->genero}}">{{$empleado->genero}}</option>
-                                                                                    <option value="MASCULINO">MASCULINO</option>
-                                                                                    <option value="FEMENINO">FEMENINO</option>
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-
+                                                                        <div class="col-6">
+                                                                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-lg">Cancelar</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-12">
-                                                                <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                                    <div class="card-header">
-                                                                        <h3 class="card-header text-primary text-center">Gerencia</h3>
-                                                                    </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Editar Referencia Modal-->
+                                        <div id="edit_ref_modal" class="modal custom-modal fade" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Referencia de {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form  id="formEditReferencia" class="form-group" data-parsley-validate>
+                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                            <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
+                                                                </div>
+                                                                <div class="card-body">
                                                                     <div class="row">
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                                <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
+                                                                                <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" required id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text" maxlength="13">
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-3">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
-                                                                                <select class="form-select is-valid" id="estatus_id" name="estatus_id">
-                                                                                    <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
+                                                                                <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" id="telefono_referencia_edit" name="telefono_referencia_edit" required value="" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Correo<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" id="email_referencia_edit" name="email_referencia_edit"  required value="" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
+                                                                                <select name="parentezco_referencia_edit" id="parentezco_referencia_edit" class="form-control" required>
+                                                                                    <option selected value="">Seleccione</option>
+                                                                                    <option value="PADRE">Padre</option>
+                                                                                    <option value="MADRE">Madre</option>
+                                                                                    <option value="ESPOSO(A)">Esposo(a)</option>
+                                                                                    <option value="HERMANO(A)">Hermano(a)</option>
+                                                                                    <option value="HIJO(O)">Hijo(a)</option>
+                                                                                    <option value="HIJASTRO(A)">Hijastro(a)</option>
+                                                                                    <option value="ABUELO(A)">Abuelo(a)</option>
+                                                                                    <option value="SUEGRO(A)">Suegro(a)</option>
+                                                                                    <option value="NIETO(A)">Nieto(a)</option>
+                                                                                    <option value="SOBRINO(A)">Sobrino(a)</option>
+                                                                                    <option value="NUERA/YERNO">Nuera/Yerno</option>
+                                                                                    <option value="PADRINO/MADRINA">Padrino/Madrina</option>
+                                                                                    <option value="CUÑADO">Cuñado(a)</option>
+                                                                                    <option value="TIO(A)">Tio(a)</option>
+                                                                                    <option value="PRIMO(A)">Primo(a)</option>
+                                                                                    <option value="AMIGO(A)">Amigo(a)</option>
+                                                                                    <option value="VECINO">Vecino</option>
+                                                                                    <option value="COMPADRE/COMADRE">Compadre/comadre</option>
+                                                                                    <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">Estado<span class="text-danger">*</span></label>
+                                                                                <select name="estado_referencia_edit" id="estado_referencia_edit" class="form-control" required>
+                                                                                    <option selected value="">Seleccione estado</option>
                                                                                     <option value="1">1-ACTIVO</option>
                                                                                     <option value="2">2-INACTIVO</option>
                                                                                 </select>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
+                                                                        <div class="col-sm-6">
                                                                             <div class="form-group">
-                                                                                <label class="col-form-label">Telefono Secundario</label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                                <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
+                                                                                <textarea class="form-control" required id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label class="col-form-label">Correo Institucional</label>
-                                                                                <input class="form-control is-valid" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            {{-- Lugar asignado/Municipio --}}
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="submit-section">
-                                                            <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- añadir referencia -->
-                                    <div class="modal custom-modal fade" id="referencia_modal" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-body">
-                                                    <div class="form-header">
-                                                        <h3>Añadir referencia a {{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3>
-                                                    </div>
-                                                    <form id="formReferencia" class="form-group" data-parsley-validate>
-                                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                        <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
-                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                            <div class="card-header">
-                                                                <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="nombre_referencia" name="nombre_referencia" type="text" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="identidad_referencia" maxlength="15" minlength="15" name="identidad_referencia" type="text" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="telefono_referencia" name="telefono_referencia"  type="text" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control " id="email_referencia" name="email_referencia" type="text" required>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia" id="parentezco_referencia" required>
-                                                                                <option selected value="">Seleccione</option>
-                                                                                <option value="PADRE">Padre</option>
-                                                                                <option value="MADRE">Madre</option>
-                                                                                <option value="ESPOSO(A)">Esposo(a)</option>
-                                                                                <option value="HERMANO(A)">Hermano(a)</option>
-                                                                                <option value="HIJO(O)">Hijo(a)</option>
-                                                                                <option value="HIJASTRO(A)">Hijastro(a)</option>
-                                                                                <option value="ABUELO(A)">Abuelo(a)</option>
-                                                                                <option value="SUEGRO(A)">Suegro(a)</option>
-                                                                                <option value="NIETO(A)">Nieto(a)</option>
-                                                                                <option value="SOBRINO(A)">Sobrino(a)</option>
-                                                                                <option value="NUERA/YERNO">Nuera/Yerno</option>
-                                                                                <option value="PADRINO/MADRINA">Padrino/Madrina</option>
-                                                                                <option value="CUÑADO">Cuñado(a)</option>
-                                                                                <option value="TIO(A)">Tio(a)</option>
-                                                                                <option value="PRIMO(A)">Primo(a)</option>
-                                                                                <option value="AMIGO(A)">Amigo(a)</option>
-                                                                                <option value="VECINO">Vecino</option>
-                                                                                <option value="COMPADRE/COMADRE">Compadre/comadre</option>
-                                                                                <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" id="direccion_referencia" name="direccion_referencia" cols="20" rows="3" required></textarea>
-                                                                            <input type="hidden" id="Idemploye" name="Idemploye" value="{{$empleado->id}}">
-                                                                        </div>
-                                                                    </div>
 
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="modal-btn">
                                                             <div class="submit-section">
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <button href="javascript:void(0);" class="btn btn-success btn-lg" type="submit" id="btnGuardarReferencia" {{-- onclick="anadirReferencia()" --}}>Añadir</button>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-lg">Cancelar</a>
-                                                                    </div>
-                                                                </div>
+                                                                <button class="btn btn-primary" {{-- onclick="editarReferencia()" --}}>Editar</button>
+                                                                <input type="hidden" id="idREF" name="idREF" value="">
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
-                                    <!-- Editar Referencia Modal-->
-                                    <div id="edit_ref_modal" class="modal custom-modal fade" role="dialog">
-                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Referencia de {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form  id="formEditReferencia" class="form-group" data-parsley-validate>
-                                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                        <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
-                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
-                                                            <div class="card-header">
-                                                                <h3 class="card-header text-secondary text-center">Datos de referencia</h3>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Nombre Completo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control" id="nombre_referencia_edit" name="nombre_referencia_edit" required value="" type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Identidad<span class="text-danger">*</span></label>
-                                                                            <input class="form-control" required id="identidad_referencia_edit" name="identidad_referencia_edit" value="" type="text" maxlength="13">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Telefono<span class="text-danger">*</span></label>
-                                                                            <input class="form-control" id="telefono_referencia_edit" name="telefono_referencia_edit" required value="" type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                            <input class="form-control" id="email_referencia_edit" name="email_referencia_edit"  required value="" type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Parentezco<span class="text-danger">*</span></label>
-                                                                            <select name="parentezco_referencia_edit" id="parentezco_referencia_edit" class="form-control" required>
-                                                                                <option selected value="">Seleccione</option>
-                                                                                <option value="PADRE">Padre</option>
-                                                                                <option value="MADRE">Madre</option>
-                                                                                <option value="ESPOSO(A)">Esposo(a)</option>
-                                                                                <option value="HERMANO(A)">Hermano(a)</option>
-                                                                                <option value="HIJO(O)">Hijo(a)</option>
-                                                                                <option value="HIJASTRO(A)">Hijastro(a)</option>
-                                                                                <option value="ABUELO(A)">Abuelo(a)</option>
-                                                                                <option value="SUEGRO(A)">Suegro(a)</option>
-                                                                                <option value="NIETO(A)">Nieto(a)</option>
-                                                                                <option value="SOBRINO(A)">Sobrino(a)</option>
-                                                                                <option value="NUERA/YERNO">Nuera/Yerno</option>
-                                                                                <option value="PADRINO/MADRINA">Padrino/Madrina</option>
-                                                                                <option value="CUÑADO">Cuñado(a)</option>
-                                                                                <option value="TIO(A)">Tio(a)</option>
-                                                                                <option value="PRIMO(A)">Primo(a)</option>
-                                                                                <option value="AMIGO(A)">Amigo(a)</option>
-                                                                                <option value="VECINO">Vecino</option>
-                                                                                <option value="COMPADRE/COMADRE">Compadre/comadre</option>
-                                                                                <option value="COMPAÑERO DE TRABAJO">Compañero de trabajo</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Estado<span class="text-danger">*</span></label>
-                                                                            <select name="estado_referencia_edit" id="estado_referencia_edit" class="form-control" required>
-                                                                                <option selected value="">Seleccione estado</option>
-                                                                                <option value="1">1-ACTIVO</option>
-                                                                                <option value="2">2-INACTIVO</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6">
-                                                                        <div class="form-group">
-                                                                            <label class="col-form-label">Dirección<span class="text-danger">*</span></label>
-                                                                            <textarea class="form-control" required id="direccion_referencia_edit" name="direccion_referencia_edit" value="" cols="30" rows="10"></textarea>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="submit-section">
-                                                            <button class="btn btn-primary" {{-- onclick="editarReferencia()" --}}>Editar</button>
-                                                            <input type="hidden" id="idREF" name="idREF" value="">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- /Editar Referencia Modal -->
-
-
+                                <!-- /Editar Referencia Modal -->
                         @endforeach
                     @endforeach
-            @endforeach
-        @endforeach
+                @endforeach
+    @endforeach
 @endforeach
     </div>
 @section('script')
