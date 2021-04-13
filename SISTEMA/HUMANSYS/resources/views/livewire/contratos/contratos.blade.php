@@ -479,10 +479,24 @@ $('#tbl_contrato').DataTable({
 
 
 
+    function CierraPopup(modal) {
+    $("#"+modal).modal('hide');//ocultamos el modal
+    $('body').removeClass('modal-open');//eliminamos la clase del body para poder hacer scroll
+    $('.modal-backdrop').remove();//eliminamos el backdrop del modal
+  }
 
 
-
-
+  // funcion alerta edit
+  function alert_edit(){
+                Swal.fire({
+            position: 'top-end',
+            icon: 'warning',
+            title: 'Editado Correctamente',
+            showConfirmButton: false,
+            timer: 2500
+            });
+            }
+            // 
 
 
 
@@ -512,17 +526,7 @@ function CierraPopup(modal) {
             });
             }
             // 
-            // funcion alerta edit
-            function alert_edit(){
-                Swal.fire({
-            position: 'top-end',
-            icon: 'warning',
-            title: 'Editado Correctamente',
-            showConfirmButton: false,
-            timer: 2500
-            });
-            }
-            // 
+          
 
 
 
@@ -565,13 +569,12 @@ function CierraPopup(modal) {
                 }
             }
 
-            console.log(id_select)
+            // console.log(id_select)
         });
     }
 
 
     /* --------------------------------/Select Colaborador------------------------- */
-
 
 
 
@@ -598,7 +601,7 @@ function CierraPopup(modal) {
                 $('input[type="text"]').val('');
                 $('select').empty();
                 alert_bien();
-               
+                $('#tbl_contrato').DataTable().ajax.reload();
                 // $('#tbl_cargos').DataTable().ajax.reload();
             //  console.log(data);
 
@@ -649,6 +652,50 @@ function cargo(data){
  }
 
 
+// edicion de contrato form
+
+ $('#form_contrato_edit').submit(function (e) {
+     e.preventDefault();
+     editar();
+ });
+
+
+ // edito los contratos post
+function editar() {
+    // console.log('datos: ', $("#idPic").serialize());
+          var modalID = 'editar_contratos';
+            var data = new FormData($('#form_contrato_edit').get(0));
+            $.ajax({
+            type:"POST",
+            url: "/contratos/edit",
+            data: data,
+            contentType: false,
+            cache: false,
+            processData:false,
+            dataType:"json",
+            success: function(data){
+
+
+
+                // $('#form_contrato').reset();
+                // document.getElementById("form_contrato").reset();
+
+              CierraPopup(modalID);
+              alert_edit();
+              $('#tbl_contrato').DataTable().ajax.reload();
+
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+
+                console.log(jqXHR, textStatus, errorThrown);
+            }
+        })
+        }
+
+
+
 
 });
 
@@ -658,6 +705,7 @@ function cargo(data){
 // editar cargos
 
 function editcontrato(id){
+
 
 $(document).ready(function(){
     contratoarea_edit(id);
@@ -741,6 +789,34 @@ function cargo(data, id){
 
   
   }
+
+
+
+// eliminar contrato
+
+function eliminar_contrato(id){
+            $.ajax({
+                type:"GET",
+                url: "/contratos/elimina"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+
+                    $('#fun'+data).hide('slow').remove();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+
+
+// fin eliminar contrato
+
 
 
 

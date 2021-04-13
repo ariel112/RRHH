@@ -123,7 +123,7 @@ class Contratos extends Component
         $contrato->fecha_fin = $request->fecha_fin;
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
-        $contrato->empleado_id= $request->empleado_id;
+        // $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
@@ -133,6 +133,15 @@ class Contratos extends Component
         return response()->json('EXITO');
  
 
+    }
+
+
+    public function contrato_elimina($id){
+     
+        contrato::destroy($id);
+
+
+        return response()->json('Eliminado');
     }
 
 }

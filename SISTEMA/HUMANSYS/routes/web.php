@@ -87,7 +87,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
      Route::get('/contratos/listar', [Contratos::class, 'contrato_listar'])->name('contratos.listar');
      Route::get('/contratos/muestra/{id}', [Contratos::class, 'contrato_muestra'])->name('contratos.muestra');
-     Route::post('/contratos/edit', [Cargos::class, 'contratos_edit'])->name('contratos.edit');
+     Route::post('/contratos/edit', [Contratos::class, 'contratos_edit'])->name('contratos.edit');
+     Route::get('/contratos/elimina/{id}', [Contratos::class, 'contrato_elimina'])->name('contratos.elimina');
 
 
      // permisos empleados
