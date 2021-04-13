@@ -27,7 +27,7 @@ class Apicontrollers extends Controller
         ON(C.id=B.area_id)
         INNER JOIN departamento D
         ON(C.departamento_id=D.id)
-        WHERE C.id=2");
+        WHERE D.id=2");
 
         return $gerente;
 
