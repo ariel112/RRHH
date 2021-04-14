@@ -17,7 +17,8 @@ class Asistencia extends Component
     public function asistencia_matriz(Request $request){
 
         // $request->fecha;
-
+        $date =date('t', strtotime($request->fecha));
+        dd($date);
         // data('t', strtotime())
 
     }

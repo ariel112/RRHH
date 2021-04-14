@@ -25,15 +25,16 @@
             </div>
 
             {{-- formulario para buscar  --}}
-            <form id="asistencia_form">
-                <div class="col-sm-6 col-md-3"> 
+            <form  action="/asistencia/buscar">
+                <div class="col-sm-12 col-md-12"> 
                     <div class="form-group form-focus select-focus">
-                        <input type="MONTH" class="form-control">
+                        <input type="MONTH" name="fecha" class="form-control">
                         <label class="focus-label">Seleccione la fecha</label>
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-3">  
-                    <button id="generarasistencia" class="btn btn-success submit-btn  btn-block">Crear</button>                   
+                <div class="col-sm-12 col-md-12">  
+                    <button id="generarasistencia" class="btn btn-success  btn-block">Crear</button> 
+                    <a href="#" class="btn btn-success btn-block"> Search </a>                    
                 </div>
             </form>
             {{-- formulario para buscar  --}}   
@@ -476,8 +477,8 @@
             // var modalID ='crear_contratos'
             var data = new FormData($('#asistencia_form').get(0));
             $.ajax({
-            type:"GET",
-            url: "/contratos/show",
+            type:"POST",
+            url: "/asistencia/buscar",
             data: data,
             contentType: false,
             cache: false,
