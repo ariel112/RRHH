@@ -6,10 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Contrato</title>
+
 </head>
 <body>{{-- Contrato de {{ $contrato->nombre }} --}}
     {{-- <div style="position:absolute; top:-45px; right:-50px;"> --}}
-    <div style="height: -30px;
+    <div style="position: absolute">
+        <div style="height: -30px;
                 background: red;
                 position: absolute;
                 before {
@@ -20,28 +22,41 @@
                         width: 270;
                 }"></div>
     <div style="height: -40px;
-    background: red;
-    position: absolute;
-    transform: rotate(-90deg);
-    before {
-            position: absolute;
-            top: -65px; left: 180px;
-            border-top: 40px solid red;
-            border-left: 35px solid red;
-            width: 800;
-    }"></div>
+                background: red;
+                position: absolute;
+                transform: rotate(-90deg);
+                before {
+                    position: absolute;
+                    top: -65px; left: 180px;
+                    border-top: 40px solid red;
+                    border-left: 35px solid red;
+                    width: 800;
+                }"></div>
     <div style="height: -40px;
+                background: red;
+                position: absolute;
+                transform: rotate(90deg);
+                    before {
+                        position: absolute;
+                        top: 1300px; left: -615px;
+                        border-top: 40px solid red;
+                        border-left: 35px solid red;
+                        width: 800;
+                    }"></div>
+
+    {{-- <div style="height: -40px;
     background: red;
     position: absolute;
     transform: rotate(90deg);
-    before {
+        before {
             position: absolute;
-            top: 1300px; left: -615px;
+            top: 800px; left: -515px;
             border-top: 40px solid red;
             border-left: 35px solid red;
             width: 800;
-    }"></div>
-    <div class="container" style="position: absolute; align:center; padding-left:40px; padding-right:40px;">
+        }"></div> --}}
+
+    <div class="container" style="background-image: url('../img/7.jpg'); position: absolute; align:center; padding-left:40px; padding-right:40px;">
         {{-- -------------------PRIMER PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
