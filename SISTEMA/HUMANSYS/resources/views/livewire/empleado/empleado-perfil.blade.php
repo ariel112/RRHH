@@ -6,7 +6,7 @@
     @foreach($direcciones as $direccion)
                 @foreach ($cargos as $cargo)
                     @foreach ($areas as $area)
-                        @foreach ($departamentos as $deptos)}
+                        @foreach ($departamentos as $deptos)
                                 <!-- Page Content -->
                                 {{-- <h1>Departamento: {{$deptos->nombre}} Area:{{$area->nombre}}  con cargo:{{$cargo->nombre}}</h1> --}}
                                     <div class="content container-fluid">

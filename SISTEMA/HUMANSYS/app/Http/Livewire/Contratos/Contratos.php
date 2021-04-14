@@ -26,7 +26,7 @@ class Contratos extends Component
 
     public function contrato_show(Request $request){
 
- 
+
 
         $contrato = new contrato();
         $contrato->num_contrato = $request->num_contrato;
@@ -43,9 +43,9 @@ class Contratos extends Component
         $contrato->empleado_rrhh = $request->empleado_rrhh;
 
         $contrato->save();
- 
+
         return response()->json('EXITO');
- 
+
 
     }
 
@@ -53,18 +53,18 @@ class Contratos extends Component
 
 
     public function contrato_listar(){
-       
-        $contrato = DB::select("SELECT A.num_contrato, B.nombre, 
-                                       A.fecha_inicio, A.fecha_fin, 
-                                       A.id,TIMESTAMPDIFF(MONTH, A.fecha_inicio, A.fecha_fin) dif_mes, 
+
+        $contrato = DB::select("SELECT A.num_contrato, B.nombre,
+                                       A.fecha_inicio, A.fecha_fin,
+                                       A.id,TIMESTAMPDIFF(MONTH, A.fecha_inicio, A.fecha_fin) dif_mes,
                                        TIMESTAMPDIFF(DAY, NOW(), A.fecha_fin) dif_dia, estado_contrato
-                                    FROM contrato A 
-                                    INNER JOIN empleado B 
+                                    FROM contrato A
+                                    INNER JOIN empleado B
                                     ON(A.empleado_id=B.id)");
 
         return Datatables::of($contrato)
         ->addColumn('action', function ($contrato) {
-        
+
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -73,7 +73,7 @@ class Contratos extends Component
                     <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-danger"></i> Descargar</a>
                     <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
                 </div>
-               </div>';              
+               </div>';
                 })
         ->addColumn('item', function ($contrato) {
         if ($contrato->estado_contrato === 'Cancelado') {
@@ -86,14 +86,14 @@ class Contratos extends Component
                 return '<td><span class="badge bg-inverse-danger">Vencido</span></td>';
             }
         }
-                 
+
                 })
 
         ->editColumn('id', 'ID: {{$id}}')
         ->rawColumns(['action','item'])
         ->make(true);
 
-        
+
 
     }
 
@@ -103,14 +103,14 @@ class Contratos extends Component
 
         $contrato = DB::select("SELECT A.num_contrato, A.estado_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo
-                                FROM contrato A 
-                                INNER JOIN empleado B 
+                                FROM contrato A
+                                INNER JOIN empleado B
                                 ON(A.empleado_id=B.id)
-                                INNER JOIN cargo C 
+                                INNER JOIN cargo C
                                 ON(B.cargo_id=C.id)
-                                INNER JOIN area D 
+                                INNER JOIN area D
                                 ON(C.area_id=D.id)
-                                INNER JOIN departamento E 
+                                INNER JOIN departamento E
                                 ON(D.departamento_id=E.id)
                                 WHERE A.id='$id'");
 
@@ -137,15 +137,15 @@ class Contratos extends Component
         $contrato->empleado_rrhh = $request->empleado_rrhh;
 
         $contrato->save();
- 
+
         return response()->json('EXITO');
- 
+
 
     }
 
 
     public function contrato_elimina($id){
-     
+
         contrato::destroy($id);
 
 
@@ -155,40 +155,41 @@ class Contratos extends Component
 
     public function generatePDF($id){
 
-        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id
-                                FROM contrato A 
-                                INNER JOIN empleado B 
+                                FROM contrato A
+                                INNER JOIN empleado B
                                 ON(A.empleado_id=B.id)
-                                INNER JOIN cargo C 
+                                INNER JOIN cargo C
                                 ON(B.cargo_id=C.id)
-                                INNER JOIN area D 
+                                INNER JOIN area D
                                 ON(C.area_id=D.id)
-                                INNER JOIN departamento E 
+                                INNER JOIN departamento E
                                 ON(D.departamento_id=E.id)
                                 WHERE A.id='$id'
         ");
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
-
-        $gerente_rh = DB::select("SELECT A.nombre, A.identidad, A.rtn 
-                                             FROM empleado A 
+        $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
+        $gerente_rh = DB::select("SELECT A.nombre, A.identidad, A.rtn
+                                             FROM empleado A
                                  WHERE A.id='$contrato->empleado_rrhh'");
-        
-        
-        
+
+
+
 
         $data = [
             'title' => 'Contrato',
             'contrato' => $contrato,
             'funciones' => $funciones,
-            'gerente_rh' => $gerente_rh
+            'gerente_rh' => $gerente_rh,
+            'cargos' => $cargos
         ];
-          
+
         $pdf = PDF::loadView('pdf/contrato', $data);
-    
+
         return $pdf->download('Contrato.pdf');
-    
+
     }
 
 }
