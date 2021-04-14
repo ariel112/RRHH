@@ -8,6 +8,39 @@
     <title>Contrato</title>
 </head>
 <body>{{-- Contrato de {{ $contrato->nombre }} --}}
+    {{-- <div style="position:absolute; top:-45px; right:-50px;"> --}}
+    <div style="height: -30px;
+                background: red;
+                position: absolute;
+                before {
+                        position: absolute;
+                        top: -65px; right: -50px;
+                        border-top: 40px solid red;
+                        border-left: 35px solid red;
+                        width: 270;
+                }"></div>
+    <div style="height: -40px;
+    background: red;
+    position: absolute;
+    transform: rotate(-90deg);
+    before {
+            position: absolute;
+            top: -65px; left: 180px;
+            border-top: 40px solid red;
+            border-left: 35px solid red;
+            width: 800;
+    }"></div>
+    <div style="height: -40px;
+    background: red;
+    position: absolute;
+    transform: rotate(90deg);
+    before {
+            position: absolute;
+            top: 1300px; left: -615px;
+            border-top: 40px solid red;
+            border-left: 35px solid red;
+            width: 800;
+    }"></div>
     <div class="container" style="position: absolute; align:center; padding-left:40px; padding-right:40px;">
         {{-- -------------------PRIMER PAGINA-----------------------------------
         --------------------------------------------------------------------------
@@ -25,12 +58,12 @@
             <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</u></h5>
             <h5 style="text-align: center; font-family: Arial;font-size:12;">{{$contrato->num_delegacion}}</h5>
 
-            <p style="text-align: justify; font-family: Arial;font-size:12;">Nosotros, <b>HAZEL ALEJANDRA ESCOBAR RAMIREZ</b> mayor de edad, hondureña, casada, Licenciada en Administración de Empresas, con identidad número 0801-1982-10044, Registro Tributario Nacional número 08011982100440 y de este domicilio, quien actúa en su condición de Coordinador Técnico del Programa Presidencial de Becas “Honduras 20/20” creado mediante Decreto Ejecutivo Numero PCM-013-2017, facultades que acredito mediante Acuerdo de Delegación No. GL-PPBH-001/2021 de fecha 4 de enero del presente año, quien en lo sucesivo se denominará <b>“EL CONTRATANTE” {{ $contrato->nombre }}</b> , hondureño, mayor de edad, {{ $contrato->estado_civil }}, Ingeniero en Sistemas con tarjeta de identidad No. {{ $contrato->identidad }} y de este domicilio, y en los sucesivo se le denominará “EL TRABAJADOR”, hemos convenido celebrar el presente <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b> el cual se regirá por las cláusulas y condiciones siguientes:</p>
+            <p style="text-align: justify; font-family: Arial;font-size:12;">Nosotros, <b>HAZEL ALEJANDRA ESCOBAR RAMIREZ</b> mayor de edad, hondureña, casada, Licenciada en Administración de Empresas, con identidad número 0801-1982-10044, Registro Tributario Nacional número 08011982100440 y de este domicilio, quien actúa en su condición de Coordinador Técnico del Programa Presidencial de Becas “Honduras 20/20” creado mediante Decreto Ejecutivo Numero PCM-013-2017, facultades que acredito mediante Acuerdo de Delegación No. GL-PPBH-001/2021 de fecha 4 de enero del presente año, quien en lo sucesivo se denominará <b>“EL CONTRATANTE” {{ $contrato->nombre }}</b> , hondureño, mayor de edad, {{ $contrato->estado_civil }}, {{ $contrato->profesion }} con tarjeta de identidad No. {{ $contrato->identidad }} y de este domicilio, y en los sucesivo se le denominará “EL TRABAJADOR”, hemos convenido celebrar el presente <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b> el cual se regirá por las cláusulas y condiciones siguientes:</p>
 
-            <p style="text-align: justify; font-family: Arial;font-size:12;"><b><u>PRIMERO: DE LA EXCLUSIVIDAD</u>. EL TRABAJADOR</b> manifiesta: que en este acto y por medio del presente contrato, <b>SE OBLIGA</b> a prestar sus servicios a favor del <b>CONTRATANTE</b>, comprometiendo su esfuerzo y capacidad de trabajo, en forma exclusiva, bajo la subordinación y dependencia de la <b>GERENCIA DE SEGUIMIENTO Y LOS DEMAS ADMINISTRADORES Y REPRESENTANTES QUE DESIGNE EL CONTRATANTE</b>, desempeñándose en el puesto de: <b>{{$cargos->nombre}}</b>, quien llevara a cabo las siguientes funciones:@php $count = 0;@endphp @foreach ($funciones as $funcion) <b>{{ $count += 1}})</b> {{ $funcion->nombre }} Lorem ipsum dolor sit amet consectetur adipisicing elit mollitia. @endforeach Otras actividades que se deriven de la naturaleza de su puesto de trabajo y/o de las actividades generales que realice el Programa Presidencial de Becas Honduras 20/20.</p>
+            <p style="text-align: justify; font-family: Arial;font-size:12;"><b><u>PRIMERO: DE LA EXCLUSIVIDAD</u>. EL TRABAJADOR</b> manifiesta: que en este acto y por medio del presente contrato, <b>SE OBLIGA</b> a prestar sus servicios a favor del <b>CONTRATANTE</b>, comprometiendo su esfuerzo y capacidad de trabajo, en forma exclusiva, bajo la subordinación y dependencia de la <b>GERENCIA DE SEGUIMIENTO Y LOS DEMAS ADMINISTRADORES Y REPRESENTANTES QUE DESIGNE EL CONTRATANTE</b>, desempeñándose en el puesto de: <b>{{$cargos->nombre}}</b>, quien llevara a cabo las siguientes funciones:@php $count = 0;@endphp @foreach ($funciones as $funcion) <b>{{ $count += 1}})</b> {{ $funcion->nombre }}@endforeach. Otras actividades que se deriven de la naturaleza de su puesto de trabajo y/o de las actividades generales que realice el Programa Presidencial de Becas Honduras 20/20.</p>
             <p style="text-align: justify; font-family: Arial;font-size:12;"><b><u>SEGUNDO: PERIODO DE PRUEBA</u>. EL TRABAJADOR</b> queda sujeto a un periodo de prueba de sesenta días (60) el cual tiene por objeto apreciar por parte del CONTRATANTE las aptitudes y capacidades de <b>EL TRABAJADOR</b> y por parte de este último, si le convienen o no las condiciones de trabajo que ofrece <b>EL CONTRATANTE.</b> El periodo de prueba será remunerado.</p>
         </div>
-        <div style="position:absolute; top:960px;">
+        <div style="position:absolute; top:970px;">
             <div style="background-color: linear-gradient(to right top,#07c459, #5bcb52, #85d24f, #a8d84f, #c8dd54, #dad448, #ebca41, #fac03f, #ffa331, #ff832f, #ff6037, #ff3244); width:auto; height:4px;">
             </div>
             <div style="float:left; line-height=150%">
@@ -61,7 +94,7 @@
             <p style="text-align: justify; font-family: Arial;font-size:11;">Por cada cinco (5) días de trabajo comprendidos de lunes a viernes, habrá dos (2) días de descanso, si por necesidades urgentes del <b>CONTRATANTE</b> se trabaja en días de descanso o días feriados, <b>EL TRABAJADOR</b> requerido conservara su derecho y se le será concedido cuando este lo solicite por escrito a la Gerencia de Talento Humano previo autorización de su jefe inmediato. </p>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>SEPTIMO: CONFIDENCIALIDAD DE LA INFORMACIÓN.</u></b> Se compromete a mantener absoluta confidencialidad y abstenerse de comunicar a terceros, directa o indirectamente, cualquier información o conocimiento de carácter financiero, técnico, contable, comercial, gerencial, administrativo o de cualquier otra naturaleza, tales como sistemas de Internet, alianzas estratégicas y demás convenios con terceros que <b>EL TRABAJADOR</b> pueda obtener o conocer durante y con ocasión de la prestación de sus servicios con <b>EL CONTRATANTE.</b> Asimismo, en la fecha de terminación de sus servicios, <b>EL TRABAJADOR</b> deberá devolver <b>AL CONTRATANTE</b>, todos los documentos, manuales, libros, correspondencia, publicaciones, herramientas y demás activos y literatura que éste pueda haber obtenido, conocido, preparado o utilizado en su trabajo mientras prestaba sus servicios para <b>EL CONTRATANTE.</b></p>
         </div>
-        <div style="position:absolute; top:960px;">
+        <div style="position:absolute; top:970px;">
             <div style="background-color: linear-gradient(to right top,#07c459, #5bcb52, #85d24f, #a8d84f, #c8dd54, #dad448, #ebca41, #fac03f, #ffa331, #ff832f, #ff6037, #ff3244); width:auto; height:4px;">
             </div>
             <div style="float:left; line-height=150%">
@@ -90,7 +123,7 @@
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO: RESCISIÓN:</u></b> Se podrá rescindir el presente contrato sin responsabilidad para el <b>PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20</b> por las causas siguientes: <b>a)</b> Por acuerdo entre las partes; <b>b)</b> Por muerte de <b>“EL TRABAJADOR”</b>; <b>c)</b> Por comprobarse plenamente la incapacidad, negligencia, ineficiencia, o cualquiera actitud negativa que pueda poner en precario la prestación del servicio; <b>d)</b> Por fuerza mayor o caso fortuito que impidan el cumplimiento de las condiciones pactadas; <b>e)</b> Cuando el titular del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20” pierda la confianza en “EL TRABAJADOR” en la prestación de sus servicios profesionales; <b>f)</b> Por todo daño material causado dolosamente a los edificios, obras, mobiliario o equipo, vehículos, instrumentos y demás objetos relacionados para prestar sus servicios profesionales y toda grave negligencia que ponga en peligro la seguridad de las personas o de las cosas; <b>g)</b> Todo acto inmoral o delictuoso que “EL TRABAJADOR” cometa en el establecimiento o lugar donde presta sus servicios profesionales cuando sea debidamente comprobado ante la autoridad competente; <b>h)</b> Revelar o dar a conocer asuntos de carácter reservado en perjuicio del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20”; <b>i)</b> Por incumplimiento de las cláusulas del presente contrato; y <b>j)</b> Por tres llamadas de atención por escrito de su superior inmediato; <b>k)</b> por las causas reguladas por la legislación aplicable;</p>
         </div>
 
-        <div style="position:absolute; top:960px;">
+        <div style="position:absolute; top:970px;">
             <div style="background-color: linear-gradient(to right top,#07c459, #5bcb52, #85d24f, #a8d84f, #c8dd54, #dad448, #ebca41, #fac03f, #ffa331, #ff832f, #ff6037, #ff3244); width:auto; height:4px;">
             </div>
             <div style="float:left; line-height=150%">
@@ -129,7 +162,7 @@
                 <p style="text-align: center; font-size:9; float:left;font-family: Arial;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
             </div>
         </div>
-        <div style="position:absolute; top:960px;">
+        <div style="position:absolute; top:970px;">
             <div style="background-color: linear-gradient(to right top,#07c459, #5bcb52, #85d24f, #a8d84f, #c8dd54, #dad448, #ebca41, #fac03f, #ffa331, #ff832f, #ff6037, #ff3244); width:auto; height:4px;">
             </div>
             <div style="float:left; line-height=150%">

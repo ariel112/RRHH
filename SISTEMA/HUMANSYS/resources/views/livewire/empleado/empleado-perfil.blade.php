@@ -1,5 +1,10 @@
 
     <div class="page-wrapper">
+        <style>
+            input{
+                text-transform:uppercase;
+            }
+        </style>
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @foreach($empleados as $empleado)
@@ -49,6 +54,7 @@
                                                                                 <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
                                                                                 <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
                                                                                 <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
+                                                                                <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5>
                                                                                 <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
                                                                                 <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
                                                                                 @if ($cargo->tipo_empleado_id == 1)
@@ -473,6 +479,12 @@
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
                                                                                     <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-6">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Profesión<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control is-valid" value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">

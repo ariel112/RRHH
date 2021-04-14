@@ -80,6 +80,7 @@ class EmpleadoController extends Controller
             $empleados->sueldo = $request['sueldo'];
             $empleados->rtn = $request['rtn'];
             $empleados->genero = $request['genero'];
+            $empleados->profesion = $request['profesion'];
             $empleados -> save();
 
             $direccion = new direccion();
@@ -248,6 +249,7 @@ class EmpleadoController extends Controller
         $email_institucional = $request['email_institucional'];
         $telefono_2 = $request['telefono_2'];
         $genero = $request['genero'];
+        $profesion = $request['profesion'];
         /* DB::table('empleado')
             ->updateOrInsert(
                             ['primer_nombre' => $primer_nombre ])
@@ -270,7 +272,8 @@ class EmpleadoController extends Controller
               'sueldo' => $sueldo,
               'email_institucional' => $email_institucional,
               'telefono_2' => $telefono_2,
-              'genero'=>$genero]);
+              'genero'=>$genero,
+              'profesion'=>$profesion]);
     }
 
     public function updateReferencia(Request $request, $id){

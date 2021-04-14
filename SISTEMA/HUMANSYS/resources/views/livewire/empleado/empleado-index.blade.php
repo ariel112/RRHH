@@ -1,10 +1,11 @@
 <div class="page-wrapper">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-
-
-
-
+    <style>
+        input{
+            text-transform:uppercase;
+        }
+    </style>
     <!-- Page Content -->
     <div class="content container-fluid">
 
@@ -29,38 +30,6 @@
             </div>
         </div>
         <!-- /Page Header -->
-
-        <!-- Search Filter -->
-        <!-- <div class="row filter-row">
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group form-focus">
-                    <input type="text" id="identidad" name="identidad" class="form-control floating">
-                    <label class="focus-label">Número de identidad</label>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group form-focus">
-                    <input type="text" id="nombre" name="nombre" class="form-control floating">
-                    <label class="focus-label">Nombre del empleado</label>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div class="form-group form-focus select-focus">
-                    <select class="select floating">
-                        <option selected="selected">Buscar por Cargos</option>
-                        <option>Web Developer</option>
-                        <option>Web Designer</option>
-                        <option>Android Developer</option>
-                        <option>Ios Developer</option>
-                    </select>
-                    <label class="focus-label">Designation</label>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <a href="#" class="btn btn-success btn-block"> Buscar </a>
-            </div>
-        </div>  -->
-        <!-- Search Filter -->
 
         @livewire('empleado.empleado-card')
     </div>
@@ -146,6 +115,12 @@
                                                         <option value="4">UNIVERSIDAD INCOMPLETA</option>
                                                         <option value="5">POSTGRADO</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label class="col-form-label">Profesión<span class="text-danger">*</span></label>
+                                                    <input class="form-control" id="profesion" name="profesion" type="text">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
@@ -519,7 +494,7 @@
             var estatus_id = $('#estatus_id').val();
             var sueldo = $('#sueldo').val();
             var descripcion_laboral = $('#descripcion_laboral').val();
-
+            var profesion = $('#profesion').val();
             if(/_/g.test(identidad)){
                 let identidad = document.getElementById('identidad');
                 identidad.className = 'form-control is-invalid';
@@ -532,6 +507,16 @@
             }else if(primer_nombre.length == 0){
                 let primer_nombre = document.getElementById('primer_nombre');
                 primer_nombre.className = 'form-control is-invalid';
+
+                    Swal.fire({
+                    icon: 'warning',
+                    text: 'Debe escribir un nombre',
+                    timer: 1000
+                    })
+                    event.preventDefault();
+            }else if(profesion.length == 0){
+                let profesion = document.getElementById('profesion');
+                profesion.className = 'form-control is-invalid';
 
                     Swal.fire({
                     icon: 'warning',

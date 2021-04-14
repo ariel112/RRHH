@@ -29,5 +29,10 @@ class empleado extends Model
         'telefono_2',
         'estatus_id',
         'grado_academico_id',
-        'municipio_id'];
+        'municipio_id',
+        'sueldo',
+        'rtn',
+        'cargo_id',
+        'genero',
+        'profesion'];
 }

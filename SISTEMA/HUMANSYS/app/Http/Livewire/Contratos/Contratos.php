@@ -155,7 +155,7 @@ class Contratos extends Component
 
     public function generatePDF($id){
 
-        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id
                                 FROM contrato A
                                 INNER JOIN empleado B
