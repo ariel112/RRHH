@@ -46,9 +46,13 @@
 
         <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
-            <img src="img/13.png" style="width:400px; height:20px; margin-left:530px; margin-top:-45px; transform: rotate(-90deg);"  alt="">
         </div>
-
+        <div style="position:absolute;  top:145px;">
+            <img src="img/13.png" style=" width:400px; height:20px; margin-left:540px; transform: rotate(-90deg);"  alt="">
+        </div>
+        <div style="position:absolute;  top:790px;">
+            <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
+        </div>
 
 
 <div class="container" >
@@ -56,7 +60,7 @@
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
 
-        <div style="position:absolute; top:40px;">
+        <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
                 <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
             </div>
@@ -66,7 +70,7 @@
             </div>
         </div>
 
-        <div style="position:absolute; top:60px; padding:50px;">
+        <div style="position:absolute; top:40px; padding:50px;">
             <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</u></h5>
             <h5 style="text-align: center; font-family: Arial;font-size:12;">{{$contrato->num_delegacion}}</h5>
 
@@ -92,6 +96,15 @@
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
         <H1 style="PAGE-BREAK-AFTER: always"></H1>
+        <div>
+            <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
+        </div>
+        <div style="position:absolute;  top:145px;">
+            <img src="img/13.png" style=" width:400px; height:20px; margin-left:540px; transform: rotate(-90deg);"  alt="">
+        </div>
+        <div style="position:absolute;  top:790px;">
+            <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
+        </div>
         <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
                 <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
@@ -126,6 +139,15 @@
         {{-- ------------------TERCERA PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
+        <div>
+            <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
+        </div>
+        <div style="position:absolute;  top:145px;">
+            <img src="img/13.png" style=" width:400px; height:20px; margin-left:540px; transform: rotate(-90deg);"  alt="">
+        </div>
+        <div style="position:absolute;  top:790px;">
+            <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
+        </div>
         <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
                 <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
@@ -156,6 +178,15 @@
         {{-- -------------------CUARTA PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
+        <div>
+            <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
+        </div>
+        <div style="position:absolute;  top:145px;">
+            <img src="img/13.png" style=" width:400px; height:20px; margin-left:540px; transform: rotate(-90deg);"  alt="">
+        </div>
+        <div style="position:absolute;  top:790px;">
+            <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
+        </div>
         <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
                 <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
