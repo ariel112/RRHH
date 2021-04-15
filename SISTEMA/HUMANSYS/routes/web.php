@@ -10,6 +10,7 @@ use App\Http\Livewire\Permisos\PermisosJefe;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Livewire\Asistencia\Asistencia;
+use App\Http\Livewire\Asistencia\ListaAsistencia;
 use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
 use App\Models\cargo;
@@ -135,10 +136,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       //   eliminar funciones
       Route::get('/cargos/funciones/eliminar/{id}', [Cargos::class, 'eliminar_funciones'])->name('eliminar_funciones');
 
-    //asistencias
-    Route::get('/asistencia', Asistencia::class)->name('asistencia.index');
-    Route::POST('/asistencia/buscar', [Asistencia::class, 'asistencia_matriz'])->name('asistencia.buscar');
-
+      //asistencias
+      Route::get('/asistencia', Asistencia::class)->name('asistencia.index');
+      Route::POST('/asistencia/buscar', [Asistencia::class, 'asistencia_matriz'])->name('asistencia.buscar');
+  
+      // lista empleado
+      Route::POST('/asistencia/lista', ListaAsistencia::class )->name('lista.asistencia');
 
 
     });
