@@ -171,7 +171,9 @@ class Contratos extends Component
                                 WHERE A.id='$id'
         ");
           $formatter = new NumeroALetras();
-          $sueldo_letras = $formatter->toMoney($contrato->sueldo, 0, 'LEMPIRAS EXACTOS', 'CENTAVO EXACTOS');
+      
+          $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
+        
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
         $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
