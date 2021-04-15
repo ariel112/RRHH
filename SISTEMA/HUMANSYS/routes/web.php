@@ -137,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //asistencias
     Route::get('/asistencia', Asistencia::class)->name('asistencia.index');
-    Route::post('/asistencia/buscar', [Asistencia::class, 'asistencia_matriz'])->name('asistencia.buscar');
+    Route::POST('/asistencia/buscar', [Asistencia::class, 'asistencia_matriz'])->name('asistencia.buscar');
 
 
 

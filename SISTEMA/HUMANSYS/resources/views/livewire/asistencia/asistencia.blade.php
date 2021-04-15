@@ -25,7 +25,8 @@
             </div>
 
             {{-- formulario para buscar  --}}
-            <form  action="/asistencia/buscar">
+            <form  action="/asistencia/buscar" method="POST">
+                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="col-sm-12 col-md-12"> 
                     <div class="form-group form-focus select-focus">
                         <input type="MONTH" name="fecha" class="form-control">
