@@ -171,9 +171,14 @@ class Contratos extends Component
                                 WHERE A.id='$id'
         ");
           $formatter = new NumeroALetras();
-      
-          $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
+          $centavos = explode('.',$contrato->sueldo);
         
+          if(sizeof($centavos)>1){
+            $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
+            } else {
+                $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS EXACTOS', 'CENTAVOS');
+
+          }
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
         $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
