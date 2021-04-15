@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use PDF;
 
+use Luecano\NumeroALetras\NumeroALetras;
+
 class Contratos extends Component
 {
     public $searchNombre ='';
@@ -168,6 +170,8 @@ class Contratos extends Component
                                 ON(D.departamento_id=E.id)
                                 WHERE A.id='$id'
         ");
+          $formatter = new NumeroALetras();
+          $sueldo_letras = $formatter->toMoney($contrato->sueldo, 0, 'LEMPIRAS EXACTOS', 'CENTAVO EXACTOS');
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
         $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
@@ -183,6 +187,7 @@ class Contratos extends Component
             'contrato' => $contrato,
             'funciones' => $funciones,
             'gerente_rh' => $gerente_rh,
+            'sueldo_letras' => $sueldo_letras,
             'cargos' => $cargos
         ];
 

@@ -25,7 +25,7 @@
             </div>
 
             {{-- formulario para buscar  --}}
-            <form  action="/asistencia/buscar" method="POST">
+            <form  action="/asistencia/lista" method="POST">
             <div class="row">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                 <div class="col-sm-9 col-md-9"> 
