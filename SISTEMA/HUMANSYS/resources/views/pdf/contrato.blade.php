@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{ asset('css/contrato.css') }}">
+    <link rel="stylesheet" type="text/css" href="css/contrato.css">
     <title>Contrato</title>
 
 </head>
@@ -61,6 +61,7 @@
         {{-- -------------------PRIMER PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
+        <img src="img/4.jpg" alt="">
         <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
                 <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
