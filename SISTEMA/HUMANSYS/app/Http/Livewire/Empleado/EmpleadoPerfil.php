@@ -43,8 +43,6 @@ class EmpleadoPerfil extends Component
         return $sections['content']; // this will only return whats in the content section
 
     } */
-
-
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
