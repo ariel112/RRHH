@@ -8,14 +8,14 @@
                     @for ($i =1 ; $i <=$fin ; $i++)
                         <th>{{ $i }}</th>
                     @endfor
-                   
-                        
-                        
+
+
+
                     </tr>
                 </thead>
                 <tbody>
-                 
-                   
+
+
                     @foreach ($matriz as $ma )
                     <tr>
                         <td>
@@ -25,20 +25,20 @@
                             </h2>
                         </td>
                         @foreach ($ma['dia'] as $dia )
-                            
+
                         <td>
                             @if($dia['asistencia']==1)
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#attendance_info"><i class="fa fa-check text-success"></i></a>
                             @else
-                            <i class="fa fa-close text-danger"></i> 
+                            <i class="fa fa-close text-danger"></i>
                             @endif
                         </td>
                         @endforeach
-                       
+
                     </tr>
                 @endforeach
-                    
-                   
+
+
                 </tbody>
             </table>
         </div>
