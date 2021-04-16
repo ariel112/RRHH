@@ -762,8 +762,15 @@ $(document).ready(function(){
         $('#id_contrato').val(data.id);
 
        
-        
-// llamo el gerente para editarlo
+        gerente_edit(data.empleado_rrhh);
+
+
+  
+  }
+
+
+ function gerente_edit(empleado_gerente){
+     // llamo el gerente para editarlo
     $.ajax({
     type:"GET",
     url: "/gerente",
@@ -772,36 +779,31 @@ $(document).ready(function(){
     processData:false,
     dataType:"json",
     success: function(data){
-        // console.log(data);
-        cargo(data, data.empleado_rrhh);
+        
+         //console.log(data);
+        cargo(data, empleado_gerente);
     },
     error: function (jqXHR, textStatus, errorThrown) {
 
         console.log(jqXHR, textStatus, errorThrown);
     }
 })
-
-
-
-function cargo(data, id){
-    var html_select = '';
-     for (var i=0; i<data.length; ++i)
-       if(data[i].id=id){
-       html_select += '<option selected value="'+data[i].id+'">'+data[i].nombre +'</option>'
-
-       }else{
-       html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
-
-       }
-
-       $('#empleado_rrhh_edit').html(html_select);
  }
 
-  
-  }
 
+  function cargo(data, id){
+//   console.log(id);
+  var html_select = '';
+   for (var i=0; i<data.length; ++i)
+     if(data[i].id_gerente==id){
+     html_select += '<option selected value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
+     }else{
+     html_select += '<option value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
 
+     }
 
+     $('#empleado_rrhh_edit').html(html_select);
+}
 
   
 

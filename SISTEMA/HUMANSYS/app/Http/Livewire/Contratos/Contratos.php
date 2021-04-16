@@ -136,7 +136,6 @@ class Contratos extends Component
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
-
         $contrato->save();
 
         return response()->json('EXITO');
@@ -156,8 +155,8 @@ class Contratos extends Component
 
     public function generatePDF($id){
 
-        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,date_format(A.fecha_inicio, '%m') mes,
-                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id, date_format(A.fecha_inicio, '%d') numero,  date_format(A.fecha_inicio, '%Y') anio
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,date_format(A.fecha_inicio, '%m') mes, date_format(A.fecha_fin, '%m') mesf,
+                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id, date_format(A.fecha_inicio, '%d') numero,  date_format(A.fecha_inicio, '%Y') anio, date_format(A.fecha_fin, '%d') numerof, date_format(A.fecha_fin, '%Y') aniof
                                 FROM contrato A
                                 INNER JOIN empleado B
                                 ON(A.empleado_id=B.id)
@@ -196,10 +195,40 @@ class Contratos extends Component
             $mes='Diciembre';
 
 
-        // numero a letras
+        if($contrato->mesf==01)
+            $mesf='Enero';
+         if($contrato->mesf==02)
+            $mesf='Febrero';
+         if($contrato->mesf==03)
+            $mesf='Marzo';
+         if($contrato->mesf==04)
+            $mesf='Abril';
+         if($contrato->mesf==05)
+            $mesf='Mayo';
+         if($contrato->mesf==06)
+            $mesf='Junio';
+         if($contrato->mesf==07)
+            $mesf='Julio';
+         if($contrato->mesf==8)
+            $mesf='Agosto';
+         if($contrato->mesf==9)
+            $mesf='Septiembre';
+         if($contrato->mesf==10)
+            $mesf='Octubre';
+         if($contrato->mesf==11)
+            $mesf='Noviembre';
+         if($contrato->mesf==12)
+            $mesf='Diciembre';
+
+
+        // numero a letras inicio
                 $formatter = new NumeroALetras();
                 $formatter->apocope = true;
                 $numero = strtolower($formatter->toWords($contrato->numero));
+        // numero a letras fin 
+                $formatterf = new NumeroALetras();
+                $formatterf->apocope = true;
+                $numerof = strtolower($formatterf->toWords($contrato->numerof));
         // $numero = strtolower( (new NumeroALetras())->toMoney($contrato->numero, 0, '', ''));
 
 
@@ -214,12 +243,12 @@ class Contratos extends Component
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
         $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
-        $gerente_rh = DB::select("SELECT A.nombre, A.identidad, A.rtn
+        $gerente_rh = DB::selectone("SELECT A.nombre, A.identidad, A.rtn, A.profesion, A.estado_civil
                                              FROM empleado A
                                  WHERE A.id='$contrato->empleado_rrhh'");
 
 
-
+    
 
         $data = [
             'title' => 'Contrato',
@@ -229,6 +258,8 @@ class Contratos extends Component
             'sueldo_letras' => $sueldo_letras,
             'cargos' => $cargos,
             'numero' => $numero,
+            'mesf' => $mesf,
+            'numerof' => $numerof,
             'mes' => $mes
         ];
 

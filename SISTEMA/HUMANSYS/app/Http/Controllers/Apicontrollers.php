@@ -19,7 +19,7 @@ class Apicontrollers extends Controller
         // ON(C.id=B.area_id)
         // WHERE C.id=35");
 
-        $gerente = DB::select("SELECT A.identidad, A.nombre, A.rtn, A.id
+        $gerente = DB::select("SELECT A.identidad, A.nombre, A.rtn, A.id id_gerente
         FROM empleado A
         INNER JOIN cargo B
         ON(A.cargo_id=B.id)
