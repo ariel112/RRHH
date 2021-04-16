@@ -61,8 +61,8 @@
         ---------------------------------------------------------------------------}}
 
         <div style="position:absolute; top:25px;">
-            <div style="float:center; margin-left:100px;">
-                <img src="img/16.png" class="fondo" width="470px" height="75px" alt="">
+            <div style="align:center; margin-left:100px;">
+                <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
         </div>
 
@@ -101,13 +101,9 @@
         <div style="position:absolute;  top:790px;">
             <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
         </div>
-        <div style="position:absolute; top:10px;">
-            <div style="float:left; margin-left:100px;">
-                <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
-            </div>
-
-            <div style="float:left; margin-left:95px;">
-                <img src="img/6.jpg" style="align-content: center" class="fondo" width="130px" height="65px" alt="">
+        <div style="position:absolute; top:25px;">
+            <div style="align:center; margin-left:100px;">
+                <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
         </div>
 
@@ -144,13 +140,9 @@
         <div style="position:absolute;  top:790px;">
             <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
         </div>
-        <div style="position:absolute; top:10px;">
-            <div style="float:left; margin-left:100px;">
-                <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
-            </div>
-
-            <div style="float:left; margin-left:95px;">
-                <img src="img/6.jpg" style="align-content: center" class="fondo" width="130px" height="65px" alt="">
+        <div style="position:absolute; top:25px;">
+            <div style="align:center; margin-left:100px;">
+                <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
         </div>
         <div style="position:absolute; top:80px; padding:50px;">
@@ -183,13 +175,9 @@
         <div style="position:absolute;  top:790px;">
             <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
         </div>
-        <div style="position:absolute; top:10px;">
-            <div style="float:left; margin-left:100px;">
-                <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
-            </div>
-
-            <div style="float:left; margin-left:95px;">
-                <img src="img/6.jpg" style="align-content: center" class="fondo" width="130px" height="65px" alt="">
+        <div style="position:absolute; top:25px;">
+            <div style="align:center; margin-left:100px;">
+                <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
         </div>
         <div style="position:absolute; top:80px; padding:50px;">
