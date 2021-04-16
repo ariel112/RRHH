@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Livewire\Contratos;
 
 use Livewire\Component;
@@ -157,8 +156,8 @@ class Contratos extends Component
 
     public function generatePDF($id){
 
-        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,
-                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh, 
+                                        A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id, date_format(A.fecha_inicio, '%d') numero,  date_format(A.fecha_inicio, '%Y') anio
                                 FROM contrato A
                                 INNER JOIN empleado B
                                 ON(A.empleado_id=B.id)
@@ -170,7 +169,41 @@ class Contratos extends Component
                                 ON(D.departamento_id=E.id)
                                 WHERE A.id='$id'
         ");
-          $formatter = new NumeroALetras();
+
+
+        if($contrato->numero==01)    
+            $mes='Enero';
+         if($contrato->numero==02)    
+            $mes='Febrero';
+         if($contrato->numero==03)    
+            $mes='Marzo';
+         if($contrato->numero==04)    
+            $mes='Abril';
+         if($contrato->numero==05)    
+            $mes='Mayo';
+         if($contrato->numero==06)    
+            $mes='Junio';
+         if($contrato->numero==07)    
+            $mes='Julio';
+         if($contrato->numero==8)    
+            $mes='Agosto';
+         if($contrato->numero==9)    
+            $mes='Septiembre';
+         if($contrato->numero==10)    
+            $mes='Octubre';
+         if($contrato->numero==11)    
+            $mes='Noviembre';
+         if($contrato->numero==12)    
+            $mes='Diciembre';
+
+
+        // numero a letras
+                $formatter = new NumeroALetras();
+                $formatter->apocope = true;
+                $numero = strtolower($formatter->toWords($contrato->numero));
+        // $numero = strtolower( (new NumeroALetras())->toMoney($contrato->numero, 0, '', ''));
+      
+          
           $centavos = explode('.',$contrato->sueldo);
         
           if(sizeof($centavos)>1){
@@ -195,7 +228,9 @@ class Contratos extends Component
             'funciones' => $funciones,
             'gerente_rh' => $gerente_rh,
             'sueldo_letras' => $sueldo_letras,
-            'cargos' => $cargos
+            'cargos' => $cargos,
+            'numero' => $numero,
+            'mes' => $mes
         ];
 
         $pdf = PDF::loadView('pdf/contrato', $data);
