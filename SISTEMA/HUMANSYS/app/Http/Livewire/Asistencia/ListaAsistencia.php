@@ -16,7 +16,7 @@ use Illuminate\Pagination\Paginator;
 class ListaAsistencia extends Component
 {
     use WithPagination;
-
+    public $searchNombre = '';
     public function render(Request $request)
     {
         $carbon =Carbon::now();
@@ -55,15 +55,11 @@ class ListaAsistencia extends Component
             }
             array_push($matriz,['id_empleado'=>$list->empleado_id , 'nombre'=>$list->nombre, 'dia'=>$dia]);
         }
-        /* $collection = collect($matriz);
-        return view('livewire.Asistencia.lista_asistencia', [
-            'fin'=> $fin,
-            'matriz' =>$collection->paginate(10)]); */
-            /* $currentPage = $request->page; */
             $currentPage = $request->page;
             $perPage = 5;
             $currentElements = array_slice($matriz, $perPage * ($currentPage - 1), $perPage);
-            $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage);
+            /* $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage); */
+            $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage, ['path' => url('/asistencia')]);
             /* $res = new Paginator($currentElements, $perPage, $currentPage); */
 
            /*  dd($res); */

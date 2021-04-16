@@ -3,12 +3,11 @@
         <div class="table-responsive">
             <table class="table table-striped custom-table table-nowrap mb-0" id="myTable">
                 <thead>
-
                     <tr>
                         <th>Empleado</th>
-                    @for ($i =1 ; $i <=$fin ; $i++)
-                        <th>{{ $i }}</th>
-                    @endfor
+                        @for ($i =1 ; $i <=$fin ; $i++)
+                            <th>{{ $i }}</th>
+                        @endfor
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +27,6 @@
                                         <i class="fa fa-close text-danger"></i>
                                         @endif
                                     </td>
-
                                 @endforeach
                             </tr>
                     @endforeach
