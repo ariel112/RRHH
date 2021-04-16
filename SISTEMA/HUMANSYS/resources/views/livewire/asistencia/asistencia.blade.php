@@ -1,6 +1,6 @@
 <div class="page-wrapper">
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row">
@@ -14,12 +14,12 @@
             </div>
         </div>
         <!-- /Page Header -->
-        
+
         <!-- Search Filter -->
         <div class="row filter-row">
-            <div class="col-sm-4 col-md-3">  
+            <div class="col-sm-4 col-md-3">
                 <div class="form-group form-focus">
-                    <input type="text" class="form-control floating">
+                    <input type="text" wire:model="searchNombre" class="form-control floating">
                     <label class="focus-label">Empleado</label>
                 </div>
             </div>
@@ -28,30 +28,30 @@
             <form  action="/asistencia/lista" method="POST">
             <div class="row">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                <div class="col-sm-9 col-md-9"> 
+                <div class="col-sm-9 col-md-9">
                     <div class="form-group form-focus select-focus">
                         <input type="MONTH" name="fecha" class="form-control">
                         <label class="focus-label">Seleccione la fecha</label>
                     </div>
                 </div>
-                <div class="col-sm-3 col-md-3">  
-                    <button id="generarasistencia" class="btn btn-success "> <i class="fa fa-search"></i> </button> 
-                                       
+                <div class="col-sm-3 col-md-3">
+                    <button id="generarasistencia" class="btn btn-success "> <i class="fa fa-search"></i> </button>
+
                 </div>
             </div>
             </form>
-            {{-- formulario para buscar  --}}   
-            
+            {{-- formulario para buscar  --}}
+
         </div>
         <!-- /Search Filter -->
-        
+
         {{-- liveware  --}}
         @livewire('asistencia.lista-asistencia')
 
 
     </div>
     <!-- /Page Content -->
-    
+
     <!-- Attendance Modal -->
     <div class="modal custom-modal fade" id="attendance_info" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -133,8 +133,8 @@
                                                 1.30 PM.
                                             </p>
                                         </li>
-                                       
-                                       
+
+
                                     </ul>
                                 </div>
                             </div>
@@ -145,13 +145,13 @@
         </div>
     </div>
     <!-- /Attendance Modal -->
-    
+
 </div>
 
 @section('script')
     <script>
-        
- $('#asistencia_form').submit(function (e) { 
+
+ $('#asistencia_form').submit(function (e) {
     //  e.preventDefault();
      buscar();
  });
@@ -168,9 +168,9 @@
             processData:false,
             dataType:"json",
             success: function(data){
-               
 
-               
+
+
                 // $('#tbl_contrato').DataTable().ajax.reload();
                 // $('#tbl_cargos').DataTable().ajax.reload();
             //  console.log(data);

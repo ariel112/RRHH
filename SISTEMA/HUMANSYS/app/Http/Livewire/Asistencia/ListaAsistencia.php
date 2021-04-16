@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Asistencia;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Livewire\WithPagination;
 use App\Models\empleado;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 
 
 class ListaAsistencia extends Component
@@ -19,7 +21,6 @@ class ListaAsistencia extends Component
     {
         $carbon =Carbon::now();
         $fecha = Carbon::parse($request->fecha.'-01');
-
         if ($request->fecha) {
             $fechaentere = $request->fecha;
             # code...
@@ -27,9 +28,7 @@ class ListaAsistencia extends Component
         } else {
             $fechaentere = $carbon->format("Y-m");
             $fin =date('t', strtotime($carbon));
-
         }
-
         $anio =  $fecha->format("Y");
         $matriz = [];
         $lista_empleado = DB::select("SELECT A.empleado_id, CONCAT(B.primer_nombre, ' ', B.primer_apellido) nombre
@@ -48,26 +47,29 @@ class ListaAsistencia extends Component
                                              INNER JOIN empleado B
                                              ON(A.empleado_id=B.id)
                                              WHERE A.empleado_id='$list->empleado_id' AND date_format(A.entrada, '%Y-%m-%e') = '$compara'");
-
                     if($asistencia && $compara === $asistencia->fecha  ){
                         array_push($dia,['fecha'=>$compara, 'id'=>$asistencia->id,'asistencia'=>'1', 'id_empleado'=>$asistencia->empleado_id]);
                     }else {
                         array_push($dia,['fecha'=>$compara, 'asistencia'=>'0', 'id_empleado'=>$list->empleado_id]);
                           }
             }
-
             array_push($matriz,['id_empleado'=>$list->empleado_id , 'nombre'=>$list->nombre, 'dia'=>$dia]);
-
-
         }
-
         /* $collection = collect($matriz);
         return view('livewire.Asistencia.lista_asistencia', [
             'fin'=> $fin,
             'matriz' =>$collection->paginate(10)]); */
+            /* $currentPage = $request->page; */
+            $currentPage = $request->page;
+            $perPage = 5;
+            $currentElements = array_slice($matriz, $perPage * ($currentPage - 1), $perPage);
+            $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage);
+            /* $res = new Paginator($currentElements, $perPage, $currentPage); */
+
+           /*  dd($res); */
         return view('livewire.Asistencia.lista_asistencia', [
-            'matriz' =>$matriz,
-            'fin'=> $fin
+            'matriz' =>$res,
+            'fin'=> $fin,
         ]);
 
         // return view('livewire.asistencia.lista-asistencia');
