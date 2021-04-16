@@ -60,9 +60,9 @@
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
 
-        <div style="position:absolute; top:10px;">
-            <div style="float:left; margin-left:100px;">
-                <img src="img/16.png" class="fondo" width="205px" height="75px" alt="">
+        <div style="position:absolute; top:25px;">
+            <div style="float:center; margin-left:100px;">
+                <img src="img/16.png" class="fondo" width="470px" height="75px" alt="">
             </div>
         </div>
 

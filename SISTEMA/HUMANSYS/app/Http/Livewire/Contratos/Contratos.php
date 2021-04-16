@@ -156,7 +156,7 @@ class Contratos extends Component
 
     public function generatePDF($id){
 
-        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh, 
+        $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,date_format(A.fecha_inicio, '%m') mes,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id, date_format(A.fecha_inicio, '%d') numero,  date_format(A.fecha_inicio, '%Y') anio
                                 FROM contrato A
                                 INNER JOIN empleado B
@@ -170,30 +170,29 @@ class Contratos extends Component
                                 WHERE A.id='$id'
         ");
 
-
-        if($contrato->numero==01)    
+        if($contrato->mes==01)
             $mes='Enero';
-         if($contrato->numero==02)    
+         if($contrato->mes==02)
             $mes='Febrero';
-         if($contrato->numero==03)    
+         if($contrato->mes==03)
             $mes='Marzo';
-         if($contrato->numero==04)    
+         if($contrato->mes==04)
             $mes='Abril';
-         if($contrato->numero==05)    
+         if($contrato->mes==05)
             $mes='Mayo';
-         if($contrato->numero==06)    
+         if($contrato->mes==06)
             $mes='Junio';
-         if($contrato->numero==07)    
+         if($contrato->mes==07)
             $mes='Julio';
-         if($contrato->numero==8)    
+         if($contrato->mes==8)
             $mes='Agosto';
-         if($contrato->numero==9)    
+         if($contrato->mes==9)
             $mes='Septiembre';
-         if($contrato->numero==10)    
+         if($contrato->mes==10)
             $mes='Octubre';
-         if($contrato->numero==11)    
+         if($contrato->mes==11)
             $mes='Noviembre';
-         if($contrato->numero==12)    
+         if($contrato->mes==12)
             $mes='Diciembre';
 
 
@@ -202,10 +201,10 @@ class Contratos extends Component
                 $formatter->apocope = true;
                 $numero = strtolower($formatter->toWords($contrato->numero));
         // $numero = strtolower( (new NumeroALetras())->toMoney($contrato->numero, 0, '', ''));
-      
-          
+
+
           $centavos = explode('.',$contrato->sueldo);
-        
+
           if(sizeof($centavos)>1){
             $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
             } else {
