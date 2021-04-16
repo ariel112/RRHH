@@ -62,11 +62,7 @@
 
         <div style="position:absolute; top:10px;">
             <div style="float:left; margin-left:100px;">
-                <img src="img/4.jpg" class="fondo" width="205px" height="75px" alt="">
-            </div>
-
-            <div style="float:left; margin-left:155px;">
-                <img src="img/6.jpg" style="align-content: center" class="fondo" width="130px" height="65px" alt="">
+                <img src="img/16.png" class="fondo" width="205px" height="75px" alt="">
             </div>
         </div>
 
