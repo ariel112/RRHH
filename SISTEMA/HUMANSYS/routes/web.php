@@ -20,6 +20,7 @@ use App\Http\Livewire\Planilla\Planilla;
 use App\Http\Livewire\Planilla\Planilla as PlanillaPlanilla;
 use App\Models\permisos;
 use App\Http\Controllers\DeduccionesController;
+use App\Http\Livewire\Deducciones\Deducciones;
 
 
 /*
@@ -80,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Deducciones
     Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
     Route::post('/deducciones/guardar', [DeduccionesController::class, 'guardar']);
+    Route::get('/deducciones_listar', [Deducciones::class, 'listar_deducciones']);
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);

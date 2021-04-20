@@ -21,26 +21,16 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0">
+                    <table class="table table-striped custom-table mb-0" id="deducciones">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th></th>
-                                <th class="text-center"> <b>DEDUCCIÓN</b> </th>
-                                <th class="text-center"> <b>RANGO INICIO</b> </th>
-                                <th class="text-center"> <b>RANGO FINAL</b> </th>
-                                <th class="text-center"> <b>PORCENTAJE</b> </th>
+                                <th class="text-center"> <b>PERFIL</b> </th>
+                                <th class="text-center"> <b>NOMBRE/b> </th>
+                                <th class="text-center"> <b>ACCION</b> </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="holiday-upcoming">
-                                <td>1</td>
-                                <td class="text-center">imagen.jpg</td>
-                                <td class="text-center">IHSS</td>
-                                <td class="text-center">Lps. 13,550.00</td>
-                                <td class="text-center">Lps. 19,700.00</td>
-                                <td class="text-center">2.5 %</td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -58,7 +48,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form id="formDeduccionesGenerales" data-parsley-validate>
+								<form class="form-group" id="formDeduccionesGenerales" data-parsley-validate>
                                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 									<div class="form-group">
 										<label>Nombre<span class="text-danger">*</span></label>
@@ -66,18 +56,18 @@
 									</div>
                                     <div class="form-group">
 										<label>Porcentaje<span class="text-danger">*</span></label>
-										<input class="form-control" type="text" id="porcentaje_techo" name="porcentaje_techo">
+										<input class="form-control" required type="text" id="porcentaje_techo" name="porcentaje_techo">
 									</div>
                                     <div class="form-group">
 										<label>Rango de inicio<span class="text-danger">*</span></label>
-										<input class="form-control" type="text" id="rangoInicio_techo" name="rangoInicio_techo">
+										<input class="form-control" required type="text" id="rangoInicio_techo" name="rangoInicio_techo">
 									</div>
                                     <div class="form-group">
 										<label>Rango FInal<span class="text-danger">*</span></label>
-										<input class="form-control" type="text" id="rangoFinal_techo" name="rangoFinal_techo">
+										<input class="form-control" required type="text" id="rangoFinal_techo" name="rangoFinal_techo">
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-success submit-btn"  onclick="agregarDeduccion_general()">Crear</button>
+										<button class="btn btn-success submit-btn"  {{-- onclick="agregarDeduccion_general()" --}}>Crear</button>
 									</div>
 								</form>
 							</div>
@@ -145,15 +135,38 @@
 </div>
 
 @section('script')
-    <script>
+        <script>
+            $('#deducciones').DataTable({
+        "language": {
+        "lengthMenu": "Mostrar _MENU_ registros",
+        "zeroRecords": "No se encontraron resultados",
+        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sSearch": "Buscar:",
+        "oPaginate": {
+            "sFirst": "Primero",
+            "sLast":"Último",
+            "sNext":"Siguiente",
+            "sPrevious": "Anterior"
+        },
+        "sProcessing":"Procesando...",},
+        "serverSide": true,
+        processing: true,
+        "autoWidth": false,
+        "ajax": "/deducciones_listar",
+        "columns": [
+            {data:'perfil'},
+            {data:'nombre'},
+            {data:'action'}
+        ]});
+
         $('#formDeduccionesGenerales').submit(function(e){
             e.preventDefault();
-            var data = new FormData($('#formDeduccionesGenerales').get(0));
-            console.log(data);
+            agregarDeduccion_general();
         });
 
        function agregarDeduccion_general(){
-        event.preventDefault();
             var data = new FormData($('#formDeduccionesGenerales').get(0));
             $.ajax({
                 type:"POST",

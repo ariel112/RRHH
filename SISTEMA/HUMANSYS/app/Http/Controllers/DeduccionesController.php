@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\deducciones;
+use App\Models\techos;
+use Illuminate\Support\Facades\DB;
+use DataTables;
 
 class DeduccionesController extends Controller
 {
@@ -14,8 +17,17 @@ class DeduccionesController extends Controller
         $deducciones->tipo_deducciones_id = 2;
         $deducciones -> save();
 
+        $techos = new techos();
+        $techos->porcentaje = $request["porcentaje_techo"];
+        $techos->rango_inicio = $request["rangoInicio_techo"];
+        $techos->rango_final = $request["rangoFinal_techo"];
+        $techos->deducciones_id = $deducciones-> id;
+        $techos -> save();
+
         return $deducciones;
     }
+
+    
     /**
      * Display a listing of the resource.
      *
