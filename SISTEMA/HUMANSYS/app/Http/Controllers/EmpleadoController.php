@@ -97,6 +97,7 @@ class EmpleadoController extends Controller
             $referencias->direccion = $request['direccion_referencia'];
             $referencias->parentezco = $request['parentezco_referencia'];
             $referencias->empleado_id = $empleados -> id;
+            $referencias->estatus_referencia_id = 1;
             $referencias -> save();
 
             /* User::create([

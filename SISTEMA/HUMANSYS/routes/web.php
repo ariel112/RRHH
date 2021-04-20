@@ -19,6 +19,7 @@ use App\Http\Livewire\Permisos\PermisosRrhh;
 use App\Http\Livewire\Planilla\Planilla;
 use App\Http\Livewire\Planilla\Planilla as PlanillaPlanilla;
 use App\Models\permisos;
+use App\Http\Controllers\DeduccionesController;
 
 
 /*
@@ -78,6 +79,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Deducciones
     Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
+    Route::post('/deducciones/guardar', [DeduccionesController::class, 'guardar']);
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);
@@ -142,7 +144,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
       //asistencias
       Route::get('/asistencia', Asistencia::class)->name('asistencia.index');
       Route::POST('/asistencia/buscar', [Asistencia::class, 'asistencia_matriz'])->name('asistencia.buscar');
-  
+
       // lista empleado
       Route::POST('/asistencia/lista', ListaAsistencia::class )->name('lista.asistencia');
 

@@ -829,7 +829,6 @@
             }
         });
         $('#formEditReferencia').submit(function(e){
-            console.log("entro porque si");
             e.preventDefault();
             var identidad_referencia_edit = $('#identidad_referencia_edit').val();
             if(/_/g.test(identidad_referencia_edit) || identidad_referencia_edit.length != 13){

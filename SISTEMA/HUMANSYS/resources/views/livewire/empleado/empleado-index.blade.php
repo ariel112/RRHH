@@ -1,11 +1,7 @@
 <div class="page-wrapper">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-    <style>
-        input{
-            text-transform:uppercase;
-        }
-    </style>
+
     <!-- Page Content -->
     <div class="content container-fluid">
 
@@ -456,17 +452,17 @@
                     console.log(info); */
                     $('#formEmpleado').trigger("reset");
                     $('#add_employee').modal('hide');
+                    Swal.fire({
+                    icon: 'success',
+                    text: 'Guardado con éxito!',
+                    timer: 1500
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
             })
-            Swal.fire({
-                    icon: 'success',
-                    text: 'Guardado con éxito!',
-                    timer: 1500
-                    });
-            $('#formEmpleado').trigger("reset");
+
         }
 
         function validacion(){

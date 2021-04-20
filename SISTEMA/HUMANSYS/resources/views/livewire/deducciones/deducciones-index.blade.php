@@ -26,8 +26,10 @@
                             <tr>
                                 <th>#</th>
                                 <th></th>
-                                <th class="text-center"> <b>Deducción</b> </th>
-                                <th class="text-center"> <b>Acciones</b> </th>
+                                <th class="text-center"> <b>DEDUCCIÓN</b> </th>
+                                <th class="text-center"> <b>RANGO INICIO</b> </th>
+                                <th class="text-center"> <b>RANGO FINAL</b> </th>
+                                <th class="text-center"> <b>PORCENTAJE</b> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,43 +37,9 @@
                                 <td>1</td>
                                 <td class="text-center">imagen.jpg</td>
                                 <td class="text-center">IHSS</td>
-                                <td class="text-center">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_holiday"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_holiday"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="holiday-upcoming">
-                                <td>2</td>
-                                <td class="text-center">imagen.jpg</td>
-                                <td class="text-center">RAP</td>
-                                <td class="text-center">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_holiday"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_holiday"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="holiday-upcoming">
-                                <td>3</td>
-                                <td class="text-center">imagen.jpg</td>
-                                <td class="text-center">ISR</td>
-                                <td class="text-center">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_holiday"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_holiday"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td class="text-center">Lps. 13,550.00</td>
+                                <td class="text-center">Lps. 19,700.00</td>
+                                <td class="text-center">2.5 %</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,17 +58,26 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form id="formDeduccionesGenerales" data-parsley-validate>
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 									<div class="form-group">
 										<label>Nombre<span class="text-danger">*</span></label>
-										<input class="form-control" type="text">
+										<input class="form-control" required type="text" id="nombre_deduccion" name="nombre_deduccion">
 									</div>
-									<div class="form-group">
-										<label>Imagen<span class="text-danger">*</span></label>
-                                        <input type="file">
+                                    <div class="form-group">
+										<label>Porcentaje<span class="text-danger">*</span></label>
+										<input class="form-control" type="text" id="porcentaje_techo" name="porcentaje_techo">
+									</div>
+                                    <div class="form-group">
+										<label>Rango de inicio<span class="text-danger">*</span></label>
+										<input class="form-control" type="text" id="rangoInicio_techo" name="rangoInicio_techo">
+									</div>
+                                    <div class="form-group">
+										<label>Rango FInal<span class="text-danger">*</span></label>
+										<input class="form-control" type="text" id="rangoFinal_techo" name="rangoFinal_techo">
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-success submit-btn">Crear</button>
+										<button class="btn btn-success submit-btn"  onclick="agregarDeduccion_general()">Crear</button>
 									</div>
 								</form>
 							</div>
@@ -166,3 +143,40 @@
 
     </div>
 </div>
+
+@section('script')
+    <script>
+        $('#formDeduccionesGenerales').submit(function(e){
+            e.preventDefault();
+            var data = new FormData($('#formDeduccionesGenerales').get(0));
+            console.log(data);
+        });
+
+       function agregarDeduccion_general(){
+        event.preventDefault();
+            var data = new FormData($('#formDeduccionesGenerales').get(0));
+            $.ajax({
+                type:"POST",
+                url: "/deducciones/guardar",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    $('#formDeduccionesGenerales').trigger("reset");
+                    $('#add_deduccion').modal('hide');
+                    Swal.fire({
+                            icon: 'success',
+                            text: 'Guardado con éxito!',
+                            timer: 1500
+                            });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+       }
+    </script>
+@endsection
