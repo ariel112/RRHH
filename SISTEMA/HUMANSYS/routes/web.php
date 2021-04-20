@@ -16,7 +16,10 @@ use App\Mail\EnvioMasivo;
 use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Permisos\PermisosRrhh;
+use App\Http\Livewire\Planilla\Planilla;
+use App\Http\Livewire\Planilla\Planilla as PlanillaPlanilla;
 use App\Models\permisos;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +145,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
   
       // lista empleado
       Route::POST('/asistencia/lista', ListaAsistencia::class )->name('lista.asistencia');
+
+
+
+    //   planilla de empleados
+    Route::get('/planilla', Planilla::class)->name('planilla.index');
+
 
 
     });
