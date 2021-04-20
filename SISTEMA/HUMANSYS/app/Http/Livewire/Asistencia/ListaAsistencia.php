@@ -58,11 +58,7 @@ class ListaAsistencia extends Component
             $currentPage = $request->page;
             $perPage = 5;
             $currentElements = array_slice($matriz, $perPage * ($currentPage - 1), $perPage);
-            /* $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage); */
             $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage, ['path' => url('/asistencia')]);
-            /* $res = new Paginator($currentElements, $perPage, $currentPage); */
-
-           /*  dd($res); */
         return view('livewire.Asistencia.lista_asistencia', [
             'matriz' =>$res,
             'fin'=> $fin,
