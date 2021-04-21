@@ -46,6 +46,16 @@ class DeduccionesController extends Controller
             return $deducciones;
     }
 
+    public function editTechos($id, Request $request){
+            $techos = techos::find($id);
+            $techos-> porcentaje = $request['porcentaje_techo_edit'];
+            $techos-> rango_inicio = $request['rangoInicio_techo_edit'];
+            $techos-> rango_final = $request['rangoFinal_techo_edit'];
+            $techos->save();
+
+            return $techos;
+    }
+
 
     /**
      * Display a listing of the resource.

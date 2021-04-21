@@ -49,8 +49,7 @@ class Deducciones extends Component
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_deduc" onclick="editDeduccion('.$techos->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
-                    <a class="dropdown-item text-danger" href="#" onclick="inactivar('.$techos->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
+                    <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_techo"><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
                 </div>
                </div>';
                 })
@@ -59,7 +58,7 @@ class Deducciones extends Component
                 })
                 /*{{route('deducciones',$deducciones->id)}}*/
         ->editColumn('id', 'ID: {{$id}}')
-        ->rawColumns(['porcentaje','rango_inicio','perfil'])
+        ->rawColumns(['porcentaje','rango_inicio','perfil', 'action'])
         ->make(true);
     }
 }

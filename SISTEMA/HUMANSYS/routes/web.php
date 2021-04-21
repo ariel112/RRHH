@@ -86,6 +86,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/deducciones_listar/perfil/{id}', [Deducciones::class, 'lista_techos']);
     Route::post('/techos/guardar', [DeduccionesController::class, 'guardarTechos']);
     Route::get('/deducciones/estado/{id}/{estatus}', [DeduccionesController::class, 'actualizarEstado']);
+    Route::post('/techos/editar/{id}', [DeduccionesController::class, 'editTechos']);
 
 
 
