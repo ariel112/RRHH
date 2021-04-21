@@ -8,43 +8,9 @@
     <title>Contrato</title>
 
 </head>
-<body >{{-- Contrato de {{ $contrato->nombre }} --}}
-    {{-- <div style="position:absolute; top:-45px; right:-50px;"> --}}
+<body >
 
-    {{-- <div style="height: -30px;
-                background: #203D7A ;
-                position: absolute;
-                before {
-                        position: absolute;
-                        top: -65px; right: -50px;
-                        border-top: 40px solid #203D7A ;
-                        border-left: 35px solid #203D7A ;
-                        width: 270;
-                }"></div>
-    <div style="height: -40px;
-                background: #203D7A ;
-                position: absolute;
-                transform: rotate(-90deg);
-                before {
-                    position: absolute;
-                    top: -65px; left: 180px;
-                    border-top: 40px solid #203D7A ;
-                    border-left: 35px solid #203D7A ;
-                    width: 800;
-                }"></div>
-    <div style="height: -40px;
-                background: #203D7A ;
-                position: absolute;
-                transform: rotate(90deg);
-                    before {
-                        position: absolute;
-                        top: 1300px; left: -615px;
-                        border-top: 40px solid #203D7A ;
-                        border-left: 35px solid #203D7A ;
-                        width: 800;
-                    }"></div> --}}
-
-        <div>
+        {{-- <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
         </div>
         <div style="position:absolute;  top:145px;">
@@ -52,7 +18,7 @@
         </div>
         <div style="position:absolute;  top:790px;">
             <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
-        </div>
+        </div> --}}
 
 
 <div class="container" >
@@ -60,11 +26,11 @@
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
 
-        <div style="position:absolute; top:25px;">
+        {{-- <div style="position:absolute; top:25px;">
             <div style="align:center; margin-left:100px;">
                 <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
-        </div>
+        </div> --}}
 
         <div style="position:absolute; top:40px; padding:50px;">
             <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</u></h5>
@@ -92,7 +58,7 @@
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
         <H1 style="PAGE-BREAK-AFTER: always"></H1>
-        <div>
+        {{-- <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
         </div>
         <div style="position:absolute;  top:145px;">
@@ -105,7 +71,7 @@
             <div style="align:center; margin-left:100px;">
                 <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
-        </div>
+        </div> --}}
 
         <div style="position:absolute; top:80px; padding:50px;">
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>TERCERO: VIGENCIA DEL CONTRATO.</u></b> El presente contrato Individual de Trabajo será por tiempo definido, con vigencia del {{ $contrato->numero }} de {{ $mes }} del año {{ $contrato->anio }} hasta el {{ $contrato->numerof }} de {{ $mesf }} del año {{ $contrato->aniof }}.</p>
@@ -131,7 +97,7 @@
         {{-- ------------------TERCERA PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
-        <div>
+        {{-- <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
         </div>
         <div style="position:absolute;  top:145px;">
@@ -144,7 +110,7 @@
             <div style="align:center; margin-left:100px;">
                 <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
-        </div>
+        </div> --}}
         <div style="position:absolute; top:80px; padding:50px;">
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>OCTAVO: INSTRUMENTOS, ÚTILES Y/O MATERIAL DE TRABAJO</u></b>. EL TRABAJADOR se obliga a cuidar con el mayor esmero y eficacia, los instrumentos, útiles y material que <b>EL CONTRATANTE</b> le proporcione para realizar su trabajo, por lo tanto se responsabiliza ante <b>EL CONTRATANTE</b> del buen cuidado del inventario de   instrumentos, útiles y/o materiales, quedando entendido que <b>EL TRABAJADOR</b> acepta que dicha responsabilidad alcanza hasta la fecha que le corresponda el cuidado de los mismos y en el caso de que falte, se pierda, dañe o deteriore cualquier instrumento, útil y/o material, documentación o información de trabajo, que esté bajo su responsabilidad, desde esta fecha reconoce su valor como aquél que aparezca en el inventario que mantenga <b>EL CONTRATANTE</b>, y autoriza a que <b>EL CONTRATANTE</b> le deduzca de sus salarios, comisiones, bonificaciones, gratificaciones, prestaciones y/o de cualquier otra forma de remuneración que se le adeude, el  valor  de  dichos  instrumentos,  útiles y/o materiales, documentación o información  que  haya  perdido, extraviado, dañado y/o deteriorado, salvo que se trate del desgaste normal por el uso de los mismos.-</p>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>NOVENO: REMUNERACIÓN.</u> EL CONTRATANTE</b> manifiesta que <b>EL TRABAJADOR</b> devengará un salario mensual, de <b>{{ $sueldo_letras }} (L. {{ $contrato->sueldo }})</b>, cuyo pago será divido y cancelado cada dos semanas o catorcenal. La fecha de pago se adelantará al día hábil inmediato, si el establecido no lo fuere. <b>EL TRABAJADOR</b> recibirá del <b>CONTRATANTE</b> una bonificación que se otorgará una vez al año el equivalente a una vez el salario ordinario mensual que devengue, quedando sujeto el pago del mismo a la disponibilidad financiera y presupuestaria del <b>CONTRATANTE</b>, el personal deberá haber laborado al menos noventa días.</p>
@@ -166,7 +132,7 @@
         {{-- -------------------CUARTA PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
-        <div>
+        {{-- <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
         </div>
         <div style="position:absolute;  top:145px;">
@@ -174,12 +140,12 @@
         </div>
         <div style="position:absolute;  top:790px;">
             <img src="img/15.png" style=" width:400px; height:20px; margin-left:-235px; transform: rotate(90deg);"  alt="">
-        </div>
-        <div style="position:absolute; top:25px;">
+        </div> --}}
+       {{--  <div style="position:absolute; top:25px;">
             <div style="align:center; margin-left:100px;">
                 <img src="img/16.png" class="fondo" width="510px" height="100px" alt="">
             </div>
-        </div>
+        </div> --}}
         <div style="position:absolute; top:80px; padding:50px;">
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO-PRIMERO: OTROS DOCUMENTOS DEL CONTRATO DE TRABAJO.</u></b> Forman parte de este Contrato Individual de Trabajo, las adendas que firmen las Partes en su relación de trabajo; El Reglamento Interno de Trabajo de <b>EDUCREDITO</b>; planes de trabajo, tablas o reglamentos de comisiones, de viáticos; convenios de secretividad y confidencialidad; inventarios de instrumentos, útiles y/ material de trabajo; las autorizaciones firmadas, así como cualquier otro documento que firmen las Partes y esté vinculado con la relación de trabajo.</p>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO-SEGUNDO: INCUMPLIMIENTOS Y/O SANCIONES.</u> EL TRABAJADOR</b> se obliga a cumplir estrictamente el horario y la jornada de trabajo y/o el cambio de éstos, así como a desempeñar correctamente sus labores durante horas extras, acatar las órdenes e instrucciones y demás disposiciones dictadas por <b>EL CONTRATANTE</b>, para el mejor desempeño de sus actividades. En caso de que <b>EL TRABAJADOR</b> incumpla sus obligaciones contractuales y legales, será sancionada conforme lo indica el Código del Trabajo vigente y el Reglamento Interno de Trabajo, en caso que aplique.</p>

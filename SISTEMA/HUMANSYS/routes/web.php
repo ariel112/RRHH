@@ -82,6 +82,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
     Route::post('/deducciones/guardar', [DeduccionesController::class, 'guardar']);
     Route::get('/deducciones_listar', [Deducciones::class, 'listar_deducciones']);
+    Route::get('/deducciones/perfil_mostrar/{id}', Deducciones::class);
+    Route::get('/deducciones_listar/perfil/{id}', [Deducciones::class, 'lista_techos']);
+    Route::post('/techos/guardar', [DeduccionesController::class, 'guardarTechos']);
+    Route::get('/deducciones/estado/{id}/{estatus}', [DeduccionesController::class, 'actualizarEstado']);
+
+
+
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);

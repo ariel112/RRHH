@@ -10,7 +10,6 @@ class techos extends Model
     use HasFactory;
     protected $table = 'techos';
     protected $fillable = [
-        'id',
         'porcentaje',
         'rango_inicio',
         'rango_final',

@@ -10,4 +10,5 @@ class DeduccionesIndex extends Component
     {
         return view('livewire.deducciones.deducciones-index');
     }
+
 }

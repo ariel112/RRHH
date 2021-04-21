@@ -24,9 +24,9 @@
                     <table class="table table-striped custom-table mb-0" id="deducciones">
                         <thead>
                             <tr>
-                                <th class="text-center"> <b>PERFIL</b> </th>
-                                <th class="text-center"> <b>NOMBRE/b> </th>
-                                <th class="text-center"> <b>ACCION</b> </th>
+                                <th> <b>PERFIL</b> </th>
+                                <th> <b>NOMBRE</b>  </th>
+                                <th class="text-right"> <b>ACCION</b> </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,16 +55,8 @@
 										<input class="form-control" required type="text" id="nombre_deduccion" name="nombre_deduccion">
 									</div>
                                     <div class="form-group">
-										<label>Porcentaje<span class="text-danger">*</span></label>
-										<input class="form-control" required type="text" id="porcentaje_techo" name="porcentaje_techo">
-									</div>
-                                    <div class="form-group">
-										<label>Rango de inicio<span class="text-danger">*</span></label>
-										<input class="form-control" required type="text" id="rangoInicio_techo" name="rangoInicio_techo">
-									</div>
-                                    <div class="form-group">
-										<label>Rango FInal<span class="text-danger">*</span></label>
-										<input class="form-control" required type="text" id="rangoFinal_techo" name="rangoFinal_techo">
+										<label>Imagen<span class="text-danger">*</span></label>
+										<input class="form-control" required type="text" id="imagen_deduccion" name="imagen_deduccion">
 									</div>
 									<div class="submit-section">
 										<button class="btn btn-success submit-btn"  {{-- onclick="agregarDeduccion_general()" --}}>Crear</button>
@@ -77,7 +69,7 @@
 				<!-- /Add deducción -->
 
 				<!-- Edit Holiday Modal -->
-				<div class="modal custom-modal fade" id="edit_holiday" role="dialog">
+				<div class="modal custom-modal fade" id="editar_deduc" role="dialog">
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
