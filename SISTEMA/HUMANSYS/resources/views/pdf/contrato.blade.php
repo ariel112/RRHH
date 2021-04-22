@@ -8,7 +8,7 @@
     <title>Contrato</title>
 
 </head>
-<body >
+<body id="conformato">
 
         <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">

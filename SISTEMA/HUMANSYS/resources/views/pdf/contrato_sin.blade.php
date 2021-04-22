@@ -8,7 +8,7 @@
     <title>Contrato</title>
 
 </head>
-<body >
+<body id="sinformato">
 
        {{--  <div>
             <img src="img/13.png" style="width:400px; height:20px; margin-left:348px; margin-top:-45px;"  alt="">
@@ -173,9 +173,6 @@
                 <p style="text-align: center; font-size:11;float:left;font-size:11; font-family: Arial;">Edificio Torre Altamira contiguo a Punto Farma,<br>Anillo periférico 1.2 km del puente a desnivel,<br> Teléfonos: 2221-7035/2221-7030/2221-8031.</p>
             </div>
         </div> --}}
-
-
-
 </div>
 
 </body>
