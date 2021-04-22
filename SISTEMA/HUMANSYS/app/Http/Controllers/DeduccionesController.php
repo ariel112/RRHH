@@ -27,12 +27,12 @@ class DeduccionesController extends Controller
         $deducciones->estatus=1;
         $deducciones -> save();
 
-       /*  $techos = new techos();
+        $techos = new techos();
         $techos->porcentaje = $request["porcentaje_techo"];
         $techos->rango_inicio = $request["rangoInicio_techo"];
         $techos->rango_final = $request["rangoFinal_techo"];
         $techos->deducciones_id = $deducciones-> id;
-        $techos -> save(); */
+        $techos -> save();
 
         return $deducciones;
     }

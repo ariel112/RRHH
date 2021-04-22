@@ -26,6 +26,7 @@
                             <tr>
                                 <th> <b>PERFIL</b> </th>
                                 <th> <b>NOMBRE</b>  </th>
+                                <th> <b>ESTADO</b>  </th>
                                 <th class="text-right"> <b>ACCION</b> </th>
                             </tr>
                         </thead>
@@ -58,6 +59,19 @@
 										<label>Imagen<span class="text-danger">*</span></label>
 										<input class="form-control" required type="text" id="imagen_deduccion" name="imagen_deduccion">
 									</div>
+                                    <div class="form-group">
+                                        <label>Porcentaje<span class="text-danger">*</span></label>
+                                        <input class="form-control" required type="text" id="porcentaje_techo" name="porcentaje_techo">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rango de inicio<span class="text-danger">*</span></label>
+                                        <input class="form-control" required type="text" id="rangoInicio_techo" name="rangoInicio_techo">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rango FInal<span class="text-danger">*</span></label>
+                                        <input class="form-control" required type="text" id="rangoFinal_techo" name="rangoFinal_techo">
+                                    </div>
 									<div class="submit-section">
 										<button class="btn btn-success submit-btn"  {{-- onclick="agregarDeduccion_general()" --}}>Crear</button>
 									</div>
@@ -81,15 +95,11 @@
 							<div class="modal-body">
 								<form>
 									<div class="form-group">
-										<label>Holiday Name <span class="text-danger">*</span></label>
-										<input class="form-control" value="New Year" type="text">
-									</div>
-									<div class="form-group">
-										<label>Holiday Date <span class="text-danger">*</span></label>
-										<div class="cal-icon"><input class="form-control datetimepicker" value="01-01-2019" type="text"></div>
+										<label>Nombre <span class="text-danger">*</span></label>
+										<input class="form-control" value="" type="text" id="nombreDeduccion_edit" name="nombreDeduccion_edit">
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-primary submit-btn">Save</button>
+										<button class="btn btn-warning submit-btn">Renombrar</button>
 									</div>
 								</form>
 							</div>
@@ -97,31 +107,6 @@
 					</div>
 				</div>
 				<!-- /Edit Holiday Modal -->
-
-				<!-- Delete Holiday Modal -->
-				<div class="modal custom-modal fade" id="delete_holiday" role="dialog">
-					<div class="modal-dialog modal-dialog-centered">
-						<div class="modal-content">
-							<div class="modal-body">
-								<div class="form-header">
-									<h3>Delete Holiday</h3>
-									<p>Are you sure want to delete?</p>
-								</div>
-								<div class="modal-btn delete-action">
-									<div class="row">
-										<div class="col-6">
-											<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
-										</div>
-										<div class="col-6">
-											<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- /Delete Holiday Modal -->
 
     </div>
 </div>
@@ -150,6 +135,7 @@
         "columns": [
             {data:'perfil'},
             {data:'nombre'},
+            {data:'item'},
             {data:'action'}
         ]});
 
@@ -182,6 +168,28 @@
                     console.log(jqXHR, textStatus, errorThrown);
                 }
             })
+       }
+
+       function editDeduccion(id){
+            $.ajax({
+                type:"GET",
+                url: "/deduccion/get/"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+
+       }
+
+       function cambiarEstado(id){
+
        }
     </script>
 @endsection

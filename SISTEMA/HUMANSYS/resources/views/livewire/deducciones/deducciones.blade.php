@@ -18,7 +18,7 @@
         <!-- /Page Header -->
 
         @foreach ($deducciones as $deduccion)
-            @foreach ($techos as $techo)
+
                 <div class="card shadow p-3 mb-5 bg-primary rounded">
                     <div class="ml-auto" id="btnStatus">
                         <button type="button" class="btn btn-warning btn-sm" onclick="habilitacionDeduccion({{$deduccion->estatus}})"><b>Cambiar estado</b></button>
@@ -98,6 +98,7 @@
                     </div>
                 </div>
                 <!-- /Add TECHO -->
+            @foreach ($techos as $techo)
                 <!-- Edit TECHO -->
                 <div class="modal custom-modal fade" id="editar_techo" role="dialog">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -266,5 +267,7 @@
                 }
             })
         }
+
+
     </script>
 @endsection

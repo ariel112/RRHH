@@ -35,11 +35,14 @@
         <div style="position:absolute; top:40px; padding:50px;">
             <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</u></h5>
             <h5 style="text-align: center; font-family: Arial;font-size:12;">{{$contrato->num_contrato}}</h5>
-
+            <br>
             <p style="text-align: justify; font-family: Arial;font-size:12;">Nosotros, <b>{{ $gerente_rh->nombre }}</b> mayor de edad, hondureña, {{ $gerente_rh->estado_civil }}, {{ $gerente_rh->profesion }}, con identidad número {{ $gerente_rh->identidad }}, Registro Tributario Nacional número {{ $gerente_rh->rtn }} y de este domicilio, quien actúa en su condición de Coordinador Técnico del Programa Presidencial de Becas “Honduras 20/20” creado mediante Decreto Ejecutivo Numero {{ $contrato->num_delegacion }}, facultades que acredito mediante Acuerdo de Delegación No. GL-PPBH-001/2021 de fecha {{ $contrato->numero }} de {{ $mes }} del presente año, quien en lo sucesivo se denominará <b>“EL CONTRATANTE” {{ $contrato->nombre }}</b> , hondureño, mayor de edad, {{ $contrato->estado_civil }}, {{ $contrato->profesion }} con tarjeta de identidad No. {{ $contrato->identidad }} y de este domicilio, y en los sucesivo se le denominará “EL TRABAJADOR”, hemos convenido celebrar el presente <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b> el cual se regirá por las cláusulas y condiciones siguientes:</p>
-
+            <br>
             <p style="text-align: justify; font-family: Arial;font-size:12;"><b><u>PRIMERO: DE LA EXCLUSIVIDAD</u>. EL TRABAJADOR</b> manifiesta: que en este acto y por medio del presente contrato, <b>SE OBLIGA</b> a prestar sus servicios a favor del <b>CONTRATANTE</b>, comprometiendo su esfuerzo y capacidad de trabajo, en forma exclusiva, bajo la subordinación y dependencia de la <b>GERENCIA DE SEGUIMIENTO Y LOS DEMAS ADMINISTRADORES Y REPRESENTANTES QUE DESIGNE EL CONTRATANTE</b>, desempeñándose en el puesto de: <b>{{$cargos->nombre}}</b>, quien llevara a cabo las siguientes funciones:@php $count = 0;@endphp @foreach ($funciones as $funcion) <b>{{ $count += 1}})</b> {{ $funcion->nombre }}@endforeach. Otras actividades que se deriven de la naturaleza de su puesto de trabajo y/o de las actividades generales que realice el Programa Presidencial de Becas Honduras 20/20.</p>
+
             <p style="text-align: justify; font-family: Arial;font-size:12;"><b><u>SEGUNDO: PERIODO DE PRUEBA</u>. EL TRABAJADOR</b> queda sujeto a un periodo de prueba de sesenta días (60) el cual tiene por objeto apreciar por parte del CONTRATANTE las aptitudes y capacidades de <b>EL TRABAJADOR</b> y por parte de este último, si le convienen o no las condiciones de trabajo que ofrece <b>EL CONTRATANTE.</b> El periodo de prueba será remunerado.</p>
+            <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>TERCERO: VIGENCIA DEL CONTRATO.</u></b> El presente contrato Individual de Trabajo será por tiempo definido, con vigencia del {{ $contrato->numero }} de {{ $mes }} del año {{ $contrato->anio }} hasta el {{ $contrato->numerof }} de {{ $mesf }} del año {{ $contrato->aniof }}.</p>
+
         </div>
 
       {{--   <div style="position:absolute; top:880px;">
@@ -74,11 +77,14 @@
         </div> --}}
 
         <div style="position:absolute; top:80px; padding:50px;">
-            <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>TERCERO: VIGENCIA DEL CONTRATO.</u></b> El presente contrato Individual de Trabajo será por tiempo definido, con vigencia del {{ $contrato->numero }} de {{ $mes }} del año {{ $contrato->anio }} hasta el {{ $contrato->numerof }} de {{ $mesf }} del año {{ $contrato->aniof }}.</p>
+
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>CUARTO: LUGAR DE TRABAJO.</u>EL TRABAJADOR</b> , desempeñara las funciones y actividades en la Ciudad de Tegucigalpa M.D.C., o cualquiera de las oficinas del <b>PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20</b> a nivel nacional, cuando así lo requiera la naturaleza de las actividades a prestar de parte de <b>EL TRABAJADOR.</b></p>
+            <br>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>QUNTO: JORNADA-HORARIO DE TRABAJO.</u></b> La jornada de trabajo que prestará <b>EL TRABAJADOR</b>, será de lunes a jueves de 8:00 AM a 5:00 PM y los viernes de 8:00 AM a 12:00 AM, <b>EL CONTRATANTE</b> se reserva el derecho de poder cambiar este horario durante la vigencia del presente contrato siempre apegado a la jornada ordinaria ya establecida en el Código de Trabajo de Honduras. Las horas que desempeñe <b>EL TRABAJADOR</b> fuera de esta jornada de trabajo ordinaria, se consideraran horas extras siempre y cuando sean requeridas por su jefe inmediato y aprobadas por la Gerencia de Talento Humano para su pago. </p>
+            <br>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>SEXTO: DIA DE VACACIONES</u>. EL TRABAJADOR</b> gozará de un día de vacaciones remuneradas por cada mes de trabajo, la solicitud de vacaciones <b>EL TRABAJADOR</b> deberá realizarla ante su jefe inmediato con 5 días de anticipación, una vez aprobado por su jefe inmediato será remitido a la Gerencia de Talento Humano para su debido control.  </p>
             <p style="text-align: justify; font-family: Arial;font-size:11;">Por cada cinco (5) días de trabajo comprendidos de lunes a viernes, habrá dos (2) días de descanso, si por necesidades urgentes del <b>CONTRATANTE</b> se trabaja en días de descanso o días feriados, <b>EL TRABAJADOR</b> requerido conservara su derecho y se le será concedido cuando este lo solicite por escrito a la Gerencia de Talento Humano previo autorización de su jefe inmediato. </p>
+            <br>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>SEPTIMO: CONFIDENCIALIDAD DE LA INFORMACIÓN.</u></b> Se compromete a mantener absoluta confidencialidad y abstenerse de comunicar a terceros, directa o indirectamente, cualquier información o conocimiento de carácter financiero, técnico, contable, comercial, gerencial, administrativo o de cualquier otra naturaleza, tales como sistemas de Internet, alianzas estratégicas y demás convenios con terceros que <b>EL TRABAJADOR</b> pueda obtener o conocer durante y con ocasión de la prestación de sus servicios con <b>EL CONTRATANTE.</b> Asimismo, en la fecha de terminación de sus servicios, <b>EL TRABAJADOR</b> deberá devolver <b>AL CONTRATANTE</b>, todos los documentos, manuales, libros, correspondencia, publicaciones, herramientas y demás activos y literatura que éste pueda haber obtenido, conocido, preparado o utilizado en su trabajo mientras prestaba sus servicios para <b>EL CONTRATANTE.</b></p>
         </div>
 
@@ -152,13 +158,13 @@
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO-TERCERO: DOMICILIO Y JURISDICCIÓN.</u></b> Ambas Partes, manifiestan que para resolver sus conflictos, diferencias, discrepancias, disputas, y/o reclamaciones que deriven de este Contrato, y para ejercitar las acciones o derechos derivados de este Contrato, expresamente se obligan: En primer término a resolver por la vía conciliatoria entre ambas partes; y, en caso de no lograr un arreglo, o si este fuere parcial, se someten a las disposiciones de la Secretaria de Estado en los Despachos de Trabajo y Seguridad Social por medio de Inspectoría General o el centro de conciliaciones; agotada la vía administrativa sin arreglo alguno; ambas partes, acuerdan someterse a la jurisdicción de los Juzgados de Letras del Trabajo del Departamento de Francisco Morazán.</p>
             <p style="text-align: justify; font-family: Arial;font-size:11;">En fe de lo anterior y aceptadas las cláusulas contenidas en este <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b>, se procede a la firma del presente, en la ciudad de Tegucigalpa M.D.C., a los {{ $numero }} ({{ $contrato->numero }}) días del mes de {{ $mes }} del año {{ $contrato->anio }}. </p>
         </div>
-        <div style="position:absolute; top:700px; padding:40px;">
+        <div style="position:absolute; top:650px; padding:40px;">
             <div style="float:left; line-height=150%">
-                <h1>________________</h1>
+                <h3>______________________________</h3>
                 <p style="text-align: center; font-size:9;float:left;font-family: Arial;"><b>HAZEL ALEJANDRA ESCOBAR RAMIREZ<br>COORDINADOR TECNICO DEL PROGRAMA<br>PRESIDENCIAL DE BECAS “HONDURAS 20/20”</b></p>
             </div>
             <div style="float:right; line-height=150%">
-                <h1>_________________</h1>
+                <h3>_____________________________</h3>
                 <p style="float:left;font-size:9;font-family: Arial;text-align: center;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
             </div>
         </div>

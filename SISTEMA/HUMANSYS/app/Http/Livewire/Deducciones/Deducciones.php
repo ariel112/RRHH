@@ -25,8 +25,7 @@ class Deducciones extends Component
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_deduc" onclick="editDeduccion('.$deducciones->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
-                    <a class="dropdown-item text-danger" href="#" onclick="inactivar('.$deducciones->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
+                    <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_deduc" onclick="editDeduccion('.$deducciones->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i>Modificar nombre</a>
                 </div>
                </div>';
                 })
@@ -34,8 +33,18 @@ class Deducciones extends Component
             return '<a href="/deducciones/perfil_mostrar/'.$deducciones->id.'" class="avatar"><img alt="" src="../../assets/img/_720.png"></a>';
                 })
                 /*{{route('deducciones',$deducciones->id)}}*/
+        ->addColumn('item', function ($deducciones) {
+
+                if($deducciones->estatus==1){
+                    return '<td><span class="badge badge-pill badge-success">ACTIVO</span></td>';
+                } else if($deducciones->estatus==0){
+                    return '<td><span class="badge badge-pill badge-danger">INACTIVO</span></td>';
+                }
+
+
+        })
         ->editColumn('id', 'ID: {{$id}}')
-        ->rawColumns(['action','perfil'])
+        ->rawColumns(['action','perfil','item'])
         ->make(true);
     }
 
