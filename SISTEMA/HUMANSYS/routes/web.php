@@ -108,6 +108,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/contratos/elimina/{id}', [Contratos::class, 'contrato_elimina'])->name('contratos.elimina');
     // ruta para generear contrato pdf
     Route::get('/contrato/generate-pdf/{id}', [Contratos::class, 'generatePDF']);
+    // generar pdf sin formato
+    Route::get('/contrato/generate-pdf_sin/{id}', [Contratos::class, 'generatePDF_sin']);
 
      // permisos empleados
      Route::get('/permisos', PermisosJefe::class )->name('permisos.index');
