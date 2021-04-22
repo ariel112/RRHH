@@ -265,9 +265,128 @@ class Contratos extends Component
         ];
 
         $pdf = PDF::loadView('pdf/contrato', $data);
-
-        return $pdf->download('Contrato.pdf');
+        
+        return $pdf->download('CONTRATO INDIVIDUAL DE'.$contrato->nombre.'.pdf');
+      //   return $pdf->download('Contrato.pdf');
 
     }
+
+
+    public function generatePDF_sin($id){
+
+      $contrato = DB::selectOne("SELECT A.num_contrato, A.estado_contrato, B.nombre, B.profesion, B.estado_civil,  A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad, A.empleado_rrhh,date_format(A.fecha_inicio, '%m') mes, date_format(A.fecha_fin, '%m') mesf,
+                                      A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo, C.id cargo_id, date_format(A.fecha_inicio, '%d') numero,  date_format(A.fecha_inicio, '%Y') anio, date_format(A.fecha_fin, '%d') numerof, date_format(A.fecha_fin, '%Y') aniof
+                              FROM contrato A
+                              INNER JOIN empleado B
+                              ON(A.empleado_id=B.id)
+                              INNER JOIN cargo C
+                              ON(B.cargo_id=C.id)
+                              INNER JOIN area D
+                              ON(C.area_id=D.id)
+                              INNER JOIN departamento E
+                              ON(D.departamento_id=E.id)
+                              WHERE A.id='$id'
+      ");
+
+      if($contrato->mes==01)
+          $mes='Enero';
+       if($contrato->mes==02)
+          $mes='Febrero';
+       if($contrato->mes==03)
+          $mes='Marzo';
+       if($contrato->mes==04)
+          $mes='Abril';
+       if($contrato->mes==05)
+          $mes='Mayo';
+       if($contrato->mes==06)
+          $mes='Junio';
+       if($contrato->mes==07)
+          $mes='Julio';
+       if($contrato->mes==8)
+          $mes='Agosto';
+       if($contrato->mes==9)
+          $mes='Septiembre';
+       if($contrato->mes==10)
+          $mes='Octubre';
+       if($contrato->mes==11)
+          $mes='Noviembre';
+       if($contrato->mes==12)
+          $mes='Diciembre';
+
+
+      if($contrato->mesf==01)
+          $mesf='Enero';
+       if($contrato->mesf==02)
+          $mesf='Febrero';
+       if($contrato->mesf==03)
+          $mesf='Marzo';
+       if($contrato->mesf==04)
+          $mesf='Abril';
+       if($contrato->mesf==05)
+          $mesf='Mayo';
+       if($contrato->mesf==06)
+          $mesf='Junio';
+       if($contrato->mesf==07)
+          $mesf='Julio';
+       if($contrato->mesf==8)
+          $mesf='Agosto';
+       if($contrato->mesf==9)
+          $mesf='Septiembre';
+       if($contrato->mesf==10)
+          $mesf='Octubre';
+       if($contrato->mesf==11)
+          $mesf='Noviembre';
+       if($contrato->mesf==12)
+          $mesf='Diciembre';
+
+
+      // numero a letras inicio
+              $formatter = new NumeroALetras();
+              $formatter->apocope = true;
+              $numero = strtolower($formatter->toWords($contrato->numero));
+      // numero a letras fin 
+              $formatterf = new NumeroALetras();
+              $formatterf->apocope = true;
+              $numerof = strtolower($formatterf->toWords($contrato->numerof));
+      // $numero = strtolower( (new NumeroALetras())->toMoney($contrato->numero, 0, '', ''));
+
+
+        $centavos = explode('.',$contrato->sueldo);
+
+        if(sizeof($centavos)>1){
+          $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
+          } else {
+              $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS EXACTOS', 'CENTAVOS');
+
+        }
+
+
+      $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
+      $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
+      $gerente_rh = DB::selectone("SELECT A.nombre, A.identidad, A.rtn, A.profesion, A.estado_civil
+                                           FROM empleado A
+                               WHERE A.id='$contrato->empleado_rrhh'");
+
+
+  
+
+      $data = [
+          'title' => 'Contrato',
+          'contrato' => $contrato,
+          'funciones' => $funciones,
+          'gerente_rh' => $gerente_rh,
+          'sueldo_letras' => $sueldo_letras,
+          'cargos' => $cargos,
+          'numero' => $numero,
+          'mesf' => $mesf,
+          'numerof' => $numerof,
+          'mes' => $mes
+      ];
+
+      $pdf = PDF::loadView('pdf/contrato_sin', $data);
+
+      return $pdf->download('CONTRATO INDIVIDUAL DE'.$contrato->nombre.'.pdf');
+
+  }
 
 }
