@@ -26,8 +26,7 @@ class Contratos extends Component
     }
 
     public function contrato_show(Request $request){
-
-
+    
 
         $contrato = new contrato();
         $contrato->num_contrato = $request->num_contrato;
@@ -38,7 +37,7 @@ class Contratos extends Component
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
         $contrato->empleado_id= $request->empleado_id;
-        $contrato->horarios_id = 1;
+        $contrato->horarios_id = 1; 
         $contrato->estado_contrato = 'Activo';
         $contrato->users_aprueba_id = Auth::user()->id;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
@@ -240,6 +239,7 @@ class Contratos extends Component
                 $sueldo_letras = (new NumeroALetras())->toMoney($contrato->sueldo, 2, 'LEMPIRAS EXACTOS', 'CENTAVOS');
 
           }
+
 
         $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
         $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");

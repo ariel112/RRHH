@@ -597,6 +597,7 @@ function CierraPopup(modal) {
     // console.log('datos: ', $("#idPic").serialize());
             var modalID ='crear_contratos'
             var data = new FormData($('#form_contrato').get(0));
+           
             $.ajax({
             type:"POST",
             url: "/contratos/show",
@@ -655,7 +656,7 @@ function gerente() {
 function cargo(data){
      var html_select =' <option selected value="" disabled >Seleccione el encargado</option>';
      for (var i=0; i<data.length; ++i)
-       html_select += '<option value="'+data[i].id+'">'+data[i].nombre +'</option>'
+       html_select += '<option value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
 
        $('#empleado_rrhh').html(html_select)
  }
