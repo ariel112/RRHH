@@ -278,9 +278,6 @@
 								<a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
-									<li><a href="invoices.html">RAP</a></li>
-									<li><a href="payments.html">ISR</a></li>
-									<li><a href="expenses.html">Otros</a></li>
 								</ul>
 							</li>
                             <li class="submenu">

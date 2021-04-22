@@ -40,7 +40,7 @@ class DeduccionesController extends Controller
     public function actualizarEstado($id, $estatus){
 
             $deducciones = deducciones_fijas::find($id);
-            $deducciones-> estatus = $estatus;
+            if($estatus==1){$deducciones-> estatus = 0;}elseif($estatus==0){$deducciones-> estatus = 1;}
             $deducciones->save();
 
             return $deducciones;

@@ -21,7 +21,7 @@
             @foreach ($techos as $techo)
                 <div class="card shadow p-3 mb-5 bg-primary rounded">
                     <div class="ml-auto" id="btnStatus">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="habilitacionDeduccion(1)"><b>Cambiar estado</b></button>
+                        <button type="button" class="btn btn-warning btn-sm" onclick="habilitacionDeduccion({{$deduccion->estatus}})"><b>Cambiar estado</b></button>
                     </div>
                     <div class="profile-img-wrap edit-img">
                         <img class="inline-block" src="../../assets/img/_720.png"" alt="user">
@@ -32,15 +32,15 @@
                     </div>
                     <div class="m-auto">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-lg-12">
                                 <h1 class="text-white"> <b> {{$deduccion->nombre}} </b></h1>
-                            </div>
-                            <div class="col-md-2" id="spamStatus">
+                            <div id="spamStatus">
                                 @if ($deduccion->estatus == 1)
                                     <span class="badge badge-pill badge-success">ACTIVO</span>
                                 @elseif($deduccion->estatus == 0)
                                     <span class="badge badge-pill badge-danger">INACTIVO</span>
                                 @endif
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -222,9 +222,9 @@
                             url: "/deducciones/estado/"+idDeduc+"/"+estatus,
                             success: function(data){
                                 if(data.estatus == 1){
-                                    $('#spamStatus').html('<span class="badge badge-pill badge-danger">INACTIVO</span>');
-                                }else{
                                     $('#spamStatus').html('<span class="badge badge-pill badge-success">ACTIVO</span>');
+                                }else if(data.estatus == 0){
+                                    $('#spamStatus').html('<span class="badge badge-pill badge-danger">INACTIVO</span>');
                                 }
                                 Swal.fire('Listo!', '', 'success');
 
