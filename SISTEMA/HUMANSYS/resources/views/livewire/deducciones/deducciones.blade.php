@@ -201,6 +201,7 @@
                             text: 'Guardado con éxito!',
                             timer: 1500
                             });
+                            location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -261,6 +262,7 @@
                             text: 'Guardado con éxito!',
                             timer: 1500
                             });
+                            location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);

@@ -10,6 +10,7 @@ use App\Models\direccion;
 use App\Models\referencia;
 use App\Models\deducciones_empleado;
 use DB;
+use App\Models\tipo_deducciones_varibale;
 use LengthException;
 
 class EmpleadoPerfil extends Component
@@ -37,17 +38,17 @@ class EmpleadoPerfil extends Component
 
        $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
 
-       /* if(Request::ajax()) {
-        $sections = $view->renderSections(); // returns an associative array of 'content', 'head' and 'footer'
-
-        return $sections['content']; // this will only return whats in the content section
-
-    } */
+       $deducciones_emps = DB::select('select * from `deducciones_empleado` where empleado_id = '.$request['id'].'');
+       foreach ($deducciones_emps as $deduc) {
+        $idtipo_deducciones_varibale = $deduc->tipo_deducciones_varibale_id;
+        }
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
             'referencias' => referencia::where('empleado_id', '=', $request['id'])->get(),
-            'deducciones_emps' => deducciones_empleado::where('empleado_id', '=', $request['id'])->get(),
+            /* 'deducciones_emps' => deducciones_empleado::where('empleado_id', '=', $request['id'])->get(), */
+            'tipoDeducVariable' => tipo_deducciones_varibale::where('id', '=', $idtipo_deducciones_varibale)->get(),
+            'deducciones_emps' => $deducciones_emps,
             'cargos' => $cargo,
             'areas' => $area,
             'departamentos' => $departamento,

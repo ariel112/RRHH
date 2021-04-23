@@ -16,5 +16,6 @@ class deducciones_empleado extends Model
         'tipo_deducciones_id',
         'empleado_id',
         'monto',
-        'porcentaje'];
+        'porcentaje',
+        'tipo_deducciones_varibale_id'];
 }

@@ -297,13 +297,21 @@
                                                                         <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                             <div class="card-body">
                                                                                 <div class="row">
-                                                                                    <div class="col-md-6">
+                                                                                    <div class="col-md-4">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
                                                                                             <input class="form-control" required  id="nombre_deduc" name="nombre_deduc" type="text">
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="col-sm-6">
+                                                                                    <div class="col-sm-4">
+                                                                                        <div class="form-group">
+                                                                                            <label class="col-form-label">Tipo deducción Variable<span class="text-danger">*</span></label>
+                                                                                            <select class="custom-select form-control" required id="TipodeducSelect_VARIABLES" name="TipodeducSelect_VARIABLES">
+
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
                                                                                             <select class="custom-select form-control" required id="TipodeducSelect" name="TipodeducSelect" onchange="selecteValor_TipoDeduc()">
@@ -316,7 +324,7 @@
                                                                                     <div class="col-sm-6">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label" style="display: none;" id="porcentajelbl_deduc" name="porcentajelbl_deduc">Porcentaje %<span class="text-danger">*</span></label>
-                                                                                            <input style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="text" >
+                                                                                            <input style="display: none;" id="porcentaje_deduc" name="porcentaje_deduc" type="number" min="0" max="100" >
                                                                                             <label class="col-form-label" style="display: none;" id="montolbl_deduc" name="montolbl_deduc">Monto fijo catorcenal<span class="text-danger">*</span></label>
                                                                                             <input id="monto_deduc" name="monto_deduc" type="text" style="display: none;">
                                                                                             <input type="hidden" id="idEmpleadoDe" name="idEmpleadoDe" value="{{ $empleado->id }}">
@@ -345,54 +353,62 @@
                                                     <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
                                                     <br><br><br>
                                                         <div class="row" id="grillDeducciones">
-                                                                @foreach ($deducciones_emps as $deduc)
-                                                                <div class="col-md-6 d-flex">
-                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
-                                                                        <div class="dropdown profile-action">
-                                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
-                                                                            <div class="dropdown-menu dropdown-menu-right">
-                                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                                <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="card-body">
-                                                                            {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
-                                                                            <div class="pro-edit">
-                                                                                <h3 class="card-title">Deducción</h3>
-                                                                            </div>
 
-                                                                            <ul class="list-group list-group-flush">
-                                                                                <li class="list-group-item">
-                                                                                    <div class="title">Nombre:</div>
-                                                                                    <div class="text">{{$deduc->nombre}}</div>
-                                                                                </li>
-                                                                                @if ($deduc->monto == NULL)
-                                                                                    <li class="list-group-item">
-                                                                                        <div class="title">Porcentaje:</div>
-                                                                                        <div class="text">{{$deduc->porcentaje}}%</div>
-                                                                                    </li>
-                                                                                @elseif ($deduc->porcentaje == NULL)
-                                                                                    <li class="list-group-item">
-                                                                                        <div class="title">Monto:</div>
-                                                                                        <div class="text">Lps. {{$deduc->monto}}</div>
-                                                                                    </li>
-                                                                                @endif
-                                                                                <li class="list-group-item">
-                                                                                    <div class="title">Descripción:</div>
-                                                                                    <div class="text">{{$deduc->descripcion}}</div>
-                                                                                </li>
-                                                                                <li class="list-group-item">
-                                                                                    @if($deduc->estado == 0)
-                                                                                        <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
-                                                                                    @elseif($deduc->estado == 1)
-                                                                                        <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
-                                                                                    @endif
-                                                                                </li>
-                                                                            </ul>
+                                                                    @foreach ($deducciones_emps as $deduc)
+                                                                        <div class="col-md-6 d-flex">
+                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
+                                                                                <div class="dropdown profile-action">
+                                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
+                                                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                                        <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="card-body">
+                                                                                    {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
+                                                                                    <div class="pro-edit">
+                                                                                        <h3 class="card-title">Deducción</h3>
+                                                                                    </div>
+
+                                                                                    <ul class="list-group list-group-flush">
+                                                                                        <li class="list-group-item">
+                                                                                            <div class="title">Nombre:</div>
+                                                                                            <div class="text">{{$deduc->nombre}}</div>
+                                                                                        </li>
+                                                                                        @if ($deduc->monto == NULL)
+                                                                                            <li class="list-group-item">
+                                                                                                <div class="title">Porcentaje:</div>
+                                                                                                <div class="text">{{$deduc->porcentaje}}%</div>
+                                                                                            </li>
+                                                                                        @elseif ($deduc->porcentaje == NULL)
+                                                                                            <li class="list-group-item">
+                                                                                                <div class="title">Monto:</div>
+                                                                                                <div class="text">Lps. {{$deduc->monto}}</div>
+                                                                                            </li>
+                                                                                        @endif
+                                                                                        <li class="list-group-item">
+                                                                                            <div class="title">Descripción:</div>
+                                                                                            <div class="text">{{$deduc->descripcion}}</div>
+                                                                                        </li>
+                                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
+                                                                                            <li class="list-group-item">
+                                                                                                <div class="title">Deducción Variable:</div>
+                                                                                                <div class="text">{{$DeducVariable->nombre}}</div>
+                                                                                            </li>
+                                                                                        @endforeach
+                                                                                        <li class="list-group-item">
+                                                                                            @if($deduc->estado == 0)
+                                                                                                <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
+                                                                                            @elseif($deduc->estado == 1)
+                                                                                                <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
+                                                                                            @endif
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
-                                                                @endforeach
+                                                                    @endforeach
+
                                                         </div>
                                                 </div>
                                                 <!-- /Deducciones Tab -->
@@ -842,7 +858,7 @@
                 editarReferencia();
             }
         });
-
+        (cargo_tipodeduccion_variable)();
         var  idRef  = document.getElementById("identidad_referencia");
         var  imRef = new Inputmask("9999-9999-99999");
         Idr = imRef.mask(idRef );
@@ -928,6 +944,32 @@
                 success: function(data){
                     /* console.log(data); */
                     renderReferencia(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function render_tipodeduccion_variable(data){
+            var html_TipodeducSelect_VARIABLES ='<option selected="selected" value="">SELECCIONE</option>';
+            for (var i=0; i<data.length; ++i){
+                html_TipodeducSelect_VARIABLES += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#TipodeducSelect_VARIABLES').html(html_TipodeducSelect_VARIABLES)
+        }
+
+        function cargo_tipodeduccion_variable(){
+            $.ajax({
+                type:"GET",
+                url: "/tipoDeduccionVariable",
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    /* console.log(data); */
+                    render_tipodeduccion_variable(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -1122,160 +1164,6 @@
                     }
 
         }
-
-        /* function validacionReferencia(id){
-            var nombre_referencia = $('#nombre_referencia').val();
-            var identidad_referencia = $('#identidad_referencia').val();
-            var telefono_referencia = $('#telefono_referencia').val();
-            var email_referencia = $('#email_referencia').val();
-            var parentezco_referencia = $('#parentezco_referencia').val();
-            var direccion_referencia = $('#direccion_referencia').val();
-
-            if(/_/g.test(identidad_referencia)){
-                let identidad_referencia = document.getElementById('identidad_referencia');
-                identidad_referencia.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar la identidad completa de la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(nombre_referencia.length == 0){
-                let nombre_referencia = document.getElementById('nombre_referencia');
-                nombre_referencia.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un nombre de referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(identidad_referencia.length == 0 ){
-                let identidad_referencia = document.getElementById('identidad_referencia');
-                identidad_referencia.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar la identidad completa de la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(telefono_referencia.length == 0){
-                let telefono_referencia = document.getElementById('telefono_referencia');
-                telefono_referencia.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un teléfono de la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(email_referencia.length == 0){
-                let email_referencia = document.getElementById('email_referencia');
-                email_referencia.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar una correo electrónico de la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(parentezco_referencia == ""){
-                let parentezco_referencia = document.getElementById('parentezco_referencia');
-                parentezco_referencia.className = 'form-control is-valid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un parentezco en la referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else if(direccion_referencia.length == 0){
-                let direccion_referencia = document.getElementById('direccion_referencia');
-                ddireccion_referencia.className = 'form-control is-valid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar una direccion de referencia',
-                    timer: 1000
-                    })
-                    event.preventDefault();
-            }else{
-                anadirReferencia(id);
-            }
-        } */
-
-        /* function validarDeduccionesEmp(){
-            var nombre_deduc = $('#nombre_deduc').val();
-            var porcentaje_deduc = $('#porcentaje_deduc').val();
-            var monto_deduc = $('#monto_deduc').val();
-            var descripcion_deduc = $('#descripcion_deduc').val();
-            var idEmpleadoDe = $('#idEmpleadoDe').val();
-            var TipodeducSelect = document.getElementById("TipodeducSelect").value;
-            var prueba = 3;
-
-            if(descripcion_deduc.length == 0){
-                let descripcion_deduc = document.getElementById('descripcion_deduc');
-                descripcion_deduc.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar una breve descripción de la deducción',
-                    timer: 1200
-                    })
-                    event.preventDefault();
-            }else if(TipodeducSelect == 20){
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe Escoger un tipo de deduccion',
-                    timer: 1200
-                    })
-                    event.preventDefault();
-            }else if(nombre_deduc.length == 0){
-                let nombre_deduc = document.getElementById('nombre_deduc');
-                nombre_deduc.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un nombre especifico de la deducción',
-                    timer: 1200
-                    })
-                    event.preventDefault();
-            }else if(porcentaje_deduc.length == 0 && TipodeducSelect == 0){
-                let porcentaje_deduc = document.getElementById('porcentaje_deduc');
-                porcentaje_deduc.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un porcentaje de deducción',
-                    timer: 1200
-                    })
-                    event.preventDefault();
-            }else if(monto_deduc.length == 0 && TipodeducSelect == 1){
-                let monto_deduc = document.getElementById('monto_deduc');
-                monto_deduc.className = 'form-control is-invalid';
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Debe indicar un monto fijo',
-                    timer: 1200
-                    })
-                    event.preventDefault();
-            }else{
-                agregarDeducEmp(idEmpleadoDe);
-            }
-        } */
-
-        /* function valDeducciones(){
-            var selectTipoDeduccion = document.getElementById("TipodeducSelect").value;
-            console.log(selectTipoDeduccion);
-
-                $("#monto_deduc").removeAttr("required");
-                $("#porcentaje_deduc").removeAttr("required");
-            if(selectTipoDeduccion){
-                if(selectTipoDeduccion == 0){
-                    $("porcentaje_deduc").prop("required", true);
-                    $("#monto_deduc").removeAttr("required");
-                    agregarDeducEmp();
-                }else if(selectTipoDeduccion == 1){
-                    $("monto_deduc").prop("required", true);
-                    $("#porcentaje_deduc").removeAttr("required");
-                    agregarDeducEmp();
-                }
-            }else{
-                $("#TipodeducSelect").removeAttr("required");
-            }
-        } */
         function agregarDeducEmp(){
             var data = new FormData($('#formDeduccion').get(0));
                     $.ajax({

@@ -27,6 +27,7 @@
                                 <th> <b>PERFIL</b> </th>
                                 <th> <b>NOMBRE</b>  </th>
                                 <th> <b>ESTADO</b>  </th>
+                                <th> <b>TIPO</b>  </th>
                                 <th class="text-right"> <b>ACCION</b> </th>
                             </tr>
                         </thead>
@@ -93,13 +94,23 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form>
+								<form class="form-group" id="formEditNombre" data-parsley-validate>
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 									<div class="form-group">
 										<label>Nombre <span class="text-danger">*</span></label>
-										<input class="form-control" value="" type="text" id="nombreDeduccion_edit" name="nombreDeduccion_edit">
+										<input class="form-control" required value="" type="text" id="nombreDeduccion_edit" name="nombreDeduccion_edit">
+                                        <input type="hidden" id="iddeduccion_edit" name="iddeduccion_edit" value="">
+									</div>
+                                    <div class="form-group">
+										<label>Tipo de deducción<span class="text-danger">*</span></label>
+										<select class="custom-select" name="tipoDeduc" id="tipoDeduc">
+                                            <option value="" id="optionSelect"></option>
+                                            <option value="1">VARIABLE</option>
+                                            <option value="2">GENERAL</option>
+                                        </select>
 									</div>
 									<div class="submit-section">
-										<button class="btn btn-warning submit-btn">Renombrar</button>
+										<button class="btn btn-warning submit-btn">Editar</button>
 									</div>
 								</form>
 							</div>
@@ -136,12 +147,19 @@
             {data:'perfil'},
             {data:'nombre'},
             {data:'item'},
+            {data:'estado'},
             {data:'action'}
         ]});
 
         $('#formDeduccionesGenerales').submit(function(e){
             e.preventDefault();
             agregarDeduccion_general();
+        });
+
+        $('#formEditNombre').submit(function(e){
+            e.preventDefault();
+            var id = $('#iddeduccion_edit').val();
+            editGeneralDeduccion(id);
         });
 
        function agregarDeduccion_general(){
@@ -163,6 +181,7 @@
                             text: 'Guardado con éxito!',
                             timer: 1500
                             });
+                            location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -179,7 +198,11 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
+                    $('#nombreDeduccion_edit').val(data[0].nombre);
+                    $('#iddeduccion_edit').val(data[0].id);
+                    $('#optionSelect').val(data[0].tipo_deducciones_id);
+                    if(data[0].tipo_deducciones_id==1){$('#optionSelect').html('VARIANTE');}else{$('#optionSelect').html('GENERAL');}
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -188,8 +211,36 @@
 
        }
 
-       function cambiarEstado(id){
+       function exito(){
+        Swal.fire({
+                            icon: 'success',
+                            text: 'Guardado con éxito!',
+                            timer: 1500
+                    });
+       }
 
+       function editGeneralDeduccion(id){
+        var data = new FormData($('#formEditNombre').get(0));
+            $.ajax({
+                type:"POST",
+                url: "/deducciones/edit/"+id,
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    $('#formEditNombre').trigger("reset");
+                    $('#editar_deduc').modal('hide');
+                    location.reload();
+                    exito();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+
+                }
+            })
        }
     </script>
 @endsection

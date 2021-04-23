@@ -140,6 +140,7 @@ class EmpleadoController extends Controller
         $deduc->empleado_id = $request['idEmpleadoDe'];
         $deduc->monto = $request['monto_deduc'];
         $deduc->porcentaje = $request['porcentaje_deduc'];
+        $deduc->tipo_deducciones_varibale_id=$request['TipodeducSelect_VARIABLES'];
         $deduc->estado = 0;
         $deduc -> save();
 
@@ -192,6 +193,11 @@ class EmpleadoController extends Controller
     public function getDeptos(){
         $depto_pais = DB::SELECT("select * from departamento_pais;");
         return $depto_pais;
+    }
+
+    public function gettipodeducVariable(){
+        $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_varibale;");
+        return $tipodeducVariabl;
     }
 
     public function getMunicipios($idDepto){

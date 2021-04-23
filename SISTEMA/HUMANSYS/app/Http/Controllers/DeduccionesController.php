@@ -25,6 +25,7 @@ class DeduccionesController extends Controller
         $deducciones->nombre = $request['nombre_deduccion'];
         $deducciones->tipo_deducciones_id = 2;
         $deducciones->estatus=1;
+        
         $deducciones -> save();
 
         $techos = new techos();
@@ -56,6 +57,19 @@ class DeduccionesController extends Controller
             return $techos;
     }
 
+    public function getDeducciones($id){
+        $deducciones = DB::select("select * from deducciones where id ='$id'");
+        return $deducciones;
+    }
+
+    public function editdeduccion($id, Request $request){
+            $deducciones = deducciones_fijas::find($id);
+            $deducciones-> nombre = $request['nombreDeduccion_edit'];
+            $deducciones-> tipo_deducciones_id = $request['tipoDeduc'];
+            $deducciones->save();
+
+            return $deducciones;
+    }
 
     /**
      * Display a listing of the resource.

@@ -71,6 +71,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/empleado/editar/referencia/{id}', [EmpleadoController::class, 'updateReferencia']);
     Route::post('/empleado/deducciones', [EmpleadoController::class, 'guardarDeduccion']);
     Route::get('/empleado/deducciones/desactivar/{id}', [EmpleadoController::class, 'desactivarDeduccion']);
+    Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
+
+
 
 
     //BusquedaEmpleados
@@ -87,6 +90,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/techos/guardar', [DeduccionesController::class, 'guardarTechos']);
     Route::get('/deducciones/estado/{id}/{estatus}', [DeduccionesController::class, 'actualizarEstado']);
     Route::post('/techos/editar/{id}', [DeduccionesController::class, 'editTechos']);
+    Route::get('/deduccion/get/{id}', [DeduccionesController::class, 'getDeducciones']);
+    Route::post('/deducciones/edit/{id}', [DeduccionesController::class, 'editdeduccion']);
 
 
 

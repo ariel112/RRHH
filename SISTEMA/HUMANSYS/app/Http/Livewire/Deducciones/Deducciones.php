@@ -16,7 +16,8 @@ class Deducciones extends Component
     }
 
     public function listar_deducciones(){
-        $deducciones = DB::SELECT("select * from deducciones");
+        /* $deducciones = DB::SELECT("select * from deducciones"); */
+        $deducciones = DB::SELECT("SELECT D.id, D.nombre,TD.nombre_, D.url_imagen, D.tipo_deducciones_id, D.estatus FROM deducciones D INNER JOIN tipo_deducciones TD ON(TD.id=D.tipo_deducciones_id)/*  WHERE D.id = 23 */");
         /* select D.nombre, T.rango_inicio, T.rango_final, T.porcentaje from deducciones D
         inner join techos T on (D.id = T.deducciones_id) ; */
         return Datatables::of($deducciones)
@@ -33,18 +34,20 @@ class Deducciones extends Component
             return '<a href="/deducciones/perfil_mostrar/'.$deducciones->id.'" class="avatar"><img alt="" src="../../assets/img/_720.png"></a>';
                 })
                 /*{{route('deducciones',$deducciones->id)}}*/
+
+        ->addColumn('estado', function ($deducciones) {
+            return '<td><span class="badge badge-pill badge-warning">'.$deducciones->nombre_.'</span></td>';
+        })
         ->addColumn('item', function ($deducciones) {
 
-                if($deducciones->estatus==1){
-                    return '<td><span class="badge badge-pill badge-success">ACTIVO</span></td>';
-                } else if($deducciones->estatus==0){
-                    return '<td><span class="badge badge-pill badge-danger">INACTIVO</span></td>';
-                }
-
-
-        })
+            if($deducciones->estatus==1){
+                return '<td><span class="badge badge-pill badge-success">ACTIVO</span></td>';
+            } else if($deducciones->estatus==0){
+                return '<td><span class="badge badge-pill badge-danger">INACTIVO</span></td>';
+            }
+    })
         ->editColumn('id', 'ID: {{$id}}')
-        ->rawColumns(['action','perfil','item'])
+        ->rawColumns(['action','perfil','estado','item'])
         ->make(true);
     }
 
