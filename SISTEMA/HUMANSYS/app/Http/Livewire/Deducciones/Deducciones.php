@@ -21,34 +21,34 @@ class Deducciones extends Component
         /* select D.nombre, T.rango_inicio, T.rango_final, T.porcentaje from deducciones D
         inner join techos T on (D.id = T.deducciones_id) ; */
         return Datatables::of($deducciones)
-        ->addColumn('action', function ($deducciones) {
+            ->addColumn('action', function ($deducciones) {
 
-       return '<div class="dropdown dropdown-action text-right">
-                <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_deduc" onclick="editDeduccion('.$deducciones->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i>Modificar nombre</a>
-                </div>
-               </div>';
-                })
-        ->addColumn('perfil', function ($deducciones) {
-            return '<a href="/deducciones/perfil_mostrar/'.$deducciones->id.'" class="avatar"><img alt="" src="../../assets/img/_720.png"></a>';
-                })
-                /*{{route('deducciones',$deducciones->id)}}*/
+        return '<div class="dropdown dropdown-action text-right">
+                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_deduc" onclick="editDeduccion('.$deducciones->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i>Modificar nombre</a>
+                    </div>
+                </div>';
+                    })
+            ->addColumn('perfil', function ($deducciones) {
+                return '<a href="/deducciones/perfil_mostrar/'.$deducciones->id.'" class="avatar"><img alt="" src="../../assets/img/_720.png"></a>';
+                    })
+                    /*{{route('deducciones',$deducciones->id)}}*/
 
-        ->addColumn('estado', function ($deducciones) {
-            return '<td><span class="badge badge-pill badge-warning">'.$deducciones->nombre_.'</span></td>';
+            ->addColumn('estado', function ($deducciones) {
+                return '<td><span class="badge badge-pill badge-warning">'.$deducciones->nombre_.'</span></td>';
+            })
+            ->addColumn('item', function ($deducciones) {
+
+                if($deducciones->estatus==1){
+                    return '<td><span class="badge badge-pill badge-success">ACTIVO</span></td>';
+                } else if($deducciones->estatus==0){
+                    return '<td><span class="badge badge-pill badge-danger">INACTIVO</span></td>';
+                }
         })
-        ->addColumn('item', function ($deducciones) {
-
-            if($deducciones->estatus==1){
-                return '<td><span class="badge badge-pill badge-success">ACTIVO</span></td>';
-            } else if($deducciones->estatus==0){
-                return '<td><span class="badge badge-pill badge-danger">INACTIVO</span></td>';
-            }
-    })
-        ->editColumn('id', 'ID: {{$id}}')
-        ->rawColumns(['action','perfil','estado','item'])
-        ->make(true);
+            ->editColumn('id', 'ID: {{$id}}')
+            ->rawColumns(['action','perfil','estado','item'])
+            ->make(true);
     }
 
     public function lista_techos(Request $request){
