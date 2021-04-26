@@ -23,6 +23,7 @@
         "livewire/livewire": "^2.0",
         "luecano/numero-a-letras": "^3.0",
         "realrashid/sweet-alert": "^3.2",
+        "spatie/laravel-permission": "^4.0",
         "yajra/laravel-datatables-oracle": "^9.17"
     },
     "require-dev": {

@@ -18,6 +18,7 @@ use App\Models\cargo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Permisos\PermisosRrhh;
 use App\Http\Livewire\Planilla\Planilla;
+use App\Http\Livewire\Planilla\CrearPlanilla;
 use App\Http\Livewire\Planilla\Planilla as PlanillaPlanilla;
 use App\Models\permisos;
 use App\Http\Controllers\DeduccionesController;
@@ -173,6 +174,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //   planilla de empleados
     Route::get('/planilla', Planilla::class)->name('planilla.index');
+    Route::get('/planilla/generar', CrearPlanilla::class)->name('generar.index');
+    Route::get('/planilla/crear', [CrearPlanilla::class, 'generarPlanilla']);
 
 
 

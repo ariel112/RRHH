@@ -295,7 +295,7 @@
 								<a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li>
-									<li><a href="salary-view.html"> Nómina </a></li>
+									<li><a href="{{route('generar.index')}}"> Generar Planilla </a></li>
 									<li><a href="payroll-items.html"> Elementos de nómina </a></li>
 								</ul>
 							</li>{{--
