@@ -29,15 +29,6 @@ class AsistenciasController extends Controller
     public function marcajeDeSalida($id){
         $now = new \DateTime();
         $asistencia = new asistencia();
-        $asistencia -> salida_tarde = $now->format('Y-m-d H:i:s');
-        $asistencia -> empleado_id = $id;
-        $asistencia -> save();
-
-        return $asistencia;
-
-
-        $now = new \DateTime();
-        $asistencia = new asistencia();
         if($now->format('H:i')>="17:00"){
             $asistencia -> salida = $now->format('Y-m-d 17:00:00');
             $asistencia -> salida_tarde = $now->format('Y-m-d H:i:s');

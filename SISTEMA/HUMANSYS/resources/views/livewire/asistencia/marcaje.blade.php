@@ -16,8 +16,8 @@
         </div>
         <!-- /Page Header -->
 
-        <table class="table table-striped custom-table mb-0" id="tblMarcaje">
-            <thead>
+        <table class="table" id="tblMarcaje">
+            <thead class="table-dark">
                 <tr>
                     <th> <b>ID</b> </th>
                     <th> <b>NOMBRE</b> </th>

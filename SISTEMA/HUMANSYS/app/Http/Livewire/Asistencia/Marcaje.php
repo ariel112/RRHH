@@ -15,10 +15,8 @@ class Marcaje extends Component
     }
 
     public function listar_marcaje(){
-         /* $deducciones = DB::SELECT("select * from deducciones"); */
+
          $empleados = DB::SELECT("SELECT * FROM empleado");
-         /* select D.nombre, T.rango_inicio, T.rango_final, T.porcentaje from deducciones D
-         inner join techos T on (D.id = T.deducciones_id) ; */
          return Datatables::of($empleados)
             ->addColumn('id', function ($empleados) {
                 return '<td>'.$empleados->id.'</td>';
@@ -30,7 +28,14 @@ class Marcaje extends Component
                  return '<td>'.$empleados->identidad.'</td>';
             })
             ->addColumn('entradas', function ($empleados) {
-                return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
+                $fechaHoy = new \DateTime();
+                $fechaHoy->format('Y-m-d H:i:s');
+                $asistencias = DB::SELECT("SELECT COUNT(entrada) FROM asistencia WHERE empleado_id = '.$empleados->id.' ");
+                if($asistencias == 0){
+                    return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
+                }else{
+                    return '<td>Prueba</td>';
+                }
             })
             ->addColumn('salidas', function ($empleados) {
             return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.')">SALIDA</button></td>';
