@@ -233,15 +233,15 @@
 							<li class="submenu">
 								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Buscar Empleados</a></li>
-									<li><a href="leaves-employee.html">Hojas Empleados</a></li>
+									<li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Gestión Empleados</a></li>
+									{{-- <li><a href="leaves-employee.html">Hojas Empleados</a></li>
 									<li><a href="leave-settings.html">Leave Settings</a></li>
 									<li><a href="attendance.html">Asistencia (Admin)</a></li>
 									<li><a href="attendance-employee.html">Asistencia (Empleado)</a></li>
 									<li><a href="departments.html">Departamentos</a></li>
 									<li><a href="designations.html">Designaciones</a></li>
 									<li><a href="timesheet.html">Hojas de horas</a></li>
-									<li><a href="overtime.html">Horas extra</a></li>
+									<li><a href="overtime.html">Horas extra</a></li> --}}
 									<li><a href="{{ route('cargos.index') }}" :active="request()->routeIs('cargos.index')" >Cargos</a></li>
 								</ul>
 							</li>
@@ -270,8 +270,8 @@
 								<a href="#"><i class="la la-money"></i> <span> Asistencias </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
-									<li><a href="invoices.html">Cargar</a></li>
-									<li><a href="expenses.html">Otros</a></li>
+									<li><a href="{{ route('asistencia.marcaje') }}" :active="request()->routeIs('asistencia.marcaje')">Marcar</a></li>
+									{{-- <li><a href="expenses.html">Otros</a></li> --}}
 								</ul>
 							</li>
 							<li class="submenu">
@@ -280,7 +280,7 @@
 									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
 								</ul>
 							</li>
-                            <li class="submenu">
+                            {{-- <li class="submenu">
 								<a href="#"><i class="la la-files-o"></i> <span> Cuentas </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="estimates.html">Estimados</a></li>
@@ -290,7 +290,7 @@
 									<li><a href="provident-fund.html">Fondo de previsión</a></li>
 									<li><a href="taxes.html">Impuestos</a></li>
 								</ul>
-							</li>
+							</li> --}}
 							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -298,11 +298,11 @@
 									<li><a href="salary-view.html"> Nómina </a></li>
 									<li><a href="payroll-items.html"> Elementos de nómina </a></li>
 								</ul>
-							</li>
+							</li>{{--
 							<li>
 								<a href="policies.html"><i class="la la-file-pdf-o"></i> <span>Politicas</span></a>
-							</li>
-							<li class="submenu">
+							</li> --}}
+							{{-- <li class="submenu">
 								<a href="#"><i class="la la-pie-chart"></i> <span> Informes </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="expense-reports.html"> Informe de gastos </a></li>
@@ -332,7 +332,7 @@
 							<li>
 								<a href="settings.html"><i class="la la-cog"></i> <span>Ajustes</span></a>
 							</li>
-
+ --}}
 						</ul>
 					</div>
                 </div>

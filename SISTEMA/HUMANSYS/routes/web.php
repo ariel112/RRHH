@@ -10,6 +10,7 @@ use App\Http\Livewire\Permisos\PermisosJefe;
 use App\Http\Livewire\Permisos\PermisosEmpleados;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Livewire\Asistencia\Asistencia;
+use App\Http\Livewire\Asistencia\Marcaje;
 use App\Http\Livewire\Asistencia\ListaAsistencia;
 use App\Http\Livewire\Cargos\Cargos;
 use App\Mail\EnvioMasivo;
@@ -73,6 +74,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/deducciones/desactivar/{id}', [EmpleadoController::class, 'desactivarDeduccion']);
     Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
 
+
+    //Marcaje de sistencias
+    Route::get('/marcaje', Marcaje::class,)->name('asistencia.marcaje');
 
 
 
