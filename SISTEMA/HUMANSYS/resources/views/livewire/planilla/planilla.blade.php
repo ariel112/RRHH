@@ -13,15 +13,19 @@
                         <li class="breadcrumb-item active">Salario</li>
                     </ul>
                 </div>
-                {{-- <div class="col-auto float-right ml-auto">
-                    <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_salary">
-                        <i class="fa fa-plus"></i> Add Salary
-                    </a>
-                </div> --}}
+                
             </div>
         </div>
         <!-- /Page Header -->
-        
+        <div class="row">
+                <div class="col-md-4"  >
+                    <label for="message-text" class="col-form-label" style="color: #2aab2a">
+                      <b><i class="fa fa-calendar-alt  fa-2x" ></i> <b style="font-size: 25px;">Inicio y Final:</b></b>
+                    </label>
+                    <input style="border: 2px solid #2aab2a" type="text" name="start_end" class="form-control" id="rangoPeriodo">
+                </div> 
+        </div>
+        <br>
      
         
         <div class="row">
