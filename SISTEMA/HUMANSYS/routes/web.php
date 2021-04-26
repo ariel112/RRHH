@@ -23,6 +23,8 @@ use App\Http\Livewire\Planilla\Planilla as PlanillaPlanilla;
 use App\Models\permisos;
 use App\Http\Controllers\DeduccionesController;
 use App\Http\Livewire\Deducciones\Deducciones;
+use App\Http\Controllers\AsistenciasController;
+
 
 
 /*
@@ -78,6 +80,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Marcaje de sistencias
     Route::get('/marcaje', Marcaje::class,)->name('asistencia.marcaje');
+    Route::get('/marcaje/listar', [Marcaje::class, 'listar_marcaje']);
+    Route::get('/marcaje/entrada/{id}', [AsistenciasController::class, 'marcajeDeEntrada']);
+    Route::get('/marcaje/salida/{id}', [AsistenciasController::class, 'marcajeDeSalida']);
 
 
 
