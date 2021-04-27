@@ -17,7 +17,7 @@ class CrearPlanilla extends Component
     public function generarPlanilla(){
            try{
                
-                $empleados = DB::SELECT('select id from empleado');
+                $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
 
                 return response()->json(['empleado'=> $empleados],200);
            }catch(QueryException $e){
@@ -28,5 +28,13 @@ class CrearPlanilla extends Component
            }
 
 
+           public function asistencia(){
+
+
+    
+        }
+
     
 }
+
+
