@@ -9,5 +9,5 @@ class asistencia extends Model
 {
     use HasFactory;
     protected $table = 'asistencia';
-    protected $fillable = ['id', 'entrada', 'salida', 'entrada_tarde', 'salida_tarde', 'empleado_id', 'fecha_dia'];
+    protected $fillable = ['id', 'entrada', 'salida', 'entrada_tarde', 'salida_tarde', 'empleado_id', 'fecha_dia', 'fecha_dia_salida'];
 }

@@ -37,13 +37,25 @@ class Marcaje extends Component
                     if($fecha_entrada_fija === $fechaHoy){
                         return '<td><i class="fa fa-check text-success"></i></td>';
                     }else{
-                        return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA fechaHoy: '.$fechaHoy.' fechaEntrada: '.$fecha_entrada_fija.'</button></td>';
+                        return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
                     }
 
                 }
             })
             ->addColumn('salidas', function ($empleados) {
-            return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.')">SALIDA</button></td>';
+                $fechaHoy = date("Y-m-d");
+                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia_salida as fecha FROM asistencia WHERE empleado_id ='.$empleados->id.' AND fecha_dia_salida = '".$fechaHoy."' ");
+                $fecha_salida = $asistencias->fecha;
+                if($fecha_salida == "" and $asistencias->conteo == 0){
+                    return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.')">SALIDA</button></td>';
+                }elseif($asistencias->conteo > 0){
+                    if($fecha_salida === $fechaHoy){
+                        return '<td><i class="fa fa-check text-success"></i></td>';
+                    }else{
+                        return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.')">SALIDA</button></td>';
+                    }
+
+                }
             })
             ->editColumn('id', '{{$id}}')
             ->rawColumns(['id','nombre', 'identidad','entradas','salidas'])
