@@ -24,7 +24,7 @@
                         <button type="button" class="btn btn-warning btn-sm" onclick="habilitacionDeduccion({{$deduccion->estatus}})"><b>Cambiar estado</b></button>
                     </div>
                     <div class="profile-img-wrap edit-img">
-                        <img class="inline-block" src="../../assets/img/_720.png"" alt="user">
+                        <img class="inline-block" src="../../assets/img/_720.png" alt="user">
                         <div class="fileupload btn">
                             <span class="btn-text">editar</span>
                             <input class="upload" type="file">
