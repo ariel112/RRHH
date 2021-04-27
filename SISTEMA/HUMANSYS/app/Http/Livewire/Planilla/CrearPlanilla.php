@@ -20,38 +20,7 @@ class CrearPlanilla extends Component
            try{
                
            
-            //     $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
-
-            //     $asistencias=[];
-
-            //    foreach($empleados as $empleado){
-
-            //     $dias = DB::SELECT('select * from asistencia where (fecha_dia BETWEEN "2021-04-26" AND "2021-05-02") AND (DAYOFWEEK(fecha_dia) IN (2,3,4,5,6)) and empleado_id = '.$empleado->id.'');
-
-
-                
-
-
-            //      array_push( $asistencias, [$dias,'idEmpleado'=>$empleado->id] );              
             
-            //     }
-
-            //     //meter en funcion
-
-            //     $arreglo=[];
-
-            //    foreach($asistencias as $asistenciaEmpleado){
-
-            //     $asistenciasEmpleado = $asistenciaEmpleado[0];
-
-            //         foreach($asistenciasEmpleado as $dia){
-            //             $permiso = DB::SELECT('select * from permisos where empleado_id ='.$dia->empleado_id);
-            //             array_push($arreglo, $permiso);
-            //         }
-
-                
-
-            //    }
 
 
 
@@ -79,9 +48,9 @@ class CrearPlanilla extends Component
 
             foreach ($arregloDeFechas as $dia) {
                 foreach($empleados as $empleado){
-                    $asistenciaDia = DB::SELECT('select * from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
+                    $asistenciaDia = DB::SELECT('select date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
 
-                    
+                   
 
                 }
 
@@ -89,7 +58,10 @@ class CrearPlanilla extends Component
             }
 
           
-
+            $fecha1 = strtotime("08:00:00");//inicial
+            $fecha2 = strtotime("17:00:00");//final
+            $minutosTrabajados = ($fecha2-$fecha1)/60;
+          
 
 
                return response()->json( $asistenciaDia,200);
