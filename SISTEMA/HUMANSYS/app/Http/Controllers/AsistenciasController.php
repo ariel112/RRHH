@@ -36,13 +36,13 @@ class AsistenciasController extends Controller
         if($now->format('H:i')>="17:00"){
             $asistencia -> salida_fija = $now->format('Y-m-d 17:00:00');
             $asistencia -> salida_real = $now->format('Y-m-d H:i:s');
-            $asistencia -> fecha_dia = $fechaHoy;
+            $asistencia -> fecha_dia_salida = $fechaHoy;
             $asistencia -> empleado_id = $id;
             $asistencia -> save();
         }else{
             $asistencia -> salida_fija = $now->format('Y-m-d H:i:s');
             $asistencia -> salida_real = $now->format('Y-m-d H:i:s');
-            $asistencia -> fecha_dia = $fechaHoy;
+            $asistencia -> fecha_dia_salida = $fechaHoy;
             $asistencia -> empleado_id = $id;
             $asistencia -> save();
         }
