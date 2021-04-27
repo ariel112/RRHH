@@ -35,18 +35,18 @@ class ListaAsistencia extends Component
                                         FROM asistencia A
                                         INNER JOIN empleado B
                                         ON(A.empleado_id=B.id)
-                                        WHERE date_format(A.entrada, '%Y-%m')='$fechaentere'
+                                        WHERE date_format(A.entrada_real, '%Y-%m')='$fechaentere'
                                         GROUP by A.empleado_id
                                         ");
         foreach ($lista_empleado as $list) {
             $dia =[];
             for ($i=1; $i <=$fin; $i++) {
                 $compara = $fechaentere.'-'.$i;
-                $asistencia = DB::selectone("SELECT date_format(A.entrada, '%Y-%m-%e') fecha, A.id, A.empleado_id, CONCAT(B.primer_nombre, ' ', B.primer_apellido) nombre
+                $asistencia = DB::selectone("SELECT date_format(A.entrada_real, '%Y-%m-%e') fecha, A.id, A.empleado_id, CONCAT(B.primer_nombre, ' ', B.primer_apellido) nombre
                                              FROM asistencia A
                                              INNER JOIN empleado B
                                              ON(A.empleado_id=B.id)
-                                             WHERE A.empleado_id='$list->empleado_id' AND date_format(A.entrada, '%Y-%m-%e') = '$compara'");
+                                             WHERE A.empleado_id='$list->empleado_id' AND date_format(A.entrada_real, '%Y-%m-%e') = '$compara'");
                     if($asistencia && $compara === $asistencia->fecha  ){
                         array_push($dia,['fecha'=>$compara, 'id'=>$asistencia->id,'asistencia'=>'1', 'id_empleado'=>$asistencia->empleado_id]);
                     }else {

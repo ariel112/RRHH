@@ -217,7 +217,6 @@
                 showCancelButton: true,
                 confirmButtonText: `Sí`,
                 }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
                         $.ajax({
                             type:"GET",
