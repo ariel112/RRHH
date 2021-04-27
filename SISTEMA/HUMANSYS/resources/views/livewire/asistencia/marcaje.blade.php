@@ -103,14 +103,15 @@
                     timer: 1500
                     })
                     $("#btnEntrada_Emp_"+idEmpleado).fadeOut();
+                    /*$('div.row > div').removeClass('active'); */
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
             });
         }
-        function marcarSalida(idEmpleado){
-            $.ajax({
+        function marcarSalida(idEmpleado, nombre){
+            /* $.ajax({
                 type:"GET",
                 url: "/marcaje/salida/"+idEmpleado,
                 contentType: false,
@@ -131,7 +132,42 @@
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
-            });
+            }); */
+
+            Swal.fire({
+                title: '¿Confirme salida de '  +nombre+'?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type:"GET",
+                            url: "/marcaje/salida/"+idEmpleado,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            dataType:"json",
+                            success: function(data){
+                                console.log(data);
+                                Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Salida marcada con éxito!',
+                                showConfirmButton: false,
+                                timer: 1500
+                                })
+                                $("#btnSalida_Emp_"+idEmpleado).fadeOut();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log(jqXHR, textStatus, errorThrown);
+                            }
+                        });
+
+                    } else if (result.isDenied) {
+                        Swal.fire('Salida no marcada', '', 'info')
+                    }
+            })
         }
 
 
