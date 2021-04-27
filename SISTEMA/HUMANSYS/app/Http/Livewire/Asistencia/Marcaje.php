@@ -28,13 +28,20 @@ class Marcaje extends Component
                  return '<td>'.$empleados->identidad.'</td>';
             })
             ->addColumn('entradas', function ($empleados) {
-                $fechaHoy = new \DateTime();
-                $fechaHoy->format('Y-m-d H:i:s');
-                $asistencias = DB::SELECT("SELECT COUNT(entrada) FROM asistencia WHERE empleado_id = '.$empleados->id.' ");
-                if($asistencias == 0){
+                // $fechaHoy = new \DateTime();
+                // $fechaHoy->format('Y-m-d');
+                $fechaHoy = date("Y-m-d");
+                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', DATE_FORMAT(entrada_fija, '%Y-%m-%d') as entrada FROM asistencia WHERE empleado_id ='.$empleados->id.' AND entrada_fija ='.$fechaHoy.'"  );
+                $fecha_entrada_fija = $asistencias->entrada;
+                if($fecha_entrada_fija == "" and $asistencias->conteo == 0){
                     return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
-                }else{
-                    return '<td>Prueba</td>';
+                }elseif($asistencias->conteo > 0){
+                     if($fecha_entrada_fija == $fechaHoy){
+                        return '<td><i class="fa fa-check text-success"></i></td>';
+                    }else{
+                        return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
+                    }
+
                 }
             })
             ->addColumn('salidas', function ($empleados) {
