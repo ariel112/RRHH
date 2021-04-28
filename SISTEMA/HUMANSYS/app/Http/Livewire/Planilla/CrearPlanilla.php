@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Planilla;
 
 use App\Models\asistencia;
 use App\Models\empleado;
+use App\Models\permisos;
 use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -17,47 +18,8 @@ class CrearPlanilla extends Component
 
 
     public function generarPlanilla(){
-           try{
-               
-           
-            //     $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
-
-            //     $asistencias=[];
-
-            //    foreach($empleados as $empleado){
-
-            //     $dias = DB::SELECT('select * from asistencia where (fecha_dia BETWEEN "2021-04-26" AND "2021-05-02") AND (DAYOFWEEK(fecha_dia) IN (2,3,4,5,6)) and empleado_id = '.$empleado->id.'');
-
-
-                
-
-
-            //      array_push( $asistencias, [$dias,'idEmpleado'=>$empleado->id] );              
-            
-            //     }
-
-            //     //meter en funcion
-
-            //     $arreglo=[];
-
-            //    foreach($asistencias as $asistenciaEmpleado){
-
-            //     $asistenciasEmpleado = $asistenciaEmpleado[0];
-
-            //         foreach($asistenciasEmpleado as $dia){
-            //             $permiso = DB::SELECT('select * from permisos where empleado_id ='.$dia->empleado_id);
-            //             array_push($arreglo, $permiso);
-            //         }
-
-                
-
-            //    }
-
-
-
-
-
-               
+           try{        
+                          
             $fecha1 = new DateTime("2021-04-26");
             $fecha2 = new DateTime("2021-05-02");
             $diff = $fecha1->diff($fecha2);
@@ -73,15 +35,64 @@ class CrearPlanilla extends Component
             }
 
 
-            //listado de empleados
-
-            $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
-
+            //listado de empleados tomar en cuenta los que tienen contrato activo
+            //solo toma los empleado de tipo empleado y con estado activo los gerentes son libre de deducciones por asistencia 
+            $empleados = DB::SELECT('select empleado.id, empleado.sueldo from tipo_empleado 
+            inner join cargo 
+            on tipo_empleado.id = cargo.tipo_empleado_id
+            inner join empleado
+            on empleado.cargo_id = cargo.id
+            where tipo_empleado.id = 1  and (empleado.id=3 or empleado.id=4) and empleado.estatus_id = 1');
+//---------calcula la deduccion por asistencia
             foreach ($arregloDeFechas as $dia) {
                 foreach($empleados as $empleado){
-                    $asistenciaDia = DB::SELECT('select * from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
+                    $asistenciaDia = DB::SELECT('select id,date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
 
+                    //calculando minuto
+                    $horaInicio = strtotime($asistenciaDia[0]->entrada_fija);//inicial
+                    $horaFinal = strtotime($asistenciaDia[0]->salida_fija);//final
+                    $minutosTrabajados = ($horaFinal-$horaInicio)/60;
+
+                    //calculando minutos de permiso 
+
+                    $permisos = DB::SELECT('select hora_inicio, hora_final FROM permisos WHERE DATE(fecha_inicio)="'.$dia['fecha'].'" and DATE(fecha_final)="'.$dia['fecha'].'" and tipo_gose_sueldo_id = 1 and empleado_id = '.$empleado->id);
                     
+                    if( $permisos ){
+                    $horaInicioPermiso = strtotime($permisos[0]->hora_inicio);//inicial
+                    $horaFinalPermiso = strtotime($permisos[0]->hora_final);//final
+                    $minutosPermiso = ($horaFinalPermiso-$horaInicioPermiso)/60;
+
+                    $paso = $minutosTrabajados + $minutosPermiso;
+                    
+                    $minutosTrabajados = $minutosTrabajados + $minutosPermiso;
+
+
+                    }
+
+                    $valorDia =  ($empleado->sueldo/28);
+                    $valorHora = $valorDia/8;
+                    $valorMinuto = $valorHora/60;
+
+                    if($minutosTrabajados >= 530){
+
+
+                        $flight = asistencia::find($asistenciaDia[0]->id);
+                        $flight->monto_deduccion = '0';
+                        $flight->save();
+
+
+                    }else{
+
+                        $minutosDeducir = 530 - $minutosTrabajados;
+                        $montoDeducir =  $minutosDeducir* $valorMinuto;
+
+                        $flight = asistencia::find($asistenciaDia[0]->id);
+                        $flight->monto_deduccion = round($montoDeducir, 2);
+                        $flight->save();
+
+                    } 
+                
+
 
                 }
 
@@ -89,10 +100,13 @@ class CrearPlanilla extends Component
             }
 
           
+            // $horaInicio = strtotime("08:00:00");//inicial
+            // $horaFinal = strtotime("17:00:00");//final
+            // $minutosTrabajados = ($horaFinal-$horaInicio)/60;
+          
 
 
-
-               return response()->json( $asistenciaDia,200);
+               return response()->json(  $paso,200);
            }catch(QueryException $e){
                
                 return response()->json([
