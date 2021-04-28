@@ -18,16 +18,8 @@ class CrearPlanilla extends Component
 
 
     public function generarPlanilla(){
-           try{
-               
-           
-            
-
-
-
-
-
-               
+           try{        
+                          
             $fecha1 = new DateTime("2021-04-26");
             $fecha2 = new DateTime("2021-05-02");
             $diff = $fecha1->diff($fecha2);
@@ -44,12 +36,17 @@ class CrearPlanilla extends Component
 
 
             //listado de empleados tomar en cuenta los que tienen contrato activo
-
-            $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
-
+            //solo toma los empleado de tipo empleado y con estado activo los gerentes son libre de deducciones por asistencia 
+            $empleados = DB::SELECT('select empleado.id, empleado.sueldo from tipo_empleado 
+            inner join cargo 
+            on tipo_empleado.id = cargo.tipo_empleado_id
+            inner join empleado
+            on empleado.cargo_id = cargo.id
+            where tipo_empleado.id = 1  and (empleado.id=3 or empleado.id=4) and empleado.estatus_id = 1');
+//---------calcula la deduccion por asistencia
             foreach ($arregloDeFechas as $dia) {
                 foreach($empleados as $empleado){
-                    $asistenciaDia = DB::SELECT('select date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
+                    $asistenciaDia = DB::SELECT('select id,date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
 
                     //calculando minuto
                     $horaInicio = strtotime($asistenciaDia[0]->entrada_fija);//inicial
@@ -72,9 +69,28 @@ class CrearPlanilla extends Component
 
                     }
 
-                    if($minutosTrabajados > 540){
-                        
-                    }
+                    $valorDia =  ($empleado->sueldo/28);
+                    $valorHora = $valorDia/8;
+                    $valorMinuto = $valorHora/60;
+
+                    if($minutosTrabajados >= 530){
+
+
+                        $flight = asistencia::find($asistenciaDia[0]->id);
+                        $flight->monto_deduccion = '0';
+                        $flight->save();
+
+
+                    }else{
+
+                        $minutosDeducir = 530 - $minutosTrabajados;
+                        $montoDeducir =  $minutosDeducir* $valorMinuto;
+
+                        $flight = asistencia::find($asistenciaDia[0]->id);
+                        $flight->monto_deduccion = round($montoDeducir, 2);
+                        $flight->save();
+
+                    } 
                 
 
 
