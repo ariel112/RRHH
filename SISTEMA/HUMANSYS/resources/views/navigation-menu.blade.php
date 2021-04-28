@@ -278,6 +278,7 @@
 								<a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
+                                    <li><a href="{{ route('deducciones.deducciones-variables') }}" :active="request()->routeIs('deducciones.deducciones-variables')">Añadir deducciones Variables</a></li>
 								</ul>
 							</li>
                             {{-- <li class="submenu">

@@ -134,7 +134,7 @@ class EmpleadoController extends Controller
 
     public function guardarDeduccion(Request $request){
         $deduc = new deducciones_empleado();
-        $deduc->nombre = $request['nombre_deduc'];
+        /* $deduc->nombre = $request['nombre_deduc']; */
         $deduc->descripcion = $request['descripcion_deduc'];
         $deduc->tipo_deducciones_id = 1;
         $deduc->empleado_id = $request['idEmpleadoDe'];

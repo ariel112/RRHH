@@ -24,7 +24,7 @@ use App\Models\permisos;
 use App\Http\Controllers\DeduccionesController;
 use App\Http\Livewire\Deducciones\Deducciones;
 use App\Http\Controllers\AsistenciasController;
-
+use App\Http\Livewire\Deducciones\DeduccionesVariables;
 
 
 /*
@@ -93,6 +93,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Deducciones
     Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
+    Route::get('/deducciones/variantes', DeduccionesVariables::class )->name('deducciones.deducciones-variables');
     Route::post('/deducciones/guardar', [DeduccionesController::class, 'guardar']);
     Route::get('/deducciones_listar', [Deducciones::class, 'listar_deducciones']);
     Route::get('/deducciones/perfil_mostrar/{id}', Deducciones::class);
@@ -102,9 +103,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/techos/editar/{id}', [DeduccionesController::class, 'editTechos']);
     Route::get('/deduccion/get/{id}', [DeduccionesController::class, 'getDeducciones']);
     Route::post('/deducciones/edit/{id}', [DeduccionesController::class, 'editdeduccion']);
-
-
-
+    Route::get('/tipoDeducVariante/listar', [DeduccionesVariables::class, 'listar_deducciones_variables']);
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);

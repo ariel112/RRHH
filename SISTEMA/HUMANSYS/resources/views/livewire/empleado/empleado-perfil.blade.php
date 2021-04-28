@@ -297,12 +297,12 @@
                                                                         <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                             <div class="card-body">
                                                                                 <div class="row">
-                                                                                    <div class="col-md-4">
+                                                                                    {{-- <div class="col-md-4">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label">Nombre de deducción<span class="text-danger">*</span></label>
                                                                                             <input class="form-control" required  id="nombre_deduc" name="nombre_deduc" type="text">
                                                                                         </div>
-                                                                                    </div>
+                                                                                    </div> --}}
                                                                                     <div class="col-sm-4">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label">Tipo deducción Variable<span class="text-danger">*</span></label>
@@ -371,10 +371,10 @@
                                                                                     </div>
 
                                                                                     <ul class="list-group list-group-flush">
-                                                                                        <li class="list-group-item">
+                                                                                        {{-- <li class="list-group-item">
                                                                                             <div class="title">Nombre:</div>
                                                                                             <div class="text">{{$deduc->nombre}}</div>
-                                                                                        </li>
+                                                                                        </li> --}}
                                                                                         @if ($deduc->monto == NULL)
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Porcentaje:</div>
