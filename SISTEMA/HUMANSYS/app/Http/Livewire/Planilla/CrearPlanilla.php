@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Planilla;
 
 use App\Models\asistencia;
 use App\Models\empleado;
+use App\Models\permisos;
 use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +43,7 @@ class CrearPlanilla extends Component
             }
 
 
-            //listado de empleados
+            //listado de empleados tomar en cuenta los que tienen contrato activo
 
             $empleados = DB::SELECT('select id from empleado where id=3 or id=4');
 
@@ -50,7 +51,32 @@ class CrearPlanilla extends Component
                 foreach($empleados as $empleado){
                     $asistenciaDia = DB::SELECT('select date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "'.$dia['fecha'].'" and empleado_id='.$empleado->id);
 
-                   
+                    //calculando minuto
+                    $horaInicio = strtotime($asistenciaDia[0]->entrada_fija);//inicial
+                    $horaFinal = strtotime($asistenciaDia[0]->salida_fija);//final
+                    $minutosTrabajados = ($horaFinal-$horaInicio)/60;
+
+                    //calculando minutos de permiso 
+
+                    $permisos = DB::SELECT('select hora_inicio, hora_final FROM permisos WHERE DATE(fecha_inicio)="'.$dia['fecha'].'" and DATE(fecha_final)="'.$dia['fecha'].'" and tipo_gose_sueldo_id = 1 and empleado_id = '.$empleado->id);
+                    
+                    if( $permisos ){
+                    $horaInicioPermiso = strtotime($permisos[0]->hora_inicio);//inicial
+                    $horaFinalPermiso = strtotime($permisos[0]->hora_final);//final
+                    $minutosPermiso = ($horaFinalPermiso-$horaInicioPermiso)/60;
+
+                    $paso = $minutosTrabajados + $minutosPermiso;
+                    
+                    $minutosTrabajados = $minutosTrabajados + $minutosPermiso;
+
+
+                    }
+
+                    if($minutosTrabajados > 540){
+                        
+                    }
+                
+
 
                 }
 
@@ -58,13 +84,13 @@ class CrearPlanilla extends Component
             }
 
           
-            $fecha1 = strtotime("08:00:00");//inicial
-            $fecha2 = strtotime("17:00:00");//final
-            $minutosTrabajados = ($fecha2-$fecha1)/60;
+            // $horaInicio = strtotime("08:00:00");//inicial
+            // $horaFinal = strtotime("17:00:00");//final
+            // $minutosTrabajados = ($horaFinal-$horaInicio)/60;
           
 
 
-               return response()->json( $asistenciaDia,200);
+               return response()->json(  $paso,200);
            }catch(QueryException $e){
                
                 return response()->json([
