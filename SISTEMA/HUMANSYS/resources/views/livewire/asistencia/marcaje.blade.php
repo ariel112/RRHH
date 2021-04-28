@@ -104,6 +104,7 @@
                     })
                     $("#btnEntrada_Emp_"+idEmpleado).fadeOut();
                     /*$('div.row > div').removeClass('active'); */
+                    $("#tblMarcaje").DataTable().ajax.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -133,7 +134,6 @@
                     console.log(jqXHR, textStatus, errorThrown);
                 }
             }); */
-
             Swal.fire({
                 title: '¿Confirme salida de '  +nombre+'?',
                 showDenyButton: true,
@@ -158,6 +158,7 @@
                                 timer: 1500
                                 })
                                 $("#btnSalida_Emp_"+idEmpleado).fadeOut();
+                                $("#tblMarcaje").DataTable().ajax.reload();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 console.log(jqXHR, textStatus, errorThrown);
