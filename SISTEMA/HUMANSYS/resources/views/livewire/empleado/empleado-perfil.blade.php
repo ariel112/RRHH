@@ -355,6 +355,7 @@
                                                         <div class="row" id="grillDeducciones">
 
                                                                     @foreach ($deducciones_emps as $deduc)
+                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
                                                                         <div class="col-md-6 d-flex">
                                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
                                                                                 <div class="dropdown profile-action">
@@ -395,12 +396,12 @@
                                                                                             <div class="title">Descripción:</div>
                                                                                             <div class="text">{{$deduc->descripcion}}</div>
                                                                                         </li>
-                                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
+
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Deducción Variable:</div>
                                                                                                 <div class="text">{{$DeducVariable->nombre}}</div>
                                                                                             </li>
-                                                                                        @endforeach
+
                                                                                         <li class="list-group-item">
                                                                                             @if($deduc->estado == 1)
                                                                                                 <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
@@ -412,6 +413,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        @endforeach
                                                                     @endforeach
 
                                                         </div>
@@ -877,23 +879,34 @@
         idEE = imidEditEmpl.mask(idEditEmpl);
 
         function desactivar(id){
-            $.ajax({
-                    type:"GET",
-                    url: "/empleado/deducciones/desactivar/"+id,
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    success: function(){
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Deducción inactivada!',
-                            timer: 1500
-                            });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR, textStatus, errorThrown);
+            Swal.fire({
+                title: '¿Seguro quiere cambiar el estado de ésta deducción?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/deducciones/desactivar/"+id,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'Estado cambiado!',
+                                        timer: 1500
+                                        });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
                     }
-                })
+            })
         }
 
         function renderReferencia(data){
