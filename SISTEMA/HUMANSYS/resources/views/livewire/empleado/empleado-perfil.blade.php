@@ -355,7 +355,6 @@
                                                         <div class="row" id="grillDeducciones">
 
                                                                     @foreach ($deducciones_emps as $deduc)
-                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
                                                                         <div class="col-md-6 d-flex">
                                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
                                                                                 <div class="dropdown profile-action">
@@ -399,7 +398,7 @@
 
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Deducción Variable:</div>
-                                                                                                <div class="text">{{$DeducVariable->nombre}}</div>
+                                                                                                <div class="text">{{$deduc->nombre}}</div>
                                                                                             </li>
 
                                                                                         <li class="list-group-item">
@@ -413,7 +412,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        @endforeach
                                                                     @endforeach
 
                                                         </div>
