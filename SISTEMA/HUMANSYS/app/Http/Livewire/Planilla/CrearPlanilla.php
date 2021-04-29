@@ -105,7 +105,7 @@ class CrearPlanilla extends Component
             // $minutosTrabajados = ($horaFinal-$horaInicio)/60;
           
 
-
+                
                return response()->json(  $paso,200);
            }catch(QueryException $e){
                
