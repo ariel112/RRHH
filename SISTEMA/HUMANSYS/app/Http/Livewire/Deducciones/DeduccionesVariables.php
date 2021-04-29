@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use DataTables;
+use App\Models\deduccionesVariantes;
 
 class DeduccionesVariables extends Component
 {
@@ -25,5 +26,13 @@ class DeduccionesVariables extends Component
             })->editColumn('id', '{{$id}}')
             ->rawColumns(['id','nombre'])
             ->make(true);
+    }
+
+    public function guardarVariantes(Request $request){
+        $deduccionesVariantes= new deduccionesVariantes();
+        $deduccionesVariantes-> nombre = $request['nombre_deduc_variante'];
+        $deduccionesVariantes->save();
+
+        return $deduccionesVariantes;
     }
 }

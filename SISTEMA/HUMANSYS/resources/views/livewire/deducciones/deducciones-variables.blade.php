@@ -18,14 +18,14 @@
 
         <div class="card">
             <div class="card-body">
-                <form id="formDeducVarianteCrear" class="form-group">
+                <form id="formDeducVarianteCrear" class="form-group" data-parsley-validate>
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div class="row">
-                        <div class="col-6">
-                            <label for="">Nombre de deducción</label>
-                            <input type="text" class="form-control" required id="nombre_deduc_variante">
+                        <div class="col-8">
+                            <input type="text" class="form-control floating" required id="nombre_deduc_variante" name="nombre_deduc_variante" placeholder="Nombre de deducción">
                         </div>
                         <div class="col-4">
-                            <button class="btn btn-success m-auto">Agregar</button>
+                            <button class="btn btn-lg btn-block btn-success ">Agregar</button>
                         </div>
                     </div>
                 </form>
@@ -49,6 +49,11 @@
 @section('script')
 
 <script>
+    $('#formDeducVarianteCrear').submit(function(e){
+            e.preventDefault();
+            guardarDeduccionVariante();
+    });
+
     $('#tbltipodeduc').DataTable({
         "language": {
         "lengthMenu": "Mostrar _MENU_ registros",
@@ -73,7 +78,32 @@
             {data:'nombre'}
         ]});
 
-        
+        function guardarDeduccionVariante(){
+            var data = new FormData($('#formDeducVarianteCrear').get(0));
+            $.ajax({
+                type:"POST",
+                url: "/deducVariantes/guardar",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    $('#formDeducVarianteCrear').trigger("reset");
+                    Swal.fire({
+                            icon: 'success',
+                            text: 'Guardado con éxito!',
+                            timer: 1500
+                            });
+                    $("#tbltipodeduc").DataTable().ajax.reload();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+        }
 </script>
 
 @endsection

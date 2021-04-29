@@ -104,6 +104,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/deduccion/get/{id}', [DeduccionesController::class, 'getDeducciones']);
     Route::post('/deducciones/edit/{id}', [DeduccionesController::class, 'editdeduccion']);
     Route::get('/tipoDeducVariante/listar', [DeduccionesVariables::class, 'listar_deducciones_variables']);
+    Route::post('/deducVariantes/guardar', [DeduccionesVariables::class, 'guardarVariantes']);
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);
