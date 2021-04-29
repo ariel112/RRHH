@@ -575,12 +575,12 @@
                                                                                     <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            {{-- <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
                                                                                     <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
@@ -605,6 +605,43 @@
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 {{-- Lugar asignado/Municipio --}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        <div class="card-header">
+                                                                            <h3 class="card-header text-primary text-center">Deducción Catorcenal</h3>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control" disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Seleccionar Deducción<span class="text-danger">*</span></label>
+                                                                                        <select class="form-select custom-select" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
+                                                                                            @foreach ($deducciones as $deduc_fija)
+                                                                                                <option value="{{ $deduc_fija->id }}">{{ $deduc_fija->nombre }}</option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            <div class="col-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label" style="display: none;">Monto IHSS</label>
+                                                                                    <input class="form-control" id="monto_ihss" name="monto_ihss" type="number" style="display: none;">
+
+                                                                                    <label class="col-form-label" style="display: none;">Monto RAP</label>
+                                                                                    <input class="form-control"  id="monto_rap" name="monto_rap" type="number"  style="display: none;">
+
+                                                                                    <label class="col-form-label" style="display: none;" >Monto ISV</label>
+                                                                                    <input class="form-control"  id="monto_isv" name="monto_isv" type="number" style="display: none;">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -826,7 +863,6 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <script>
-
         $('#formReferencia').submit(function(e){
             e.preventDefault();
             var id = document.getElementById("Idemploye").value;
@@ -918,6 +954,11 @@
             $('#idREF').val(data[0].id);
         }
 
+        function select_deduccion_edit_empleado(){
+            var idDeduccion = document.getElementById("sel_deduccion").value;
+            console.log(idDeduccion);
+        }
+
         function editarReferencia(){
             var id = $('#idREF').val();
             var data = new FormData($('#formEditReferencia').get(0));
@@ -992,6 +1033,7 @@
                 }
             });
         }
+
 
         function editarEmpleadoPrincipal(id){
             var data = new FormData($('#formEditEmpleado').get(0));
@@ -1180,6 +1222,7 @@
                     }
 
         }
+
         function agregarDeducEmp(){
             var data = new FormData($('#formDeduccion').get(0));
                     $.ajax({
