@@ -125,31 +125,31 @@
 @section('script')
         <script>
             $('#deducciones').DataTable({
-        "language": {
-        "lengthMenu": "Mostrar _MENU_ registros",
-        "zeroRecords": "No se encontraron resultados",
-        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sSearch": "Buscar:",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast":"Último",
-            "sNext":"Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "sProcessing":"Procesando...",},
-        "serverSide": true,
-        processing: true,
-        "autoWidth": false,
-        "ajax": "/deducciones_listar",
-        "columns": [
-            {data:'perfil'},
-            {data:'nombre'},
-            {data:'item'},
-            {data:'estado'},
-            {data:'action'}
-        ]});
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast":"Último",
+                "sNext":"Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing":"Procesando...",},
+            "serverSide": true,
+            processing: true,
+            "autoWidth": false,
+            "ajax": "/deducciones_listar",
+            "columns": [
+                {data:'perfil'},
+                {data:'nombre'},
+                {data:'item'},
+                {data:'estado'},
+                {data:'action'}
+            ]});
 
         $('#formDeduccionesGenerales').submit(function(e){
             e.preventDefault();
@@ -210,6 +210,8 @@
             });
 
        }
+
+
 
        function exito(){
         Swal.fire({

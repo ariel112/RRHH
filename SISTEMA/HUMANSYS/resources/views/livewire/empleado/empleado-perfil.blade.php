@@ -355,13 +355,19 @@
                                                         <div class="row" id="grillDeducciones">
 
                                                                     @foreach ($deducciones_emps as $deduc)
+                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
                                                                         <div class="col-md-6 d-flex">
-                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
+                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
                                                                                 <div class="dropdown profile-action">
                                                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                                        <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                        @if ($deduc->estado == 1)
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                        @else
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                        @endif
+
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="card-body">
@@ -390,16 +396,16 @@
                                                                                             <div class="title">Descripción:</div>
                                                                                             <div class="text">{{$deduc->descripcion}}</div>
                                                                                         </li>
-                                                                                        @foreach ($tipoDeducVariable as $DeducVariable)
+
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Deducción Variable:</div>
                                                                                                 <div class="text">{{$DeducVariable->nombre}}</div>
                                                                                             </li>
-                                                                                        @endforeach
+
                                                                                         <li class="list-group-item">
-                                                                                            @if($deduc->estado == 0)
+                                                                                            @if($deduc->estado == 1)
                                                                                                 <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
-                                                                                            @elseif($deduc->estado == 1)
+                                                                                            @elseif($deduc->estado == 0)
                                                                                                 <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
                                                                                             @endif
                                                                                         </li>
@@ -407,6 +413,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                        @endforeach
                                                                     @endforeach
 
                                                         </div>
@@ -872,23 +879,34 @@
         idEE = imidEditEmpl.mask(idEditEmpl);
 
         function desactivar(id){
-            $.ajax({
-                    type:"GET",
-                    url: "/empleado/deducciones/desactivar/"+id,
-                    contentType: false,
-                    cache: false,
-                    processData:false,
-                    success: function(){
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Deducción inactivada!',
-                            timer: 1500
-                            });
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR, textStatus, errorThrown);
+            Swal.fire({
+                title: '¿Seguro quiere cambiar el estado de ésta deducción?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/deducciones/desactivar/"+id,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'Estado cambiado!',
+                                        timer: 1500
+                                        });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
                     }
-                })
+            })
         }
 
         function renderReferencia(data){

@@ -39,15 +39,19 @@ class EmpleadoPerfil extends Component
        $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
 
        $deducciones_emps = DB::select('select * from `deducciones_empleado` where empleado_id = '.$request['id'].'');
+
        foreach ($deducciones_emps as $deduc) {
-        $idtipo_deducciones_varibale = $deduc->tipo_deducciones_varibale_id;
+            $id_tipo_deducciones_varibale = $deduc->tipo_deducciones_varibale_id;
         }
+
+        $TipoDeduccionesVariables = DB::SELECT('select * from `tipo_deducciones_varibale` where id = '.$id_tipo_deducciones_varibale.';');
+
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
             'referencias' => referencia::where('empleado_id', '=', $request['id'])->get(),
             /* 'deducciones_emps' => deducciones_empleado::where('empleado_id', '=', $request['id'])->get(), */
-            'tipoDeducVariable' => tipo_deducciones_varibale::where('id', '=', $idtipo_deducciones_varibale)->get(),
+            'tipoDeducVariable' => $TipoDeduccionesVariables,
             'deducciones_emps' => $deducciones_emps,
             'cargos' => $cargo,
             'areas' => $area,

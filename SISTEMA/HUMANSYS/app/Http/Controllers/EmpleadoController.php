@@ -141,16 +141,24 @@ class EmpleadoController extends Controller
         $deduc->monto = $request['monto_deduc'];
         $deduc->porcentaje = $request['porcentaje_deduc'];
         $deduc->tipo_deducciones_varibale_id=$request['TipodeducSelect_VARIABLES'];
-        $deduc->estado = 0;
+        $deduc->estado = 1;
         $deduc -> save();
 
         return $deduc;
     }
 
     public function desactivarDeduccion($id){
-        DB::table('deducciones_empleado')
+        $ded = DB::SELECTONE("select * from deducciones_empleado where id = ".$id);
+        if($ded->estado == 0){
+            DB::table('deducciones_empleado')
             ->where('id', $id)
             ->update(['estado' => 1]);
+        }else{
+            DB::table('deducciones_empleado')
+            ->where('id', $id)
+            ->update(['estado' => 0]);
+        }
+
     }
 
     public function guardarReferencia(Request $request, $id){
