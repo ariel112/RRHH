@@ -86,10 +86,10 @@
 @section('script')
 
 <script>
-    function addIdTipoDeduccion(id, nombre){
+    /* function addIdTipoDeduccion(id, nombre){
             $('#idTideva').val(id);
             $('#nombre_deduc_variante_edit').val(nombre);
-        }
+    } */
     $('#formDeducVarianteCrear').submit(function(e){
             e.preventDefault();
             guardarDeduccionVariante();
@@ -97,8 +97,6 @@
 
     $('#formDeduc_edit').submit(function(e){
             e.preventDefault();
-            let id = $('#idTideva').val();
-            editarVariantes(id);
     });
 
     /* (cargarTipoDeducVariable)(); */
@@ -158,7 +156,7 @@
 
 
 
-        function editarVariantes(id){
+        /* function editarVariantes(id){
             var data = new FormData($('#formDeduc_edit').get(0));
             $.ajax({
                 type:"POST",
@@ -185,7 +183,7 @@
                 }
             })
         }
-
+ */
         function estadoVariantes(id, nombre, idestado){
             Swal.fire({
                 title: '¿Confirme cambio de estado de '  +nombre+'?',

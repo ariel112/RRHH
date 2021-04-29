@@ -35,10 +35,11 @@ class DeduccionesVariables extends Component
             ->addColumn('action', function ($deducVariables) {
                 $comilla="'";
                 if($deducVariables->estado_tdv_id == 1){
+                    /* onclick="addIdTipoDeduccion('.$deducVariables->id.','.$comilla.''.$deducVariables->nombre.''.$comilla.')" */
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_deduccion_variante" onclick="addIdTipoDeduccion('.$deducVariables->id.','.$comilla.''.$deducVariables->nombre.''.$comilla.')"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item" data-toggle="modal" href="" data-target="#editar_deduccion_variante" ><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
                              <a class="dropdown-item text-danger"  onclick="estadoVariantes('.$deducVariables->id.', '.$comilla.''.$deducVariables->nombre.''.$comilla.', '.$deducVariables->estado_tdv_id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
                          </div>
                         </div>';
