@@ -95,6 +95,8 @@ class PermisosEmpleados extends Component
                     //$permiso->estado = '3'; //pendiente
                     $permiso->fecha_inicio = $request['fechaInicio'];
                     $permiso->fecha_final = $request['fechaInicio'];
+                    $permiso->fecha_inicio_aprobado = $request['fechaInicio'];
+                    $permiso->fecha_final_aprobado = $request['fechaFinal'];
                     $permiso->hora_inicio = '08:00:00';
                     $permiso->hora_final = '17:00:00';
                     $permiso->empleado_id = $idEmpleado[0]['id'];
@@ -178,8 +180,8 @@ class PermisosEmpleados extends Component
             $permisos = DB::select('
             select 
             permisos.id as idPermiso,
-            tipo_permiso.permiso as "nombre_permiso",
          
+            tipo_permiso.permiso as "nombre_permiso",
             tipo_permiso_id,
             permisos.fecha_inicio,
             permisos.fecha_final,
@@ -198,6 +200,8 @@ class PermisosEmpleados extends Component
           from permisos
           inner join estado_permiso
           on permisos.estado_permiso_jefe_id = estado_permiso.id  
+          inner join tipo_permiso 
+          on permisos.tipo_permiso_id = tipo_permiso.id
           where permisos.empleado_id = ' . $idEmpleado[0]['id'] .             
           ' order by permisos.created_at desc;
          
