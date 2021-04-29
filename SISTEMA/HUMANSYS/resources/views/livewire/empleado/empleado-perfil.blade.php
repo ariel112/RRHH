@@ -356,12 +356,17 @@
 
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
-                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 0)border-success  @elseif($deduc->estado == 1) border-danger @endif">
+                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
                                                                                 <div class="dropdown profile-action">
                                                                                     <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                                        <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                        @if ($deduc->estado == 1)
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                        @else
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                        @endif
+
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="card-body">
@@ -397,9 +402,9 @@
                                                                                             </li>
                                                                                         @endforeach
                                                                                         <li class="list-group-item">
-                                                                                            @if($deduc->estado == 0)
+                                                                                            @if($deduc->estado == 1)
                                                                                                 <button type="button" class="btn btn-success active btn-block">ACTIVO</button>
-                                                                                            @elseif($deduc->estado == 1)
+                                                                                            @elseif($deduc->estado == 0)
                                                                                                 <button type="button" class="btn btn-danger active btn-block">CANCELADO</button>
                                                                                             @endif
                                                                                         </li>

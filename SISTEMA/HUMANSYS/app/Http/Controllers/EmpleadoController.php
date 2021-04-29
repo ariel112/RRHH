@@ -148,9 +148,17 @@ class EmpleadoController extends Controller
     }
 
     public function desactivarDeduccion($id){
-        DB::table('deducciones_empleado')
+        $ded = DB::SELECTONE("select * from deducciones_empleado");
+        if($ded->estado == 0){
+            DB::table('deducciones_empleado')
             ->where('id', $id)
             ->update(['estado' => 1]);
+        }else{
+            DB::table('deducciones_empleado')
+            ->where('id', $id)
+            ->update(['estado' => 0]);
+        }
+
     }
 
     public function guardarReferencia(Request $request, $id){

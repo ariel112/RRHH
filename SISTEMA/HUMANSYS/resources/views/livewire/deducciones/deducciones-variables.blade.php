@@ -68,6 +68,7 @@
                             <div class="col-12">
                                 <label for="">Estado de deducción</label>
                                 <select name="select_estado_deduc" id="select_estado_deduc" required class="custom-select">
+                                    <option value="" id="optionSelect_estado_deduc"></option>
                                 </select>
                             </div>
 
@@ -97,6 +98,8 @@
 
     $('#formDeduc_edit').submit(function(e){
             e.preventDefault();
+            let id = $('#idTideva').val();
+            editarVariantes(id);
     });
 
     /* (cargarTipoDeducVariable)(); */
@@ -156,7 +159,7 @@
 
 
 
-        /* function editarVariantes(id){
+        function editarVariantes(id){
             var data = new FormData($('#formDeduc_edit').get(0));
             $.ajax({
                 type:"POST",
@@ -183,7 +186,7 @@
                 }
             })
         }
- */
+
         function estadoVariantes(id, nombre, idestado){
             Swal.fire({
                 title: '¿Confirme cambio de estado de '  +nombre+'?',
@@ -240,6 +243,31 @@
                 success: function(data){
                     /* console.log(data); */
                     renderEstados(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
+
+        function renderDatodsEditar_modal(id){
+            $.ajax({
+                type:"GET",
+                url: "/deduccionTipoVariable/mostrar/"+id,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    /* console.log(data); */
+                    $('#nombre_deduc_variante_edit').val(data[0].nombre);
+                    $('#idTideva').val(data[0].id);
+                    $('#optionSelect_estado_deduc').val(data[0].estado_tdv_id);
+                    if(data[0].estado_tdv_id==1){
+                        $('#optionSelect_estado_deduc').html('ACTIVO');
+                    }else{
+                        $('#optionSelect_estado_deduc').html('INACTIVO');
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
