@@ -9,5 +9,5 @@ class deduccionesVariantes extends Model
 {
     use HasFactory;
     protected $table = 'tipo_deducciones_varibale';
-    protected $fillable = ['id', 'nombre'];
+    protected $fillable = ['id', 'nombre','estado_tdv_id'];
 }

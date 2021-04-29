@@ -105,6 +105,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/deducciones/edit/{id}', [DeduccionesController::class, 'editdeduccion']);
     Route::get('/tipoDeducVariante/listar', [DeduccionesVariables::class, 'listar_deducciones_variables']);
     Route::post('/deducVariantes/guardar', [DeduccionesVariables::class, 'guardarVariantes']);
+    Route::get('/estadoVariantes/{id}/{idestado}', [DeduccionesVariables::class, 'estadoVariantes']);
+    Route::get('/cargo/estadoVariante', [DeduccionesVariables::class, 'getEstadoVariante']);
+    Route::get('/cargo/TipoDeducVariable', [DeduccionesVariables::class, 'geTipoDeducVariante']);
+    Route::POST('/deducVariantes/editar/{id}', [DeduccionesVariables::class, 'editarVariantes']);
+
 
      // listar gerentes
      Route::get('/gerente', [Apicontrollers::class, 'gerente']);
