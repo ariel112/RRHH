@@ -46,6 +46,8 @@ class EmpleadoPerfil extends Component
 
         $TipoDeduccionesVariables = DB::SELECT('select * from `tipo_deducciones_varibale` where id = '.$id_tipo_deducciones_varibale.';'); */
 
+        $deducciones_fijas = DB::select('select * from deducciones;');
+
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
@@ -56,7 +58,8 @@ class EmpleadoPerfil extends Component
             'cargos' => $cargo,
             'areas' => $area,
             'departamentos' => $departamento,
-            'funciones' => $funcion
+            'funciones' => $funcion,
+            'deducciones' => $deducciones_fijas
            ]);
 
     }
@@ -64,7 +67,6 @@ class EmpleadoPerfil extends Component
 
 
     public function listarempleados(){
-
         $USERS = User::all();
         // $empleado = DB::SELECT('select * from users ');
 
