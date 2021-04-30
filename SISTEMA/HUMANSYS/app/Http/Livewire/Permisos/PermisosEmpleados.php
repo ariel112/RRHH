@@ -61,7 +61,7 @@ class PermisosEmpleados extends Component
                
                 $permiso->estado = '3'; //pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
-                $permiso->fecha_final = $request['fechaFinal'];
+                $permiso->fecha_final = $request['fechaInicio'];
                 $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
                 $permiso->fecha_final_aprobada = $request['fechaFinal'];
                 $permiso->empleado_id = $idEmpleado[0]['id'];
@@ -95,8 +95,8 @@ class PermisosEmpleados extends Component
                     //$permiso->estado = '3'; //pendiente
                     $permiso->fecha_inicio = $request['fechaInicio'];
                     $permiso->fecha_final = $request['fechaInicio'];
-                    $permiso->fecha_inicio_aprobado = $request['fechaInicio'];
-                    $permiso->fecha_final_aprobado = $request['fechaFinal'];
+                    $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
+                    $permiso->fecha_final_aprobada = $request['fechaFinal'];
                     $permiso->hora_inicio = '08:00:00';
                     $permiso->hora_final = '17:00:00';
                     $permiso->empleado_id = $idEmpleado[0]['id'];
@@ -119,11 +119,13 @@ class PermisosEmpleados extends Component
 
                     $permiso = new permisos;
 
+                    $fechaInicio =  strtotime($request['fechaInicio'].'+'.$i.' '.'days');
+                  
                    
                  
                     //$permiso->estado = '3'; //pendiente
-                    $permiso->fecha_inicio =  strtotime($request['fechaInicio'].'+'.$i.' '.'days');;
-                    $permiso->fecha_final =  strtotime($request['fechaInicio'].'+'.$i.' '.'days');;
+                    $permiso->fecha_inicio =  date("Y-m-d",$fechaInicio);
+                    $permiso->fecha_final = date("Y-m-d",$fechaInicio);
                     $permiso->hora_inicio = '08:00:00';
                     $permiso->hora_final = '17:00:00';
                     $permiso->empleado_id = $idEmpleado[0]['id'];
@@ -132,6 +134,8 @@ class PermisosEmpleados extends Component
                     $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
                     $permiso->motivo = $request['motivo'];
                     $permiso->permiso_id =   $idPErmisoPadre;
+                    $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
+                    $permiso->fecha_final_aprobada = $request['fechaFinal'];
                     $permiso->save();
 
                     
@@ -179,29 +183,34 @@ class PermisosEmpleados extends Component
 
             $permisos = DB::select('
             select 
+
             permisos.id as idPermiso,
-         
-            tipo_permiso.permiso as "nombre_permiso",
-            tipo_permiso_id,
-            permisos.fecha_inicio,
-            permisos.fecha_final,
-            hora_inicio,
-            hora_final,
-            motivo,    
-            estado_permiso_jefe_id,
-            estado_permiso_rrhh_id,
-            empleado_rrhh_aprueba_id,
-            empleado_jefe_aprueba as "empleado_jefe_aprueba_id", 
-            estado_permiso.estado AS "estado_jefe_aprueba",
-            (select estado_permiso.estado from estado_permiso where  estado_permiso.id = permisos.estado_permiso_rrhh_id ) as "estado_rrhh_aprueba",
-            permisos.created_at "fecha_creacion",   
-            IF(  permisos.empleado_jefe_aprueba IS NULL, "Aun no diponible" , (select nombre from  empleado where id = permisos.empleado_jefe_aprueba)  ) AS "nombre_jefe",
-            IF( permisos.empleado_rrhh_aprueba_id IS NULL, "Aun no disponible", (select nombre from  empleado where id = permisos.empleado_rrhh_aprueba_id) ) as "nombre_rrhh"
-          from permisos
-          inner join estado_permiso
-          on permisos.estado_permiso_jefe_id = estado_permiso.id  
-          inner join tipo_permiso 
-          on permisos.tipo_permiso_id = tipo_permiso.id
+                        tipo_permiso.permiso as "nombre_permiso",
+                        permisos.permiso_id ,          
+                        permisos.fecha_inicio_aprobada as fecha_inicio,
+                        permisos.fecha_final_aprobada as fecha_final,
+                        hora_inicio,
+                        hora_final,
+                        motivo,    
+                        estado_permiso_jefe_id,
+                        estado_permiso_rrhh_id,
+                        empleado_rrhh_aprueba_id,
+                        empleado_jefe_aprueba as "empleado_jefe_aprueba_id", 
+                        estado_permiso.estado AS "estado_jefe_aprueba",
+                        (select estado_permiso.estado from estado_permiso where  estado_permiso.id = permisos.estado_permiso_rrhh_id ) as "estado_rrhh_aprueba",
+                        permisos.created_at "fecha_creacion",   
+                        IF(  permisos.empleado_jefe_aprueba IS NULL, "Aun no diponible" , (select nombre from  empleado where id = permisos.empleado_jefe_aprueba)  ) AS "nombre_jefe",
+                        IF( permisos.empleado_rrhh_aprueba_id IS NULL, "Aun no disponible", (select nombre from  empleado where id = permisos.empleado_rrhh_aprueba_id) ) as "nombre_rrhh"
+            
+            from
+            
+            (select permiso_id from permisos group by permiso_id ) permis
+             inner join permisos 
+             on permisos.id = permis.permiso_id
+             inner join estado_permiso
+             on permisos.estado_permiso_jefe_id = estado_permiso.id  
+             inner join tipo_permiso 
+            on permisos.tipo_permiso_id = tipo_permiso.id
           where permisos.empleado_id = ' . $idEmpleado[0]['id'] .             
           ' order by permisos.created_at desc;
          
