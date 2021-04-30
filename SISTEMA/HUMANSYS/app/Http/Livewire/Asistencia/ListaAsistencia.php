@@ -31,7 +31,7 @@ class ListaAsistencia extends Component
         }
         $anio =  $fecha->format("Y");
         $matriz = [];
-        $lista_empleado = DB::select("SELECT A.empleado_id, CONCAT(B.primer_nombre, ' ', B.primer_apellido) nombre
+        $lista_empleado = DB::select("SELECT A.empleado_id, B.nombre
                                         FROM asistencia A
                                         INNER JOIN empleado B
                                         ON(A.empleado_id=B.id)
@@ -55,13 +55,17 @@ class ListaAsistencia extends Component
             }
             array_push($matriz,['id_empleado'=>$list->empleado_id , 'nombre'=>$list->nombre, 'dia'=>$dia]);
         }
-            $currentPage = $request->page;
-            $perPage = 5;
-            $currentElements = array_slice($matriz, $perPage * ($currentPage - 1), $perPage);
-            $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage, ['path' => url('/asistencia')]);
-        return view('livewire.Asistencia.lista_asistencia', [
-            'matriz' =>$res,
-            'fin'=> $fin,
+           // $currentPage = $request->page;
+           // $perPage = 5;
+           // $currentElements = array_slice($matriz, $perPage * ($currentPage - 1), $perPage);
+           // $res = new LengthAwarePaginator($currentElements, count($matriz), $perPage, $currentPage, ['path' => url('/asistencia')]);
+
+    //dd($matriz);
+
+            return view('livewire.Asistencia.lista_asistencia', [
+            'matriz' =>$matriz,
+            'fin'=> $fin
+           // 'COMPARA'=> $compara
         ]);
 
         // return view('livewire.asistencia.lista-asistencia');

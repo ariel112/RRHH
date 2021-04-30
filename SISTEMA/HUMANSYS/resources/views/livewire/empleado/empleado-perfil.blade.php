@@ -633,14 +633,8 @@
                                                                                 </div>
                                                                             <div class="col-4">
                                                                                 <div class="form-group">
-                                                                                    <label class="col-form-label" style="display: none;">Monto IHSS</label>
-                                                                                    <input class="form-control" id="monto_ihss" name="monto_ihss" type="number" style="display: none;">
-
-                                                                                    <label class="col-form-label" style="display: none;">Monto RAP</label>
-                                                                                    <input class="form-control"  id="monto_rap" name="monto_rap" type="number"  style="display: none;">
-
-                                                                                    <label class="col-form-label" style="display: none;" >Monto ISV</label>
-                                                                                    <input class="form-control"  id="monto_isv" name="monto_isv" type="number" style="display: none;">
+                                                                                    <label class="col-form-label" >Monto IHSS</label>
+                                                                                    <input class="form-control" id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
