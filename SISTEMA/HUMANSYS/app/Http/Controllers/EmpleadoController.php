@@ -148,14 +148,15 @@ class EmpleadoController extends Controller
     }
 
     public function desactivarDeduccion($id){
-        $ded = DB::SELECTONE("select * from deducciones_empleado where id = ".$id);
+        $ded = DB::SELECTONE("select estado, id from deducciones_empleado where id = 61;"); 
+        dd($ded);
         if($ded->estado == 0){
             DB::table('deducciones_empleado')
-            ->where('id', $id)
+            ->where('id', $ded->id)
             ->update(['estado' => 1]);
         }else{
             DB::table('deducciones_empleado')
-            ->where('id', $id)
+            ->where('id', $ded->id)
             ->update(['estado' => 0]);
         }
 

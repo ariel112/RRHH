@@ -44,12 +44,12 @@ class permisosJefe extends Component
 
 
             $permisos = DB::SELECT('
-     select 
+            select 
             permisos.id as "idPermiso",
             empleado.nombre as "nombre_empleado",
             permisos.id as idPermiso,
-            permisos.nombre "nombre_permiso",
-            tipo_permiso,
+            tipo_permiso.permiso "nombre_permiso",
+         
             tipo_permiso_id,
             permisos.fecha_inicio,
             permisos.fecha_final,
@@ -77,7 +77,9 @@ class permisosJefe extends Component
     on empleado.id = permisos.empleado_id
     inner join estado_permiso
     on estado_permiso_jefe_id = estado_permiso.id 
-    where departamento.id =' . $idDepartamento[0]['id'] . '  
+    inner join tipo_permiso 
+    on permisos.tipo_permiso_id = tipo_permiso.id
+     where departamento.id =' . $idDepartamento[0]['id'] . '  
     order by permisos.created_at desc;
         ');
 

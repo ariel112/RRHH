@@ -43,7 +43,7 @@ function tableEmpleadoJefe(){
         serverSide: true,
         columns: [
             {data: 'nombre_empleado', name: 'nombre_empleado'},
-            {data: 'tipo_permiso', name: 'tipo_permiso'},
+            {data: 'nombre_permiso', name: 'nombre_permiso'},
             {data: 'fecha_inicio', name: 'fecha_inicio'},
             {data: 'fecha_final', name: 'fecha_final'},
             {data: 'motivo', name: 'motivo'},
