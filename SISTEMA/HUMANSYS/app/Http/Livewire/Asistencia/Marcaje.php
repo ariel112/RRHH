@@ -44,16 +44,25 @@ class Marcaje extends Component
             })
             ->addColumn('salidas', function ($empleados) {
                 $fechaHoy = date("Y-m-d");
+                $asistenciasEntrada = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia as fecha FROM asistencia WHERE empleado_id ='".$empleados->id."' AND fecha_dia = '".$fechaHoy."' ");
                 $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia_salida as fecha FROM asistencia WHERE empleado_id ='".$empleados->id."' AND fecha_dia_salida = '".$fechaHoy."' ");
                 $fecha_salida = $asistencias->fecha;
                 $comilla= "'";
                 if($fecha_salida == "" and $asistencias->conteo == 0){
-                    return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    if($asistenciasEntrada->conteo == 0){
+                        return '<td><button disabled id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    }else{
+                        return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    }
                 }elseif($asistencias->conteo > 0){
                     if($fecha_salida === $fechaHoy){
                         return '<td><i class="fa fa-check text-success"></i></td>';
                     }else{
-                        return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        if($asistenciasEntrada->conteo == 0){
+                            return '<td><button disabled id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        }else{
+                            return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        }
                     }
 
                 }
