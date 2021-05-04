@@ -75,7 +75,11 @@
                     </div>
                     <div class="col-6" id="btnSalidadiv">
                         @if ($asisSalida->conteo == 0)
-                            <button id="btnSalidaEmpleado" name="btnSalidaEmpleado" type="button" class="btn btn-warning btn-lg btn-block" onclick="marcarSalida({{ $empleado->id }},'{{ $empleado->primer_nombre }}')">Marcar Salida</button>
+                            @if ($asistencia->conteo == 0)
+                            <button disabled id="btnSalidaEmpleado" name="btnSalidaEmpleado" type="button" class="btn btn-warning btn-lg btn-block" onclick="marcarSalida({{ $empleado->id }})">Marcar Salida</button>
+                            @else
+                            <button id="btnSalidaEmpleado" name="btnSalidaEmpleado" type="button" class="btn btn-warning btn-lg btn-block" onclick="marcarSalida({{ $empleado->id }})">Marcar Salida</button>
+                            @endif
                         @else
                             <td><i class="fa fa-check text-success"></i></td>
                         @endif
@@ -111,6 +115,8 @@
                     })
                     $("#btnEntradaEmpleado").fadeOut();
                     document.getElementById("btnEntradadiv").innerHTML='<td><i class="fa fa-check text-success"></i></td>';
+                    document.getElementById("btnSalidadiv").innerHTML='';
+                    document.getElementById("btnSalidadiv").innerHTML='<button id="btnSalidaEmpleado" name="btnSalidaEmpleado" type="button" class="btn btn-warning btn-lg btn-block" onclick="marcarSalida({{ $empleado->id }})">Marcar Salida</button>'
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -118,9 +124,9 @@
             });
         }
 
-        function marcarSalida(idEmpleado, nombre){
+        function marcarSalida(idEmpleado){
             Swal.fire({
-                title: '¿Seguro quiere marcar su salida '  +nombre+'?',
+                title: '¿Seguro quiere marcar su salida?',
                 showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonText: `Confirmo`,
