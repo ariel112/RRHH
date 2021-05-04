@@ -271,6 +271,7 @@
 								<ul style="display: none;">
 									<li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
 									<li><a href="{{ route('asistencia.marcaje') }}" :active="request()->routeIs('asistencia.marcaje')">Marcar</a></li>
+                                    <li><a href="{{ route('asistencia.marcaje-empleado') }}" :active="request()->routeIs('asistencia.marcaje-empleado')">Marcaje personal</a></li>
 									{{-- <li><a href="expenses.html">Otros</a></li> --}}
 								</ul>
 							</li>

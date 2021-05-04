@@ -42,6 +42,8 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardar(Request $request){
+        
+
 
         /* dd($request); */
 

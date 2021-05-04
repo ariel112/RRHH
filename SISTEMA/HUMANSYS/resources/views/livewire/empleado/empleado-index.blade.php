@@ -256,18 +256,12 @@
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                     <select class="custom-select form-control" required id="estatus_id" name="estatus_id">
-                                                        <option >Seleccione Estado</option>
+                                                        <option >Seleccione</option>
                                                         <option value="1">ACTIVO</option>
                                                         <option value="2">INACTIVO</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
-                                                    <input class="form-control" id="sueldo" name="sueldo" type="email">
-                                                </div>
-                                            </div> --}}
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
@@ -409,7 +403,7 @@
         }
         /* ------------Departamentos y municipios------------------- */
         function cargoDeptos_pais(data){
-            var html_select_deptos_pais ='<option selected="selected">Seleccione Depto.</option>';
+            var html_select_deptos_pais ='<option >Seleccione Depto.</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_deptos_pais += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
