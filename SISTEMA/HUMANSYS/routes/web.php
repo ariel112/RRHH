@@ -25,6 +25,7 @@ use App\Http\Controllers\DeduccionesController;
 use App\Http\Livewire\Deducciones\Deducciones;
 use App\Http\Controllers\AsistenciasController;
 use App\Http\Livewire\Deducciones\DeduccionesVariables;
+use App\Http\Livewire\Asistencia\MarcajeEmpleado;
 
 
 /*
@@ -83,6 +84,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/marcaje/listar', [Marcaje::class, 'listar_marcaje']);
     Route::get('/marcaje/entrada/{id}', [AsistenciasController::class, 'marcajeDeEntrada']);
     Route::get('/marcaje/salida/{id}', [AsistenciasController::class, 'marcajeDeSalida']);
+    Route::get('/marcaje-empleado', MarcajeEmpleado::class,)->name('asistencia.marcaje-empleado');
 
 
 

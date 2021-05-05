@@ -42,6 +42,8 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardar(Request $request){
+        
+
 
         /* dd($request); */
 
@@ -77,7 +79,7 @@ class EmpleadoController extends Controller
             $empleados->grado_academico_id = $request['grado_academico_id'];
             $empleados->municipio_id = $request['municipio_id'];
             $empleados->cargo_id = $request['cargo_id'];
-            $empleados->sueldo = $request['sueldo'];
+            $empleados->sueldo = 0;
             $empleados->rtn = $request['rtn'];
             $empleados->genero = $request['genero'];
             $empleados->profesion = $request['profesion'];
@@ -100,26 +102,7 @@ class EmpleadoController extends Controller
             $referencias->estatus_referencia_id = 1;
             $referencias -> save();
 
-            /* User::create([
-                 'name' => $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'],
-                'email' =>  $request['email_institucional'],
-                 'password' => Hash::make(rand(5, 15))
-                'password' => Hash::make($request['identidad']),
-                'identidad'=> $request['identidad']
-                 ]);*/
 
-                /*  $newUser = new User();
-                 $newUser->name = $request['primer_nombre'].' '.$request['segundo_nombre'].' '.$request['primer_apellido'].' '.$request['segundo_apellido'];
-                 $newUser->email =$request['email_institucional'];
-                 $newUser->password = Hash::make($request['identidad']);
-                 $newUser->identidad=$request['identidad'];
-
-                 $newUser->save();
-
-                 Team::forceCreate([
-                 'user_id' => $newUser->id,
-                 'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
-                 'personal_team' => true,]); */
 
            return $empleados;
 
@@ -148,7 +131,7 @@ class EmpleadoController extends Controller
     }
 
     public function desactivarDeduccion($id){
-        $ded = DB::SELECTONE("select estado, id from deducciones_empleado where id = 61;"); 
+        $ded = DB::SELECTONE("select estado, id from deducciones_empleado where id = 61;");
         dd($ded);
         if($ded->estado == 0){
             DB::table('deducciones_empleado')

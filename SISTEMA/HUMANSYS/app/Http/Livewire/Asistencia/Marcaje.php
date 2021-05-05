@@ -29,12 +29,12 @@ class Marcaje extends Component
             })
             ->addColumn('entradas', function ($empleados) {
                 $fechaHoy = date("Y-m-d");
-                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia as fecha FROM asistencia WHERE empleado_id ='.$empleados->id.' AND fecha_dia = '".$fechaHoy."' ");
+                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia as fecha FROM asistencia WHERE empleado_id ='".$empleados->id."' AND fecha_dia = '".$fechaHoy."' ");
                 $fecha_entrada_fija = $asistencias->fecha;
                 if($fecha_entrada_fija == "" and $asistencias->conteo == 0){
                     return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
                 }elseif($asistencias->conteo > 0){
-                    if($fecha_entrada_fija === $fechaHoy){
+                    if($fecha_entrada_fija == $fechaHoy){
                         return '<td><i class="fa fa-check text-success"></i></td>';
                     }else{
                         return '<td><button id="btnEntrada_Emp_'.$empleados->id.'" type="button" class="btn btn-success" onclick="marcarEntrada('.$empleados->id.')">ENTRADA</button></td>';
@@ -44,16 +44,25 @@ class Marcaje extends Component
             })
             ->addColumn('salidas', function ($empleados) {
                 $fechaHoy = date("Y-m-d");
-                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia_salida as fecha FROM asistencia WHERE empleado_id ='.$empleados->id.' AND fecha_dia_salida = '".$fechaHoy."' ");
+                $asistenciasEntrada = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia as fecha FROM asistencia WHERE empleado_id ='".$empleados->id."' AND fecha_dia = '".$fechaHoy."' ");
+                $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia_salida as fecha FROM asistencia WHERE empleado_id ='".$empleados->id."' AND fecha_dia_salida = '".$fechaHoy."' ");
                 $fecha_salida = $asistencias->fecha;
                 $comilla= "'";
                 if($fecha_salida == "" and $asistencias->conteo == 0){
-                    return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    if($asistenciasEntrada->conteo == 0){
+                        return '<td><button disabled id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    }else{
+                        return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                    }
                 }elseif($asistencias->conteo > 0){
                     if($fecha_salida === $fechaHoy){
                         return '<td><i class="fa fa-check text-success"></i></td>';
                     }else{
-                        return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        if($asistenciasEntrada->conteo == 0){
+                            return '<td><button disabled id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        }else{
+                            return '<td><button id="btnSalida_Emp_'.$empleados->id.'" type="button" class="btn btn-warning" onclick="marcarSalida('.$empleados->id.','.$comilla.''.$empleados->nombre.''.$comilla.')">SALIDA</button></td>';
+                        }
                     }
 
                 }
