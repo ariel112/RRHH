@@ -878,7 +878,7 @@
                                                                         <div class="col-12">
                                                                             <div class="form-group">
                                                                                 <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
-                                                                                <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                                <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_deducHas" name="id_empleado_deducHas" type="text">
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -911,8 +911,9 @@
             editarEmpleadoPrincipal(idEmpleado);
         });
         $('#formDeduccionesFijas').submit(function(e){
-            console.log("entra");
+            var idEmpleado = $('#id_empleado_deducHas').val();
             e.preventDefault();
+            guardarMontoDeducción(idEmpleado);
         });
         $('#formReferencia').submit(function(e){
             e.preventDefault();
@@ -963,11 +964,11 @@
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
 
-        function guardarMontoDeducción(){
+        function guardarMontoDeducción(id){
             var data = new FormData($('#formDeduccionesFijas').get(0));
             $.ajax({
                 type:"POST",
-                url: "/empleado/deducciones/fijas",
+                url: "/empleado/deducciones/fijas/"+id,
                 data: data,
                 contentType: false,
                 cache: false,

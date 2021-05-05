@@ -77,6 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/empleado/deducciones', [EmpleadoController::class, 'guardarDeduccion']);
     Route::get('/empleado/deducciones/desactivar/{id}', [EmpleadoController::class, 'desactivarDeduccion']);
     Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
+    Route::post('/empleado/deducciones/fijas/{id}', [EmpleadoController::class, 'guardarMontosDeduccionesFijas']);
 
 
     //Marcaje de sistencias
