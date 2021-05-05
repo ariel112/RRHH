@@ -42,8 +42,9 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardar(Request $request){
-        
 
+        try{
+            DB::beginTransaction();
 
         /* dd($request); */
 
@@ -55,8 +56,6 @@ class EmpleadoController extends Controller
         $identidadRe = $request['identidad_referencia'];
         $identRE = str_replace ( "-" , "",$identidadRe);
         $identResultRE = str_replace ( "_" , "", $identRE);
-
-        try{
 
             $empleados = new empleado();
             $empleados->identidad = $identResult;
@@ -102,8 +101,19 @@ class EmpleadoController extends Controller
             $referencias->estatus_referencia_id = 1;
             $referencias -> save();
 
+            $newUser = new User();
+            $newUser->name = $request['primer_nombre'].' '.$request['primer_apellido'];
+            $newUser->email =$request['email'];
+            $newUser->password = Hash::make($identResult);
+            $newUser->identidad=$identResult;
 
+            $newUser->save();
 
+            Team::forceCreate([
+            'user_id' => $newUser->id,
+            'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
+            'personal_team' => true,]);
+            DB::commit();
            return $empleados;
 
         }catch(QueryException $e){

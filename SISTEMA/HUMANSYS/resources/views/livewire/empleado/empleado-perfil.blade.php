@@ -451,67 +451,67 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Segundo Nombre</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                                    <input class="form-control" required value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                                    <input class="form-control" required value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                                    <input class="form-control" required value="{{$empleado->email}}" id="email" name="email" type="email">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Profesión<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                                    <textarea class="form-control is-valid" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                    <textarea class="form-control" required value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
                                                                                 </div>
                                                                             </div>
 
@@ -528,13 +528,13 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">RTN<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="estado_civil" name="estado_civil">
+                                                                                    <select class="form-select form-control" required id="estado_civil" name="estado_civil">
                                                                                         <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
                                                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                                                         <option value="CASADO(a)">CASADO(a)</option>
@@ -544,7 +544,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Género<span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="genero" name="genero">
+                                                                                    <select class="form-select form-control" required id="genero" name="genero">
                                                                                         <option selected value="{{$empleado->genero}}">{{$empleado->genero}}</option>
                                                                                         <option value="MASCULINO">MASCULINO</option>
                                                                                         <option value="FEMENINO">FEMENINO</option>
@@ -554,7 +554,7 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
@@ -572,7 +572,7 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                                    <input class="form-control" required value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                                                 </div>
                                                                             </div>
                                                                             {{-- <div class="col-md-4">
@@ -584,7 +584,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="estatus_id" name="estatus_id">
+                                                                                    <select class="form-select form-control" required id="estatus_id" name="estatus_id">
                                                                                         <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
                                                                                         <option value="1">1-ACTIVO</option>
                                                                                         <option value="2">2-INACTIVO</option>
@@ -594,13 +594,13 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Secundario</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Correo Institucional</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
+                                                                                    <input class="form-control" required value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">
@@ -618,13 +618,13 @@
                                                                             <div class="col-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control" disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                                    <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="col-4">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label">Seleccionar Deducción<span class="text-danger">*</span></label>
-                                                                                        <select class="form-select custom-select" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
+                                                                                        <select class="form-select custom-select form-control" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
                                                                                             @foreach ($deducciones as $deduc_fija)
                                                                                                 <option value="{{ $deduc_fija->id }}">{{ $deduc_fija->nombre }}</option>
                                                                                             @endforeach
@@ -634,7 +634,7 @@
                                                                             <div class="col-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label" >Monto IHSS</label>
-                                                                                    <input class="form-control" id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
+                                                                                    <input class="form-control" required id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -642,7 +642,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="submit-section">
-                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
+                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" {{-- onclick="validacionEmpleadoPrincipal({{$empleado->id}})"  --}}>Editar</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -857,6 +857,11 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <script>
+        $('#formEditEmpleado').submit(function(e){
+            e.preventDefault();
+            var idEmpleado = $('#id_empleado_edit').val();
+            editarEmpleadoPrincipal(idEmpleado);
+        });
         $('#formReferencia').submit(function(e){
             e.preventDefault();
             var id = document.getElementById("Idemploye").value;
@@ -1055,6 +1060,7 @@
                 timer: 1500
                 });
         }
+
         function validacionEmpleadoPrincipal(id){
             var primer_nombre = $('#primer_nombre').val();
                     var segundo_nombre = $('#segundo_nombre').val();
