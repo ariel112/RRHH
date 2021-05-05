@@ -27,6 +27,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-auto float-right ml-auto">
+                                                    <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></a>
                                                     <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
                                                 </div>
                                             </div>
@@ -432,7 +433,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-group" id="formEditEmpleado">
+                                                        <form class="form-group" id="formEditEmpleado" data-parsley-validate>
                                                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -457,7 +458,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Segundo Nombre</label>
-                                                                                    <input class="form-control" required value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                                    <input class="form-control"  value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
@@ -508,14 +509,12 @@
                                                                                     <input class="form-control" required value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
                                                                                     <textarea class="form-control" required  id="descripcion" name="descripcion" cols="30" rows="5">{{$direccion->descripcion}}</textarea>
                                                                                 </div>
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -609,7 +608,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                                {{-- <div class="col-md-12">
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                         <div class="card-header">
                                                                             <h3 class="card-header text-primary text-center">Deducción Catorcenal</h3>
@@ -639,7 +638,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <div class="submit-section">
                                                                 <button class="btn btn-warning" type="submit" id="btnEditEmpleado" {{-- onclick="validacionEmpleadoPrincipal({{$empleado->id}})"  --}}>Editar</button>
@@ -845,6 +844,55 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Fin Editar Referencia Modal-->
+
+                                        <!-- Editar Referencia Modal-->
+                                        <div id="deduc_fija_empleado_modal" class="modal custom-modal fade" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">DEDUCCIÓN DE {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form  id="formDeduccionesFijas" class="form-group" data-parsley-validate>
+                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                            <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-header text-secondary text-center">DEDUCCIÓN CATORCENAL</h3>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                @foreach ($deducciones as $deduc_fija)
+                                                                                    <input type="number" class="form-control" required value="" id="monto{{ $deduc_fija->nombre }}" name="monto{{ $deduc_fija->nombre }}" placeholder="Monto de {{ $deduc_fija->nombre }}">
+                                                                                    <input id="id{{$deduc_fija->nombre}}" name="id{{$deduc_fija->nombre}}" type="hidden" value="{{ $deduc_fija->id }}"> <br>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="submit-section">
+                                                                <button class="btn btn-primary">Guardar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fin Editar Referencia Modal-->
 
                                     </div>
                                 <!-- /Editar Referencia Modal -->
@@ -861,6 +909,10 @@
             e.preventDefault();
             var idEmpleado = $('#id_empleado_edit').val();
             editarEmpleadoPrincipal(idEmpleado);
+        });
+        $('#formDeduccionesFijas').submit(function(e){
+            console.log("entra");
+            e.preventDefault();
         });
         $('#formReferencia').submit(function(e){
             e.preventDefault();
@@ -910,6 +962,32 @@
         var  idEditEmpl  = document.getElementById("identidad_referencia");
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function guardarMontoDeducción(){
+            var data = new FormData($('#formDeduccionesFijas').get(0));
+            $.ajax({
+                type:"POST",
+                url: "/empleado/deducciones/fijas",
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    $('#formDeduccionesFijas').trigger("reset");
+                    $('#deduc_fija_empleado_modal').modal('hide');
+                     Swal.fire({
+                        icon: 'success',
+                        text: 'Referencia guardada con éxito!',
+                        timer: 1500
+                        });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+        }
 
         function desactivar(id){
             Swal.fire({
@@ -1061,7 +1139,7 @@
                 });
         }
 
-        function validacionEmpleadoPrincipal(id){
+        /* function validacionEmpleadoPrincipal(id){
             var primer_nombre = $('#primer_nombre').val();
                     var segundo_nombre = $('#segundo_nombre').val();
                     var primer_apellido = $('#primer_apellido').val();
@@ -1221,7 +1299,7 @@
                         editarEmpleadoPrincipal(id);
                     }
 
-        }
+        } */
 
         function agregarDeducEmp(){
             var data = new FormData($('#formDeduccion').get(0));
