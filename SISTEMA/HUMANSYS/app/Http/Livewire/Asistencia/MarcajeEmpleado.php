@@ -5,12 +5,18 @@ namespace App\Http\Livewire\Asistencia;
 use Livewire\Component;
 use Auth;
 use DB;
+use Illuminate\Http\Request;
 
 class MarcajeEmpleado extends Component
 {
-    public function render()
+    public function render(Request $request)
     {
-        $identidad = Auth::user()->identidad;
+        $ipAddress = $request->ip();
+        $comparacion = substr( $ipAddress, 0, 9);  // devuelve "abcde"
+        /* dd($ipAddress); */
+
+        if($comparacion === '10.62.144'){
+            $identidad = Auth::user()->identidad;
         $fechaHoy = date("Y-m-d");
         $empleado = DB::selectone("select * from empleado where identidad = ".$identidad);
         $asistencias = DB::SELECTONE("SELECT COUNT(id) as 'conteo', fecha_dia as fecha FROM asistencia WHERE empleado_id ='".$empleado->id."' AND fecha_dia = '".$fechaHoy."' ");
@@ -21,5 +27,11 @@ class MarcajeEmpleado extends Component
             'asistencia' => $asistencias,
             'asisSalida' => $asistenciasSalida
             ]);
+        }else{
+
+          dd($ipAddress);
+        }
+
+
     }
 }
