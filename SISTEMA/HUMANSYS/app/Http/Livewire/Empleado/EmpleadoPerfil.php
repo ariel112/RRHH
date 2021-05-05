@@ -48,9 +48,12 @@ class EmpleadoPerfil extends Component
 
         $deducciones_fijas = DB::select('select * from deducciones;');
 
+        $direcciones = DB::selectone('select * from direccion where empleado_id = '.$request['id'].';');
+
         return view('livewire.empleado.empleado-perfil', [
             'empleados' => $empleado,
             'direcciones' => direccion::where('empleado_id', '=', $request['id'])->get(),
+            /* 'direcciones' => $direcciones, */
             'referencias' => referencia::where('empleado_id', '=', $request['id'])->get(),
             /* 'deducciones_emps' => deducciones_empleado::where('empleado_id', '=', $request['id'])->get(), */
             /* 'tipoDeducVariable' => $TipoDeduccionesVariables, */

@@ -511,7 +511,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                                    <textarea class="form-control" required value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                    <textarea class="form-control" required  id="descripcion" name="descripcion" cols="30" rows="5">{{$direccion->descripcion}}</textarea>
                                                                                 </div>
                                                                             </div>
 
