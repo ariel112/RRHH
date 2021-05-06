@@ -38,7 +38,7 @@ class EmpleadoPerfil extends Component
 
        $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
 
-       $deducciones_emps = DB::select('select * from `deducciones_empleado` d INNER JOIN tipo_deducciones_variables t on d.tipo_deducciones_varibale_id = t.id where empleado_id = '.$request['id'].'');
+       $deducciones_emps = DB::select('select * from `tipo_deducciones_variables` t INNER JOIN deducciones_empleado  d on d.tipo_deducciones_varibale_id = t.id where empleado_id = '.$request['id'].'');
 
        /* foreach ($deducciones_emps as $deduc) {
             $id_tipo_deducciones_varibale = $deduc->tipo_deducciones_varibale_id;

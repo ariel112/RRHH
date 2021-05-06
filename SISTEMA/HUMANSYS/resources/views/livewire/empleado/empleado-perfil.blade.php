@@ -363,9 +363,9 @@
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                                                         @if ($deduc->estado == 1)
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
                                                                                         @else
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
                                                                                         @endif
 
                                                                                     </div>
@@ -996,18 +996,18 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
-                    $('#formDeduccionesFijas').trigger("reset");
+                    /* $('#formDeduccionesFijas').trigger("reset");
                     $('#deduc_fija_empleado_modal').modal('hide');
                     Swal.fire({
                         icon: 'info',
                         text: 'Ya están registradas las deducciones',
                         timer: 1500
-                        });
+                        }); */
                 }
             })
         }
 
-        function desactivar(id){
+        function desactivar(idDeduccion){
             Swal.fire({
                 title: '¿Seguro quiere cambiar el estado de ésta deducción?',
                 showDenyButton: true,
@@ -1017,7 +1017,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                                 type:"GET",
-                                url: "/empleado/deducciones/desactivar/"+id,
+                                url: "/empleado/deducciones/desactivar/"+idDeduccion,
                                 contentType: false,
                                 cache: false,
                                 processData:false,
