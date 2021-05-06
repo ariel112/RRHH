@@ -16,7 +16,7 @@ class DeduccionesVariables extends Component
     }
 
     public function listar_deducciones_variables(){
-        $deducVariables = DB::SELECT("SELECT * FROM tipo_deducciones_varibale");
+        $deducVariables = DB::SELECT("SELECT * FROM tipo_deducciones_variables");
          return Datatables::of($deducVariables)
             ->addColumn('id', function ($deducVariables) {
                 return '<td>'.$deducVariables->id.'</td>';
@@ -93,7 +93,7 @@ class DeduccionesVariables extends Component
         return $estados;
     }
     public function mostrarTiposDeduccionesVariable($id){
-        $TipoDeducVariante = DB::SELECT("select * from tipo_deducciones_varibale where id =".$id);
+        $TipoDeducVariante = DB::SELECT("select * from tipo_deducciones_variables where id =".$id);
         return $TipoDeducVariante;
     }
 }
