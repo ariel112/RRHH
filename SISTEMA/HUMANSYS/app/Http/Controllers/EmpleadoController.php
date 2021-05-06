@@ -49,24 +49,20 @@ class EmpleadoController extends Controller
         $tamanio = sizeof($elementos);
         for ($i=1; $i <= $tamanio -1; $i++) {
             /* dd($elementos[$i]['name']); */
-            $empleado_has_deducciones_fijas_0 = new empleado_has_deducciones_fijas();
-            $empleado_has_deducciones_fijas_0->empleado_id = $id;
-            $empleado_has_deducciones_fijas_0->deducciones_id = $elementos[$i]['name'];
-            $empleado_has_deducciones_fijas_0->monto_deduccion = $elementos[$i]['value'];
-            $empleado_has_deducciones_fijas_0 -> save();
-        }
-        /* foreach($elementos as &$valor){
 
-            foreach($valor as &$item){
-                $idDF = $item['name'];
-                $montoDF = $item['value'];
+            $empleadoHASdeduccion = DB::select("select * from empleado_has_deducciones_fijas where empleado_id = '".$id."' and 	deducciones_id = '".$elementos[$i]['name']."';");
+
+            if(!$empleadoHASdeduccion){
+                $empleado_has_deducciones_fijas_0 = new empleado_has_deducciones_fijas();
                 $empleado_has_deducciones_fijas_0->empleado_id = $id;
-                $empleado_has_deducciones_fijas_0->deducciones_id = $idDF;
-                $empleado_has_deducciones_fijas_0->monto_deduccion = $montoDF;
+                $empleado_has_deducciones_fijas_0->deducciones_id = $elementos[$i]['name'];
+                $empleado_has_deducciones_fijas_0->monto_deduccion = $elementos[$i]['value'];
                 $empleado_has_deducciones_fijas_0 -> save();
+            }else{
+                return "Ya existe un dato con esta deducción";
             }
-        } */
-        /* dd($elementos[1]); */
+
+        }
 
         return $elementos;
     }
