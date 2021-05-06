@@ -22,7 +22,7 @@ class CrearPlanilla extends Component
     public function generarPlanilla()
     {
         try {
-            $idUser = Auth::
+            $idUser = Auth::user()->id;
             $codigo = time();           
             $numMemo = "Prueba-06-05-2021";
             $nombre = "prueba";
@@ -154,6 +154,9 @@ class CrearPlanilla extends Component
                  where deducciones_empleado.empleado_id =".$empleado->id);
                  
                  $deduccionesFijasVariablesMonto = $deduccionesVariables['monto'];
+
+
+                 
 
 
              };
