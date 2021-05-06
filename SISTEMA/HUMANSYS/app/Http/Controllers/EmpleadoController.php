@@ -43,30 +43,32 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function guardarMontosDeduccionesFijas(Request $request, $id){
-        $idIHSS = $request['idIHSS'];
-        $montoIHSS = $request['montoIHSS'];
-        $idRAP = $request['idRAP'];
-        $montoRAP = $request['montoRAP'];
-        $idISR = $request['idISR'];
-        $montoISR = $request['montoISR'];
-
-        $empleado_has_deducciones_fijas_0 = new empleado_has_deducciones_fijas();
-        $empleado_has_deducciones_fijas_0->empleado_id = $id;
-        $empleado_has_deducciones_fijas_0->deducciones_id = $idIHSS;
-        $empleado_has_deducciones_fijas_0->monto_deduccion = $montoIHSS;
-        $empleado_has_deducciones_fijas_0 -> save();
-        $empleado_has_deducciones_fijas_1 = new empleado_has_deducciones_fijas();
-        $empleado_has_deducciones_fijas_1->empleado_id = $id;
-        $empleado_has_deducciones_fijas_1->deducciones_id = $idRAP;
-        $empleado_has_deducciones_fijas_1->monto_deduccion = $montoRAP;
-        $empleado_has_deducciones_fijas_1 -> save();
-        $empleado_has_deducciones_fijas_2 = new empleado_has_deducciones_fijas();
-        $empleado_has_deducciones_fijas_2->empleado_id = $id;
-        $empleado_has_deducciones_fijas_2->deducciones_id = $idISR;
-        $empleado_has_deducciones_fijas_2->monto_deduccion = $montoISR;
-        $empleado_has_deducciones_fijas_2 -> save();
 
 
+        $elementos = $request->all();
+        $tamanio = sizeof($elementos);
+        for ($i=1; $i <= $tamanio -1; $i++) {
+            /* dd($elementos[$i]['name']); */
+            $empleado_has_deducciones_fijas_0 = new empleado_has_deducciones_fijas();
+            $empleado_has_deducciones_fijas_0->empleado_id = $id;
+            $empleado_has_deducciones_fijas_0->deducciones_id = $elementos[$i]['name'];
+            $empleado_has_deducciones_fijas_0->monto_deduccion = $elementos[$i]['value'];
+            $empleado_has_deducciones_fijas_0 -> save();
+        }
+        /* foreach($elementos as &$valor){
+
+            foreach($valor as &$item){
+                $idDF = $item['name'];
+                $montoDF = $item['value'];
+                $empleado_has_deducciones_fijas_0->empleado_id = $id;
+                $empleado_has_deducciones_fijas_0->deducciones_id = $idDF;
+                $empleado_has_deducciones_fijas_0->monto_deduccion = $montoDF;
+                $empleado_has_deducciones_fijas_0 -> save();
+            }
+        } */
+        /* dd($elementos[1]); */
+
+        return $elementos;
     }
 
     public function guardar(Request $request){

@@ -38,7 +38,7 @@ use App\Http\Livewire\Asistencia\MarcajeEmpleado;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('/empleado/deducciones/fijas/{id}', [EmpleadoController::class, 'guardarMontosDeduccionesFijas']);
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/empleado/deducciones', [EmpleadoController::class, 'guardarDeduccion']);
     Route::get('/empleado/deducciones/desactivar/{id}', [EmpleadoController::class, 'desactivarDeduccion']);
     Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
-    Route::post('/empleado/deducciones/fijas/{id}', [EmpleadoController::class, 'guardarMontosDeduccionesFijas']);
+
 
 
     //Marcaje de sistencias
