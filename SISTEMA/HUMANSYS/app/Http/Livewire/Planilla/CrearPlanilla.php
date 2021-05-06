@@ -99,6 +99,10 @@ class CrearPlanilla extends Component
 
             }
 
+            
+
+
+
           
             // $horaInicio = strtotime("08:00:00");//inicial
             // $horaFinal = strtotime("17:00:00");//final

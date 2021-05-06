@@ -45,6 +45,7 @@ class PermisosEmpleados extends Component
 
     public function guardarPermiso(Request $request)
     {
+        
         try {
 
             $identidadUser = Auth::user()->identidad;
@@ -158,6 +159,7 @@ class PermisosEmpleados extends Component
                 'err' => $e
             ], 404);
         }
+
     }
 
 
