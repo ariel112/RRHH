@@ -167,9 +167,10 @@ class EmpleadoController extends Controller
     }
 
     public function desactivarDeduccion($id){
-        $ded = DB::SELECTONE("select estado, id from deducciones_empleado where id = 61;");
-        dd($ded);
-        if($ded->estado == 0){
+        /* dd($id); */
+        $ded = DB::SELECTONE("select * from deducciones_empleado where id = '".$id."';");
+        /* dd($ded->estado); */
+        if($ded->estado === 0){
             DB::table('deducciones_empleado')
             ->where('id', $ded->id)
             ->update(['estado' => 1]);
@@ -178,7 +179,6 @@ class EmpleadoController extends Controller
             ->where('id', $ded->id)
             ->update(['estado' => 0]);
         }
-
     }
 
     public function guardarReferencia(Request $request, $id){
@@ -224,7 +224,7 @@ class EmpleadoController extends Controller
     }
 
     public function gettipodeducVariable(){
-        $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_varibale;");
+        $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_variables;");
         return $tipodeducVariabl;
     }
 

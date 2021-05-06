@@ -27,7 +27,6 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-auto float-right ml-auto">
-                                                    <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></a>
                                                     <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
                                                 </div>
                                             </div>
@@ -351,7 +350,8 @@
                                                 {{-- /deducciones empleado modal --}}
                                                 <!--Deducciones Tab -->
                                                 <div class="tab-pane fade" id="emp_detalle">
-                                                    <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción <i class="fas fa-money-check-alt"></i></button>
+                                                    <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción Personal<i class="fas fa-money-check-alt"></i></button>
+                                                    <button class="btn btn-warning" style="color: #ffffff; margin-left:5%;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></button>
                                                     <br><br><br>
                                                         <div class="row" id="grillDeducciones">
 
@@ -363,9 +363,9 @@
                                                                                     <div class="dropdown-menu dropdown-menu-right">
                                                                                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                                                         @if ($deduc->estado == 1)
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
                                                                                         @else
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{ $deduc->id }})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
                                                                                         @endif
 
                                                                                     </div>
@@ -963,6 +963,7 @@
         idEE = imidEditEmpl.mask(idEditEmpl);
 
         function guardarMontoDeducción(id){
+            event.preventDefault();
             let data = new FormData($('#formDeduccionesFijas').get(0));
             let tokenDF = document.getElementById('tokenDF').value;
            let str=  $('#formDeduccionesFijas').serializeArray();
@@ -995,12 +996,18 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
-
+                    /* $('#formDeduccionesFijas').trigger("reset");
+                    $('#deduc_fija_empleado_modal').modal('hide');
+                    Swal.fire({
+                        icon: 'info',
+                        text: 'Ya están registradas las deducciones',
+                        timer: 1500
+                        }); */
                 }
             })
         }
 
-        function desactivar(id){
+        function desactivar(idDeduccion){
             Swal.fire({
                 title: '¿Seguro quiere cambiar el estado de ésta deducción?',
                 showDenyButton: true,
@@ -1010,7 +1017,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                                 type:"GET",
-                                url: "/empleado/deducciones/desactivar/"+id,
+                                url: "/empleado/deducciones/desactivar/"+idDeduccion,
                                 contentType: false,
                                 cache: false,
                                 processData:false,
