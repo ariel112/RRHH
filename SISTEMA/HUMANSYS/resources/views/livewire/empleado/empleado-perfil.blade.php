@@ -858,8 +858,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <form  id="formDeduccionesFijas" class="form-group" data-parsley-validate>
-                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                            <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                            <input id="tokenDF" type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                             <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                 <div class="card-header">
                                                                     <h3 class="card-header text-secondary text-center">DEDUCCIÓN CATORCENAL</h3>
@@ -869,8 +868,7 @@
                                                                         <div class="col-12">
                                                                             <div class="form-group">
                                                                                 @foreach ($deducciones as $deduc_fija)
-                                                                                    <input type="number" class="form-control" required value="" id="monto{{ $deduc_fija->nombre }}" name="monto{{ $deduc_fija->nombre }}" placeholder="Monto de {{ $deduc_fija->nombre }}">
-                                                                                    <input id="id{{$deduc_fija->nombre}}" name="id{{$deduc_fija->nombre}}" type="hidden" value="{{ $deduc_fija->id }}"> <br>
+                                                                                    <input  id="id{{$deduc_fija->nombre}}" type="number" class="form-control mt-3" required value=""  name="{{ $deduc_fija->id }}" placeholder="Monto de {{ $deduc_fija->nombre }}">
                                                                                 @endforeach
                                                                             </div>
                                                                         </div>
@@ -965,12 +963,23 @@
         idEE = imidEditEmpl.mask(idEditEmpl);
 
         function guardarMontoDeducción(id){
-            var data = new FormData($('#formDeduccionesFijas').get(0));
+            let data = new FormData($('#formDeduccionesFijas').get(0));
+            let tokenDF = document.getElementById('tokenDF').value;
+           let str=  $('#formDeduccionesFijas').serializeArray();
+           let data2 = {data:str};
+           /* console.log(str); */
+
+           $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': tokenDF
+            }
+            });
+
             $.ajax({
                 type:"POST",
                 url: "/empleado/deducciones/fijas/"+id,
-                data: data,
-                contentType: false,
+                data: JSON.stringify(str),
+                contentType: "application/json",
                 cache: false,
                 processData:false,
                 dataType:"json",
@@ -986,6 +995,7 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
+
                 }
             })
         }
