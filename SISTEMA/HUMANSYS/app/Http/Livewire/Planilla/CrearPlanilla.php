@@ -5,6 +5,11 @@ namespace App\Http\Livewire\Planilla;
 use App\Models\asistencia;
 use App\Models\empleado;
 use App\Models\permisos;
+use App\Models\pagos;
+use App\Models\planilla;
+use App\Models\pagosDeduccionesFijas;
+use App\Models\pagosDeduccionesVariables;
+
 use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
