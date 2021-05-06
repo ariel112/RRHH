@@ -98,7 +98,9 @@ class CrearPlanilla extends Component
 
 
             }
-
+//consultar todos los empleados incluyendo gerentes
+// mediante if verificar si es empleado o gerente 
+// si no es gerente restarle llegadas tarde --- select sum(monto_deduccion) from asistencia where (DATE(fecha_dia) > "2021-04-26" and DATE(fecha_dia) < "2021-05-02" ) and empleado_id = 3
           
             // $horaInicio = strtotime("08:00:00");//inicial
             // $horaFinal = strtotime("17:00:00");//final
