@@ -224,7 +224,7 @@ class EmpleadoController extends Controller
     }
 
     public function gettipodeducVariable(){
-        $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_varibale;");
+        $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_variables;");
         return $tipodeducVariabl;
     }
 
