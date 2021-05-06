@@ -27,6 +27,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-auto float-right ml-auto">
+                                                    <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></a>
                                                     <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
                                                 </div>
                                             </div>
@@ -432,7 +433,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form-group" id="formEditEmpleado">
+                                                        <form class="form-group" id="formEditEmpleado" data-parsley-validate>
                                                             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -451,71 +452,69 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Primer Nombre<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->primer_nombre}}" id="primer_nombre" name="primer_nombre" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Segundo Nombre</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
+                                                                                    <input class="form-control"  value="{{$empleado->segundo_nombre}}" id="segundo_nombre" name="segundo_nombre" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Primer Apellido<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->primer_apellido}}" id="primer_apellido" name="primer_apellido"type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Segundo Apellido<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->segundo_apellido}}" id="segundo_apellido" name="segundo_apellido" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Num. Identidad<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->identidad}}" id="identidad" name="identidad" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Fecha de Nacimiento<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
+                                                                                    <input class="form-control" required value="{{$empleado->fecha_nacimiento}}" name="fecha_nacimiento" id="fecha_nacimiento" type="date">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Numero de casa<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" disabled value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
+                                                                                    <input class="form-control" required value="{{$direccion->numero_casa}}" id="numero_casa" name="numero_casa" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Correo<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->email}}" id="email" name="email" type="email">
+                                                                                    <input class="form-control" required value="{{$empleado->email}}" id="email" name="email" type="email">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Principal<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->telefono_1}}" id="telefono_1" name="telefono_1" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-6">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Profesión<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->profesion}}" id="profesion" name="profesion" type="text">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-3">
+                                                                            <div class="col-md-12">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Direccion de casa<span class="text-danger">*</span></label>
-                                                                                    <textarea class="form-control is-valid" disabled value="{{$direccion->descripcion}}" id="descripcion" name="descripcion" cols="30" rows="5"></textarea>
+                                                                                    <textarea class="form-control" required  id="descripcion" name="descripcion" cols="30" rows="5">{{$direccion->descripcion}}</textarea>
                                                                                 </div>
                                                                             </div>
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -528,13 +527,13 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">RTN<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->rtn}}" id="rtn" name="rtn" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estado Civil<span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="estado_civil" name="estado_civil">
+                                                                                    <select class="form-select form-control" required id="estado_civil" name="estado_civil">
                                                                                         <option selected value="{{$empleado->estado_civil}}">{{$empleado->estado_civil}}</option>
                                                                                         <option value="SOLTERO(a)">SOLTERO(a)</option>
                                                                                         <option value="CASADO(a)">CASADO(a)</option>
@@ -544,7 +543,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Género<span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="genero" name="genero">
+                                                                                    <select class="form-select form-control" required id="genero" name="genero">
                                                                                         <option selected value="{{$empleado->genero}}">{{$empleado->genero}}</option>
                                                                                         <option value="MASCULINO">MASCULINO</option>
                                                                                         <option value="FEMENINO">FEMENINO</option>
@@ -554,7 +553,7 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Lugar de Nacimiento<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->lugar_nacimiento}}" id="lugar_nacimiento" name="lugar_nacimiento" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-3">
@@ -572,7 +571,7 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Fecha de Ingreso<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
+                                                                                    <input class="form-control" required value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                                                 </div>
                                                                             </div>
                                                                             {{-- <div class="col-md-4">
@@ -584,7 +583,7 @@
                                                                             <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
-                                                                                    <select class="form-select is-valid" id="estatus_id" name="estatus_id">
+                                                                                    <select class="form-select form-control" required id="estatus_id" name="estatus_id">
                                                                                         <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
                                                                                         <option value="1">1-ACTIVO</option>
                                                                                         <option value="2">2-INACTIVO</option>
@@ -594,13 +593,13 @@
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Secundario</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
+                                                                                    <input class="form-control" required value="{{$empleado->telefono_1}}" id="telefono_2" name="telefono_2" type="text">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Correo Institucional</label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
+                                                                                    <input class="form-control" required value="{{$empleado->email_institucional}}" id="email_institucional" name="email_institucional" type="email">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-md-4">
@@ -609,7 +608,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-12">
+                                                                {{-- <div class="col-md-12">
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                         <div class="card-header">
                                                                             <h3 class="card-header text-primary text-center">Deducción Catorcenal</h3>
@@ -618,13 +617,13 @@
                                                                             <div class="col-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control" disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                                    <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
                                                                                 </div>
                                                                             </div>
                                                                                 <div class="col-4">
                                                                                     <div class="form-group">
                                                                                         <label class="col-form-label">Seleccionar Deducción<span class="text-danger">*</span></label>
-                                                                                        <select class="form-select custom-select" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
+                                                                                        <select class="form-select custom-select form-control" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
                                                                                             @foreach ($deducciones as $deduc_fija)
                                                                                                 <option value="{{ $deduc_fija->id }}">{{ $deduc_fija->nombre }}</option>
                                                                                             @endforeach
@@ -634,15 +633,15 @@
                                                                             <div class="col-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label" >Monto IHSS</label>
-                                                                                    <input class="form-control" id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
+                                                                                    <input class="form-control" required id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <div class="submit-section">
-                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" onclick="validacionEmpleadoPrincipal({{$empleado->id}})" >Editar</button>
+                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" {{-- onclick="validacionEmpleadoPrincipal({{$empleado->id}})"  --}}>Editar</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -845,6 +844,55 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Fin Editar Referencia Modal-->
+
+                                        <!-- Editar Referencia Modal-->
+                                        <div id="deduc_fija_empleado_modal" class="modal custom-modal fade" role="dialog">
+                                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">DEDUCCIÓN DE {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form  id="formDeduccionesFijas" class="form-group" data-parsley-validate>
+                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                            <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-header text-secondary text-center">DEDUCCIÓN CATORCENAL</h3>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                @foreach ($deducciones as $deduc_fija)
+                                                                                    <input type="number" class="form-control" required value="" id="monto{{ $deduc_fija->nombre }}" name="monto{{ $deduc_fija->nombre }}" placeholder="Monto de {{ $deduc_fija->nombre }}">
+                                                                                    <input id="id{{$deduc_fija->nombre}}" name="id{{$deduc_fija->nombre}}" type="hidden" value="{{ $deduc_fija->id }}"> <br>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <div class="form-group">
+                                                                                <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
+                                                                                <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_deducHas" name="id_empleado_deducHas" type="text">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="submit-section">
+                                                                <button class="btn btn-primary">Guardar</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fin Editar Referencia Modal-->
 
                                     </div>
                                 <!-- /Editar Referencia Modal -->
@@ -857,6 +905,16 @@
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
     <script>
+        $('#formEditEmpleado').submit(function(e){
+            e.preventDefault();
+            var idEmpleado = $('#id_empleado_edit').val();
+            editarEmpleadoPrincipal(idEmpleado);
+        });
+        $('#formDeduccionesFijas').submit(function(e){
+            var idEmpleado = $('#id_empleado_deducHas').val();
+            e.preventDefault();
+            guardarMontoDeducción(idEmpleado);
+        });
         $('#formReferencia').submit(function(e){
             e.preventDefault();
             var id = document.getElementById("Idemploye").value;
@@ -905,6 +963,32 @@
         var  idEditEmpl  = document.getElementById("identidad_referencia");
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function guardarMontoDeducción(id){
+            var data = new FormData($('#formDeduccionesFijas').get(0));
+            $.ajax({
+                type:"POST",
+                url: "/empleado/deducciones/fijas/"+id,
+                data: data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    console.log(data);
+                    $('#formDeduccionesFijas').trigger("reset");
+                    $('#deduc_fija_empleado_modal').modal('hide');
+                     Swal.fire({
+                        icon: 'success',
+                        text: 'Referencia guardada con éxito!',
+                        timer: 1500
+                        });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            })
+        }
 
         function desactivar(id){
             Swal.fire({
@@ -1055,7 +1139,8 @@
                 timer: 1500
                 });
         }
-        function validacionEmpleadoPrincipal(id){
+
+        /* function validacionEmpleadoPrincipal(id){
             var primer_nombre = $('#primer_nombre').val();
                     var segundo_nombre = $('#segundo_nombre').val();
                     var primer_apellido = $('#primer_apellido').val();
@@ -1215,7 +1300,7 @@
                         editarEmpleadoPrincipal(id);
                     }
 
-        }
+        } */
 
         function agregarDeducEmp(){
             var data = new FormData($('#formDeduccion').get(0));
