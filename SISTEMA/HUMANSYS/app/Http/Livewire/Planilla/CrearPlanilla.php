@@ -9,6 +9,7 @@ use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Auth;
 
 class CrearPlanilla extends Component
 {
@@ -21,11 +22,14 @@ class CrearPlanilla extends Component
     public function generarPlanilla()
     {
         try {
+            $idUser = Auth::
+            $codigo = time();           
             $numMemo = "Prueba-06-05-2021";
             $nombre = "prueba";
-            
             $fecha1 = new DateTime("2021-04-26");
             $fecha2 = new DateTime("2021-05-02");
+
+
             $diff = $fecha1->diff($fecha2);
             $dias = $diff->days + 1;
 
