@@ -140,7 +140,7 @@ class PermisosEmpleados extends Component
                     $permiso->save();
 
                     
-
+                        
                        
                 }
 
