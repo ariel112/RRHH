@@ -76,9 +76,7 @@ class DeduccionesVariables extends Component
     }
 
     public function estadoVariantes($id, $idestado){
-
         $deduccionesVariantes = deduccionesVariantes::find($id);
-        /* dd($deduccionesVariantes); */
         if($idestado == 1){
             $deduccionesVariantes-> estado_tdv_id = 0;
             $deduccionesVariantes->save();
