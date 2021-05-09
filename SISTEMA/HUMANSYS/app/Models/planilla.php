@@ -10,6 +10,6 @@ class planilla extends Model
     use HasFactory;
     protected $table = 'planilla';
     public $timestamps = true;
-    protected $fillable = ['id', 'identidad','codigo', 'numero_memo', 'nombre',  'empleado_genera_id', 'total_pago_planilla'];
+    protected $fillable = ['id', 'identidad','codigo_unico', 'numero_memo', 'nombre','fecha_inicio','fecha_final',  'empleado_genera_id', 'total_pago_planilla'];
   
 }

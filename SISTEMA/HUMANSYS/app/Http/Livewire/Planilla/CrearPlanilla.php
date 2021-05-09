@@ -27,8 +27,22 @@ class CrearPlanilla extends Component
     public function generarPlanilla()
     {
         try {
+            DB::beginTransaction();
+
+
+            //-------------------datos persona que genera planilla----------------//       
+
             $idUser = Auth::user()->id;
-            $codigo = time();           
+            $identidad = Auth::user()->identidad;
+            $codigoUnico = time();
+
+            $empleadoGenera = DB::SELECT('select id, nombre from empleado where identidad =' . $identidad);
+            $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento 
+            //dd($pp->id);
+
+
+
+
             $numMemo = "Prueba-06-05-2021";
             $nombre = "prueba";
             $fecha1 = new DateTime("2021-04-26");
@@ -119,58 +133,95 @@ class CrearPlanilla extends Component
 
             //esta consulta obtiene los empleados y gerentes activos; Con su tipo de empleado, 1 es empleado y 2 es gerente 
             $empleadosGeneral = DB::SELECT('
-                select empleado.id, empleado.sueldo, tipo_empleado.id as tipo_empleado from tipo_empleado 
-                inner join cargo 
-                on tipo_empleado.id = cargo.tipo_empleado_id
-                inner join empleado
-                on empleado.cargo_id = cargo.id
-                inner join contrato
-                on empleado.id = contrato.empleado_id
-                where  (empleado.id=3 or empleado.id=4 or empleado.id=3009 or empleado.id=3008 ) and empleado.estatus_id = 1
+            select empleado.id, empleado.identidad, empleado.sueldo, tipo_empleado.id as tipo_empleado, contrato.sueldo as sueldoContrato from tipo_empleado 
+            inner join cargo 
+            on tipo_empleado.id = cargo.tipo_empleado_id
+            inner join empleado
+            on empleado.cargo_id = cargo.id
+            inner join contrato
+            on empleado.id = contrato.empleado_id
+            where  (empleado.id=3 or empleado.id=4 or empleado.id=3009 or empleado.id=3008 )
+            and empleado.estatus_id = 1 and contrato.estado_contrato="Activo"
             ');
 
-             foreach($empleadosGeneral as $empleado){
-                 $sueldoNeto = 0;
-                 $deduccionAsistenciaMonto = 0;
-                 $deduccionesFijasMonto=0;
-                 $deduccionesFijasVariablesMonto =0;
 
-                 $sueldoBruto=$empleado->sueldo;
+            //se crea la planilla
+            $planilla = new planilla;
+            $planilla->codigo_unico = $codigoUnico;
+            $planilla->numero_memo = $codigoUnico + 1;
+            $planilla->nombre = $datosEmpleadoGenera->nombre;
+            $planilla->fecha_inicio = '2021-04-26';
+            $planilla->fecha_final = '2021-05-02';
+            $planilla->identidad =  $identidad;
+            $planilla->empleado_genera_id =   $datosEmpleadoGenera->id;
+            $planilla->save();
+            $idPlanilla = $planilla->id; //recupero el id de la planilla
 
-                 if($empleado->tipo_empleado==='1'){                 
 
-                 $deduccionAsistencia = DB::SELECT("select sum(monto_deduccion) as monto from asistencia
+            //pagos de empleados
+
+            foreach ($empleadosGeneral as $empleado) {
+                $sueldoBruto = 0;
+                $sueldoNeto = 0;
+                $totalDeducciones = 0;
+                $deduccionAsistenciaMonto = 0;
+                $deduccionesFijasMonto = 0;
+                $deduccionesFijasVariablesMonto = 0;
+
+
+
+                if ($empleado->tipo_empleado == '1') {
+
+                    $deduccionAsistencia = DB::SELECT("select sum(monto_deduccion) as monto from asistencia
                   where (DATE(fecha_dia) >= '2021-04-26' and DATE(fecha_dia) <= '2021-05-02' ) 
-                  and empleado_id = ".$empleado->id);
-                  
-                  $deduccionAsistenciaMonto =  $deduccionAsistencia['monto'];
+                  and empleado_id = " . $empleado->id);
 
+                    $deduccionAsistenciaMonto =  $deduccionAsistencia[0]->monto;
+                    // dd($deduccionAsistenciaMonto);
 
-                 }
+                }
 
-                 $deduccionesFijas = DB::SELECT("select sum(monto_deduccion) as monto
+                $deduccionesFijas = DB::SELECT("select sum(monto_deduccion) as monto
                 FROM empleado_has_deducciones_fijas                
-                 where empleado_has_deducciones_fijas.empleado_id = ".$empleado->id);
+                 where empleado_has_deducciones_fijas.empleado_id = " . $empleado->id);
 
-                 $deduccionesFijasMonto = $deduccionesFijas['monto'];
-
-
-                 $deduccionesVariables = DB::SELECT("select sum(monto) as monto FROM deducciones_empleado 
-                 where deducciones_empleado.empleado_id =".$empleado->id);
-                 
-                 $deduccionesFijasVariablesMonto = $deduccionesVariables['monto'];
+                $deduccionesFijasMonto = $deduccionesFijas[0]->monto;
 
 
-                 
+                $deduccionesVariables = DB::SELECT("select sum(monto) as monto FROM deducciones_empleado 
+                 where deducciones_empleado.empleado_id =" . $empleado->id);
+
+                $deduccionesFijasVariablesMonto =  $deduccionesFijas[0]->monto;
+
+                $totalDeducciones =  $deduccionAsistenciaMonto + $deduccionesFijasMonto + $deduccionesFijasVariablesMonto;
+                $sueldoBruto = $empleado->sueldoContrato;
+                $sueldoNeto =  $sueldoBruto -  $totalDeducciones;
+
+                $pagos = new pagos;
+                $pagos->sueldo_mensual =  $sueldoBruto;
+                $pagos->catorcena =  $sueldoBruto / 2;
+                $pagos->total_deducciones =  $totalDeducciones;
+                $pagos->sueldo_neto  =  $sueldoNeto;
+                $pagos->empleado_id = $empleado->id;
+                $pagos->identidad = $empleado->identidad;
+                $pagos->planilla_id = $idPlanilla;
+                $pagos->llegadas_tarde_monto = $deduccionAsistenciaMonto;
+                $pagos->save();
+            };
 
 
-             };
+            $totalPlanilla = DB::SELECT('select sum(sueldo_neto) As totalPlanilla from pagos  where planilla_id = '.$idPlanilla);
+
+            $montoPlanilla = planilla::find($idPlanilla);
+            $montoPlanilla->total_pago_planilla =  $totalPlanilla[0]->totalPlanilla;
+            $montoPlanilla->save();
 
 
 
-            return response()->json($paso, 200);
+            DB::commit();
+            return response()->json(["message" => "exito"], 200);
         } catch (QueryException $e) {
-
+            DB::rollback();
             return response()->json([
                 'error' => $e,
             ], 402);
