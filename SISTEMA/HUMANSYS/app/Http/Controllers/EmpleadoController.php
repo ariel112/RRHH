@@ -42,6 +42,35 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+    public function cambio_estado_empleado_contrato($id_empleado_estado,$estado){
+        try {
+
+            DB::beginTransaction();
+                if ($estado == 1) {
+                    DB::table('empleado')
+                        ->where('id', $id_empleado_estado)
+                        ->update(['estatus_id' => 2]);
+
+                    DB::table('contrato')
+                        ->where('id', $id_empleado_estado)
+                        ->orderBy('contrato.created_at', 'desc')->limit(1)
+                        ->update(['estatus_id' => 2]);
+                }
+            DB::commit();
+
+        } catch (QueryException $e) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                'color' => 'error',
+                'estado' => 2,
+                'exception' => $e,
+            ], 402);
+        }
+    }
+
     public function guardarMontosDeduccionesFijas(Request $request, $id){
 
 

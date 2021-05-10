@@ -27,7 +27,14 @@
                                                     </ul>
                                                 </div>
                                                 <div class="col-auto float-right ml-auto">
-                                                    <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
+                                                    <input type="hidden" name="id_empleado_estado" id="id_empleado_estado" value="{{ $empleado->id }}">
+                                                    @if ($empleado->estatus_id == 1)
+                                                        <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
+                                                    @else
+                                                        <a class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a>
+                                                    @endif
+
+                                                    <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -580,7 +587,7 @@
                                                                                     <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                                 </div>
                                                                             </div> --}}
-                                                                            <div class="col-md-3">
+                                                                            {{-- <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                                                     <select class="form-select form-control" required id="estatus_id" name="estatus_id">
@@ -589,7 +596,7 @@
                                                                                         <option value="2">2-INACTIVO</option>
                                                                                     </select>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Secundario</label>
@@ -961,6 +968,87 @@
         var  idEditEmpl  = document.getElementById("identidad_referencia");
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function cambioEstado_empleado(nombre, estado){
+            let id_empleado_estado = $('#id_empleado_estado').val();
+            if (estado == 1) {
+                Swal.fire({
+                text: 'Al inactivar a '+nombre+' no saldrá generado el pago, en la actual planilla. Confirme desactivación.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/cambio_estado/"+id_empleado_estado+"/"+estado,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'DESACTIVADO!',
+                                        timer: 1500
+                                    });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+                })
+            }else{
+                Swal.fire({
+                text: 'Al activar a '+nombre+' saldrá generado el pago en la actual planilla. Confirme activación.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/cambio_estado/"+id_empleado_estado+"/"+estado,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'ACTIVADO!',
+                                        timer: 1500
+                                    });
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+                })
+            }
+            /* Swal.fire({
+                text: 'Al ',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Estado cambiado!',
+                            timer: 1500
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+            }) */
+
+            console.log(nombre+' tiene estado '+estado);
+        }
 
         function guardarMontoDeducción(id){
             event.preventDefault();
