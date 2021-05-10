@@ -167,6 +167,7 @@ class CrearPlanilla extends Component
                 $deduccionAsistenciaMonto = 0;
                 $deduccionesFijasMonto = 0;
                 $deduccionesFijasVariablesMonto = 0;
+                $deducionesFijas = [];
 
 
 
@@ -207,6 +208,29 @@ class CrearPlanilla extends Component
                 $pagos->planilla_id = $idPlanilla;
                 $pagos->llegadas_tarde_monto = $deduccionAsistenciaMonto;
                 $pagos->save();
+                $idPago =  $pagos->id;
+
+
+                $detalleDeduccionesFijas = DB::SELECT('
+                select
+                deducciones.id as deduccion_variable_id,
+                deducciones.nombre as nombre_deduccion,
+                edf.monto_deduccion as monto
+                
+                from
+                deducciones inner join empleado_has_deducciones_fijas edf
+                on deducciones.id = edf.deducciones_id
+                where edf.empleado_id='.$empleado->id
+                                    );
+
+                                    foreach($detalleDeduccionesFijas as $deduccionfija){
+                                        array_push($deducionesFijas,[
+                                            'deduccion_variable_id'=>$deduccionfija->deduccion_variable_id,
+                                            'nombre_deduccion'=>$deduccionfija->nombre_deduccion,
+                                            'monto'=>$deduccionfija->monto,
+                                            'pago_id'=>$idPago,
+                                            ]);
+                                    };
             };
 
 
