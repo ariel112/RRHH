@@ -5,6 +5,7 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Models\contrato;
 use App\Models\empleado;
+use Illuminate\Database\QueryException;
 
 use DataTables;
 use Illuminate\Support\Facades\DB;
@@ -26,9 +27,7 @@ class Contratos extends Component
     }
 
     public function contrato_show(Request $request){
-    
-
-        $contrato = new contrato();
+        /* $contrato = new contrato();
         $contrato->num_contrato = $request->num_contrato;
         $contrato->num_delegacion = $request->num_delegacion;
         $contrato->tipo_contrato = $request->tipo_contrato;
@@ -37,15 +36,58 @@ class Contratos extends Component
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
         $contrato->empleado_id= $request->empleado_id;
-        $contrato->horarios_id = 1; 
-        $contrato->estado_contrato = 'Activo';
+        $contrato->horarios_id = 1;
+        $contrato->estatus_id = 1;
         $contrato->users_aprueba_id = Auth::user()->id;
         $contrato->empleado_rrhh = $request->empleado_rrhh;
-
         $contrato->save();
+        DB::table('empleado')
+            ->where('id', $contrato->empleado_id)
+            ->update([
+            'estatus_id' => 1]);
+
+
 
         return response()->json('EXITO');
+ */
+        try {
 
+            DB::beginTransaction();
+                $contrato = new contrato();
+                $contrato->num_contrato = $request->num_contrato;
+                $contrato->num_delegacion = $request->num_delegacion;
+                $contrato->tipo_contrato = $request->tipo_contrato;
+                $contrato->fecha_inicio = $request->fecha_inicio;
+                $contrato->fecha_fin = $request->fecha_fin;
+                $contrato->sueldo = $request->sueldo;
+                $contrato->vacaciones = $request->vacaciones;
+                $contrato->empleado_id= $request->empleado_id;
+                $contrato->horarios_id = 1;
+                $contrato->estatus_id = 1;
+                $contrato->users_aprueba_id = Auth::user()->id;
+                $contrato->empleado_rrhh = $request->empleado_rrhh;
+
+                DB::table('empleado')
+                    ->where('id', $contrato->empleado_id)
+                    ->update([
+                    'estatus_id' => 1]);
+
+                $contrato->save();
+
+
+                DB::commit();
+                return response()->json('EXITO');
+
+
+        } catch (QueryException $e) {
+                    DB::rollback();
+                    return response()->json([
+                        'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                        'color' => 'error',
+                        'estado' => 2,
+                        'exception' => $e,
+                    ], 402);
+        }
 
     }
 
@@ -55,9 +97,9 @@ class Contratos extends Component
     public function contrato_listar(){
 
         $contrato = DB::select("SELECT A.num_contrato, B.nombre,
-                                       A.fecha_inicio, A.fecha_fin,
+                                       A.fecha_inicio, A.fecha_fin, A.estatus_id as estado_contrato,
                                        A.id,TIMESTAMPDIFF(MONTH, A.fecha_inicio, A.fecha_fin) dif_mes,
-                                       TIMESTAMPDIFF(DAY, NOW(), A.fecha_fin) dif_dia, estado_contrato
+                                       TIMESTAMPDIFF(DAY, NOW(), A.fecha_fin) dif_dia
                                     FROM contrato A
                                     INNER JOIN empleado B
                                     ON(A.empleado_id=B.id)");
@@ -67,24 +109,23 @@ class Contratos extends Component
 
        return '<div class="dropdown dropdown-action text-right">
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
-                    <a class="dropdown-item" data-toggle="modal" data-target="#vw_contrato" onclick="setcargo('.$contrato->id.')" ><i class="fa fa-eye m-r-5 text-primary"></i> Ver</a>
-                    <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-success"></i> Formato</a>
-                    <a class="dropdown-item" href="/contrato/generate-pdf_sin/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-info"></i> Sin Formato</a>
-                    <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
-                </div>
-               </div>';
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
+                        <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-success"></i> Formato</a>
+                        <a class="dropdown-item" href="/contrato/generate-pdf_sin/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-info"></i> Sin Formato</a>
+                        <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
+                    </div>
+                </div>';
                 })
         ->addColumn('item', function ($contrato) {
-        if ($contrato->estado_contrato === 'Cancelado') {
-            return '<td><span class="badge bg-inverse-danger">Cancelado</span></td>';
+        if ($contrato->estado_contrato === 2) {
+            return '<td><span class="badge bg-inverse-danger">INACTIVO</span></td>';
         } else {
 
             if($contrato->dif_dia>=0){
-                return '<td><span class="badge bg-inverse-success">Activo</span></td>';
+                return '<td><span class="badge bg-inverse-success">ACTIVO</span></td>';
             } else{
-                return '<td><span class="badge bg-inverse-danger">Vencido</span></td>';
+                return '<td><span class="badge bg-inverse-danger">VENCIDO</span></td>';
             }
         }
 
@@ -225,7 +266,7 @@ class Contratos extends Component
                 $formatter = new NumeroALetras();
                 $formatter->apocope = true;
                 $numero = strtolower($formatter->toWords($contrato->numero));
-        // numero a letras fin 
+        // numero a letras fin
                 $formatterf = new NumeroALetras();
                 $formatterf->apocope = true;
                 $numerof = strtolower($formatterf->toWords($contrato->numerof));
@@ -249,7 +290,7 @@ class Contratos extends Component
                                  WHERE A.id='$contrato->empleado_rrhh'");
 
 
-    
+
 
         $data = [
             'title' => 'Contrato',
@@ -265,7 +306,7 @@ class Contratos extends Component
         ];
 
         $pdf = PDF::loadView('pdf/contrato', $data);
-        
+
         return $pdf->download('CONTRATO INDIVIDUAL DE'.$contrato->nombre.'.pdf');
       //   return $pdf->download('Contrato.pdf');
 
@@ -344,7 +385,7 @@ class Contratos extends Component
               $formatter = new NumeroALetras();
               $formatter->apocope = true;
               $numero = strtolower($formatter->toWords($contrato->numero));
-      // numero a letras fin 
+      // numero a letras fin
               $formatterf = new NumeroALetras();
               $formatterf->apocope = true;
               $numerof = strtolower($formatterf->toWords($contrato->numerof));
@@ -368,7 +409,7 @@ class Contratos extends Component
                                WHERE A.id='$contrato->empleado_rrhh'");
 
 
-  
+
 
       $data = [
           'title' => 'Contrato',

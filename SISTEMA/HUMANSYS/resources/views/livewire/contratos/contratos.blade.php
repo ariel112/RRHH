@@ -36,7 +36,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -109,7 +109,7 @@
                                             <div class="form-group form-focus">
                                                  <label for="">Inicio:</label>
                                                     <input required class="form-control" type="date" name="fecha_inicio">
-                                                
+
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -210,7 +210,7 @@
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <input type="hidden" name="id" id="id_contrato">
                     <div class="row">
-                        <div class="col-sm-6"> 
+                        <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Estado del contrato<span class="text-danger">*</span></label>
                                 <select required class="form-control" name="estado_contrato" id="estado_contrato">
@@ -219,7 +219,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-2"> 
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
                                 <input required class="form-control" name="num_contrato" id="num_contrato_edit" type="text">
@@ -334,7 +334,7 @@
                 <form id="form_contrato" data-parsley-validate>
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div class="row">
-                        <div class="col-sm-2"> 
+                        <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
                                 <input required class="form-control" name="num_contrato" id="num_contrato" type="text">
@@ -363,7 +363,7 @@
                                         <div class="form-group form-focus">
                                              <label for="">Inicio:</label>
                                                 <input required class="form-control" type="date" name="fecha_inicio">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
@@ -397,7 +397,7 @@
                             <div class="form-group" wire:ignore wire:key="first">
                                 <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                                 <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-                               
+
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -505,7 +505,7 @@ $('#tbl_contrato').DataTable({
             timer: 2500
             });
             }
-            // 
+            //
 
 
 
@@ -523,7 +523,7 @@ function CierraPopup(modal) {
 
 
 
-  
+
             // funcion alerta todo bien
             function alert_bien(){
                 Swal.fire({
@@ -534,8 +534,8 @@ function CierraPopup(modal) {
             timer: 2500
             });
             }
-            // 
-          
+            //
+
 
 
 
@@ -559,7 +559,7 @@ function CierraPopup(modal) {
 
                 }
             }
-    }); 
+    });
 
     function getEm(data){
         $("#empleado_id").on("select2:select", function (e) {
@@ -588,7 +588,7 @@ function CierraPopup(modal) {
 
 
 
- $('#form_contrato').submit(function (e) { 
+ $('#form_contrato').submit(function (e) {
      e.preventDefault();
      guardar();
  });
@@ -597,7 +597,7 @@ function CierraPopup(modal) {
     // console.log('datos: ', $("#idPic").serialize());
             var modalID ='crear_contratos'
             var data = new FormData($('#form_contrato').get(0));
-           
+
             $.ajax({
             type:"POST",
             url: "/contratos/show",
@@ -762,11 +762,11 @@ $(document).ready(function(){
         $('#cargo_edit').val(data.cargo);
         $('#id_contrato').val(data.id);
 
-       
+
         gerente_edit(data.empleado_rrhh);
 
 
-  
+
   }
 
 
@@ -780,7 +780,7 @@ $(document).ready(function(){
     processData:false,
     dataType:"json",
     success: function(data){
-        
+
          //console.log(data);
         cargo(data, empleado_gerente);
     },
@@ -806,14 +806,14 @@ $(document).ready(function(){
      $('#empleado_rrhh_edit').html(html_select);
 }
 
-  
+
 
 
 
 // eliminar contrato
 
 function eliminar_contrato(id){
- 
+
     Swal.fire({
             title: '¿Está seguro?',
             text: "¡No podrás revertir esto!",
@@ -824,7 +824,7 @@ function eliminar_contrato(id){
             confirmButtonText: '¡Sí, borralo!'
             }).then((result) => {
             if (result.isConfirmed) {
-              
+
             //    ajax para eliminar el contrato
                 $.ajax({
                     type:"GET",
@@ -842,7 +842,7 @@ function eliminar_contrato(id){
                         console.log(jqXHR, textStatus, errorThrown);
                     }
                 });
-                
+
                 Swal.fire(
                 '!Eliminado!',
                 'El contrato ha sido eliminado.',
@@ -851,7 +851,7 @@ function eliminar_contrato(id){
 
             }
             })
-            
+
         }
 
 
@@ -861,8 +861,8 @@ function eliminar_contrato(id){
 
 
 
-  
-  
+
+
 //  =================== fin editar contratos ===========================
 
 

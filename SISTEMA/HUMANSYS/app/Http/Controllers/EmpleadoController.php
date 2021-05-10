@@ -100,7 +100,7 @@ class EmpleadoController extends Controller
             $empleados->descripcion_laboral = $request['descripcion_laboral'];
             $empleados->telefono_1 = $request['telefono_1'];
             $empleados->telefono_2 = $request['telefono_2'];
-            $empleados->estatus_id = $request['estatus_id'];
+            $empleados->estatus_id = 2;
             $empleados->grado_academico_id = $request['grado_academico_id'];
             $empleados->municipio_id = $request['municipio_id'];
             $empleados->cargo_id = $request['cargo_id'];
