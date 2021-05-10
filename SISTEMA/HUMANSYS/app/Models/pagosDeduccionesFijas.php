@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +17,7 @@ class pagosDeduccionesFijas extends Model
     public $timestamps = true;
 
     protected $fillable = [
-      'nombre_deduccion', 'monto','total_deducciones','deduccion_variable_id','pagos_id','identidad','planilla_id','deduccion_fija_id'
+      'nombre_deduccion', 'monto','deduccion_fija_id','pagos_id','created_at','updated_at'
         
     ];
 }

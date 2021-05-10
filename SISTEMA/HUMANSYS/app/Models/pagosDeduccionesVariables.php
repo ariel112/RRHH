@@ -16,7 +16,7 @@ class pagosDeduccionesVariables extends Model
     public $timestamps = true;
 
     protected $fillable = [
-      'nombre_deduccion', 'monto','total_deducciones','deduccion_variable_id','pagos_id','identidad','planilla_id','deduccion_variable_id'
+      'nombre_deduccion', 'monto','deduccion_variable_id','pagos_id','created_at','updated_at'
         
     ];
 }

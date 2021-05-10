@@ -28,9 +28,9 @@ class CrearPlanilla extends Component
     {
         try {
             DB::beginTransaction();
-
-
-            //-------------------datos persona que genera planilla----------------//       
+          
+            //-------------------datos persona que genera planilla----------------//    
+       
 
             $idUser = Auth::user()->id;
             $identidad = Auth::user()->identidad;
@@ -63,16 +63,30 @@ class CrearPlanilla extends Component
             //------------------------------------------------------------inicio de calculo de asitencia-----------------------------------------------------------//
             //listado de empleados tomar en cuenta los que tienen contrato activo
             //solo toma los empleado de tipo empleado y con estado activo los gerentes son libre de deducciones por asistencia 
-            $empleados = DB::SELECT('select empleado.id, empleado.sueldo from tipo_empleado 
+            $empleados = DB::SELECT('select
+
+            empleado.id,
+            contrato.sueldo
+            
+            from tipo_empleado 
             inner join cargo 
             on tipo_empleado.id = cargo.tipo_empleado_id
             inner join empleado
             on empleado.cargo_id = cargo.id
-            where tipo_empleado.id = 1  and (empleado.id=3 or empleado.id=4) and empleado.estatus_id = 1'); //ojo para efectos de prueba solo estoy calculando dos empleados 3 y 4
+            inner join contrato
+            on empleado.id = contrato.empleado_id
+            where tipo_empleado.id = 1
+            and (empleado.id=3 or empleado.id=4)
+            and empleado.estatus_id = 1 and contrato.estatus_id=1'); //ojo para efectos de prueba solo estoy calculando dos empleados 3 y 4
             //---------calcula la deduccion por asistencia
             foreach ($arregloDeFechas as $dia) {
                 foreach ($empleados as $empleado) {
-                    $asistenciaDia = DB::SELECT('select id,date_format(entrada_fija, "%H:%i:%S") as entrada_fija,  date_format(salida_fija, "%H:%i:%S") as salida_fija from asistencia where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
+                    $asistenciaDia = DB::SELECT('
+                    select  id,
+                        IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(entrada_fija, "%H:%i:%S")) as entrada_fija,
+                        IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(salida_fija, "%H:%i:%S")) as salida_fija
+                     from 
+                     asistencia where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
 
                     //calculando minuto
                     $horaInicio = strtotime($asistenciaDia[0]->entrada_fija); //inicial
@@ -88,7 +102,7 @@ class CrearPlanilla extends Component
                         $horaFinalPermiso = strtotime($permisos[0]->hora_final); //final
                         $minutosPermiso = ($horaFinalPermiso - $horaInicioPermiso) / 60;
 
-                        $paso = $minutosTrabajados + $minutosPermiso;
+                       // $paso = $minutosTrabajados + $minutosPermiso;
 
                         $minutosTrabajados = $minutosTrabajados + $minutosPermiso;
                     }
@@ -133,15 +147,22 @@ class CrearPlanilla extends Component
 
             //esta consulta obtiene los empleados y gerentes activos; Con su tipo de empleado, 1 es empleado y 2 es gerente 
             $empleadosGeneral = DB::SELECT('
-            select empleado.id, empleado.identidad, empleado.sueldo, tipo_empleado.id as tipo_empleado, contrato.sueldo as sueldoContrato from tipo_empleado 
-            inner join cargo 
-            on tipo_empleado.id = cargo.tipo_empleado_id
-            inner join empleado
-            on empleado.cargo_id = cargo.id
-            inner join contrato
-            on empleado.id = contrato.empleado_id
-            where  (empleado.id=3 or empleado.id=4 or empleado.id=3009 or empleado.id=3008 )
-            and empleado.estatus_id = 1 and contrato.estado_contrato="Activo"
+                select
+                empleado.id,
+                empleado.identidad,
+                empleado.sueldo,
+                tipo_empleado.id as tipo_empleado,
+                contrato.sueldo as sueldoContrato
+            from
+                tipo_empleado 
+                inner join cargo 
+                on tipo_empleado.id = cargo.tipo_empleado_id
+                inner join empleado
+                on empleado.cargo_id = cargo.id
+                inner join contrato
+                on empleado.id = contrato.empleado_id
+                where  (empleado.id=3 or empleado.id=4 or empleado.id=3009 or empleado.id=3008 )
+                and empleado.estatus_id = 1 and contrato.estatus_id=1
             ');
 
 
@@ -149,7 +170,7 @@ class CrearPlanilla extends Component
             $planilla = new planilla;
             $planilla->codigo_unico = $codigoUnico;
             $planilla->numero_memo = $codigoUnico + 1;
-            $planilla->nombre = $datosEmpleadoGenera->nombre;
+            $planilla->nombre = $datosEmpleadoGenera->nombre;//nombre de quien la creo
             $planilla->fecha_inicio = '2021-04-26';
             $planilla->fecha_final = '2021-05-02';
             $planilla->identidad =  $identidad;
@@ -168,6 +189,7 @@ class CrearPlanilla extends Component
                 $deduccionesFijasMonto = 0;
                 $deduccionesFijasVariablesMonto = 0;
                 $deducionesFijas = [];
+                $deduccioneVariables = [];
 
 
 
@@ -210,10 +232,16 @@ class CrearPlanilla extends Component
                 $pagos->save();
                 $idPago =  $pagos->id;
 
+                //actualiza el sueldo neto del empleado
+                $empleadoActualizar = empleado::find($empleado->id);
+                $empleadoActualizar->sueldo =  $sueldoNeto;
+                $empleadoActualizar->save();
+
+
 
                 $detalleDeduccionesFijas = DB::SELECT('
                 select
-                deducciones.id as deduccion_variable_id,
+                deducciones.id as deduccion_fija_id,
                 deducciones.nombre as nombre_deduccion,
                 edf.monto_deduccion as monto
                 
@@ -223,14 +251,43 @@ class CrearPlanilla extends Component
                 where edf.empleado_id='.$empleado->id
                                     );
 
+                $detalleDeduccionVariable = DB::SELECT('
+                select
+                A.id,
+                A.nombre,
+                B.monto
+                from 
+                tipo_deducciones_variables A inner join deducciones_empleado B
+                on A.id = B.tipo_deducciones_varibale_id
+                where B.empleado_id ='.$empleado->id
+                );
+
                                     foreach($detalleDeduccionesFijas as $deduccionfija){
                                         array_push($deducionesFijas,[
-                                            'deduccion_variable_id'=>$deduccionfija->deduccion_variable_id,
+                                            'deduccion_fija_id'=>$deduccionfija->deduccion_fija_id,
                                             'nombre_deduccion'=>$deduccionfija->nombre_deduccion,
                                             'monto'=>$deduccionfija->monto,
-                                            'pago_id'=>$idPago,
+                                            'pagos_id'=>$idPago,
+                                        
                                             ]);
                                     };
+
+
+                                    foreach($detalleDeduccionVariable as $deduccionVariable){
+                                        array_push($deduccioneVariables, [
+                                            'deduccion_variable_id' => $deduccionVariable->id,
+                                            'nombre_deduccion' => $deduccionVariable->nombre,
+                                            'monto' => $deduccionVariable->monto,
+                                            'pagos_id'=>$idPago,
+                                           
+                                        ]);
+                                    }
+
+
+
+                                   DB::table('pagos_deducciones_fijas')->insert($deducionesFijas);
+                                   DB::table('pagos_deducciones_varibales')->insert($deduccioneVariables);
+                            
             };
 
 
@@ -253,18 +310,15 @@ class CrearPlanilla extends Component
     }
 
 
-    public function calcularAsistencia($empleados)
-    {
-        try {
-            DB::beginTransaction();
-
-
-            DB::commit();
-
-            return true;
-        } catch (QueryException $e) {
-            DB::rollBack();
-            return  false;
+    public function generarPlanillaSinDeducciones(){
+        try{
+            
+             return response()->json([],200);
+        }catch(QueryException $e){
+            
+             return response()->json([
+            'error'=>$e, 
+            ],402); }
         }
-    }
+    
 }
