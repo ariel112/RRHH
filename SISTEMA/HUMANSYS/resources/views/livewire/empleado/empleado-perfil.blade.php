@@ -26,12 +26,15 @@
                                                         <li class="breadcrumb-item active">Información</li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-auto float-right ml-auto">
-                                                    <input type="hidden" name="id_empleado_estado" id="id_empleado_estado" value="{{ $empleado->id }}">
+                                                <input type="hidden" name="id_empleado_estado" id="id_empleado_estado" value="{{ $empleado->id }}">
+                                                <div class="col-auto float-right ml-auto" id="divBtnDesactivarActivarEstado">
                                                     @if ($empleado->estatus_id == 1)
-                                                        <a class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
+
+                                                        <a id="BtnDesactivar_estado" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
+
                                                     @else
-                                                        <a class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a>
+                                                        <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a>
+
                                                     @endif
 
                                                     <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
@@ -64,27 +67,25 @@
                                                                                 <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5>
                                                                                 <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
                                                                                 <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
-                                                                                @if ($cargo->tipo_empleado_id == 1)
-                                                                                    @if ($empleado->estatus_id == 1)
-                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                            ACTIVO
-                                                                                        </button>
+                                                                                <div id="divBtnestado">
+                                                                                    @if ($cargo->tipo_empleado_id == 1)
+                                                                                        @if ($empleado->estatus_id == 1)
+                                                                                            <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">ACTIVO</button>
+                                                                                        @else
+                                                                                            <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">INACTIVO</button>
+                                                                                        @endif
                                                                                     @else
-                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                            INACTIVO
-                                                                                        </button>
+                                                                                        @if ($empleado->estatus_id == 1)
+                                                                                            <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                                ACTIVO
+                                                                                            </button>
+                                                                                        @else
+                                                                                            <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                                INACTIVO
+                                                                                            </button>
+                                                                                        @endif
                                                                                     @endif
-                                                                                @else
-                                                                                    @if ($empleado->estatus_id == 1)
-                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                            ACTIVO
-                                                                                        </button>
-                                                                                    @else
-                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                            INACTIVO
-                                                                                        </button>
-                                                                                    @endif
-                                                                                @endif
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-7">
@@ -970,6 +971,7 @@
         idEE = imidEditEmpl.mask(idEditEmpl);
 
         function cambioEstado_empleado(nombre, estado){
+            comilla = "'";
             let id_empleado_estado = $('#id_empleado_estado').val();
             if (estado == 1) {
                 Swal.fire({
@@ -986,6 +988,10 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
+                                    document.getElementById("divBtnestado").innerHTML='';
+                                    $("#BtnDesactivar_estado").fadeOut();
+                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-danger btn-sm"n>INACTIVO</button>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnActivar_estado" class="btn btn-success " style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >ACTIVAR</a>';
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'DESACTIVADO!',
@@ -1015,6 +1021,10 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
+                                    document.getElementById("divBtnestado").innerHTML='';
+                                    $("#BtnActivar_estado").fadeOut();
+                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-success btn-sm">ACTIVO</button>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnDesactivar_estado" class="btn btn-danger"  style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >DESACTIVAR</a>';
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'ACTIVADO!',

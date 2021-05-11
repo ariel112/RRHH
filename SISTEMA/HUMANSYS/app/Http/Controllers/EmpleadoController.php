@@ -48,15 +48,30 @@ class EmpleadoController extends Controller
         try {
 
             DB::beginTransaction();
-                if ($estado == 1) {
+
+                $empleado = DB::SELECTONE("select * from empleado where id = '".$id_empleado_estado."';");
+                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' ORDER BY created_at DESC LIMIT 1 ;");
+
+                if ($estado == 2) {
+
                     DB::table('empleado')
-                        ->where('id', $id_empleado_estado)
+                        ->where('id', $empleado->id)
+                        ->update(['estatus_id' => 1]);
+
+                    DB::table('contrato')
+                        ->where('id', $contrato->id)
+                        ->update(['estatus_id' => 1]);
+
+                }else if($estado == 1){
+
+                    DB::table('empleado')
+                        ->where('id', $empleado->id)
                         ->update(['estatus_id' => 2]);
 
                     DB::table('contrato')
-                        ->where('id', $id_empleado_estado)
-                        ->orderBy('contrato.created_at', 'desc')->limit(1)
+                        ->where('id', $contrato->id)
                         ->update(['estatus_id' => 2]);
+
                 }
             DB::commit();
 
