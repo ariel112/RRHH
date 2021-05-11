@@ -37,7 +37,7 @@
 
                                                     @endif
 
-                                                    <a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -127,6 +127,7 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                         <ul class="nav nav-tabs nav-tabs-bottom">
                                                             <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
+                                                            <li class="nav-item"><a href="#emp_detalle_referencias" data-toggle="tab" class="nav-link"><i class="fas fa-user-friends"></i>REFERENCIAS PERSONALES</a></li>
                                                             <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
                                                             <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
                                                         </ul>
@@ -176,7 +177,6 @@
                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                 <div class="card-body">
                                                                     <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
-
                                                                     <ul class="personal-info">
                                                                         <li>
                                                                             <div class="title">Telefono Secundario:</div>
@@ -207,6 +207,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <!------------------------- /Detalle completo de informacion ---------------------------------->
+                                                <!----------------------------- Detalle completo de informacion -------------------------->
+                                                <div id="emp_detalle_referencias" class="tab-pane fade">
+                                                    <div><a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a></div>
+                                                    <br>
                                                     <div class="row">
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
@@ -988,15 +994,16 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
-                                    document.getElementById("divBtnestado").innerHTML='';
+                                    /* document.getElementById("divBtnestado").innerHTML='';
                                     $("#BtnDesactivar_estado").fadeOut();
                                     document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-danger btn-sm"n>INACTIVO</button>';
-                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnActivar_estado" class="btn btn-success " style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >ACTIVAR</a>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnActivar_estado" class="btn btn-success " style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >ACTIVAR</a>'; */
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'DESACTIVADO!',
                                         timer: 1500
                                     });
+                                    location.reload();
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     console.log(jqXHR, textStatus, errorThrown);
@@ -1021,15 +1028,16 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
-                                    document.getElementById("divBtnestado").innerHTML='';
+                                    /* document.getElementById("divBtnestado").innerHTML='';
                                     $("#BtnActivar_estado").fadeOut();
                                     document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-success btn-sm">ACTIVO</button>';
-                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnDesactivar_estado" class="btn btn-danger"  style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >DESACTIVAR</a>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnDesactivar_estado" class="btn btn-danger"  style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >DESACTIVAR</a>'; */
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'ACTIVADO!',
                                         timer: 1500
                                     });
+                                    location.reload();
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     console.log(jqXHR, textStatus, errorThrown);
