@@ -50,7 +50,7 @@ class EmpleadoController extends Controller
             DB::beginTransaction();
 
                 $empleado = DB::SELECTONE("select * from empleado where id = '".$id_empleado_estado."';");
-                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' ORDER BY created_at DESC LIMIT 1 ;");
+                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' and estatus_id = 1 ORDER BY created_at DESC LIMIT 1 ;");
 
                 if ($estado == 2) {
 
