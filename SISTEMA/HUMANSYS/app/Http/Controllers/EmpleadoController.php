@@ -42,6 +42,50 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+    public function cambio_estado_empleado_contrato($id_empleado_estado,$estado){
+        try {
+
+            DB::beginTransaction();
+
+                $empleado = DB::SELECTONE("select * from empleado where id = '".$id_empleado_estado."';");
+                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' ORDER BY created_at DESC LIMIT 1 ;");
+
+                if ($estado == 2) {
+
+                    DB::table('empleado')
+                        ->where('id', $empleado->id)
+                        ->update(['estatus_id' => 1]);
+
+                    DB::table('contrato')
+                        ->where('id', $contrato->id)
+                        ->update(['estatus_id' => 1]);
+
+                }else if($estado == 1){
+
+                    DB::table('empleado')
+                        ->where('id', $empleado->id)
+                        ->update(['estatus_id' => 2]);
+
+                    DB::table('contrato')
+                        ->where('id', $contrato->id)
+                        ->update(['estatus_id' => 2]);
+
+                }
+            DB::commit();
+
+        } catch (QueryException $e) {
+            DB::rollback();
+            return response()->json([
+                'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                'color' => 'error',
+                'estado' => 2,
+                'exception' => $e,
+            ], 402);
+        }
+    }
+
     public function guardarMontosDeduccionesFijas(Request $request, $id){
 
 

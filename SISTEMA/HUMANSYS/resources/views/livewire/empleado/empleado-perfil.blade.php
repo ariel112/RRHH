@@ -26,8 +26,18 @@
                                                         <li class="breadcrumb-item active">Información</li>
                                                     </ul>
                                                 </div>
-                                                <div class="col-auto float-right ml-auto">
-                                                    <a class="btn btn-success" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a>
+                                                <input type="hidden" name="id_empleado_estado" id="id_empleado_estado" value="{{ $empleado->id }}">
+                                                <div class="col-auto float-right ml-auto" id="divBtnDesactivarActivarEstado">
+                                                    @if ($empleado->estatus_id == 1)
+
+                                                        <a id="BtnDesactivar_estado" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
+
+                                                    @else
+                                                        <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a>
+
+                                                    @endif
+
+
                                                 </div>
                                             </div>
                                         </div>
@@ -57,27 +67,25 @@
                                                                                 <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5>
                                                                                 <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
                                                                                 <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
-                                                                                @if ($cargo->tipo_empleado_id == 1)
-                                                                                    @if ($empleado->estatus_id == 1)
-                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                            ACTIVO
-                                                                                        </button>
+                                                                                <div id="divBtnestado">
+                                                                                    @if ($cargo->tipo_empleado_id == 1)
+                                                                                        @if ($empleado->estatus_id == 1)
+                                                                                            <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">ACTIVO</button>
+                                                                                        @else
+                                                                                            <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">INACTIVO</button>
+                                                                                        @endif
                                                                                     @else
-                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: TRABAJADOR">
-                                                                                            INACTIVO
-                                                                                        </button>
+                                                                                        @if ($empleado->estatus_id == 1)
+                                                                                            <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                                ACTIVO
+                                                                                            </button>
+                                                                                        @else
+                                                                                            <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
+                                                                                                INACTIVO
+                                                                                            </button>
+                                                                                        @endif
                                                                                     @endif
-                                                                                @else
-                                                                                    @if ($empleado->estatus_id == 1)
-                                                                                        <button type="button" if class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                            ACTIVO
-                                                                                        </button>
-                                                                                    @else
-                                                                                        <button type="button" if class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="right" title="Condición de empleado: PATRONO">
-                                                                                            INACTIVO
-                                                                                        </button>
-                                                                                    @endif
-                                                                                @endif
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-7">
@@ -119,6 +127,7 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                         <ul class="nav nav-tabs nav-tabs-bottom">
                                                             <li class="nav-item"><a href="#emp_informacion" data-toggle="tab" class="nav-link active"><i class="fas fa-info"></i> INFORMACÓN</a></li>
+                                                            <li class="nav-item"><a href="#emp_detalle_referencias" data-toggle="tab" class="nav-link"><i class="fas fa-user-friends"></i>REFERENCIAS PERSONALES</a></li>
                                                             <li class="nav-item"><a href="#emp_funciones" data-toggle="tab" class="nav-link"><i class="fas fa-briefcase"></i> FUNCIONES DE TRABAJO</a></li>
                                                             <li class="nav-item"><a href="#emp_detalle" data-toggle="tab" class="nav-link"><i class="fas fa-hand-holding-usd"></i>SOLICITUD DE DEDUCCIONES</a></li>
                                                         </ul>
@@ -168,7 +177,6 @@
                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                 <div class="card-body">
                                                                     <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
-
                                                                     <ul class="personal-info">
                                                                         <li>
                                                                             <div class="title">Telefono Secundario:</div>
@@ -199,6 +207,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <!------------------------- /Detalle completo de informacion ---------------------------------->
+                                                <!----------------------------- Detalle completo de informacion -------------------------->
+                                                <div id="emp_detalle_referencias" class="tab-pane fade">
+                                                    <div><a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a></div>
+                                                    <br>
                                                     <div class="row">
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
@@ -580,7 +594,7 @@
                                                                                     <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
                                                                                 </div>
                                                                             </div> --}}
-                                                                            <div class="col-md-3">
+                                                                            {{-- <div class="col-md-3">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                                                     <select class="form-select form-control" required id="estatus_id" name="estatus_id">
@@ -589,7 +603,7 @@
                                                                                         <option value="2">2-INACTIVO</option>
                                                                                     </select>
                                                                                 </div>
-                                                                            </div>
+                                                                            </div> --}}
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Secundario</label>
@@ -961,6 +975,98 @@
         var  idEditEmpl  = document.getElementById("identidad_referencia");
         var  imidEditEmpl = new Inputmask("9999-9999-99999");
         idEE = imidEditEmpl.mask(idEditEmpl);
+
+        function cambioEstado_empleado(nombre, estado){
+            comilla = "'";
+            let id_empleado_estado = $('#id_empleado_estado').val();
+            if (estado == 1) {
+                Swal.fire({
+                text: 'Al inactivar a '+nombre+' no saldrá generado el pago, en la actual planilla. Confirme desactivación.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/cambio_estado/"+id_empleado_estado+"/"+estado,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    /* document.getElementById("divBtnestado").innerHTML='';
+                                    $("#BtnDesactivar_estado").fadeOut();
+                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-danger btn-sm"n>INACTIVO</button>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnActivar_estado" class="btn btn-success " style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >ACTIVAR</a>'; */
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'DESACTIVADO!',
+                                        timer: 1500
+                                    });
+                                    location.reload();
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+                })
+            }else{
+                Swal.fire({
+                text: 'Al activar a '+nombre+' saldrá generado el pago en la actual planilla. Confirme activación.',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                type:"GET",
+                                url: "/empleado/cambio_estado/"+id_empleado_estado+"/"+estado,
+                                contentType: false,
+                                cache: false,
+                                processData:false,
+                                success: function(){
+                                    /* document.getElementById("divBtnestado").innerHTML='';
+                                    $("#BtnActivar_estado").fadeOut();
+                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-success btn-sm">ACTIVO</button>';
+                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnDesactivar_estado" class="btn btn-danger"  style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >DESACTIVAR</a>'; */
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: 'ACTIVADO!',
+                                        timer: 1500
+                                    });
+                                    location.reload();
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    console.log(jqXHR, textStatus, errorThrown);
+                                }
+                        })
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+                })
+            }
+            /* Swal.fire({
+                text: 'Al ',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: `Confirmo`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Estado cambiado!',
+                            timer: 1500
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('Cambio de estado no realizado', '', 'info')
+                    }
+            }) */
+
+            console.log(nombre+' tiene estado '+estado);
+        }
 
         function guardarMontoDeducción(id){
             event.preventDefault();
