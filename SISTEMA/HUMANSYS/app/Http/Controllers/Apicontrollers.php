@@ -54,7 +54,7 @@ class Apicontrollers extends Controller
         ON(B.area_id=C.id)
         INNER JOIN departamento D
         ON(C.departamento_id=D.id)
-        WHERE A.estatus_id = 2 AND ( A.nombre LIKE '%$request->term%')");
+        WHERE /* A.estatus_id = 2 AND A.estatus_id = 1 AND */ ( A.nombre LIKE '%$request->term%')");
 
         return response()->json($empleado);
 

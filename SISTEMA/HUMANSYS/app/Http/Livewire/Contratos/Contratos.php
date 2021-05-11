@@ -27,67 +27,85 @@ class Contratos extends Component
     }
 
     public function contrato_show(Request $request){
-        /* $contrato = new contrato();
-        $contrato->num_contrato = $request->num_contrato;
-        $contrato->num_delegacion = $request->num_delegacion;
-        $contrato->tipo_contrato = $request->tipo_contrato;
-        $contrato->fecha_inicio = $request->fecha_inicio;
-        $contrato->fecha_fin = $request->fecha_fin;
-        $contrato->sueldo = $request->sueldo;
-        $contrato->vacaciones = $request->vacaciones;
-        $contrato->empleado_id= $request->empleado_id;
-        $contrato->horarios_id = 1;
-        $contrato->estatus_id = 1;
-        $contrato->users_aprueba_id = Auth::user()->id;
-        $contrato->empleado_rrhh = $request->empleado_rrhh;
-        $contrato->save();
-        DB::table('empleado')
-            ->where('id', $contrato->empleado_id)
-            ->update([
-            'estatus_id' => 1]);
 
+                $fechaInicio = $request->fecha_inicio;
+                $fechaFinal = $request->fecha_fin;
 
+                $buscContrato = DB::SELECTONE("select COUNT(id) as 'conteo', fecha_fin from contrato where empleado_id = '".$request->empleado_id."' and estatus_id = 1 and '".$fechaInicio."' BETWEEN fecha_inicio and fecha_fin");
+                $existenciaContrato = DB::SELECTONE("select COUNT(id) as 'conteo2' from contrato where empleado_id = '".$request->empleado_id."' and estatus_id = 1 ");
 
-        return response()->json('EXITO');
- */
-        try {
-
-            DB::beginTransaction();
-                $contrato = new contrato();
-                $contrato->num_contrato = $request->num_contrato;
-                $contrato->num_delegacion = $request->num_delegacion;
-                $contrato->tipo_contrato = $request->tipo_contrato;
-                $contrato->fecha_inicio = $request->fecha_inicio;
-                $contrato->fecha_fin = $request->fecha_fin;
-                $contrato->sueldo = $request->sueldo;
-                $contrato->vacaciones = $request->vacaciones;
-                $contrato->empleado_id= $request->empleado_id;
-                $contrato->horarios_id = 1;
-                $contrato->estatus_id = 1;
-                $contrato->users_aprueba_id = Auth::user()->id;
-                $contrato->empleado_rrhh = $request->empleado_rrhh;
-
-                DB::table('empleado')
-                    ->where('id', $contrato->empleado_id)
-                    ->update([
-                    'estatus_id' => 1]);
-
-                $contrato->save();
-
-
-                DB::commit();
-                return response()->json('EXITO');
-
-
-        } catch (QueryException $e) {
-                    DB::rollback();
+                if($buscContrato->conteo > 0){
                     return response()->json([
-                        'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                        'message' => 'Fecha de inicio no válida: Existe un contrato vigente y activo en ese rango de fecha.',
                         'color' => 'error',
-                        'estado' => 2,
-                        'exception' => $e,
+                        'estado' => 2
                     ], 402);
-        }
+                }else if($existenciaContrato->conteo2 == 1 && $buscContrato->conteo == 0){
+                    try {
+                        DB::beginTransaction();
+                            $contrato = new contrato();
+                            $contrato->num_contrato = $request->num_contrato;
+                            $contrato->num_delegacion = $request->num_delegacion;
+                            $contrato->tipo_contrato = $request->tipo_contrato;
+                            $contrato->fecha_inicio = $request->fecha_inicio;
+                            $contrato->fecha_fin = $request->fecha_fin;
+                            $contrato->sueldo = $request->sueldo;
+                            $contrato->vacaciones = $request->vacaciones;
+                            $contrato->empleado_id= $request->empleado_id;
+                            $contrato->horarios_id = 1;
+                            $contrato->estatus_id = 2;
+                            $contrato->users_aprueba_id = Auth::user()->id;
+                            $contrato->empleado_rrhh = $request->empleado_rrhh;
+                            $contrato->save();
+                        DB::commit();
+                        return response()->json('EXITO');
+                    } catch (QueryException $e) {
+                        DB::rollback();
+                        return response()->json([
+                            'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                            'color' => 'error',
+                            'estado' => 2,
+                            'exception' => $e,
+                        ], 402);
+                    }
+                }else{
+
+                    try {
+                        DB::beginTransaction();
+                            $contrato = new contrato();
+                            $contrato->num_contrato = $request->num_contrato;
+                            $contrato->num_delegacion = $request->num_delegacion;
+                            $contrato->tipo_contrato = $request->tipo_contrato;
+                            $contrato->fecha_inicio = $request->fecha_inicio;
+                            $contrato->fecha_fin = $request->fecha_fin;
+                            $contrato->sueldo = $request->sueldo;
+                            $contrato->vacaciones = $request->vacaciones;
+                            $contrato->empleado_id= $request->empleado_id;
+                            $contrato->horarios_id = 1;
+                            $contrato->estatus_id = 1;
+                            $contrato->users_aprueba_id = Auth::user()->id;
+                            $contrato->empleado_rrhh = $request->empleado_rrhh;
+                            DB::table('empleado')
+                                ->where('id', $contrato->empleado_id)
+                                ->update([
+                                'estatus_id' => 1]);
+                            $contrato->save();
+                        DB::commit();
+                        return response()->json('EXITO');
+                    } catch (QueryException $e) {
+                        DB::rollback();
+                        return response()->json([
+                            'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                            'color' => 'error',
+                            'estado' => 2,
+                            'exception' => $e,
+                        ], 402);
+                    }
+
+                }
+
+
+
 
     }
 
@@ -113,7 +131,6 @@ class Contratos extends Component
                         <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
                         <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-success"></i> Formato</a>
                         <a class="dropdown-item" href="/contrato/generate-pdf_sin/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-info"></i> Sin Formato</a>
-                        <a class="dropdown-item text-danger" href="#" onclick="eliminar_contrato('.$contrato->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i > Eliminar</a>
                     </div>
                 </div>';
                 })
@@ -143,7 +160,7 @@ class Contratos extends Component
 
     public function contrato_muestra($id){
 
-        $contrato = DB::select("SELECT A.num_contrato, A.estado_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
+        $contrato = DB::select("SELECT A.num_contrato, B.nombre, A.fecha_inicio, A.fecha_fin, A.num_delegacion, B.identidad,
                                         A.id, A.sueldo, A.vacaciones, A.empleado_id, A.empleado_rrhh, E.nombre gerencia, C.nombre cargo
                                 FROM contrato A
                                 INNER JOIN empleado B
@@ -154,7 +171,7 @@ class Contratos extends Component
                                 ON(C.area_id=D.id)
                                 INNER JOIN departamento E
                                 ON(D.departamento_id=E.id)
-                                WHERE A.id='$id'");
+                                WHERE /* A.estatus_id = 1 and A.estatus_id = 2 */ and A.id='$id'");
 
         return response()->json($contrato);
         // return $contrato;
