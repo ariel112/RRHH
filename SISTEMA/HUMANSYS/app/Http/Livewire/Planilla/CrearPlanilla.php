@@ -9,7 +9,7 @@ use App\Models\pagos;
 use App\Models\planilla;
 use App\Models\pagosDeduccionesFijas;
 use App\Models\pagosDeduccionesVariables;
-
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -24,29 +24,36 @@ class CrearPlanilla extends Component
     }
 
 
-    public function generarPlanilla()
+    public function generarPlanilla(Request $request)
     {
         try {
+          
             DB::beginTransaction();
+
+            $fechaInicio = $request['fechaInicio'];
+            $fechaFin = $request['fechaFin'];
+            $nombrePlanilla = $request['nombre'];
           
             //-------------------datos persona que genera planilla----------------//    
        
 
-            $idUser = Auth::user()->id;
+            //$idUser = Auth::user()->id;
             $identidad = Auth::user()->identidad;
             $codigoUnico = time();
 
+            
+
             $empleadoGenera = DB::SELECT('select id, nombre from empleado where identidad =' . $identidad);
             $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento 
-            //dd($pp->id);
+            
 
 
 
 
-            $numMemo = "Prueba-06-05-2021";
-            $nombre = "prueba";
-            $fecha1 = new DateTime("2021-04-26");
-            $fecha2 = new DateTime("2021-05-02");
+            $numMemo = $nombrePlanilla;
+            
+            $fecha1 = new DateTime($fechaInicio);
+            $fecha2 = new DateTime($fechaFin);
 
 
             $diff = $fecha1->diff($fecha2);
@@ -54,11 +61,21 @@ class CrearPlanilla extends Component
 
             $arregloDeFechas = [];
 
+        
+            //arreglo de fechas se exeptuan los sabados y domingos
             for ($i = 0; $i < $dias; $i++) {
-                $suma = strtotime('2021-04-26' . '+' . $i . ' ' . 'days');
+                $suma = strtotime($fechaInicio . '+' . $i . ' ' . 'days');
+                $fecha = date("Y-m-d", $suma);
 
-                array_push($arregloDeFechas, ['fecha' => date("Y-m-d", $suma)]);
+                $diaSemana = date("N",strtotime($fecha));
+                
+                if( $diaSemana !== "6" && $diaSemana !== "7"){//estoy excluyendo sabado(6) y domingo(7) 
+                    array_push($arregloDeFechas, ['fecha' => $fecha]);
+                }
+
+               
             }
+        
 
             //------------------------------------------------------------inicio de calculo de asitencia-----------------------------------------------------------//
             //listado de empleados tomar en cuenta los que tienen contrato activo
@@ -79,14 +96,35 @@ class CrearPlanilla extends Component
             and (empleado.id=3 or empleado.id=4)
             and empleado.estatus_id = 1 and contrato.estatus_id=1'); //ojo para efectos de prueba solo estoy calculando dos empleados 3 y 4
             //---------calcula la deduccion por asistencia
+
+
             foreach ($arregloDeFechas as $dia) {
                 foreach ($empleados as $empleado) {
+
+                    $verificarAsistencia = DB::SELECT('
+                    select 
+                    id 
+                    from 
+                    asistencia
+                    where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
+
+                    if(!$verificarAsistencia){//si no existe asistencia para ese dia, se crea con valores nulos para registrar y descontar ese dia o posiblemente tenga un permiso
+                        $inasistencia = new asistencia;
+                        $inasistencia->fecha_dia =  $dia['fecha'];
+                        $inasistencia->empleado_id =  $empleado->id;
+                        $inasistencia->save();
+                     }
+
+                   
                     $asistenciaDia = DB::SELECT('
                     select  id,
                         IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(entrada_fija, "%H:%i:%S")) as entrada_fija,
                         IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(salida_fija, "%H:%i:%S")) as salida_fija
                      from 
                      asistencia where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
+
+                 
+                 
 
                     //calculando minuto
                     $horaInicio = strtotime($asistenciaDia[0]->entrada_fija); //inicial
@@ -95,7 +133,13 @@ class CrearPlanilla extends Component
 
                     //calculando minutos de permiso 
 
-                    $permisos = DB::SELECT('select hora_inicio, hora_final FROM permisos WHERE DATE(fecha_inicio)="' . $dia['fecha'] . '" and DATE(fecha_final)="' . $dia['fecha'] . '" and tipo_gose_sueldo_id = 1 and empleado_id = ' . $empleado->id);
+                    $permisos = DB::SELECT('
+                    select 
+                        hora_inicio, hora_final
+                    FROM permisos
+                        WHERE DATE(fecha_inicio)="' . $dia['fecha'] . '" and
+                        DATE(fecha_final)="' . $dia['fecha'] . '" and
+                        tipo_gose_sueldo_id = 1 and empleado_id = ' . $empleado->id);
 
                     if ($permisos) {
                         $horaInicioPermiso = strtotime($permisos[0]->hora_inicio); //inicial
@@ -114,17 +158,19 @@ class CrearPlanilla extends Component
                     if ($minutosTrabajados >= 530) {
 
 
-                        $flight = asistencia::find($asistenciaDia[0]->id);
-                        $flight->monto_deduccion = '0';
-                        $flight->save();
+                        $asistenciaN = asistencia::find($asistenciaDia[0]->id);
+                        $asistenciaN->monto_deduccion = '0';
+                        $asistenciaN->minutos_tarde='0';
+                        $asistenciaN->save();
                     } else {
 
                         $minutosDeducir = 530 - $minutosTrabajados;
                         $montoDeducir =  $minutosDeducir * $valorMinuto;
 
-                        $flight = asistencia::find($asistenciaDia[0]->id);
-                        $flight->monto_deduccion = round($montoDeducir, 2);
-                        $flight->save();
+                        $asistencia = asistencia::find($asistenciaDia[0]->id);
+                        $asistencia->monto_deduccion = round($montoDeducir, 2);
+                        $asistencia->minutos_tarde = $minutosDeducir;
+                        $asistencia->save();
                     }
                 }
             }
@@ -147,10 +193,11 @@ class CrearPlanilla extends Component
 
             //esta consulta obtiene los empleados y gerentes activos; Con su tipo de empleado, 1 es empleado y 2 es gerente 
             $empleadosGeneral = DB::SELECT('
-                select
+            select
                 empleado.id,
                 empleado.identidad,
                 empleado.sueldo,
+                empleado.nombre,
                 tipo_empleado.id as tipo_empleado,
                 contrato.sueldo as sueldoContrato
             from
@@ -169,10 +216,10 @@ class CrearPlanilla extends Component
             //se crea la planilla
             $planilla = new planilla;
             $planilla->codigo_unico = $codigoUnico;
-            $planilla->numero_memo = $codigoUnico + 1;
+            $planilla->numero_memo = $numMemo;
             $planilla->nombre = $datosEmpleadoGenera->nombre;//nombre de quien la creo
-            $planilla->fecha_inicio = '2021-04-26';
-            $planilla->fecha_final = '2021-05-02';
+            $planilla->fecha_inicio = $fechaInicio;
+            $planilla->fecha_final = $fechaFin;
             $planilla->identidad =  $identidad;
             $planilla->empleado_genera_id =   $datosEmpleadoGenera->id;
             $planilla->save();
@@ -195,9 +242,13 @@ class CrearPlanilla extends Component
 
                 if ($empleado->tipo_empleado == '1') {
 
-                    $deduccionAsistencia = DB::SELECT("select sum(monto_deduccion) as monto from asistencia
-                  where (DATE(fecha_dia) >= '2021-04-26' and DATE(fecha_dia) <= '2021-05-02' ) 
-                  and empleado_id = " . $empleado->id);
+                    $deduccionAsistencia = DB::SELECT('
+                    select sum(monto_deduccion) as monto
+                    from asistencia
+                    where (DATE(fecha_dia) >= "'.$fechaInicio.'"and 
+                    DATE(fecha_dia) <= "'.$fechaFin.'" )  and
+                    DAYOFWEEK(fecha_dia) IN (2,3,4,5,6) and
+                    empleado_id = ' . $empleado->id);
 
                     $deduccionAsistenciaMonto =  $deduccionAsistencia[0]->monto;
                     // dd($deduccionAsistenciaMonto);
@@ -229,6 +280,7 @@ class CrearPlanilla extends Component
                 $pagos->identidad = $empleado->identidad;
                 $pagos->planilla_id = $idPlanilla;
                 $pagos->llegadas_tarde_monto = $deduccionAsistenciaMonto;
+                $pagos->nombre_empleado= $empleado->nombre;
                 $pagos->save();
                 $idPago =  $pagos->id;
 
@@ -300,11 +352,12 @@ class CrearPlanilla extends Component
 
 
             DB::commit();
-            return response()->json(["message" => "exito"], 200);
+            return response()->json(["message" => "La planilla ha sido creada con exito."], 200);
         } catch (QueryException $e) {
             DB::rollback();
             return response()->json([
                 'error' => $e,
+                'message' => "Ha ocurrido un error, por favor intente de nuevo."
             ], 402);
         }
     }

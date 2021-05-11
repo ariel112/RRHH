@@ -28,13 +28,13 @@
                 </div>
                 <div class="d-flex ">
                     <div class="form-check mr-4">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="planillaRadio" id="radios1" value="1" checked>
                         <label class="form-check-label" for="exampleRadios1">
                             Con deducciones
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="planillaRadio" id="radios2" value="2">
                         <label class="form-check-label" for="exampleRadios2">
                            Sin deducciones
                         </label>
