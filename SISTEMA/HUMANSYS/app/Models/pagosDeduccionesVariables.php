@@ -9,7 +9,7 @@ class pagosDeduccionesVariables extends Model
 {
     
     use HasFactory;
-    protected $table = 'pagos_deducciones_varibales';//nombre de la tabla
+    protected $table = 'pagos_deducciones_variables';//nombre de la tabla
 
     protected $primaryKey = 'id';//especifico la llave primaria, en este caso es entero incremental
 

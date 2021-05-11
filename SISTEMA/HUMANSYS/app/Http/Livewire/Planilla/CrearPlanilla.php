@@ -338,7 +338,7 @@ class CrearPlanilla extends Component
 
 
                                    DB::table('pagos_deducciones_fijas')->insert($deducionesFijas);
-                                   DB::table('pagos_deducciones_varibales')->insert($deduccioneVariables);
+                                   DB::table('pagos_deducciones_variables')->insert($deduccioneVariables);
                             
             };
 
