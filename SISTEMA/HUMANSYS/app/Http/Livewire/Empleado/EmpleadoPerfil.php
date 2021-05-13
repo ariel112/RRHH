@@ -27,14 +27,14 @@ class EmpleadoPerfil extends Component
         foreach ($cargo as $carg) {
             $idCargo = $carg->id;
         }
-       $area = DB::select('select * from area WHERE id = (select area_id from cargo where id = '.$idCargo.');');
-       $area = DB::select('select * from area WHERE id = (select area_id from cargo where id = '.$idCargo.');');
+       $area = DB::select('select * from area  WHERE id = (select area_id from cargo where id = '.$idCargo.');');
+       /* $area = DB::select('select * from area WHERE id = (select area_id from cargo where id = '.$idCargo.');'); */
 
        foreach ($area as $ar) {
                 $idArea = $ar->id;
         }
 
-       $departamento = DB::select('select nombre from departamento WHERE id = (select departamento_id from area where id = '.$idArea.');');
+       $departamento = DB::select('select nombre,id from departamento WHERE id = (select departamento_id from area where id = '.$idArea.');');
 
        $funcion = DB::select('select * from `funciones` where cargo_id = (select id from cargo where id = '.$idCargo.');');
 

@@ -588,22 +588,6 @@
                                                                                     <input class="form-control" required value="{{$empleado->fecha_ingreso}}" id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                                                 </div>
                                                                             </div>
-                                                                            {{-- <div class="col-md-4">
-                                                                                <div class="form-group">
-                                                                                    <label class="col-form-label">Sueldo<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control is-valid" value="{{$empleado->sueldo}}" id="sueldo" name="sueldo" type="text">
-                                                                                </div>
-                                                                            </div> --}}
-                                                                            {{-- <div class="col-md-3">
-                                                                                <div class="form-group">
-                                                                                    <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
-                                                                                    <select class="form-select form-control" required id="estatus_id" name="estatus_id">
-                                                                                        <option selected="selected"  value="{{$empleado->estatus_id}}">@if ($empleado->estatus_id == 1) ACTIVO @else INACTIVO @endif</option>
-                                                                                        <option value="1">1-ACTIVO</option>
-                                                                                        <option value="2">2-INACTIVO</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div> --}}
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
                                                                                     <label class="col-form-label">Telefono Secundario</label>
@@ -622,40 +606,46 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {{-- <div class="col-md-12">
+                                                                <div class="col-md-12">
                                                                     <div class="card shadow p-3 mb-5 bg-white rounded">
                                                                         <div class="card-header">
-                                                                            <h3 class="card-header text-primary text-center">Deducción Catorcenal</h3>
+                                                                            <h3 class="card-header text-primary text-center">Cambios gerenciales vitales</h3>
                                                                         </div>
                                                                         <div class="row">
-                                                                            <div class="col-4">
+                                                                            <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label class="col-form-label">ID COLABORADOR<span class="text-danger">*</span></label>
-                                                                                    <input class="form-control" required disabled value="{{$empleado->id}}" id="id_empleado_edit" name="id_empleado_edit" type="text">
+                                                                                    <label class="col-form-label">Departamento<span class="text-danger">*</span></label>
+                                                                                    <select class="form-select form-control" required id="depto_empleado_edit" name="depto_empleado_edit" onchange="selectValor_Deptosmodal_edit()">
+                                                                                        <option selected value="{{$deptos->id}}">{{$deptos->nombre}}</option>
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
-                                                                                <div class="col-4">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label">Seleccionar Deducción<span class="text-danger">*</span></label>
-                                                                                        <select class="form-select custom-select form-control" required id="sel_deduccion" name="sel_deduccion" onchange="select_deduccion_edit_empleado()">
-                                                                                            @foreach ($deducciones as $deduc_fija)
-                                                                                                <option value="{{ $deduc_fija->id }}">{{ $deduc_fija->nombre }}</option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                            <div class="col-4">
+                                                                            <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label class="col-form-label" >Monto IHSS</label>
-                                                                                    <input class="form-control" required id="monto_Emp_deduc" name="monto_Emp_deduc" type="number">
+                                                                                    <label class="col-form-label">Area</label>
+                                                                                    <select class="form-select form-control" required id="area_empleado_edit" name="area_empleado_edit" onchange="selectValor_Areamodal_edit()">
+                                                                                        <option selected value="{{$area->id}}">{{$area->nombre}}</option>
+                                                                                    </select>
                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <div class="form-group">
+                                                                                    <label class="col-form-label">Cargo</label>
+                                                                                    <select class="form-select form-control" required id="cargo_empleado_edit" name="cargo_empleado_edit">
+                                                                                        <option selected value="{{$cargo->id}}">{{$cargo->nombre}}</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <label class="col-form-label">Sueldo bruto<span class="text-danger">*</span></label>
+                                                                                    <input class="form-control" required value="20000" id="suelto_bruto_empleado_edit" name="suelto_bruto_empleado_edit" type="number">
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div> --}}
+                                                                </div>
                                                             </div>
                                                             <div class="submit-section">
-                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" {{-- onclick="validacionEmpleadoPrincipal({{$empleado->id}})"  --}}>Editar</button>
+                                                                <button class="btn btn-warning" type="submit" id="btnEditEmpleado" >Editar</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -963,6 +953,105 @@
                 editarReferencia();
             }
         });
+
+        /* SELECCION DE DEPARTAMENTOS Y CARGOS EN EDITAR */
+
+                (cargaDeptos)();
+
+                function renderDeptosModal_edit(data){
+                    for (var i=0; i<data.length; ++i){
+                        /* html_select_deptosModal_edit += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>'; */
+                        document.getElementById('depto_empleado_edit').innerHTML += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                        }
+                }
+
+                function cargaDeptos(){
+                    $.ajax({
+                        type:"GET",
+                        url: "/empleado/deptos",
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        dataType:"json",
+                        success: function(data){
+                            /* console.log(data); */
+                            renderDeptosModal_edit(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR, textStatus, errorThrown);
+                        }
+                    });
+                }
+                function selectValor_Deptosmodal_edit(){
+                    var idDepto = document.getElementById("depto_empleado_edit").value;
+                    cargoAreas(idDepto);
+                }
+
+                function cargoAreas(idDepto){
+                    $.ajax({
+                        type:"GET",
+                        url: "/empleado/area/"+idDepto,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        dataType:"json",
+                        success: function(data){
+                            /* console.log(data); */
+                            renderAreas_edit(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR, textStatus, errorThrown);
+                        }
+                    });
+                }
+
+                function renderAreas_edit(data){
+                    var html_select_Areas ='<option selected="selected" value="">Seleccione area</option>';
+                    for (var i=0; i<data.length; ++i){
+                        html_select_Areas += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                        /* document.getElementById('area_empleado_edit').innerHTML += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>'; */
+                        }
+                    $('#area_empleado_edit').html(html_select_Areas)
+                }
+
+                function selectValor_Areamodal_edit(){
+                    var idArea = document.getElementById("area_empleado_edit").value;
+                    cargoCargos(idArea);
+                }
+
+                function cargoCargos(idArea){
+                    $.ajax({
+                        type:"GET",
+                        url: "/empleado/cargo/"+idArea,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        dataType:"json",
+                        success: function(data){
+                            /* console.log(data); */
+                            renderCargos_edit(data);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR, textStatus, errorThrown);
+                        }
+                    });
+                }
+
+                function renderCargos_edit(data){
+                    var html_select_cargos ='<option selected="selected" value="">Seleccione Cargo</option>';
+                    for (var i=0; i<data.length; ++i){
+                        html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                        /* document.getElementById('cargo_empleado_edit').innerHTML += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>'; */
+                        }
+                    $('#cargo_empleado_edit').html(html_select_cargos)
+                }
+
+        /* /SELECCION DE DEPARTAMENTOS Y CARGOS EN EDITAR */
+
+
+
+
+
         (cargo_tipodeduccion_variable)();
         var  idRef  = document.getElementById("identidad_referencia");
         var  imRef = new Inputmask("9999-9999-99999");
