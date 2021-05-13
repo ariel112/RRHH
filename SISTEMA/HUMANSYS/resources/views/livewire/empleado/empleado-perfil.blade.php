@@ -33,7 +33,7 @@
                                                         <a id="BtnDesactivar_estado" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
 
                                                     @else
-                                                        <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a>
+                                                        {{-- <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a> --}}
 
                                                     @endif
 
