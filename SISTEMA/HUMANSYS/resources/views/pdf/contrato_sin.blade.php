@@ -34,6 +34,7 @@
 
         <div style="position:absolute; top:40px; padding:50px;">
             <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</u></h5>
+
             <h5 style="text-align: center; font-family: Arial;font-size:12;">{{$contrato->num_contrato}}</h5>
             <br>
             <p style="text-align: justify; font-family: Arial;font-size:12;">Nosotros, <b>{{ $gerente_rh->nombre }}</b> mayor de edad, hondureña, {{ $gerente_rh->estado_civil }}, {{ $gerente_rh->profesion }}, con identidad número {{ $gerente_rh->identidad }}, Registro Tributario Nacional número {{ $gerente_rh->rtn }} y de este domicilio, quien actúa en su condición de Coordinador Técnico del Programa Presidencial de Becas “Honduras 20/20” creado mediante Decreto Ejecutivo Numero {{ $contrato->num_delegacion }}, facultades que acredito mediante Acuerdo de Delegación No. GL-PPBH-001/2021 de fecha {{ $contrato->numero }} de {{ $mes }} del presente año, quien en lo sucesivo se denominará <b>“EL CONTRATANTE” {{ $contrato->nombre }}</b> , hondureño, mayor de edad, {{ $contrato->estado_civil }}, {{ $contrato->profesion }} con tarjeta de identidad No. {{ $contrato->identidad }} y de este domicilio, y en los sucesivo se le denominará “EL TRABAJADOR”, hemos convenido celebrar el presente <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b> el cual se regirá por las cláusulas y condiciones siguientes:</p>
