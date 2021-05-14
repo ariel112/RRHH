@@ -1340,16 +1340,17 @@
                     console.log(data);
                     $('#formEditEmpleado').trigger("reset");
                     $('#profile_info').modal('hide');
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Editado con éxito!',
+                        timer: 1500
+                    });
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
                 }
             })
-            Swal.fire({
-                icon: 'success',
-                text: 'Editado con éxito!',
-                timer: 1500
-                });
+
         }
 
         /* function validacionEmpleadoPrincipal(id){
