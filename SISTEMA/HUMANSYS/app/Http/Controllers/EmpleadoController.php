@@ -335,6 +335,7 @@ class EmpleadoController extends Controller
                 $telefono_2 = $request['telefono_2'];
                 $genero = $request['genero'];
                 $profesion = $request['profesion'];
+                $cargo_id = $request['cargo_empleado_edit'];
             /*  dd($cargo); */
                     DB::table('empleado')
                     ->where('id', $idem)
@@ -354,7 +355,7 @@ class EmpleadoController extends Controller
                     'sueldo' => $sueldo,
                     'email_institucional' => $email_institucional,
                     'telefono_2' => $telefono_2,
-                    'cargo_id'=>$request['cargo_empleado_edit'],
+                    'cargo_id'=>$cargo_id,
                     'genero'=>$genero,
                     'profesion'=>$profesion
                     ]);
@@ -366,13 +367,13 @@ class EmpleadoController extends Controller
                     ->update(['primer_nombre' => $primer_nombre]); */
 
                     $log_cargo = new log_cargo();
-                    $log_cargo->cargo_id = $request['cargo_empleado_edit'];
+                    $log_cargo->cargo_id = $cargo_id;
                     $log_cargo->empleado_id = $idem;
                     $log_cargo -> save();
 
 
 	        DB::commit();
-            /* return 'agregado'; */
+            return 'agregado';
         } catch (QueryException $e) {
                     DB::rollback();
                     return response()->json([

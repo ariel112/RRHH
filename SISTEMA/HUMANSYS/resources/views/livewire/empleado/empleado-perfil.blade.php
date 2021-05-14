@@ -61,12 +61,26 @@
                                                                             <div class="profile-info-left">
                                                                                 <h3 class="user-name m-t-0 mb-0">{{$empleado->primer_nombre}} {{$empleado->primer_apellido}}</h3> <br>
                                                                                 <h5 class="text-muted">Género: {{$empleado->genero}}</h5>
-                                                                                <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
-                                                                                <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
+                                                                                @php
+                                                                                        function calculaedad($fechanacimiento){
+                                                                                            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+                                                                                            $ano_diferencia  = date("Y") - $ano;
+                                                                                            $mes_diferencia = date("m") - $mes;
+                                                                                            $dia_diferencia   = date("d") - $dia;
+                                                                                            if ($dia_diferencia < 0 || $mes_diferencia < 0)
+                                                                                                $ano_diferencia--;
+                                                                                            return $ano_diferencia;
+                                                                                        }
+
+                                                                                        $edad = calculaedad($empleado->fecha_nacimiento);
+                                                                                    @endphp
+                                                                                <h5 class="text-muted">Edad: {{$edad}}</h5>
+                                                                                {{-- <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
+                                                                                <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5> --}}
                                                                                 <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
-                                                                                <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5>
+                                                                                {{-- <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5> --}}
                                                                                 <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
-                                                                                <div class="small doj text-muted"><i class="far fa-id-card"></i>  Identidad: {{$empleado->identidad}}</div> <br>
+                                                                                 <br>
                                                                                 <div id="divBtnestado">
                                                                                     @if ($cargo->tipo_empleado_id == 1)
                                                                                         @if ($empleado->estatus_id == 1)
@@ -91,16 +105,16 @@
                                                                         <div class="col-md-7">
                                                                             <ul class="personal-info">
                                                                                 <li>
-                                                                                    <div class="title">Telefono principal:</div>
+                                                                                    <div class="title">Identidad:</div>
+                                                                                    <div class="text"><a><i class="fas fa-phone-square-alt"></i> {{$empleado->identidad}}</a></div>
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="title">Telefono:</div>
                                                                                     <div class="text"><a><i class="fas fa-phone-square-alt"></i> {{$empleado->telefono_1}}</a></div>
                                                                                 </li>
                                                                                 <li>
-                                                                                    <div class="title">Correo Personal:</div>
-                                                                                    <div class="text"><a><i class="fas fa-envelope-open-text"></i> {{$empleado->email}}</a></div>
-                                                                                </li>
-                                                                                <li>
-                                                                                    <div class="title">Nacimiento:</div>
-                                                                                    <div class="text"><i class="fas fa-calendar-alt"></i> {{$empleado->fecha_nacimiento}}</div>
+                                                                                    <div class="title">Correo Institucional:</div>
+                                                                                    <div class="text"><a><i class="fas fa-envelope-open-text"></i> {{$empleado->email_institucional}}</a></div>
                                                                                 </li>
                                                                                 <li>
                                                                                     <div class="title">Dirección:</div>
@@ -166,6 +180,14 @@
                                                                             <div class="text">{{$empleado->estado_civil}}</div>
                                                                         </li>
                                                                         <li>
+                                                                            <div class="title">Telefono Secundario:</div>
+                                                                            <div class="text">{{$empleado->telefono_2}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Correo Personal:</div>
+                                                                            <div class="text">{{$empleado->email}}</div>
+                                                                        </li>
+                                                                        <li>
                                                                             <div class="title">Nacionalidad</div>
                                                                             <div class="text">Hondureña</div>
                                                                         </li>
@@ -179,24 +201,30 @@
                                                                     <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
                                                                     <ul class="personal-info">
                                                                         <li>
-                                                                            <div class="title">Telefono Secundario:</div>
-                                                                            <div class="text">{{$empleado->telefono_2}}</div>
+                                                                            <div class="title">Departamento Asignado:</div>
+                                                                            <div class="text">{{$deptos->nombre}}</div>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="title">Correo Institucional:</div>
-                                                                            <div class="text">{{$empleado->email_institucional}}</div>
+                                                                            <div class="title">Departamento Asignado:</div>
+                                                                            <div class="text">{{$deptos->nombre}}</div>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="title">Fecha de ingreso:</div>
+                                                                            <div class="title">Area depto:</div>
+                                                                            <div class="text">{{$area->nombre}}</div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="title">Profesión:</div>
+                                                                            <div class="text">{{$empleado->profesion}}</div>
+                                                                        </li>
+
+                                                                        <li>
+                                                                            <div class="title">Fecha de Registro:</div>
                                                                             <div class="text">{{$empleado->fecha_ingreso}}</div>
                                                                         </li>
+
                                                                         <li>
-                                                                            <div class="title">Sueldo</div>
+                                                                            <div class="title">Sueldo Neto actual</div>
                                                                             <div class="text">Lps. {{$empleado->sueldo}}</div>
-                                                                        </li>
-                                                                        <li>
-                                                                            <div class="title">Estado</div>
-                                                                            <div class="text">Activo</div>
                                                                         </li>
                                                                         <li>
                                                                             <div class="title">Lugar de asignación</div>
@@ -636,11 +664,12 @@
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-md-4">
+                                                                            <input id="empleado_id_para_editar" name="empleado_id_para_editar" type="hidden" value="{{ $empleado->id }}">
+                                                                            {{-- <div class="col-md-4">
                                                                                 <label class="col-form-label">Sueldo bruto<span class="text-danger">*</span></label>
-                                                                                    <input id="empleado_id_para_editar" name="empleado_id_para_editar" type="hidden" value="{{ $empleado->id }}">
+
                                                                                     <input class="form-control" required value="20000" id="suelto_bruto_empleado_edit" name="suelto_bruto_empleado_edit" type="number">
-                                                                            </div>
+                                                                            </div> --}}
                                                                         </div>
                                                                     </div>
                                                                 </div>
