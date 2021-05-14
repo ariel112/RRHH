@@ -2,17 +2,14 @@
 
 namespace App\Http\Livewire\Planilla;
 
-use App\Models\asistencia;
-use App\Models\empleado;
-use App\Models\permisos;
-use App\Models\pagos;
-use App\Models\planilla;
-use App\Models\pagosDeduccionesFijas;
-use App\Models\pagosDeduccionesVariables;
+
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PlanillaExport;
+
 use DateTime;
 use Auth;
 
@@ -28,8 +25,8 @@ class CrearPlanilla extends Component
     {
         try {
           
-            DB::beginTransaction();
-
+          /*  DB::beginTransaction();
+/*
             $fechaInicio = $request['fechaInicio'];
             $fechaFin = $request['fechaFin'];
             $nombrePlanilla = $request['nombre'];
@@ -268,12 +265,13 @@ class CrearPlanilla extends Component
                 $deduccionesFijasVariablesMonto =  $deduccionesFijas[0]->monto;
 
                 $totalDeducciones =  $deduccionAsistenciaMonto + $deduccionesFijasMonto + $deduccionesFijasVariablesMonto;
-                $sueldoBruto = $empleado->sueldoContrato;
-                $sueldoNeto =  $sueldoBruto -  $totalDeducciones;
+                $sueldoBruto = $empleado->sueldoContrato;//revisar eso
+                $catorcena =  ($sueldoBruto/2);
+                $sueldoNeto =  $catorcena -  $totalDeducciones;
 
                 $pagos = new pagos;
                 $pagos->sueldo_mensual =  $sueldoBruto;
-                $pagos->catorcena =  $sueldoBruto / 2;
+                $pagos->catorcena =  $catorcena;
                 $pagos->total_deducciones =  $totalDeducciones;
                 $pagos->sueldo_neto  =  $sueldoNeto;
                 $pagos->empleado_id = $empleado->id;
@@ -349,10 +347,93 @@ class CrearPlanilla extends Component
             $montoPlanilla->total_pago_planilla =  $totalPlanilla[0]->totalPlanilla;
             $montoPlanilla->save();
 
+            //---listar deducciones fijas---//
+           
 
 
-            DB::commit();
-            return response()->json(["message" => "La planilla ha sido creada con exito."], 200);
+
+
+            DB::commit();*/
+
+            //generacion de excel
+            $encabezadosExcel =[];
+            $deduccionesFijasCadena="";
+            $deduccionesVariablesCadena="";
+
+
+            $listaDeduccionesFija = DB::SELECT("select id,  UPPER(REPLACE(NOMBRE,' ','_')) as NOMBRE  from deducciones");
+            $listarDeduccionesVariables = DB::SELECT("select id,  UPPER(REPLACE(NOMBRE,' ','_')) as NOMBRE from tipo_deducciones_variables");
+            
+            $data=[];
+
+            $encabezadosInicio=["IDENTIDAD","NOMBRE_EMPLEADO","FECHA_INGRESO","CARGO","SUELDO_MENSUAL","CATORCENA"];
+            $encabezadosFin=["LLEGADAS_TARDE_MONTO","TOTAL_DEDUCCIONES","SUELDO_NETO"];
+           
+
+            foreach($listaDeduccionesFija as $elemento){
+                array_push($encabezadosInicio,$elemento->NOMBRE);
+
+                $deduccionesFijasCadena = $deduccionesFijasCadena."(select A.monto from pagos_deducciones_fijas A 
+                where A.pagos_id = pagos.id and A.deduccion_fija_id=".$elemento->id." ) as '".$elemento->NOMBRE."',";
+               
+            }
+
+            foreach($listarDeduccionesVariables as $elemento){
+                array_push($encabezadosInicio,$elemento->NOMBRE);
+                $deduccionesVariablesCadena = $deduccionesVariablesCadena."(select B.monto from pagos_deducciones_variables B
+                 where B.pagos_id = pagos.id and B.deduccion_variable_id=".$elemento->id.") as '".$elemento->NOMBRE."',";
+            }
+
+            $encabezadosExcel= array_merge($encabezadosInicio, $encabezadosFin);
+            array_push($data,$encabezadosExcel);
+
+            //----consulta en partes--------//
+            $parte1='
+            select  
+                pagos.identidad AS IDENTIDAD,
+                pagos.nombre_empleado AS NOMBRE_EMPLEADO,
+                (select DATE_FORMAT(fecha_ingreso,"%d-%m-%Y") from empleado where id=pagos.empleado_id) as "FECHA_INGRESO",
+                (select cargo.nombre from empleado inner join cargo ON cargo.id = empleado.cargo_id where empleado.id = pagos.empleado_id) as CARGO,
+                pagos.sueldo_mensual as SUELDO_MENSUAL,
+                pagos.catorcena as CATORCENA,';
+
+             $parte2 = $deduccionesFijasCadena.$deduccionesVariablesCadena;
+
+             $parte3 = '
+             pagos.llegadas_tarde_monto as LLEGADAS_TARDE_MONTO,
+             pagos.total_deducciones as TOTAL_DEDUCCIONES,
+             pagos.sueldo_neto as SUELDO_NETO       
+           
+           from 
+             pagos
+           where planilla_id= 1';
+
+            $tt= $parte1.$parte2.$parte3;
+
+            $pp = DB::select($tt );
+            
+            foreach($pp as $elemento){
+                $arregloElemento = [];
+
+               for($i=0; $i<count($encabezadosExcel); $i++){
+                   $key = $encabezadosExcel[$i];
+                   $valorEmento = $elemento->$key;
+                   if($valorEmento){
+                   array_push($arregloElemento,$valorEmento);
+                   }else{
+                    array_push($arregloElemento,"0");
+                   }
+                }
+
+                array_push($data, $arregloElemento);
+            }
+
+         //  dd($data);
+           $export = new PlanillaExport($data);
+           return Excel::download($export, 'productos.xlsx');
+
+
+            //return response()->json(["message" => "La planilla ha sido creada con exito."], 200);
         } catch (QueryException $e) {
             DB::rollback();
             return response()->json([

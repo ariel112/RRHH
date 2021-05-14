@@ -1,5 +1,6 @@
 
 
+
 function ejecutarPlanilla(){
 
    let nombre = document.getElementById('namePlanilla').value;
@@ -65,10 +66,21 @@ function ejecutarPlanilla(){
 
  
 
-    axios.post("/planilla/crear",{
+    /*axios.get("/planilla/crear",
+       responseType:'blob', {
         nombre:nombre,
         fechaInicio:fechaInicio,
         fechaFin:fechaFin
+    })*/
+    axios({
+        url: '/planilla/crear',
+         method: 'GET',
+        responseType: 'blob', // important 
+        data: {
+            nombre:nombre,
+            fechaInicio:fechaInicio,
+            fechaFin:fechaFin
+        }
     })
     
     .then(
@@ -82,9 +94,16 @@ function ejecutarPlanilla(){
                 icon: "success",
                 confirmButtonText: "Cerrar",
             });
-        })
+
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'planilla.xlsx'); //or any other extension
+            document.body.appendChild(link);
+            link.click();
+                    })
     ).catch( err => {
-            console.log(err.response.data.message)
+            console.log(err)
             Swal.fire({
                 title: "Error!",
                 text: "Ha ocurrido un error, intente de nuevo.",

@@ -189,7 +189,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //   planilla de empleados
     Route::get('/planilla', Planilla::class)->name('planilla.index');
     Route::get('/planilla/generar', CrearPlanilla::class)->name('generar.index');
-    Route::post('/planilla/crear', [CrearPlanilla::class, 'generarPlanilla']);
+    Route::get('/planilla/crear', [CrearPlanilla::class, 'generarPlanilla']);
 
 
 
