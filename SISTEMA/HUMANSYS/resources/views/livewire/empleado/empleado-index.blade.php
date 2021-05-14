@@ -18,10 +18,10 @@
                 </div>
                 <div class="col-auto float-right ml-auto">
                     <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee" ><i class="fa fa-plus"></i>Registrar Nuevo Empleado</a>
-                    <div class="view-icons">
+                    {{-- <div class="view-icons">
                         <a href="employees.html" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                         <a href="employees-list.html" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

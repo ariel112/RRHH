@@ -142,20 +142,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group" wire:ignore wire:key="first">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                    {{-- <input wire:model="searchNombre" type="text" class="form-control floating" placeholder="Nombre del colaborador"> --}}
                                     <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-                                    {{-- <select class="select floating custom-select" style="width: 350px; height:40px;" name="empleado_id" > --}}
-                                        {{--@if ($empleados->count())
-                                            @foreach($empleados as $empleado)
-                                                <option style="width: 350px; height:40px;" class="select floating" value="{{ $empleado->id }}">{{ $empleado->nombre }}</option>
-                                            @endforeach
-                                        @else
-                                            <div class="px-4 py-3 border-t border-gray-200 sm:px-6">
-                                                <option style="width: 350px; height:40px;" class="select floating" >No se encuentran resultados para {{$searchNombre}}</option>
-                                            </div>
-                                        @endif --}}
-                                    {{-- </select> --}}
-                                    {{-- <select name="tags[]" class="form-control" multiple="multiple" id="tags"></select> --}}
+
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -316,124 +304,6 @@
         </div>
     </div>
 </div>
-{{-- fin edit contratos --}}
-
-
-{{-- vista contratos --}}
-{{-- edit contratos --}}
-{{-- <div id="vw_contratos" class="modal custom-modal fade" role="dialog" >
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-success">Crear contratos</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="form_contrato" data-parsley-validate>
-                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
-                                <input required class="form-control" name="num_contrato" id="num_contrato" type="text">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Gerente de Talento Humano</label>
-                                <select required class="form-control" name="empleado_rrhh" id="empleado_rrhh">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="col-form-label"># delegación <span class="text-danger">*</span></label>
-                                <input required class="form-control" name="num_delegacion"  type="text">
-                            </div>
-                        </div>
-
-                        <div class="col-sm-9">
-                            <div class="form-group">
-                                <label class="col-form-label">Fecha de contrato <span class="text-danger">*</span></label>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-focus">
-                                             <label for="">Inicio:</label>
-                                                <input required class="form-control" type="date" name="fecha_inicio">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group form-focus">
-                                                <label for="">Final:</label>
-                                                <input class="form-control" required type="date" name="fecha_fin">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-form-label">Días de vaciones <span class="text-danger">*</span></label>
-                                <select class="form-control" name="vacaciones" required>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group" wire:ignore wire:key="first">
-                                <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-form-label">Identidad <span class="text-danger">*</span></label>
-                                <input class="form-control" id="identidad" name="identidad" type="text" value=""  disabled>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <label class="col-form-label">Sueldo <span class="text-danger">*</span></label>
-                                <input class="form-control" required name="sueldo" id="sueldo" type="text" value="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Gerencia<span class="text-danger">*</span></label>
-                                <input class="form-control" name="gerencia" id="gerencia" type="text" value="" disabled>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-form-label">Cargo</label>
-                                <input class="form-control" id="cargo" name="cargo" type="text" value="" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div >
-                        <button id="crearcontrato" class="btn btn-primary submit-btn">Crear</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> --}}
-{{-- fin vista contratos --}}
 
 
 
@@ -617,9 +487,12 @@ function CierraPopup(modal) {
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
-
-
-                console.log(jqXHR, textStatus, errorThrown);
+                console.log( jqXHR.responseJSON.message);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: jqXHR.responseJSON.message
+                })
             }
         })
         }

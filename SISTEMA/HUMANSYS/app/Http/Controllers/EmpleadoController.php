@@ -50,7 +50,7 @@ class EmpleadoController extends Controller
             DB::beginTransaction();
 
                 $empleado = DB::SELECTONE("select * from empleado where id = '".$id_empleado_estado."';");
-                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' ORDER BY created_at DESC LIMIT 1 ;");
+                $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$id_empleado_estado."' and estatus_id = 1 ORDER BY created_at DESC LIMIT 1 ;");
 
                 if ($estado == 2) {
 
@@ -309,50 +309,70 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request){
 
-        $primer_nombre = $request['primer_nombre'];
-        $segundo_nombre = $request['segundo_nombre'];
-        $primer_apellido = $request['primer_apellido'];
-        $segundo_apellido = $request['segundo_apellido'];
-        $fecha_nacimiento = $request['fecha_nacimiento'];
-        $identidad = $request['identidad'];
-        $telefono_1 = $request['telefono_1'];
-        $nombre = $primer_nombre.' '.$segundo_nombre.' '.$primer_apellido.' '.$segundo_apellido;
-        $rtn = $request['rtn'];
-        $lugar_nacimiento = $request['lugar_nacimiento'];
-        $estado_civil = $request['estado_civil'];
-        $fecha_ingreso = $request['fecha_ingreso'];
-        $estatus_id = $request['estatus_id'];
-        $sueldo = $request['sueldo'];
-        $email_institucional = $request['email_institucional'];
-        $telefono_2 = $request['telefono_2'];
-        $genero = $request['genero'];
-        $profesion = $request['profesion'];
-        /* DB::table('empleado')
-            ->updateOrInsert(
-                            ['primer_nombre' => $primer_nombre ])
-            ->where('id', $id); */
-             DB::table('empleado')
-            ->where('id', $id)
-            ->update(['primer_nombre' => $primer_nombre,
-              'segundo_nombre' => $segundo_nombre,
-              'primer_apellido' => $primer_apellido,
-              'segundo_apellido' => $segundo_apellido,
-              'fecha_nacimiento' => $fecha_nacimiento,
-              'identidad' => $identidad,
-              'telefono_1' => $telefono_1,
-              'nombre' => $nombre,
-              'rtn' => $rtn,
-              'lugar_nacimiento' => $lugar_nacimiento,
-              'estado_civil' => $estado_civil,
-              'fecha_ingreso' => $fecha_ingreso,
-              'estatus_id' => $estatus_id,
-              'sueldo' => $sueldo,
-              'email_institucional' => $email_institucional,
-              'telefono_2' => $telefono_2,
-              'genero'=>$genero,
-              'profesion'=>$profesion]);
+        try {
+
+            DB::beginTransaction();
+
+                $idem = $request['empleado_id_para_editar'];
+                $primer_nombre = $request['primer_nombre'];
+                $segundo_nombre = $request['segundo_nombre'];
+                $primer_apellido = $request['primer_apellido'];
+                $segundo_apellido = $request['segundo_apellido'];
+                $fecha_nacimiento = $request['fecha_nacimiento'];
+                $identidad = $request['identidad'];
+                $telefono_1 = $request['telefono_1'];
+                $nombre = $primer_nombre.' '.$segundo_nombre.' '.$primer_apellido.' '.$segundo_apellido;
+                $rtn = $request['rtn'];
+                $lugar_nacimiento = $request['lugar_nacimiento'];
+                $estado_civil = $request['estado_civil'];
+                $fecha_ingreso = $request['fecha_ingreso'];
+                $estatus_id = $request['estatus_id'];
+                $sueldo = $request['sueldo'];
+                $email_institucional = $request['email_institucional'];
+                $telefono_2 = $request['telefono_2'];
+                $genero = $request['genero'];
+                $profesion = $request['profesion'];
+            /*  dd($cargo); */
+                    DB::table('empleado')
+                    ->where('id', $idem)
+                    ->update(['primer_nombre' => $primer_nombre,
+                    'segundo_nombre' => $segundo_nombre,
+                    'primer_apellido' => $primer_apellido,
+                    'segundo_apellido' => $segundo_apellido,
+                    'fecha_nacimiento' => $fecha_nacimiento,
+                    'identidad' => $identidad,
+                    'telefono_1' => $telefono_1,
+                    'nombre' => $nombre,
+                    'rtn' => $rtn,
+                    'lugar_nacimiento' => $lugar_nacimiento,
+                    'estado_civil' => $estado_civil,
+                    'fecha_ingreso' => $fecha_ingreso,
+                    'estatus_id' => $estatus_id,
+                    'sueldo' => $sueldo,
+                    'email_institucional' => $email_institucional,
+                    'telefono_2' => $telefono_2,
+                    'cargo_id'=>$request['cargo_empleado_edit'],
+                    'genero'=>$genero,
+                    'profesion'=>$profesion
+                    ]);
+
+	        DB::commit();
+            /* return 'agregado'; */
+        } catch (QueryException $e) {
+                    DB::rollback();
+                    return response()->json([
+                        'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                        'color' => 'error',
+                        'estado' => 2,
+                        'exception' => $e,
+                    ], 402);
+        }
+
+
+
+
     }
 
     public function updateReferencia(Request $request, $id){
@@ -364,10 +384,6 @@ class EmpleadoController extends Controller
         $parentezco = $request['parentezco_referencia_edit'];
         $direccion = $request['direccion_referencia_edit'];
         $estatus_referencia_id =$request['estado_referencia_edit'];
-        /* DB::table('empleado')
-            ->updateOrInsert(
-                            ['primer_nombre' => $primer_nombre ])
-            ->where('id', $id); */
              DB::table('referencia')
             ->where('id', $id)
             ->update(['nombre' => $nombre,
