@@ -9,6 +9,10 @@ use Doctrine\DBAL\Query\QueryException;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PlanillaExport;
+use App\Models\asistencia;
+use App\Models\planilla;
+use App\Models\pagos;
+use App\Models\empleado;
 
 use DateTime;
 use Auth;
@@ -22,15 +26,24 @@ class CrearPlanilla extends Component
 
 
     public function generarPlanilla(Request $request)
-    {
+    { 
+         //dd($request['nombre']);
         try {
-          
-          /*  DB::beginTransaction();
-/*
             $fechaInicio = $request['fechaInicio'];
             $fechaFin = $request['fechaFin'];
             $nombrePlanilla = $request['nombre'];
           
+
+            $validador = $this->verficiarFechas( $fechaInicio,$fechaFin );
+
+            if( $validador){
+             return response()->json(["message"=>'Rango de fechas invalido',
+                                     "icon"=>"error" ],402);
+            }
+        
+            DB::beginTransaction();
+          
+           
             //-------------------datos persona que genera planilla----------------//    
        
 
@@ -47,7 +60,7 @@ class CrearPlanilla extends Component
 
 
 
-            $numMemo = $nombrePlanilla;
+            $numMemo = $request['nombre'];
             
             $fecha1 = new DateTime($fechaInicio);
             $fecha2 = new DateTime($fechaFin);
@@ -353,7 +366,7 @@ class CrearPlanilla extends Component
 
 
 
-            DB::commit();*/
+            DB::commit();
 
             //generacion de excel
             $encabezadosExcel =[];
@@ -433,7 +446,7 @@ class CrearPlanilla extends Component
            return Excel::download($export, 'productos.xlsx');
 
 
-            //return response()->json(["message" => "La planilla ha sido creada con exito."], 200);
+           // return response()->json(["message" => "La planilla ha sido creada con exito."], 200);
         } catch (QueryException $e) {
             DB::rollback();
             return response()->json([
@@ -454,5 +467,125 @@ class CrearPlanilla extends Component
             'error'=>$e, 
             ],402); }
         }
+
+        public function generarSinDeducciones(Request $request){
+                 try{
+                    $numMemo = $request['nombre'];
+                    $fechaInicio = $request['fechaInicio'];
+                    $fechaFin = $request['fechaFin'];
+
+                   $validador = $this->verficiarFechas( $fechaInicio ,$fechaFin);
+
+                   if( $validador){
+                    return response()->json(["message"=>'Rango de fechas invalido',
+                                            "icon"=>"error" ],402);
+                   }
+                    DB::beginTransaction();
+                  
+
+
+                    $identidad = Auth::user()->identidad;
+                    $codigoUnico = time();
+
+                    $empleados = DB::SELECT("select
+
+                    empleado.id,
+                    empleado.identidad,
+                    empleado.nombre,
+                    contrato.sueldo
+                    
+                    
+                    from
+                    empleado inner join contrato  on
+                    empleado.id = contrato.empleado_id
+                    where empleado.estatus_id = 1 and contrato.estatus_id=1
+                    ");
+
+                    $empleadoGenera = DB::SELECT('select id, nombre from empleado where identidad =' . $identidad);
+                    $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento 
+
+                    
+
+                    $planilla = new planilla;
+                    $planilla->codigo_unico = $codigoUnico;
+                    $planilla->numero_memo = $numMemo;
+                    $planilla->nombre = $datosEmpleadoGenera->nombre;//nombre de quien la creo
+                    $planilla->fecha_inicio = $fechaInicio;
+                    $planilla->fecha_final = $fechaFin;
+                    $planilla->identidad =  $identidad;
+                    $planilla->empleado_genera_id =   $datosEmpleadoGenera->id;
+                    $planilla->save();
+                    $idPlanilla = $planilla->id; //recupero el id de la planilla
+
+                    foreach($empleados as $empleado){
+                        $pagos = new pagos;
+
+                        $sueldo = $empleado->sueldo;
+                        $catorcena =  $sueldo/2;
+
+                    $pagos->sueldo_mensual =  $empleado->sueldo;
+                    $pagos->catorcena =  $catorcena;
+                    $pagos->total_deducciones =  0;
+                    $pagos->sueldo_neto =   $catorcena;
+                    $pagos->empleado_id = $empleado->id;
+                    $pagos->identidad = $empleado->identidad;
+                    $pagos->planilla_id = $idPlanilla;
+                    $pagos->llegadas_tarde_monto = 0;
+                    $pagos->nombre_empleado= $empleado->nombre;
+                    $pagos->save();
+                    }
+                 
+
+                    
+                    
+
+                   
+
+        
+
+
+
+                    DB::commit();
+                     
+                      return response()->json(["message"=>'exito'],200);
+                 }catch(QueryException $e){
+                    DB::rollback();
+                      return response()->json([
+                     'error'=>$e, 
+                     ],402); }
+                 }
+        
+
+public function verficiarFechas($fechaInicio, $fechaFinal){
+                 try{
+
+                    $verificar = DB::SELECT("
+                            select
+                        id
+                        from planilla
+                        where
+                        (DATE(fecha_inicio) between '".$fechaInicio."' and '".$fechaFinal."' ) or 
+                        (DATE(fecha_final) between '".$fechaInicio."' and '".$fechaFinal."' )
+                            
+                            "
+                 );
+
+                 if($verificar){
+                     return true;
+                 }else
+                 {
+                     return false;
+                 }
+                     
+                     
+                 }catch(QueryException $e){
+                     
+                      return response()->json([
+                     'error'=>$e, 
+                     ],402); }
+                 }
+                
     
 }
+
+

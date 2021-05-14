@@ -9,7 +9,7 @@ function ejecutarPlanilla(){
 
    var radios = document.getElementById('radios1').checked;
 
-   console.log(radios)
+   console.log(radios,"radio")
 
    if(!nombre){
     Swal.fire({
@@ -65,16 +65,23 @@ function ejecutarPlanilla(){
    }
 
  
-
+   console.log(nombre)
     /*axios.get("/planilla/crear",
-       responseType:'blob', {
+        {
         nombre:nombre,
         fechaInicio:fechaInicio,
         fechaFin:fechaFin
     })*/
+
+    if(radios){
+        urlPlanilla='/planilla/crear'
+    }else{
+        urlPlanilla="/planilla/crear/sinDeducciones"
+    }
+ 
     axios({
-        url: '/planilla/crear',
-         method: 'GET',
+        url: urlPlanilla,
+        method: 'POST',
         responseType: 'blob', // important 
         data: {
             nombre:nombre,
@@ -95,15 +102,21 @@ function ejecutarPlanilla(){
                 confirmButtonText: "Cerrar",
             });
 
+            if(response.data.icon == "error"){
+                return;
+            }
             const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'planilla.xlsx'); //or any other extension
-            document.body.appendChild(link);
-            link.click();
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'planilla.xlsx'); //or any other extension
+                document.body.appendChild(link);
+                link.click();
+
+           
+
                     })
-    ).catch( err => {
-            console.log(err)
+    ).catch( (err) => {
+           // console.log(err)
             Swal.fire({
                 title: "Error!",
                 text: "Ha ocurrido un error, intente de nuevo.",

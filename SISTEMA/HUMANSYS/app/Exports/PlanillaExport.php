@@ -20,7 +20,7 @@ class PlanillaExport implements FromArray,  ShouldAutoSize, WithStyles
     }
 
     public function array(): array
-    {
+    {//Fundaupn2021
         return $this->data;
     }
 
@@ -38,7 +38,7 @@ class PlanillaExport implements FromArray,  ShouldAutoSize, WithStyles
         ];*/
 
         {
-            $sheet->getStyle('1')->getFont()->setBold(true)->setBorders('hair');
+            $sheet->getStyle('1')->getFont()->setBold(true);
         }
     }
 
