@@ -910,8 +910,7 @@
     <script>
         $('#formEditEmpleado').submit(function(e){
             e.preventDefault();
-            var idEmpleado = $('#id_empleado_edit').val();
-            editarEmpleadoPrincipal(idEmpleado);
+            editarEmpleadoPrincipal();
         });
         $('#formDeduccionesFijas').submit(function(e){
             var idEmpleado = $('#id_empleado_deducHas').val();
@@ -1319,7 +1318,7 @@
         }
 
 
-        function editarEmpleadoPrincipal(id){
+        function editarEmpleadoPrincipal(){
             var data = new FormData($('#formEditEmpleado').get(0));
             console.log(data);
             $.ajax({
@@ -1331,21 +1330,21 @@
                 processData:false,
                 dataType:"json",
                 success: function(data){
-                    console.log(data);
+                    /* console.log(data); */
                     $('#formEditEmpleado').trigger("reset");
                     $('#profile_info').modal('hide');
                     Swal.fire({
                         icon: 'success',
                         text: 'Editado con éxito!',
-                        timer: 1500
+                        timer: 2500
                     });
                     location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
 
-                    /* console.log(jqXHR, textStatus, errorThrown); */
-
-                    if(jqXHR.status == 200){
+                    console.log(jqXHR, textStatus, errorThrown);
+                    location.reload();
+                    /* if(jqXHR.status == 200){
                         $('#formEditEmpleado').trigger("reset");
                         $('#profile_info').modal('hide');
                         Swal.fire({
@@ -1360,7 +1359,7 @@
                             text: 'Parece que hubo problemas, contacte con soporte.',
                             timer: 1500
                         });
-                    }
+                    } */
                 }
             })
 
