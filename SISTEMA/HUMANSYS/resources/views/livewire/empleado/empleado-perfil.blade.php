@@ -205,10 +205,6 @@
                                                                             <div class="text">{{$deptos->nombre}}</div>
                                                                         </li>
                                                                         <li>
-                                                                            <div class="title">Departamento Asignado:</div>
-                                                                            <div class="text">{{$deptos->nombre}}</div>
-                                                                        </li>
-                                                                        <li>
                                                                             <div class="title">Area depto:</div>
                                                                             <div class="text">{{$area->nombre}}</div>
                                                                         </li>
@@ -219,7 +215,7 @@
 
                                                                         <li>
                                                                             <div class="title">Fecha de Registro:</div>
-                                                                            <div class="text">{{$empleado->fecha_ingreso}}</div>
+                                                                            <div class="text">{{$empleado->created_at}}</div>
                                                                         </li>
 
                                                                         <li>
