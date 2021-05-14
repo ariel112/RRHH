@@ -638,6 +638,7 @@
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 <label class="col-form-label">Sueldo bruto<span class="text-danger">*</span></label>
+                                                                                    <input id="empleado_id_para_editar" name="empleado_id_para_editar" type="hidden" value="{{ $empleado->id }}">
                                                                                     <input class="form-control" required value="20000" id="suelto_bruto_empleado_edit" name="suelto_bruto_empleado_edit" type="number">
                                                                             </div>
                                                                         </div>
@@ -1083,10 +1084,6 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
-                                    /* document.getElementById("divBtnestado").innerHTML='';
-                                    $("#BtnDesactivar_estado").fadeOut();
-                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-danger btn-sm"n>INACTIVO</button>';
-                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnActivar_estado" class="btn btn-success " style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >ACTIVAR</a>'; */
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'DESACTIVADO!',
@@ -1117,10 +1114,6 @@
                                 cache: false,
                                 processData:false,
                                 success: function(){
-                                    /* document.getElementById("divBtnestado").innerHTML='';
-                                    $("#BtnActivar_estado").fadeOut();
-                                    document.getElementById("divBtnestado").innerHTML='<button type="button" if class="btn btn-success btn-sm">ACTIVO</button>';
-                                    document.getElementById("divBtnDesactivarActivarEstado").innerHTML='<a id="BtnDesactivar_estado" class="btn btn-danger"  style="color: #ffffff;" onclick="cambioEstado_empleado('+comilla+''+nombre+''+comilla+','+estado+')" >DESACTIVAR</a>'; */
                                     Swal.fire({
                                         icon: 'success',
                                         text: 'ACTIVADO!',
@@ -1188,6 +1181,7 @@
                         text: 'Referencia guardada con éxito!',
                         timer: 1500
                         });
+                        location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR, textStatus, errorThrown);
@@ -1330,7 +1324,7 @@
             console.log(data);
             $.ajax({
                 type:"POST",
-                url: "/empleado/editar/"+id,
+                url: "/empleado/editar",
                 data: data,
                 contentType: false,
                 cache: false,
@@ -1345,9 +1339,28 @@
                         text: 'Editado con éxito!',
                         timer: 1500
                     });
+                    location.reload();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR, textStatus, errorThrown);
+
+                    /* console.log(jqXHR, textStatus, errorThrown); */
+
+                    if(jqXHR.status == 200){
+                        $('#formEditEmpleado').trigger("reset");
+                        $('#profile_info').modal('hide');
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Editado con éxito!',
+                            timer: 1500
+                        });
+                        location.reload();
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'Parece que hubo problemas, contacte con soporte.',
+                            timer: 1500
+                        });
+                    }
                 }
             })
 

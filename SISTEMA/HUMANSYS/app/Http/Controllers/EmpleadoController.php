@@ -309,8 +309,8 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
-
+    public function update(Request $request){
+        $idem = $request['empleado_id_para_editar'];
         $primer_nombre = $request['primer_nombre'];
         $segundo_nombre = $request['segundo_nombre'];
         $primer_apellido = $request['primer_apellido'];
@@ -331,7 +331,7 @@ class EmpleadoController extends Controller
         $profesion = $request['profesion'];
        /*  dd($cargo); */
              DB::table('empleado')
-            ->where('id', $id)
+            ->where('id', $idem)
             ->update(['primer_nombre' => $primer_nombre,
               'segundo_nombre' => $segundo_nombre,
               'primer_apellido' => $primer_apellido,
@@ -364,10 +364,6 @@ class EmpleadoController extends Controller
         $parentezco = $request['parentezco_referencia_edit'];
         $direccion = $request['direccion_referencia_edit'];
         $estatus_referencia_id =$request['estado_referencia_edit'];
-        /* DB::table('empleado')
-            ->updateOrInsert(
-                            ['primer_nombre' => $primer_nombre ])
-            ->where('id', $id); */
              DB::table('referencia')
             ->where('id', $id)
             ->update(['nombre' => $nombre,
