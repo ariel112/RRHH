@@ -358,6 +358,12 @@ class EmpleadoController extends Controller
                     'profesion'=>$profesion
                     ]);
 
+                    /* $contrato = DB::SELECTONE("select * from contrato where empleado_id = '".$idem."' and estatus_id = 1");
+
+                    DB::table('contrato')
+                    ->where('id', $idem)
+                    ->update(['primer_nombre' => $primer_nombre]); */
+
 	        DB::commit();
             /* return 'agregado'; */
         } catch (QueryException $e) {
