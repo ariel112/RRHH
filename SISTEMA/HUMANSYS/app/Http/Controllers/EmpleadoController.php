@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\empleado_has_deducciones_fijas;
+use App\Models\log_cargo;
 
 class EmpleadoController extends Controller
 {
@@ -363,6 +364,12 @@ class EmpleadoController extends Controller
                     DB::table('contrato')
                     ->where('id', $idem)
                     ->update(['primer_nombre' => $primer_nombre]); */
+
+                    $log_cargo = new log_cargo();
+                    $log_cargo->cargo_id = $request['cargo_empleado_edit'];
+                    $log_cargo->empleado_id = $idem;
+                    $log_cargo -> save();
+
 
 	        DB::commit();
             /* return 'agregado'; */

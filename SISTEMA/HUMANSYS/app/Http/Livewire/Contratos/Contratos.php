@@ -171,7 +171,7 @@ class Contratos extends Component
                                 ON(C.area_id=D.id)
                                 INNER JOIN departamento E
                                 ON(D.departamento_id=E.id)
-                                WHERE /* A.estatus_id = 1 and A.estatus_id = 2 */ and A.id='$id'");
+                                WHERE   A.id='$id'");
 
         return response()->json($contrato);
         // return $contrato;

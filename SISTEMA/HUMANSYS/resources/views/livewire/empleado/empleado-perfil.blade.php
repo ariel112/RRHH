@@ -1361,8 +1361,13 @@
                         });
                     } */
                 }
-            })
 
+            })
+            Swal.fire({
+                icon: 'success',
+                text: 'Listo',
+                timer: 1500
+            });
         }
 
         /* function validacionEmpleadoPrincipal(id){
