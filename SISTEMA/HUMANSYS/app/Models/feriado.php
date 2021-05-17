@@ -9,5 +9,5 @@ class feriado extends Model
 {
     use HasFactory;
     protected $table = 'feriado';
-    protected $fillable = ['fecha_dia', 'motivo', 'users_id','estatus_id'];
+    protected $fillable = ['fecha_dia', 'motivo', 'users_id','hora_inicio','hora_fin','estatus_id'];
 }
