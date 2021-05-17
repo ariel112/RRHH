@@ -33,7 +33,7 @@
 
 
 					<!-- Notifications -->
-					<li class="nav-item dropdown">
+					{{-- <li class="nav-item dropdown">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<i class="fa fa-bell-o"></i> <span class="badge badge-pill">3</span>
 						</a>
@@ -48,7 +48,6 @@
 										<a href="activities.html">
 											<div class="media">
 												<span class="avatar">
-													{{-- <img alt="" src="assets/img/profiles/avatar-02.jpg"> --}}
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
@@ -61,7 +60,6 @@
 										<a href="activities.html">
 											<div class="media">
 												<span class="avatar">
-													{{-- <img alt="" src="assets/img/profiles/avatar-03.jpg"> --}}
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
@@ -74,7 +72,7 @@
 										<a href="activities.html">
 											<div class="media">
 												<span class="avatar">
-													{{-- <img alt="" src="assets/img/profiles/avatar-06.jpg"> --}}
+
 												</span>
 												<div class="media-body">
 													<p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
@@ -115,7 +113,7 @@
 								<a href="activities.html">View all Notifications</a>
 							</div>
 						</div>
-					</li>
+					</li> --}}
 					<!-- /Notifications -->
 
 
@@ -258,13 +256,16 @@
 									<li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
 									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>
 									<li><a href="{{ route('permisos.index_empleado') }}"  >Bandeja Empleados</a></li>
-
-
-
 								</ul>
 							</li>
 							<li class="menu-title">
 								<span>HR</span>
+							</li>
+                            <li class="submenu">
+								<a href="#"><i class="la la-money"></i> <span> Feriados </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{ route('feriados.feriados') }}" :active="request()->routeIs('feriados.feriados')">Gestión</a></li>
+								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Asistencias </span> <span class="menu-arrow"></span></a>
