@@ -4,7 +4,11 @@ namespace App\Http\Livewire\Feriados;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use App\Models\feriado;
 use DataTables;
+use Illuminate\Http\Request;
+use Auth;
+
 
 class Feriados extends Component
 {
@@ -13,8 +17,19 @@ class Feriados extends Component
         return view('livewire.feriados.feriados');
     }
 
+    public function addFeriado(Request $request){
+        $feriados = new feriado();
+        $feriados->fecha_dia = $request['fecha_dia'];
+        $feriados->motivo = $request['motivo'];
+        $feriados->users_id = Auth::user()->id;
+        $feriados->estatus_id = 1;
+        $feriados->save();
+
+        return $feriados;
+    }
+
     public function listar_feriados(){
-        $feriados = DB::SELECT("SELECT * FROM feriados");
+        $feriados = DB::SELECT("SELECT * FROM feriado");
          return Datatables::of($feriados)
             ->addColumn('id', function ($feriados) {
                 return '<td>'.$feriados->id.'</td>';

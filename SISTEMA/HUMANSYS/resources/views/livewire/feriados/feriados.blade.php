@@ -15,7 +15,7 @@
         </div>
         <!-- /Page Header -->
         <div class="" >
-            <button type="button" class="btn btn-primary btn-lg btn-block">Agregar feriado</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"  data-target="#modalAddFeriado">Agregar feriado</button>
         </div>
         <br><br>
         <table class="table" id="tblFeriados">
@@ -34,6 +34,53 @@
             </tbody>
         </table>
 
+        <div class="modal custom-modal fade" id="modalAddFeriado" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-header">
+                            <h3>Añadir Feriado</h3>
+                        </div>
+                        <form id="formAddFeriado" class="form-group" data-parsley-validate>
+                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                <div class="card-header">
+                                    <h3 class="card-header text-secondary text-center">Datos del Feriado</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Fecha<span class="text-danger">*</span></label>
+                                                <input class="form-control " id="fecha_dia" name="fecha_dia" type="date" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Motivo<span class="text-danger">*</span></label>
+                                                <textarea name="motivo" class="form-control" required id="motivo" cols="30" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-btn">
+                                <div class="submit-section">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button href="javascript:void(0);" class="btn btn-primary btn-lg" type="submit" id="btnAddFeriado">Guardar</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-lg">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @section('script')
@@ -65,5 +112,38 @@
             {data:'estatus'},
             {data:'actions'}
         ]});
+
+    $('#formAddFeriado').submit(function(e){
+        e.preventDefault();
+        addFeriado();
+    });
+
+    function addFeriado(){
+        var data = new FormData($('#formAddFeriado').get(0));
+                    $.ajax({
+                    type:"POST",
+                    url: "/feriado/guardar",
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
+                        console.log(data);
+                        $('#formAddFeriado').trigger("reset");
+                        $('#modalAddFeriado').modal('hide');
+                        $('#tblFeriados').DataTable().ajax.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Feriado guardad0 con éxito!',
+                            timer: 1500
+                            });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                    }
+                })
+    }
+
     </script>
 @endsection

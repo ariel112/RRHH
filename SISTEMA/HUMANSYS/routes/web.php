@@ -91,6 +91,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Feriados
     Route::get('/feriados', Feriados::class,)->name('feriados.feriados');
     Route::get('/feriados/listar', [Feriados::class, 'listar_feriados']);
+    Route::post('/feriado/guardar', [Feriados::class, 'addFeriado']);
+
 
 
 
@@ -98,6 +100,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
     Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);
     Route::get('/empleado/cargo/{idAreas}', [EmpleadoController::class, 'getCargoEmpleado']);
+
 
     //Deducciones
     Route::get('/deducciones', DeduccionesIndex::class )->name('deducciones.deducciones-index');
