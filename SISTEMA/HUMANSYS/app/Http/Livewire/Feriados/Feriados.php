@@ -17,6 +17,11 @@ class Feriados extends Component
         return view('livewire.feriados.feriados');
     }
 
+    public function getFeriadoEdit($id){
+        $feriado = DB::SELECTONE("select * from feriado where id = '".$id."'");
+        return response()->json($feriado);
+    }
+
     public function addFeriado(Request $request){
         $feriados = new feriado();
         $feriados->fecha_dia = $request['fecha_dia'];
@@ -72,7 +77,7 @@ class Feriados extends Component
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" href="" data-toggle="modal"  data-target="#editar_deduccion_variante"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item" href="" data-toggle="modal"  data-target="#editar_deduccion_variante" onclick ="feriados_edit_llenar('.$feriados->id.')"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
                              <a class="dropdown-item text-danger" href="" onclick="cambiarEstadoFeriado('.$feriados->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
                          </div>
                         </div>';
@@ -80,7 +85,7 @@ class Feriados extends Component
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" href="" data-toggle="modal" data-target="#editar_deduccion_variante"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item" href="" data-toggle="modal" data-target="#editar_deduccion_variante" onclick ="feriados_edit_llenar('.$feriados->id.')"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
                              <a class="dropdown-item text-success" href="" onclick="cambiarEstadoFeriado('.$feriados->id.')" ><i class="fa fa-trash-o m-r-5 text-success" ></i >Activar</a>
                          </div>
                         </div>';

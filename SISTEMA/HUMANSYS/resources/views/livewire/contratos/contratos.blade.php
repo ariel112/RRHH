@@ -665,8 +665,8 @@ $(document).ready(function(){
  }
 
 
-  function cargo(data, id){
-//   console.log(id);
+function cargo(data, id){
+    //   console.log(id);
   var html_select = '';
    for (var i=0; i<data.length; ++i)
      if(data[i].id_gerente==id){

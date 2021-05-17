@@ -81,36 +81,84 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal custom-modal fade" id="modalAddFeriado_edit" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="form-header">
+                            <h3>Editar Feriado</h3>
+                        </div>
+                        <form id="formAddFeriado_edit" class="form-group" data-parsley-validate>
+                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                            <div class="card shadow p-3 mb-5 bg-white rounded">
+                                <div class="card-header">
+                                    <h3 class="card-header text-secondary text-center">Datos del Feriado</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Fecha<span class="text-danger">*</span></label>
+                                                <input class="form-control " id="fecha_dia_edit" name="fecha_dia_edit" type="date" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="col-form-label">Motivo<span class="text-danger">*</span></label>
+                                                <textarea name="motivo_edit" class="form-control" required id="motivo_edit" cols="30" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-btn">
+                                <div class="submit-section">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button href="javascript:void(0);" class="btn btn-primary btn-lg" type="submit" id="btnAddFeriado_edit">Editar</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-warning btn-lg">Cancelar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @section('script')
     <script>
         $('#tblFeriados').DataTable({
-        "language": {
-        "lengthMenu": "Mostrar _MENU_ registros",
-        "zeroRecords": "No se encontraron resultados",
-        "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sSearch": "Buscar:",
-        "oPaginate": {
-            "sFirst": "Primero",
-            "sLast":"Último",
-            "sNext":"Siguiente",
-            "sPrevious": "Anterior"
-        },
-        "sProcessing":"Procesando...",},
-        "serverSide": true,
-        processing: true,
-        "autoWidth": false,
-        "ajax": "/feriados/listar",
-        "columns": [
-            {data:'id'},
-            {data:'fecha'},
-            {data:'motivo'},
-            {data:'user'},
-            {data:'estatus'},
-            {data:'actions'}
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros",
+            "zeroRecords": "No se encontraron resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sSearch": "Buscar:",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast":"Último",
+                "sNext":"Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "sProcessing":"Procesando...",},
+            "serverSide": true,
+            processing: true,
+            "autoWidth": false,
+            "ajax": "/feriados/listar",
+            "columns": [
+                {data:'id'},
+                {data:'fecha'},
+                {data:'motivo'},
+                {data:'user'},
+                {data:'estatus'},
+                {data:'actions'}
         ]});
 
     $('#formAddFeriado').submit(function(e){
@@ -188,6 +236,33 @@
                     Swal.fire('Estado no cambiado', '', 'info')
             }
         })
+    }
+
+    function feriados_edit_llenar(id){
+        $.ajax({
+          type:"GET",
+          url: "/feriado/muestra/"+id,
+          contentType: false,
+          cache: false,
+          processData:false,
+          dataType:"json",
+          success: function(data){
+              // console.log(data.funciones[0].nombre);
+            /* console.log(data); */
+
+               rellenoFeriadios_modalEdit(data);
+               $('#modalAddFeriado_edit').modal('show');
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              console.log(jqXHR, textStatus, errorThrown);
+          }
+      });
+    }
+
+    function rellenoFeriadios_modalEdit(data){
+        $('#fecha_dia_edit').val(data.fecha_dia);
+        document.getElementById('motivo_edit').innerHTML = data.motivo;
+        /* $('#motivo_edit').val(data.motivo); */
     }
 
     </script>
