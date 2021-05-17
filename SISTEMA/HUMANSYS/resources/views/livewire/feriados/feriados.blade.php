@@ -14,7 +14,10 @@
             </div>
         </div>
         <!-- /Page Header -->
-
+        <div class="" >
+            <button type="button" class="btn btn-primary btn-lg btn-block">Agregar feriado</button>
+        </div>
+        <br><br>
         <table class="table" id="tblFeriados">
             <thead class="table-dark">
                 <tr>

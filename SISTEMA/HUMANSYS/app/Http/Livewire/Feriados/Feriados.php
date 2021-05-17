@@ -41,16 +41,16 @@ class Feriados extends Component
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" data-toggle="modal"  data-target="#editar_deduccion_variante" onclick="renderDatodsEditar_modal()" ><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
-                             <a class="dropdown-item text-danger"  onclick="estadoVariantes()" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
+                             <a class="dropdown-item" data-toggle="modal"  data-target="#editar_deduccion_variante" onclick="" ><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item text-danger"  onclick="" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
                          </div>
                         </div>';
                 }else{
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" data-toggle="modal" data-target="#editar_deduccion_variante" onclick="renderDatodsEditar_modal()"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
-                             <a class="dropdown-item text-success" onclick="estadoVariantes()" ><i class="fa fa-trash-o m-r-5 text-success" ></i >Activar</a>
+                             <a class="dropdown-item" data-toggle="modal" data-target="#editar_deduccion_variante" onclick=""><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item text-success" onclick="" ><i class="fa fa-trash-o m-r-5 text-success" ></i >Activar</a>
                          </div>
                         </div>';
                 }
