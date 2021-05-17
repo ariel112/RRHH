@@ -187,10 +187,10 @@ class Contratos extends Component
         $sueldo_anterior = $contrato->sueldo;
         $id_empleado = $contrato->empleado_id;
         $log_sueldos = new log_sueldos();
-        $log_sueldos->
-
-
-
+        $log_sueldos->sueldo = $sueldo_anterior;
+        $log_sueldos->empleado_id = $id_empleado;
+        $log_sueldos -> save();
+        
         $contrato->num_contrato = $request->num_contrato;
         $contrato->num_delegacion = $request->num_delegacion;
         $contrato->tipo_contrato = $request->tipo_contrato;
