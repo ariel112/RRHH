@@ -27,6 +27,7 @@ use App\Http\Controllers\AsistenciasController;
 use App\Http\Livewire\Deducciones\DeduccionesVariables;
 use App\Http\Livewire\Asistencia\MarcajeEmpleado;
 use App\Http\Livewire\Feriados\Feriados;
+use App\http\Livewire\Salidas\SalidasMedioDia;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,7 +206,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/planilla/crear', [CrearPlanilla::class, 'generarPlanilla']);//generarSinDeducciones
     Route::post('/planilla/crear/sinDeducciones', [CrearPlanilla::class, 'generarSinDeducciones']);
 
-
+    // asistencia de medio  dia 
+    Route::get('/medio/dia', SalidasMedioDia::class )->name('salida.index');
 
 
     });
