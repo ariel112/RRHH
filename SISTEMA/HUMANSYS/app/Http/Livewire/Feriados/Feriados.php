@@ -33,10 +33,13 @@ class Feriados extends Component
     }
 
     public function addFeriado(Request $request){
+        $hr = new \DateTime();
         $feriados = new feriado();
         $feriados->fecha_dia = $request['fecha_dia'];
         $feriados->motivo = $request['motivo'];
         $feriados->users_id = Auth::user()->id;
+        $feriados->hora_inicio = $hr->format('08:00:00');
+        $feriados->hora_fin = $hr->format('17:00:00');
         $feriados->estatus_id = 1;
         $feriados->save();
 
