@@ -100,6 +100,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label class="col-form-label">Fecha<span class="text-danger">*</span></label>
+                                                <input type="hidden" name="id_Feriado_edit" id="id_Feriado_edit" value="">
                                                 <input class="form-control " id="fecha_dia_edit" name="fecha_dia_edit" type="date" required>
                                             </div>
                                         </div>
@@ -166,6 +167,11 @@
         addFeriado();
     });
 
+    $('#formAddFeriado_edit').submit(function(e){
+        e.preventDefault();
+        editFeriado();
+    });
+
     function addFeriado(){
         var data = new FormData($('#formAddFeriado').get(0));
                     $.ajax({
@@ -183,14 +189,49 @@
                         $('#tblFeriados').DataTable().ajax.reload();
                         Swal.fire({
                             icon: 'success',
-                            text: 'Feriado guardad0 con éxito!',
+                            text: 'Feriado guardado con éxito!',
                             timer: 1500
                             });
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
                     }
-                })
+                });
+    }
+
+    function editFeriado(){
+        var data = new FormData($('#formAddFeriado_edit').get(0));
+                $.ajax({
+                    type:"POST",
+                    url: "/feriado/editar",
+                    data: data,
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    dataType:"json",
+                    success: function(data){
+                        console.log(data);
+                        $('#formAddFeriado_edit').trigger("reset");
+                        $('#modalAddFeriado_edit').modal('hide');
+                        $('#tblFeriados').DataTable().ajax.reload();
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Feriado Modificado con éxito!',
+                            timer: 1500
+                            });
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR, textStatus, errorThrown);
+                        $('#formAddFeriado_edit').trigger("reset");
+                        $('#modalAddFeriado_edit').modal('hide');
+                        $('#tblFeriados').DataTable().ajax.reload();
+                    }
+                });
+                Swal.fire({
+                            icon: 'success',
+                            text: 'Feriado Modificado con éxito!',
+                            timer: 1500
+                            });
     }
 
     function cambiarEstadoFeriado(idFeriado){
@@ -260,6 +301,7 @@
     }
 
     function rellenoFeriadios_modalEdit(data){
+        $('#id_Feriado_edit').val(data.id);
         $('#fecha_dia_edit').val(data.fecha_dia);
         document.getElementById('motivo_edit').innerHTML = data.motivo;
         /* $('#motivo_edit').val(data.motivo); */

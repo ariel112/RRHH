@@ -22,6 +22,16 @@ class Feriados extends Component
         return response()->json($feriado);
     }
 
+    public function editFeriado(Request $request){
+
+        $feriado = DB::SELECTONE("select * from feriado where id = '".$request['id_Feriado_edit']."'");
+        DB::table('feriado')
+            ->where('id', $feriado->id)
+            ->update(['fecha_dia' => $request['fecha_dia_edit'], 'motivo' => $request['motivo_edit'], 'users_id' => Auth::user()->id]);
+
+       /*  return $feriado; */
+    }
+
     public function addFeriado(Request $request){
         $feriados = new feriado();
         $feriados->fecha_dia = $request['fecha_dia'];
