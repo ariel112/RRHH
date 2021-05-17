@@ -145,5 +145,50 @@
                 })
     }
 
+    function cambiarEstadoFeriado(idFeriado){
+        event.preventDefault();
+        Swal.fire({
+            title: '¿Seguro quiere cambiar estado de éste feriado?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Confirmo`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type:"GET",
+                        url: "/feriado/estado/"+idFeriado,
+                        contentType: false,
+                        cache: false,
+                        processData:false,
+                        dataType:"json",
+                        success: function(data){
+                            /* console.log(data); */
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Estado modificado con éxito!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $('#tblFeriados').DataTable().ajax.reload();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            /* console.log(jqXHR, textStatus, errorThrown); */
+                            $('#tblFeriados').DataTable().ajax.reload();
+                        }
+                    });
+                    Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Estado modificado con éxito!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                } else if (result.isDenied) {
+                    Swal.fire('Estado no cambiado', '', 'info')
+            }
+        })
+    }
+
     </script>
 @endsection

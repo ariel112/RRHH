@@ -28,6 +28,22 @@ class Feriados extends Component
         return $feriados;
     }
 
+    public function cambio_estado_feriado($idFeriado){
+        $feriado = DB::SELECTONE("select * from feriado where id = '".$idFeriado."'");
+        if($feriado->estatus_id == 1){
+            DB::table('feriado')
+            ->where('id', $idFeriado)
+            ->update(['estatus_id' => 2]);
+            return 'cambiado';
+        }else{
+            DB::table('feriado')
+            ->where('id', $idFeriado)
+            ->update(['estatus_id' => 1]);
+            return 'cambiado';
+        }
+        return 420;
+    }
+
     public function listar_feriados(){
         $feriados = DB::SELECT("SELECT * FROM feriado");
          return Datatables::of($feriados)
@@ -56,16 +72,16 @@ class Feriados extends Component
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" data-toggle="modal"  data-target="#editar_deduccion_variante" onclick="" ><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
-                             <a class="dropdown-item text-danger"  onclick="" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
+                             <a class="dropdown-item" href="" data-toggle="modal"  data-target="#editar_deduccion_variante"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item text-danger" href="" onclick="cambiarEstadoFeriado('.$feriados->id.')" ><i class="fa fa-trash-o m-r-5 text-danger" ></i >Desactivar</a>
                          </div>
                         </div>';
                 }else{
                     return '<div class="dropdown dropdown-action text-right">
                          <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                          <div class="dropdown-menu dropdown-menu-right">
-                             <a class="dropdown-item" data-toggle="modal" data-target="#editar_deduccion_variante" onclick=""><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
-                             <a class="dropdown-item text-success" onclick="" ><i class="fa fa-trash-o m-r-5 text-success" ></i >Activar</a>
+                             <a class="dropdown-item" href="" data-toggle="modal" data-target="#editar_deduccion_variante"><i class="fa fa-pencil m-r-5 text-warning"></i>Editar</a>
+                             <a class="dropdown-item text-success" href="" onclick="cambiarEstadoFeriado('.$feriados->id.')" ><i class="fa fa-trash-o m-r-5 text-success" ></i >Activar</a>
                          </div>
                         </div>';
                 }

@@ -92,6 +92,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/feriados', Feriados::class,)->name('feriados.feriados');
     Route::get('/feriados/listar', [Feriados::class, 'listar_feriados']);
     Route::post('/feriado/guardar', [Feriados::class, 'addFeriado']);
+    Route::get('/feriado/estado/{idFeriado}', [Feriados::class, 'cambio_estado_feriado']);
+
+
 
 
 
