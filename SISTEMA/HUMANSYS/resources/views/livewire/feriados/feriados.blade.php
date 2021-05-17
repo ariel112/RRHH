@@ -10,14 +10,12 @@
                         <li class="breadcrumb-item active">Feriados</li>
                     </ul>
                 </div>
-
+                <div class="col-auto float-right ml-auto">
+                    <button type="button" class="btn add-btn" data-toggle="modal"  data-target="#modalAddFeriado"><i class="fa fa-plus"></i>Agregar feriado</button>
+                </div>
             </div>
         </div>
         <!-- /Page Header -->
-        <div class="" >
-            <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"  data-target="#modalAddFeriado">Agregar feriado</button>
-        </div>
-        <br><br>
         <table class="table" id="tblFeriados">
             <thead class="table-dark">
                 <tr>
