@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\contrato;
 use App\Models\empleado;
 use Illuminate\Database\QueryException;
+use App\Models\log_sueldos;
 
 use DataTables;
 use Illuminate\Support\Facades\DB;
@@ -182,6 +183,14 @@ class Contratos extends Component
     public function contratos_edit(Request $request){
 
         $contrato = contrato::find($request->id);
+
+        $sueldo_anterior = $contrato->sueldo;
+        $id_empleado = $contrato->empleado_id;
+        $log_sueldos = new log_sueldos();
+        $log_sueldos->
+
+
+
         $contrato->num_contrato = $request->num_contrato;
         $contrato->num_delegacion = $request->num_delegacion;
         $contrato->tipo_contrato = $request->tipo_contrato;

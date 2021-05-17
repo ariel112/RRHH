@@ -315,8 +315,14 @@ class EmpleadoController extends Controller
         try {
 
             DB::beginTransaction();
-
                 $idem = $request['empleado_id_para_editar'];
+                $cargo_anterior = DB::SELECTONE("select cargo_id from empleado where id = '".$idem."'");
+                $log_cargo = new log_cargo();
+                $log_cargo->cargo_id = $cargo_anterior->cargo_id;
+                $log_cargo->empleado_id = $idem;
+                $log_cargo -> save();
+
+
                 $primer_nombre = $request['primer_nombre'];
                 $segundo_nombre = $request['segundo_nombre'];
                 $primer_apellido = $request['primer_apellido'];
@@ -366,10 +372,7 @@ class EmpleadoController extends Controller
                     ->where('id', $idem)
                     ->update(['primer_nombre' => $primer_nombre]); */
 
-                    $log_cargo = new log_cargo();
-                    $log_cargo->cargo_id = $cargo_id;
-                    $log_cargo->empleado_id = $idem;
-                    $log_cargo -> save();
+
 
 
 	        DB::commit();
