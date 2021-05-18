@@ -30,6 +30,7 @@ use App\Http\Livewire\Feriados\Feriados;
 use App\http\Livewire\Salidas\SalidasMedioDia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Livewire\User\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,7 +98,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/feriado/muestra/{id}', [Feriados::class, 'getFeriadoEdit']);
     Route::post('/feriado/editar', [Feriados::class, 'editFeriado']);
 
-
+    //usuarios
+    Route::get('/usuarios', Users::class,)->name('user.users');
 
 
 
