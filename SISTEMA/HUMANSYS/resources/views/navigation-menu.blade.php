@@ -248,9 +248,15 @@
                                             $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
                                         @endphp
                                         @if (Auth::user()->id_tipo_user == 3 || Auth::user()->id_tipo_user == 1)
+                                        @php
+                                            $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
+                                        @endphp
                                             <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                         @endif
                                     @else
+                                    @php
+                                            $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
+                                        @endphp
                                         <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                     @endif
 
