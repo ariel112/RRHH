@@ -84,7 +84,7 @@
 
 <script>
 $(document).ready(tablaListaEmpleados);
-
+var arregloId =[];
 function tablaListaEmpleados() {
     // $("#tablaEmpleadosSalidas").DataTable({
     //     ajax: "/listar/empleados/medio/dia",
@@ -126,11 +126,22 @@ function tablaListaEmpleados() {
             {
                 text: 'Guarar',
                 action: function () {
-                    var count = table.rows( { selected: true } ).data();
+                    var seleccionados = table.rows( { selected: true } ).data();
 
-                    console.log(count)
+                    console.log(seleccionados.count())
+
+                    arregloId =[];
+
+                    for(i=0; i<seleccionados.count(); i++){
+                        arregloId[i]={id:seleccionados[i].id}
+
+                    }
+
+                    console.log(arregloId);
  
-                    events.prepend( '<div>'+count+' row(s) selected</div>' );
+                   // events.prepend( '<div>'+count+' row(s) selected</div>' );
+
+
                 }
             }
         ]
