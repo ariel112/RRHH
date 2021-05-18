@@ -32,10 +32,10 @@ class SalidasMedioDia extends Component
             inner join empleado
             on empleado.cargo_id = cargo.id
             where empleado.estatus_id = 1
-            LIMIT 90;
+           
             ");
 
-            return datatables()->of($empleados)
+           /* return datatables()->of($empleados)
                 ->addColumn('acciones', function ($row) {
                     $html = '              
                  <input class="form-check-input" type="checkbox" value="'.$row->id.'" name="empleado">
@@ -44,7 +44,9 @@ class SalidasMedioDia extends Component
                 })
                 ->rawColumns(['acciones'])
                 ->make(true);
-            
+            */
+                    //dd($empleados);
+            return response()->json(["data"=>$empleados],200);
            
         }catch(QueryException $e){
             
