@@ -208,6 +208,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // asistencia de medio  dia 
     Route::get('/medio/dia', SalidasMedioDia::class )->name('salida.index');
+    Route::get('/listar/empleados/medio/dia', [SalidasMedioDia::class, 'listarEmpleados']);
 
 
     });
