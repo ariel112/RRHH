@@ -27,18 +27,19 @@
                                                     </ul>
                                                 </div>
                                                 <input type="hidden" name="id_empleado_estado" id="id_empleado_estado" value="{{ $empleado->id }}">
-                                                <div class="col-auto float-right ml-auto" id="divBtnDesactivarActivarEstado">
-                                                    @if ($empleado->estatus_id == 1)
+                                                @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                    <div class="col-auto float-right ml-auto" id="divBtnDesactivarActivarEstado">
+                                                        @if ($empleado->estatus_id == 1)
 
-                                                        <a id="BtnDesactivar_estado" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
+                                                            <a id="BtnDesactivar_estado" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Desactivar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >DESACTIVAR</a>
 
-                                                    @else
-                                                        {{-- <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a> --}}
+                                                        @else
+                                                            {{-- <a id="BtnActivar_estado" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Activar colaborador" style="color: #ffffff;" onclick="cambioEstado_empleado('{{$empleado->nombre}}', {{ $empleado->estatus_id }})" >ACTIVAR</a> --}}
 
-                                                    @endif
+                                                        @endif
+                                                    </div>
+                                                @endif
 
-
-                                                </div>
                                             </div>
                                         </div>
                                         <!-- /Page Header -->
@@ -129,7 +130,9 @@
                                                                     </div>
                                                                 </div>
                                                                 {{-- ------------------------div de informacion basica----------------------------------------- --}}
-                                                                <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
+                                                                @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                                    <div class="pro-edit"><a data-target="#profile_info" data-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -157,7 +160,7 @@
                                                         <div class="col-md-6 d-flex">
                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                 <div class="card-body">
-                                                                    <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#personal_info_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
+                                                                    <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i></h3>
                                                                     <ul class="personal-info">
                                                                         <li>
                                                                             <div class="title">Nombre Completo:</div>
@@ -198,7 +201,7 @@
                                                         <div class="col-md-6 d-flex">
                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                 <div class="card-body">
-                                                                    <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i>{{-- <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal"><i class="fa fa-pencil"></i></a> --}}</h3>
+                                                                    <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i></h3>
                                                                     <ul class="personal-info">
                                                                         <li>
                                                                             <div class="title">Departamento Asignado:</div>
@@ -235,15 +238,19 @@
                                                 <!------------------------- /Detalle completo de informacion ---------------------------------->
                                                 <!----------------------------- Detalle completo de informacion -------------------------->
                                                 <div id="emp_detalle_referencias" class="tab-pane fade">
-                                                    <div><a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a></div>
-                                                    <br>
+                                                    @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                        <div><a class="btn btn-warning" style="color: #ffffff;" data-toggle="modal" data-target="#referencia_modal">Añadir referencia <i class="fas fa-user-plus"></i></a></div>
+                                                        <br>
+                                                    @endif
                                                     <div class="row">
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
                                                                 <div class="col-md-6 d-flex">
                                                                     <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
                                                                         <div class="card-body">
-                                                                            <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
+                                                                            @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                                                <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
+                                                                            @endif
                                                                             <h3 class="card-title ">Referencia Personal <i class="fas fa-user-check"></i></h3>
                                                                             <ul class="personal-info">
                                                                                 <li>
@@ -388,26 +395,31 @@
                                                 {{-- /deducciones empleado modal --}}
                                                 <!--Deducciones Tab -->
                                                 <div class="tab-pane fade" id="emp_detalle">
-                                                    <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción Personal<i class="fas fa-money-check-alt"></i></button>
-                                                    <button class="btn btn-warning" style="color: #ffffff; margin-left:5%;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></button>
-                                                    <br><br><br>
+                                                    @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                        <button type="button" class="btn btn btn-primary col-auto float-left"  data-toggle="modal" data-target="#Deduccion_modal">Nueva deducción Personal<i class="fas fa-money-check-alt"></i></button>
+                                                        <button class="btn btn-warning" style="color: #ffffff; margin-left:5%;" data-toggle="modal" data-target="#deduc_fija_empleado_modal">Añadir Deducción fija <i class="fas fa-hand-holding-usd"></i></button>
+                                                        <br><br><br>
+                                                    @endif
+
                                                         <div class="row" id="grillDeducciones">
 
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
                                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
-                                                                                <div class="dropdown profile-action">
-                                                                                    <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
-                                                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                                                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                                                                                        @if ($deduc->estado == 1)
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
-                                                                                        @else
-                                                                                            <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
-                                                                                        @endif
+                                                                                @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                                                    <div class="dropdown profile-action">
+                                                                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
+                                                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                                                            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                                            @if ($deduc->estado == 1)
+                                                                                                <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                            @else
+                                                                                                <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" onclick="desactivar({{$deduc->id}})"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                            @endif
 
+                                                                                        </div>
                                                                                     </div>
-                                                                                </div>
+                                                                                @endif
                                                                                 <div class="card-body">
                                                                                     {{-- <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div> --}}
                                                                                     <div class="pro-edit">
