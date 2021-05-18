@@ -228,16 +228,16 @@
 								<span>Menu</span>
 							</li>
 
+                            @if (Auth::user()->id_tipo_user == 1)
+                                <li class="submenu">
+                                    <a href="#" ><i class="la la-user"></i> <span>Usuarios</span> <span class="menu-arrow"></span></a>
+                                    <ul style="display: none;">
 
-                            <li class="submenu">
-								<a href="#" ><i class="la la-user"></i> <span>Usuarios</span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-                                    @if (Auth::user()->id_tipo_user == 1)
-                                        <li><a href="{{ route('user.users') }}" :active="request()->routeIs('user.users')" >Gestión usuarios</a></li>
-                                    @endif
-								</ul>
-							</li>
+                                            <li><a href="{{ route('user.users') }}" :active="request()->routeIs('user.users')" >Gestión usuarios</a></li>
 
+                                    </ul>
+                                </li>
+                            @endif
 							<li class="submenu">
 								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
