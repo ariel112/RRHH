@@ -244,11 +244,14 @@
                                     @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                         <li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Gestión Empleados</a></li>
 									    <li><a href="{{ route('cargos.index') }}" :active="request()->routeIs('cargos.index')" >Cargos</a></li>
+                                        @php
+                                            $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
+                                        @endphp
                                         @if (Auth::user()->id_tipo_user == 3 || Auth::user()->id_tipo_user == 1)
-                                            <li><a href="{{ route('empleado.perfil',3) }}" >Perfil</a></li>
+                                            <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                         @endif
                                     @else
-                                        <li><a href="{{ route('empleado.perfil',3) }}" >Perfil</a></li>
+                                        <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                     @endif
 
 								</ul>
