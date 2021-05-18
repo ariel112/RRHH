@@ -231,112 +231,79 @@
 							<li class="submenu">
 								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Gestión Empleados</a></li>
-									{{-- <li><a href="leaves-employee.html">Hojas Empleados</a></li>
-									<li><a href="leave-settings.html">Leave Settings</a></li>
-									<li><a href="attendance.html">Asistencia (Admin)</a></li>
-									<li><a href="attendance-employee.html">Asistencia (Empleado)</a></li>
-									<li><a href="departments.html">Departamentos</a></li>
-									<li><a href="designations.html">Designaciones</a></li>
-									<li><a href="timesheet.html">Hojas de horas</a></li>
-									<li><a href="overtime.html">Horas extra</a></li> --}}
-									<li><a href="{{ route('cargos.index') }}" :active="request()->routeIs('cargos.index')" >Cargos</a></li>
+                                    @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                        <li><a href="{{ route('empleado.index') }}" :active="request()->routeIs('empleado.index')" >Gestión Empleados</a></li>
+									    <li><a href="{{ route('cargos.index') }}" :active="request()->routeIs('cargos.index')" >Cargos</a></li>
+                                        @if (Auth::user()->id_tipo_user == 3 || Auth::user()->id_tipo_user == 1)
+                                            <li><a href="{{ route('empleado.perfil',3) }}" >Perfil</a></li>
+                                        @endif
+                                    @else
+                                        <li><a href="{{ route('empleado.perfil',3) }}" >Perfil</a></li>
+                                    @endif
+
 								</ul>
 							</li>
-							<li class="submenu">
-								<a href="#" ><i class="la la-file-text"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar</a></li>
-								</ul>
-							</li>
+                            @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                <li class="submenu">
+                                    <a href="#" ><i class="la la-file-text"></i> <span> Contratos</span> <span class="menu-arrow"></span></a>
+                                    <ul style="display: none;">
+                                        <li><a href="{{ route('contratos.index') }}" :active="request()->routeIs('contratos.index')" >Buscar</a></li>
+                                    </ul>
+                                </li>
+                            @endif
 
 							<li class="submenu">
 								<a href="#" class="noti-dot"><i class="la la-credit-card"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
-									<li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>
-									<li><a href="{{ route('permisos.index_empleado') }}"  >Bandeja Empleados</a></li>
+                                    @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                        <li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
+                                        <li><a href="{{ route('permisos.index') }}" :active="request()->routeIs('permisos.index')" >Bandeja Jefe Inmediato</a></li>
+                                    @endif
+									    <li><a href="{{ route('permisos.index_empleado') }}"  >Permisos</a></li>
 								</ul>
 							</li>
 							<li class="menu-title">
 								<span>HR</span>
 							</li>
-                            <li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Feriados </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{ route('feriados.feriados') }}" :active="request()->routeIs('feriados.feriados')">Gestión</a></li>
-								</ul>
-							</li>
+                            @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                <li class="submenu">
+                                    <a href="#"><i class="la la-money"></i> <span> Feriados </span> <span class="menu-arrow"></span></a>
+                                    <ul style="display: none;">
+                                        <li><a href="{{ route('feriados.feriados') }}" :active="request()->routeIs('feriados.feriados')">Gestión</a></li>
+                                    </ul>
+                                </li>
+                            @endif
 							<li class="submenu">
 								<a href="#"><i class="la la-money"></i> <span> Asistencias </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
-									<li><a href="{{ route('asistencia.marcaje') }}" :active="request()->routeIs('asistencia.marcaje')">Marcar</a></li>
+                                    @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                        <li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
+                                        <li><a href="{{ route('asistencia.marcaje') }}" :active="request()->routeIs('asistencia.marcaje')">Marcar</a></li>
+                                        <li><a href="{{ route('salida.index') }}" :active="request()->routeIs('salida.index')">Medio Día</a></li>
+                                    @endif
                                     <li><a href="{{ route('asistencia.marcaje-empleado') }}" :active="request()->routeIs('asistencia.marcaje-empleado')">Marcaje personal</a></li>
-									<li><a href="{{ route('salida.index') }}" :active="request()->routeIs('salida.index')">Medio Día</a></li>
 									{{-- <li><a href="expenses.html">Otros</a></li> --}}
 								</ul>
 							</li>
-							<li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
-                                    <li><a href="{{ route('deducciones.deducciones-variables') }}" :active="request()->routeIs('deducciones.deducciones-variables')">Añadir deducciones Variables</a></li>
-								</ul>
-							</li>
-                            {{-- <li class="submenu">
-								<a href="#"><i class="la la-files-o"></i> <span> Cuentas </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="estimates.html">Estimados</a></li>
-									<li><a href="invoices.html">Facturas</a></li>
-									<li><a href="payments.html">Pagos</a></li>
-									<li><a href="expenses.html">Gastos</a></li>
-									<li><a href="provident-fund.html">Fondo de previsión</a></li>
-									<li><a href="taxes.html">Impuestos</a></li>
-								</ul>
-							</li> --}}
-							<li class="submenu">
-								<a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li>
-									<li><a href="{{route('generar.index')}}"> Generar Planilla </a></li>
-									<li><a href="payroll-items.html"> Elementos de nómina </a></li>
-								</ul>
-							</li>{{--
-							<li>
-								<a href="policies.html"><i class="la la-file-pdf-o"></i> <span>Politicas</span></a>
-							</li> --}}
-							{{-- <li class="submenu">
-								<a href="#"><i class="la la-pie-chart"></i> <span> Informes </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="expense-reports.html"> Informe de gastos </a></li>
-									<li><a href="invoice-reports.html"> Informe de facturas </a></li>
-								</ul>
-							</li>
-
-							<li class="menu-title">
-								<span>Administration</span>
-							</li>
-							<li>
-								<a href="assets.html"><i class="la la-object-ungroup"></i> <span>Activos</span></a>
-							</li>
-							<li class="submenu">
-								<a href="#"><i class="la la-briefcase"></i> <span> Trabajos </span> <span class="menu-arrow"></span></a>
-								<ul style="display: none;">
-									<li><a href="jobs.html"> Administrar Trabajos </a></li>
-									<li><a href="job-applicants.html"> Candidatos Aplicados</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="activities.html"><i class="la la-bell"></i> <span>Actividades</span></a>
-							</li>
-							<li>
-								<a href="users.html"><i class="la la-user-plus"></i> <span>Usuarios</span></a>
-							</li>
-							<li>
-								<a href="settings.html"><i class="la la-cog"></i> <span>Ajustes</span></a>
-							</li>
- --}}
+                            @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                <li class="submenu">
+                                    <a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
+                                    <ul style="display: none;">
+                                        <li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
+                                        <li><a href="{{ route('deducciones.deducciones-variables') }}" :active="request()->routeIs('deducciones.deducciones-variables')">Añadir deducciones Variables</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                            @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                <li class="submenu">
+                                    <a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
+                                    <ul style="display: none;">
+                                        <li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li>
+                                        <li><a href="{{route('generar.index')}}"> Generar Planilla </a></li>
+                                        <li><a href="payroll-items.html"> Elementos de nómina </a></li>
+                                    </ul>
+                                </li>
+                            @endif
 						</ul>
 					</div>
                 </div>
