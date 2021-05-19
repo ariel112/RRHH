@@ -11,6 +11,6 @@ class log_sueldos extends Model
     protected $table = 'log_sueldos';
 
     protected $fillable = [
-                            'sueldo'
+                            'sueldo', 'empleado_id', 'contrato_id'
                           ];
 }

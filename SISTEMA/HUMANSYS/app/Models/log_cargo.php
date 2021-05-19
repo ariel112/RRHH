@@ -11,6 +11,6 @@ class log_cargo extends Model
     protected $table = 'log_cargo';
 
     protected $fillable = [
-                            'cargo_id','empleado_id'
+                            'cargo_id','nombre_cargo','empleado_id', 'contrato_id'
                           ];
 }

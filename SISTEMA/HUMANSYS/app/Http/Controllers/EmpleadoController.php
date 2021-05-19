@@ -316,10 +316,14 @@ class EmpleadoController extends Controller
 
             DB::beginTransaction();
                 $idem = $request['empleado_id_para_editar'];
-                $cargo_anterior = DB::SELECTONE("select cargo_id from empleado where id = '".$idem."'");
+                $cargo_anterior = DB::SELECTONE("select * from empleado where id = '".$idem."'");
+                $contratoActivo = DB::SELECTONE("select * from contrato where estatus_id = 1 and  empleado_id = '".$idem."' ORDER BY created_at DESC LIMIT 1;");
+                $cargo = DB::SELECTONE("select * from cargo where id = '".$cargo_anterior->cargo_id."'");
                 $log_cargo = new log_cargo();
                 $log_cargo->cargo_id = $cargo_anterior->cargo_id;
+                $log_cargo->nombre_cargo = $cargo->nombre;
                 $log_cargo->empleado_id = $idem;
+                $log_cargo->contrato_id = $contratoActivo->id;
                 $log_cargo -> save();
 
 
@@ -335,7 +339,7 @@ class EmpleadoController extends Controller
                 $lugar_nacimiento = $request['lugar_nacimiento'];
                 $estado_civil = $request['estado_civil'];
                 $fecha_ingreso = $request['fecha_ingreso'];
-                $estatus_id = $request['estatus_id'];
+                /* $estatus_id = $request['estatus_id']; */
                 $sueldo = $request['sueldo'];
                 $email_institucional = $request['email_institucional'];
                 $telefono_2 = $request['telefono_2'];
@@ -357,7 +361,6 @@ class EmpleadoController extends Controller
                     'lugar_nacimiento' => $lugar_nacimiento,
                     'estado_civil' => $estado_civil,
                     'fecha_ingreso' => $fecha_ingreso,
-                    'estatus_id' => $estatus_id,
                     'sueldo' => $sueldo,
                     'email_institucional' => $email_institucional,
                     'telefono_2' => $telefono_2,
