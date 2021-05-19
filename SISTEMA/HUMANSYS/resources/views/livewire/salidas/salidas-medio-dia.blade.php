@@ -180,8 +180,14 @@
 
                     }
 
-                  
+                    axios.post('guardar/empleados/medio/dia',{
+                        empleados:seleccionados,
+                        fecha:fecha,
+                        tanda:entrada
+                    })
 
+                  
+                    ///guardar/empleados/medio/dia
                     // events.prepend( '<div>'+count+' row(s) selected</div>' );
 
 

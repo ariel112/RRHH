@@ -54,5 +54,13 @@ class SalidasMedioDia extends Component
             'message'=>$e, 
             ],402); }
         }
+
+
+
+        public function guardarSalidas(Request $request){
+
+            
+
+        }
     
 }
