@@ -28,7 +28,7 @@ class Contratos extends Component
     }
 
     public function contrato_show(Request $request){
-
+        /* SELECT * FROM log_sueldos INNER JOIN contrato ORDER BY created_at ASC LIMIT 1 WHERE contrato.estatus_id = 1; */
                 $fechaInicio = $request->fecha_inicio;
                 $fechaFinal = $request->fecha_fin;
 
@@ -73,6 +73,7 @@ class Contratos extends Component
 
                     try {
                         DB::beginTransaction();
+                        /* dd($request); */
                             $contrato = new contrato();
                             $contrato->num_contrato = $request->num_contrato;
                             $contrato->num_delegacion = $request->num_delegacion;
@@ -96,7 +97,7 @@ class Contratos extends Component
                     } catch (QueryException $e) {
                         DB::rollback();
                         return response()->json([
-                            'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                            'message' => 'Ha ocurrido un error AL CREAR , por favor intente de nuevo.',
                             'color' => 'error',
                             'estado' => 2,
                             'exception' => $e,
@@ -182,6 +183,7 @@ class Contratos extends Component
 
     public function contratos_edit(Request $request){
 
+
         $contrato = contrato::find($request->id);
 
         $sueldo_anterior = $contrato->sueldo;
@@ -190,7 +192,7 @@ class Contratos extends Component
         $log_sueldos->sueldo = $sueldo_anterior;
         $log_sueldos->empleado_id = $id_empleado;
         $log_sueldos -> save();
-        
+
         $contrato->num_contrato = $request->num_contrato;
         $contrato->num_delegacion = $request->num_delegacion;
         $contrato->tipo_contrato = $request->tipo_contrato;
@@ -198,7 +200,6 @@ class Contratos extends Component
         $contrato->fecha_fin = $request->fecha_fin;
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
-        $contrato->estado_contrato = $request->estado_contrato;
         // $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;

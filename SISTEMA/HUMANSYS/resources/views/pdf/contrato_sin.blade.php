@@ -10,7 +10,7 @@
 </head>
 <body id="sinformato">
 
-<div class="container" >
+<div class="container">
         {{-- -------------------PRIMER PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
@@ -44,7 +44,70 @@
             <br>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>SEPTIMO: CONFIDENCIALIDAD DE LA INFORMACIÓN.</u></b> Se compromete a mantener absoluta confidencialidad y abstenerse de comunicar a terceros, directa o indirectamente, cualquier información o conocimiento de carácter financiero, técnico, contable, comercial, gerencial, administrativo o de cualquier otra naturaleza, tales como sistemas de Internet, alianzas estratégicas y demás convenios con terceros que <b>EL TRABAJADOR</b> pueda obtener o conocer durante y con ocasión de la prestación de sus servicios con <b>EL CONTRATANTE.</b> Asimismo, en la fecha de terminación de sus servicios, <b>EL TRABAJADOR</b> deberá devolver <b>AL CONTRATANTE</b>, todos los documentos, manuales, libros, correspondencia, publicaciones, herramientas y demás activos y literatura que éste pueda haber obtenido, conocido, preparado o utilizado en su trabajo mientras prestaba sus servicios para <b>EL CONTRATANTE.</b></p>
         </div>
-        </div>
+
+
+        @php
+            $log_sueldos = DB::SELECT("select * from contrato C inner join log_sueldos LS on C.log_sueldos_id = LS.id where C.id = '".$contrato->id."';");
+            /* $contrato->numero  */
+        @endphp
+        @if ( $log_sueldos)
+            <H1 style="PAGE-BREAK-AFTER: always"></H1>
+            {{-- ------------------TERCERA PAGINA-----------------------------------
+            --------------------------------------------------------------------------
+            ---------------------------------------------------------------------------}}
+            <div style="position:absolute; top:80px; padding:50px;">
+                <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>OCTAVO: INSTRUMENTOS, ÚTILES Y/O MATERIAL DE TRABAJO</u></b>. EL TRABAJADOR se obliga a cuidar con el mayor esmero y eficacia, los instrumentos, útiles y material que <b>EL CONTRATANTE</b> le proporcione para realizar su trabajo, por lo tanto se responsabiliza ante <b>EL CONTRATANTE</b> del buen cuidado del inventario de   instrumentos, útiles y/o materiales, quedando entendido que <b>EL TRABAJADOR</b> acepta que dicha responsabilidad alcanza hasta la fecha que le corresponda el cuidado de los mismos y en el caso de que falte, se pierda, dañe o deteriore cualquier instrumento, útil y/o material, documentación o información de trabajo, que esté bajo su responsabilidad, desde esta fecha reconoce su valor como aquél que aparezca en el inventario que mantenga <b>EL CONTRATANTE</b>, y autoriza a que <b>EL CONTRATANTE</b> le deduzca de sus salarios, comisiones, bonificaciones, gratificaciones, prestaciones y/o de cualquier otra forma de remuneración que se le adeude, el  valor  de  dichos  instrumentos,  útiles y/o materiales, documentación o información  que  haya  perdido, extraviado, dañado y/o deteriorado, salvo que se trate del desgaste normal por el uso de los mismos.-</p>
+                <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>NOVENO: REMUNERACIÓN.</u> EL CONTRATANTE</b> manifiesta que <b>EL TRABAJADOR</b> devengará un salario mensual, de <b>{{ $sueldo_letras }} (L. {{ $contrato->sueldo }}) </b>, cuyo pago será divido y cancelado cada dos semanas o catorcenal. La fecha de pago se adelantará al día hábil inmediato, si el establecido no lo fuere. <b>EL TRABAJADOR</b> recibirá del <b>CONTRATANTE</b> una bonificación que se otorgará una vez al año el equivalente a una vez el salario ordinario mensual que devengue, quedando sujeto el pago del mismo a la disponibilidad financiera y presupuestaria del <b>CONTRATANTE</b>, el personal deberá haber laborado al menos noventa días.</p>
+                <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO: RESCISIÓN:</u></b> Se podrá rescindir el presente contrato sin responsabilidad para el <b>PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20</b> por las causas siguientes: <b>a)</b> Por acuerdo entre las partes; <b>b)</b> Por muerte de <b>“EL TRABAJADOR”</b>; <b>c)</b> Por comprobarse plenamente la incapacidad, negligencia, ineficiencia, o cualquiera actitud negativa que pueda poner en precario la prestación del servicio; <b>d)</b> Por fuerza mayor o caso fortuito que impidan el cumplimiento de las condiciones pactadas; <b>e)</b> Cuando el titular del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20” pierda la confianza en “EL TRABAJADOR” en la prestación de sus servicios profesionales; <b>f)</b> Por todo daño material causado dolosamente a los edificios, obras, mobiliario o equipo, vehículos, instrumentos y demás objetos relacionados para prestar sus servicios profesionales y toda grave negligencia que ponga en peligro la seguridad de las personas o de las cosas; <b>g)</b> Todo acto inmoral o delictuoso que “EL TRABAJADOR” cometa en el establecimiento o lugar donde presta sus servicios profesionales cuando sea debidamente comprobado ante la autoridad competente; <b>h)</b> Revelar o dar a conocer asuntos de carácter reservado en perjuicio del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20”; <b>i)</b> Por incumplimiento de las cláusulas del presente contrato; y <b>j)</b> Por tres llamadas de atención por escrito de su superior inmediato; <b>k)</b> por las causas reguladas por la legislación aplicable;</p>
+            </div>
+            <H1 style="PAGE-BREAK-AFTER: always"></H1>
+            {{-- ------------------PAGINA ADENDA -----------------------------------
+            --------------------------------------------------------------------------
+            ---------------------------------------------------------------------------}}
+            <h5 style="text-align: center;font-family: Arial;font-size:12;"><u>ADENDA AL CONTRATO INDIVIDUAL DE TRABAJO</u></h5>
+
+            <h5 style="text-align: center; font-family: Arial;font-size:12;">NUMERO CORRELATIVO-2021</h5> <br>
+            <div style="position:absolute; top:80px; padding:50px;">
+                <p style="text-align: justify; font-family: Arial;font-size:11;">Yo,<b> {{ $gerente_rh->nombre }} </b>, mayor de edad, hondureña, {{ $gerente_rh->estado_civil }}, {{ $gerente_rh->profesion }}, con identidad número {{ $gerente_rh->identidad }}, Registro Tributario Nacional número {{ $gerente_rh->rtn }} y de este domicilio, quien actúa en su condición de Coordinadora Técnica del Programa Presidencial de Becas “Honduras 20/20” creado mediante Decreto Ejecutivo Numero PCM-013-2017, facultades que acredito mediante Acuerdo de Delegación No. GL-PPBH-003/2020 de fecha {{ $contrato->numero }} de de {{ $mes }} del presente año, quien en lo sucesivo se denominará <b>“EL CONTRATANTE” {{ $contrato->nombre }}</b>, mayor de edad, {{ $contrato->estado_civil }}, {{ $contrato->profesion }}, con Identidad No. {{ $contrato->identidad }}  y de este domicilio, y en los sucesivo se le denominara <b>“EL TRABAJADOR”</b>, hemos convenido celebrar la presente Adenda al <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b> suscrito en fecha ocho (08) de Septiembre del año dos mil veinte (2020), mediante el cual acordamos : modificar las cláusulas Primera y Octava; la cual a partir de esta fecha, se leerá así: </p>
+                <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>PRIMERO: DE LA EXCLUSIVIDAD.</u>  EL TRABAJADOR .</b> manifiesta: que en este acto y por medio del presente contrato, <b>SE OBLIGA</b> a prestar sus servicios a favor del CONTRATANTE, comprometiendo su esfuerzo y capacidad de trabajo, en forma exclusiva, bajo la subordinación y dependencia de la GERENCIA DE SEGUIMIENTO y los demás  ADMINISTRADORES Y REPRESENTANTES QUE DESIGNE EL CONTRATANTE, desempeñándose en el puesto de: <b>{{$cargos->nombre}}</b>, quien llevara a cabo las siguientes funciones: @php $count = 0;@endphp @foreach ($funciones as $funcion) <b>{{ $count += 1}})</b> {{ $funcion->nombre }}@endforeach. Otras actividades que se deriven de la naturaleza de su puesto de trabajo y/o de las actividades generales que realice el Programa Presidencial de Becas Honduras 20/20.</p>
+                <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>OCTAVO: REMUNERACIÓN..</u> EL CONTRATANTE</b> manifiesta que EL TRABAJADOR devengará un salario mensual, de <b>{{ $sueldo_letras }} (L. {{ $contrato->sueldo }})</b>, cuyo pago será divido y cancelado cada dos semanas o catorcenal. La fecha de pago se adelantará al día hábil inmediato, si el establecido no lo fuere. <b>EL TRABAJADOR</b> recibirá del <b>CONTRATANTE</b> una bonificación que se otorgará una vez al año el equivalente a una vez el salario ordinario mensual que devengue, quedando sujeto el pago del mismo a la disponibilidad financiera y presupuestaria del CONTRATANTE,  el personal deberá haber laborado al menos noventa días.</p>
+                <p style="text-align: justify; font-family: Arial;font-size:11;">En fe de lo anterior y aceptada la cláusula Novena modificada por la presente Adenda al <b>CONTRATO INDIVIDUAL DE TRABAJO</b>, se procede a la firma del presente, en la ciudad de Tegucigalpa M.D.C., a los ocho (08) días del mes de Septiembre del año 2020. </p>
+                {{-- <div style="position:absolute; top:650px; padding:40px;">
+                    <div style="display: flex">
+                        <div style="line-height=100%">
+                            <h3>   ____________________________</h3>
+                            <p style="text-align: center; font-size:9;float:left;font-family: Arial;"><b>HAZEL ALEJANDRA ESCOBAR RAMIREZ<br>COORDINADOR TECNICO DEL PROGRAMA<br>PRESIDENCIAL DE BECAS “HONDURAS 20/20”</b></p>
+                        </div>
+
+                        <div style=" line-height=100% ; margin-left:10px">
+                            <h3>   _________________________</h3>
+                            <p style="font-size:9;font-family: Arial;text-align: center;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
+                        </div>
+
+                    </div>
+
+                </div> --}}
+
+            </div>
+            <div style="position:absolute; top:800px; padding:40px; margin: 0 auto">
+                <div style="display: flex; justify-content: center; margin-left:40px">
+                    <div style="line-height=100%  text-align: center">
+                        <h3>   ____________________________</h3>
+                        <p style="text-align: center; font-size:9;float:left;font-family: Arial;"><b>HAZEL ALEJANDRA ESCOBAR RAMIREZ<br>COORDINADOR TECNICO DEL PROGRAMA<br>PRESIDENCIAL DE BECAS “HONDURAS 20/20”</b></p>
+                    </div>
+
+                    <div style=" line-height=100% ; margin-left:10px ; text-align: center">
+                        <h3>   _________________________</h3>
+                        <p style="font-size:9;font-family: Arial;text-align: center;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        @else
+
         <H1 style="PAGE-BREAK-AFTER: always"></H1>
         {{-- ------------------TERCERA PAGINA-----------------------------------
         --------------------------------------------------------------------------
@@ -54,20 +117,6 @@
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>NOVENO: REMUNERACIÓN.</u> EL CONTRATANTE</b> manifiesta que <b>EL TRABAJADOR</b> devengará un salario mensual, de <b>{{ $sueldo_letras }} (L. {{ $contrato->sueldo }}) </b>, cuyo pago será divido y cancelado cada dos semanas o catorcenal. La fecha de pago se adelantará al día hábil inmediato, si el establecido no lo fuere. <b>EL TRABAJADOR</b> recibirá del <b>CONTRATANTE</b> una bonificación que se otorgará una vez al año el equivalente a una vez el salario ordinario mensual que devengue, quedando sujeto el pago del mismo a la disponibilidad financiera y presupuestaria del <b>CONTRATANTE</b>, el personal deberá haber laborado al menos noventa días.</p>
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO: RESCISIÓN:</u></b> Se podrá rescindir el presente contrato sin responsabilidad para el <b>PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20</b> por las causas siguientes: <b>a)</b> Por acuerdo entre las partes; <b>b)</b> Por muerte de <b>“EL TRABAJADOR”</b>; <b>c)</b> Por comprobarse plenamente la incapacidad, negligencia, ineficiencia, o cualquiera actitud negativa que pueda poner en precario la prestación del servicio; <b>d)</b> Por fuerza mayor o caso fortuito que impidan el cumplimiento de las condiciones pactadas; <b>e)</b> Cuando el titular del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20” pierda la confianza en “EL TRABAJADOR” en la prestación de sus servicios profesionales; <b>f)</b> Por todo daño material causado dolosamente a los edificios, obras, mobiliario o equipo, vehículos, instrumentos y demás objetos relacionados para prestar sus servicios profesionales y toda grave negligencia que ponga en peligro la seguridad de las personas o de las cosas; <b>g)</b> Todo acto inmoral o delictuoso que “EL TRABAJADOR” cometa en el establecimiento o lugar donde presta sus servicios profesionales cuando sea debidamente comprobado ante la autoridad competente; <b>h)</b> Revelar o dar a conocer asuntos de carácter reservado en perjuicio del “PROGRAMA PRESIDENCIAL DE BECAS HONDURAS 20/20”; <b>i)</b> Por incumplimiento de las cláusulas del presente contrato; y <b>j)</b> Por tres llamadas de atención por escrito de su superior inmediato; <b>k)</b> por las causas reguladas por la legislación aplicable;</p>
         </div>
-
-        <H1 style="PAGE-BREAK-AFTER: always"></H1>
-        {{-- ------------------PAGINA ADENDA -----------------------------------
-        --------------------------------------------------------------------------
-        ---------------------------------------------------------------------------}}
-        @php
-            $log_sueldos = DB::SELECT("select * from contrato C inner join log_sueldos LS on C.log_sueldos_id = LS.id where C.id = '".$contrato->id."';");
-            /* $contrato->numero  */
-        @endphp
-        @if ( $log_sueldos)
-        <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DENTRO DEL IF {{ $contrato->numero }}</p>
-
-        @else
-        <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>FUERA DEL ID</p>
 
         @endif
 
@@ -81,15 +130,20 @@
             <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DECIMO-TERCERO: DOMICILIO Y JURISDICCIÓN.</u></b> Ambas Partes, manifiestan que para resolver sus conflictos, diferencias, discrepancias, disputas, y/o reclamaciones que deriven de este Contrato, y para ejercitar las acciones o derechos derivados de este Contrato, expresamente se obligan: En primer término a resolver por la vía conciliatoria entre ambas partes; y, en caso de no lograr un arreglo, o si este fuere parcial, se someten a las disposiciones de la Secretaria de Estado en los Despachos de Trabajo y Seguridad Social por medio de Inspectoría General o el centro de conciliaciones; agotada la vía administrativa sin arreglo alguno; ambas partes, acuerdan someterse a la jurisdicción de los Juzgados de Letras del Trabajo del Departamento de Francisco Morazán.</p>
             <p style="text-align: justify; font-family: Arial;font-size:11;">En fe de lo anterior y aceptadas las cláusulas contenidas en este <b>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DEFINIDO</b>, se procede a la firma del presente, en la ciudad de Tegucigalpa M.D.C., a los {{ $numero }} ({{ $contrato->numero }}) días del mes de {{ $mes }} del año {{ $contrato->anio }}. </p>
         </div>
-        <div style="position:absolute; top:650px; padding:40px;">
-            <div style="float:left; line-height=150%">
-                <h3>______________________________</h3>
-                <p style="text-align: center; font-size:9;float:left;font-family: Arial;"><b>HAZEL ALEJANDRA ESCOBAR RAMIREZ<br>COORDINADOR TECNICO DEL PROGRAMA<br>PRESIDENCIAL DE BECAS “HONDURAS 20/20”</b></p>
+        <div style="position:absolute; top:650px; padding:40px; margin: 0 auto">
+            <div style="display: flex; justify-content: center; margin-left:40px">
+                <div style="line-height=100%  text-align: center">
+                    <h3>   ____________________________</h3>
+                    <p style="text-align: center; font-size:9;float:left;font-family: Arial;"><b>HAZEL ALEJANDRA ESCOBAR RAMIREZ<br>COORDINADOR TECNICO DEL PROGRAMA<br>PRESIDENCIAL DE BECAS “HONDURAS 20/20”</b></p>
+                </div>
+
+                <div style=" line-height=100% ; margin-left:10px ; text-align: center">
+                    <h3>   _________________________</h3>
+                    <p style="font-size:9;font-family: Arial;text-align: center;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
+                </div>
+
             </div>
-            <div style="float:right; line-height=150%">
-                <h3>_____________________________</h3>
-                <p style="float:left;font-size:9;font-family: Arial;text-align: center;"><b>{{ $contrato->nombre }}<br>“EL TRABAJADOR”</b></p>
-            </div>
+
         </div>
 </div>
 
