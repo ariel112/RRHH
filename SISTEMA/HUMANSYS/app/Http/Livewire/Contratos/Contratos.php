@@ -200,6 +200,7 @@ class Contratos extends Component
         $contrato->fecha_fin = $request->fecha_fin;
         $contrato->sueldo = $request->sueldo;
         $contrato->vacaciones = $request->vacaciones;
+        $contrato->log_sueldos_id = $log_sueldos->id;
         // $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;
