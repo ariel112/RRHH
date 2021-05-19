@@ -101,6 +101,23 @@
             </div>
         </div> --}}
         <H1 style="PAGE-BREAK-AFTER: always"></H1>
+        {{-- ------------------PAGINA ADENDA -----------------------------------
+        --------------------------------------------------------------------------
+        ---------------------------------------------------------------------------}}
+        @php
+            $log_sueldos = DB::SELECT("select *from empleado");
+        @endphp
+        @if ($empleados)
+        <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>DENTRO DEL IF</p>
+
+        @else
+        <p style="text-align: justify; font-family: Arial;font-size:11;"><b><u>FUERA DEL ID</p>
+
+        @endif
+
+
+
+        <H1 style="PAGE-BREAK-AFTER: always"></H1>
         {{-- ------------------TERCERA PAGINA-----------------------------------
         --------------------------------------------------------------------------
         ---------------------------------------------------------------------------}}
