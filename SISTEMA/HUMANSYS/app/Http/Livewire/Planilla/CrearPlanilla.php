@@ -103,7 +103,7 @@ class CrearPlanilla extends Component
             inner join contrato
             on empleado.id = contrato.empleado_id
             where tipo_empleado.id = 1
-            and (empleado.id=3 or empleado.id=4)
+          
             and empleado.estatus_id = 1 and contrato.estatus_id=1'); //ojo para efectos de prueba solo estoy calculando dos empleados 3 y 4
             //---------calcula la deduccion por asistencia
 
@@ -206,7 +206,7 @@ class CrearPlanilla extends Component
             select
                 empleado.id,
                 empleado.identidad,
-                empleado.sueldo,
+                contrato.sueldo,
                 empleado.nombre,
                 tipo_empleado.id as tipo_empleado,
                 contrato.sueldo as sueldoContrato
@@ -218,8 +218,8 @@ class CrearPlanilla extends Component
                 on empleado.cargo_id = cargo.id
                 inner join contrato
                 on empleado.id = contrato.empleado_id
-                where  (empleado.id=3 or empleado.id=4 or empleado.id=3009 or empleado.id=3008 )
-                and empleado.estatus_id = 1 and contrato.estatus_id=1
+                where 
+                empleado.estatus_id = 1 and contrato.estatus_id=1
             ');
 
 
