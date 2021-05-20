@@ -28,8 +28,8 @@ class MarcajeEmpleado extends Component
             'asisSalida' => $asistenciasSalida
             ]);
         }else{
-
-          dd($ipAddress);
+            return view('livewire.user.fueradered');
+          /* dd($ipAddress); */
         }
 
 
