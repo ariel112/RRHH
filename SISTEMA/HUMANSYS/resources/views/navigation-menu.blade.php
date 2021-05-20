@@ -301,6 +301,8 @@
                                         <li><a href="{{ route('salida.index') }}" :active="request()->routeIs('salida.index')">Medio Día</a></li>
                                     @endif
                                     <li><a href="{{ route('asistencia.marcaje-empleado') }}" :active="request()->routeIs('asistencia.marcaje-empleado')">Marcaje personal</a></li>
+									<li><a href="{{ route('matriz.index') }}" :active="request()->routeIs('matriz.index')">Matriz de asistencia</a></li>
+									
 									{{-- <li><a href="expenses.html">Otros</a></li> --}}
 								</ul>
 							</li>
