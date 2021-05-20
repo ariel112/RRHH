@@ -29,13 +29,13 @@
 
                 <div class="d-flex mb-2">
                     <div class="form-check ml-2">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="salidaCheck" value="option1" >
+                        <input class="form-check-input" type="radio" name="tandaRadio" id="salidaCheck" value="2" >
                         <label class="form-check-label" for="salidaCheck">
                             Salida
                         </label>
                     </div>
                     <div class="form-check ml-2">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="entradaCheck" value="option2">
+                        <input class="form-check-input" type="radio" name="tandaRadio" id="entradaCheck" value="1">
                         <label class="form-check-label" for="entradaCheck">
                             Entrada
                         </label>
@@ -101,6 +101,7 @@
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
             },
+            "paging": false,
 
             dom: 'Bfrtip',
             ajax: "/listar/empleados/medio/dia",
@@ -162,6 +163,8 @@
                         return;
                     }
 
+                  
+
 
 
 
@@ -180,10 +183,34 @@
 
                     }
 
-                    axios.post('guardar/empleados/medio/dia',{
-                        empleados:seleccionados,
+                    let valRadio = $("input[name='tandaRadio']:checked").val()
+                    console.log(arregloId);
+
+
+                   axios.post('/guardar/salida',{
+                        empleados:arregloId,
                         fecha:fecha,
-                        tanda:entrada
+                        tanda:valRadio
+                    }).then( response=>{
+                        Swal.fire({
+                            title: "Exito!",
+                            text: "Registros guardados con exito.",
+                            icon: "success",
+                            confirmButtonText: "Cerrar",
+                        });
+
+                    }).catch( err =>{
+                        console.error(err)
+
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Ha ocurrido un error.",
+                            icon: "error",
+                            confirmButtonText: "Cerrar",
+                        });
+
+
+
                     })
 
                   
