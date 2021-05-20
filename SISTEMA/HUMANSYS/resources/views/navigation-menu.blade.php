@@ -228,7 +228,7 @@
 								<span>Menu</span>
 							</li>
 
-                            @if (Auth::user()->id_tipo_user == 1)
+                            {{-- @if (Auth::user()->id_tipo_user == 1)
                                 <li class="submenu">
                                     <a href="#" ><i class="la la-user"></i> <span>Usuarios</span> <span class="menu-arrow"></span></a>
                                     <ul style="display: none;">
@@ -237,7 +237,7 @@
 
                                     </ul>
                                 </li>
-                            @endif
+                            @endif --}}
 							<li class="submenu">
 								<a href="#" ><i class="la la-user"></i> <span> Empleados</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -317,9 +317,9 @@
                                 <li class="submenu">
                                     <a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
                                     <ul style="display: none;">
-                                        <li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li>
+                                        {{-- <li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li> --}}
                                         <li><a href="{{route('generar.index')}}"> Generar Planilla </a></li>
-                                        <li><a href="payroll-items.html"> Elementos de nómina </a></li>
+                                        {{-- <li><a href="payroll-items.html"> Elementos de nómina </a></li> --}}
                                     </ul>
                                 </li>
                             @endif

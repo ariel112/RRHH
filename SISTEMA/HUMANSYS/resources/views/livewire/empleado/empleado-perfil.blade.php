@@ -402,6 +402,30 @@
                                                     @endif
 
                                                         <div class="row" id="grillDeducciones">
+                                                                    <div class="col-md-6 d-flex">
+                                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning">
+                                                                            <div class="card-body">
+                                                                                <div class="pro-edit">
+                                                                                    <h3 class="card-title">Deducciones fijas</h3>
+                                                                                </div>
+                                                                                @php
+                                                                                    $deduccionesMostrar= DB::SELECT("select * from deducciones");
+                                                                                @endphp
+                                                                                @foreach ($empleado_has_deducciones as $item)
+                                                                                    @foreach ($deduccionesMostrar as $item_dm)
+                                                                                        @if ($item_dm->id == $item->deducciones_id)
+                                                                                        <ul class="list-group list-group-flush">
+                                                                                            <li class="list-group-item">
+                                                                                                <div class="title">Deduccion por {{ $item_dm->nombre}}:</div>
+                                                                                                <div class="text">Lps. {{$item->monto_deduccion}}</div>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                        @endif
+                                                                                    @endforeach
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
