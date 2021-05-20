@@ -1252,6 +1252,7 @@
                         text: 'Ya están registradas las deducciones',
                         timer: 1500
                         }); */
+                        location.reload();
                 }
             })
         }
@@ -1613,6 +1614,7 @@
                             text: 'Deducción guardada con éxito!',
                             timer: 1500
                             });
+                            location.reload();
 
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -1640,11 +1642,14 @@
                             text: 'Referencia guardada con éxito!',
                             timer: 1500
                             });
+                            location.reload();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);
+
                     }
                 })
+
         }
 
         function selecteValor_TipoDeduc(){
