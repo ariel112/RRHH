@@ -101,6 +101,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //usuarios
     Route::get('/usuarios', Users::class,)->name('user.users');
+    Route::get('/fueradered', Users::class,)->name('user.fueradered');
 
 
 
@@ -211,7 +212,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // asistencia de medio  dia
     Route::get('/medio/dia', SalidasMedioDia::class )->name('salida.index');
-    Route::get('/listar/empleados/medio/dia', [SalidasMedioDia::class, 'listarEmpleados']);   
+    Route::get('/listar/empleados/medio/dia', [SalidasMedioDia::class, 'listarEmpleados']);
     Route::post('/guardar/salida', [SalidasMedioDia::class, 'guardarSalidas']);
 
     //matris de de asistencia 

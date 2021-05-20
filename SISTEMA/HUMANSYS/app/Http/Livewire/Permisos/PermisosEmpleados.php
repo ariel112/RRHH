@@ -45,7 +45,7 @@ class PermisosEmpleados extends Component
 
     public function guardarPermiso(Request $request)
     {
-        
+
         try {
 
             $identidadUser = Auth::user()->identidad;
@@ -58,8 +58,8 @@ class PermisosEmpleados extends Component
 
                 $permiso = new permisos;
 
-                
-               
+
+
                 $permiso->estado = '3'; //pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
                 $permiso->fecha_final = $request['fechaInicio'];
@@ -87,12 +87,12 @@ class PermisosEmpleados extends Component
 
                 //$permisosPorDia=[];
 
-             
+
 
                     $permiso = new permisos;
 
-                   
-                 
+
+
                     //$permiso->estado = '3'; //pendiente
                     $permiso->fecha_inicio = $request['fechaInicio'];
                     $permiso->fecha_final = $request['fechaInicio'];
@@ -105,7 +105,7 @@ class PermisosEmpleados extends Component
                     $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
                     $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
                     $permiso->motivo = $request['motivo'];
-    
+
                     $permiso->save();
                     $idPErmisoPadre = $permiso->id;
                     $permisoCreado = permisos::find($permiso->id);
@@ -115,15 +115,15 @@ class PermisosEmpleados extends Component
 
                 for($i=1; $i< $dias;$i++){
 
-                    // $suma = strtotime($request['fechaInicio'].'+'.$i.' '.'days');    
+                    // $suma = strtotime($request['fechaInicio'].'+'.$i.' '.'days');
                     // array_push($permisosPorDia, ['fecha'=> date("Y-m-d",$suma)]);
 
                     $permiso = new permisos;
 
                     $fechaInicio =  strtotime($request['fechaInicio'].'+'.$i.' '.'days');
-                  
-                   
-                 
+
+
+
                     //$permiso->estado = '3'; //pendiente
                     $permiso->fecha_inicio =  date("Y-m-d",$fechaInicio);
                     $permiso->fecha_final = date("Y-m-d",$fechaInicio);
@@ -139,9 +139,9 @@ class PermisosEmpleados extends Component
                     $permiso->fecha_final_aprobada = $request['fechaFinal'];
                     $permiso->save();
 
-                    
-                        
-                       
+
+
+
                 }
 
 
@@ -184,45 +184,50 @@ class PermisosEmpleados extends Component
 
 
             $permisos = DB::select('
-            select 
+            select
 
             permisos.id as idPermiso,
                         tipo_permiso.permiso as "nombre_permiso",
-                        permisos.permiso_id ,          
+                        permisos.permiso_id ,
                         permisos.fecha_inicio_aprobada as fecha_inicio,
                         permisos.fecha_final_aprobada as fecha_final,
                         hora_inicio,
                         hora_final,
-                        motivo,    
+                        motivo,
                         estado_permiso_jefe_id,
                         estado_permiso_rrhh_id,
                         empleado_rrhh_aprueba_id,
-                        empleado_jefe_aprueba as "empleado_jefe_aprueba_id", 
+                        empleado_jefe_aprueba as "empleado_jefe_aprueba_id",
                         estado_permiso.estado AS "estado_jefe_aprueba",
                         (select estado_permiso.estado from estado_permiso where  estado_permiso.id = permisos.estado_permiso_rrhh_id ) as "estado_rrhh_aprueba",
-                        permisos.created_at "fecha_creacion",   
+                        permisos.created_at "fecha_creacion",
                         IF(  permisos.empleado_jefe_aprueba IS NULL, "Aun no diponible" , (select nombre from  empleado where id = permisos.empleado_jefe_aprueba)  ) AS "nombre_jefe",
                         IF( permisos.empleado_rrhh_aprueba_id IS NULL, "Aun no disponible", (select nombre from  empleado where id = permisos.empleado_rrhh_aprueba_id) ) as "nombre_rrhh"
-            
+
             from
-            
+
             (select permiso_id from permisos group by permiso_id ) permis
-             inner join permisos 
+             inner join permisos
              on permisos.id = permis.permiso_id
              inner join estado_permiso
-             on permisos.estado_permiso_jefe_id = estado_permiso.id  
-             inner join tipo_permiso 
+             on permisos.estado_permiso_jefe_id = estado_permiso.id
+             inner join tipo_permiso
             on permisos.tipo_permiso_id = tipo_permiso.id
-          where permisos.empleado_id = ' . $idEmpleado[0]['id'] .             
+          where permisos.empleado_id = ' . $idEmpleado[0]['id'] .
           ' order by permisos.created_at desc;
-         
+
             ');
 
             return datatables()->of($permisos)
                 ->addColumn('acciones', function ($row) {
-                    $html = '              
+                    if($row->estado_permiso_rrhh_id == 4 || $row->estado_permiso_jefe_id == 1){
+                        $html ='<td><i class="fa fa-check text-success"></i></td>';
+                    }else{
+                        $html = '
                 <a class="dropdown-item"  href="#" onclick="editarPermiso(' . $row->idPermiso . ')"><i class="fa fa-dot-circle-o text-success"></i> Editar</a>
           ';
+                    }
+
                     return $html;
                 })
                 ->rawColumns(['acciones'])

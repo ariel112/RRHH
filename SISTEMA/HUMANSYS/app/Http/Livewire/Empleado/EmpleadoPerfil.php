@@ -47,6 +47,7 @@ class EmpleadoPerfil extends Component
         $TipoDeduccionesVariables = DB::SELECT('select * from `tipo_deducciones_varibale` where id = '.$id_tipo_deducciones_varibale.';'); */
 
         $deducciones_fijas = DB::select('select * from deducciones where estatus = 1 ;');
+        $empleado_has_deducciones = DB::select('select * from empleado_has_deducciones_fijas where empleado_id = '.$request['id'].' ;');
 
         $direcciones = DB::selectone('select * from direccion where empleado_id = '.$request['id'].';');
 
@@ -62,7 +63,8 @@ class EmpleadoPerfil extends Component
             'areas' => $area,
             'departamentos' => $departamento,
             'funciones' => $funcion,
-            'deducciones' => $deducciones_fijas
+            'deducciones' => $deducciones_fijas,
+            'empleado_has_deducciones' => $empleado_has_deducciones
            ]);
 
     }
