@@ -31,6 +31,7 @@ use App\http\Livewire\Salidas\SalidasMedioDia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Livewire\User\Users;
+use App\Http\Livewire\Asistencia\MatrisAsistencia;
 
 /*
 |--------------------------------------------------------------------------
@@ -212,6 +213,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/medio/dia', SalidasMedioDia::class )->name('salida.index');
     Route::get('/listar/empleados/medio/dia', [SalidasMedioDia::class, 'listarEmpleados']);   
     Route::post('/guardar/salida', [SalidasMedioDia::class, 'guardarSalidas']);
+
+    //matris de de asistencia 
+    Route::get('/matriz/asistencia', MatrisAsistencia::class)->name('matriz.index');
+    Route::get('/matriz/empleado/asistencia', [MatrisAsistencia::class, 'obtenerMatriz']);
 
 
     });
