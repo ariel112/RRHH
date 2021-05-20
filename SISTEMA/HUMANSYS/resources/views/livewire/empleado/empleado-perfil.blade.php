@@ -1356,6 +1356,7 @@
 
 
         function editarEmpleadoPrincipal(){
+            /* event.preventDefault(); */
             var data = new FormData($('#formEditEmpleado').get(0));
             console.log(data);
             $.ajax({
