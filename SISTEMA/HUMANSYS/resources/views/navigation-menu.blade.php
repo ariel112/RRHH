@@ -136,19 +136,23 @@
 							</span>
 							<span>{{ Auth::user()->name }}</span>
 						</a>
+                        @php
+                        $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
+                    @endphp
 						<div class="dropdown-menu">
-							<a class="dropdown-item" >
+                            <a class="dropdown-item" href="{{ route('empleado.perfil',$empleado->id) }}">Perfil</a>
+							{{-- <a class="dropdown-item" >
                                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                                 </x-jet-responsive-nav-link>
-                            </a>
-							<a class="dropdown-item" >
+                            </a> --}}
+							{{-- <a class="dropdown-item" >
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                                     {{ __('API Tokens') }}
                                 </x-jet-responsive-nav-link>
                                 @endif
-                            </a>
+                            </a> --}}
 							<a class="dropdown-item">
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
@@ -157,7 +161,7 @@
                                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                     this.closest('form').submit();">
-                                        {{ __('Log Out') }}
+                                        {{ __('Salir') }}
                                     </x-jet-responsive-nav-link>
                                 </form>
                             </a>
@@ -187,19 +191,21 @@
 
 
 					</a>
+
 					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" >
+                        <a class="dropdown-item" href="{{ route('empleado.perfil',$empleado->id) }}">Perfil</a>
+						{{-- <a class="dropdown-item" >
                             <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-jet-responsive-nav-link>
-                        </a>
-						<a class="dropdown-item" >
+                        </a> --}}
+						{{-- <a class="dropdown-item" >
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                                 {{ __('API Tokens') }}
                             </x-jet-responsive-nav-link>
                             @endif
-                        </a>
+                        </a> --}}
 						<a class="dropdown-item" >
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
@@ -208,7 +214,7 @@
                                 <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Salir') }}
                                 </x-jet-responsive-nav-link>
                             </form>
                         </a>
@@ -254,9 +260,7 @@
                                             <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                         @endif
                                     @else
-                                    @php
-                                            $empleado = DB::SELECTONE("select * from empleado where identidad= '".Auth::user()->identidad."'");
-                                        @endphp
+
                                         <li><a href="{{ route('empleado.perfil',$empleado->id) }}" >Perfil</a></li>
                                     @endif
 
@@ -302,7 +306,7 @@
                                     @endif
                                     <li><a href="{{ route('asistencia.marcaje-empleado') }}" :active="request()->routeIs('asistencia.marcaje-empleado')">Marcaje personal</a></li>
 									<li><a href="{{ route('matriz.index') }}" :active="request()->routeIs('matriz.index')">Matriz de asistencia</a></li>
-									
+
 									{{-- <li><a href="expenses.html">Otros</a></li> --}}
 								</ul>
 							</li>
@@ -310,7 +314,7 @@
                                 <li class="submenu">
                                     <a href="#"><i class="la la-money"></i> <span> Deducciones </span> <span class="menu-arrow"></span></a>
                                     <ul style="display: none;">
-                                        <li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li>
+                                        {{-- <li><a href="{{ route('deducciones.deducciones-index') }}" :active="request()->routeIs('deducciones.deducciones-index')">Gestión de deducciones</a></li> --}}
                                         <li><a href="{{ route('deducciones.deducciones-variables') }}" :active="request()->routeIs('deducciones.deducciones-variables')">Añadir deducciones Variables</a></li>
                                     </ul>
                                 </li>
