@@ -14,33 +14,34 @@
         </div>
         <!-- /Page Header -->
        {{--  <div class="card p-3 sm-white rounded m-auto d-flex" >
-            <div class="card-header">
-                <h3 class="card-header text-secondary text-center">Definir niveles de acceso</h3>
-            </div>
-            <div class="card-body">
-                <form id="formUserSelect" class="form-group" data-parsley-validate>
-                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                    <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group" wire:ignore wire:key="first">
-                                <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                <div class="card-header">
+                    <h3 class="card-header text-secondary text-center">Definir niveles de acceso</h3>
+                </div>
+                <div class="card-body">
+                    <form id="formUserSelect" class="form-group" data-parsley-validate>
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                        <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group" wire:ignore wire:key="first">
+                                    <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
+                                    <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                    </select>
+                                </div>
+                                <input id="empleadoIdentidad" name="empleadoIdentidad" type="hidden" value="">
+                            </div>
+                            <div class="col-4">
+                                <select name="select_tipoUser" id="select_tipoUser" class="form-control" required>
                                 </select>
                             </div>
-                            <input id="empleadoIdentidad" name="empleadoIdentidad" type="hidden" value="">
+                            <div class="col-2">
+                                <button href="javascript:void(0);" class="btn btn-success btn-lg btn-block m-auto" type="submit" id="btnGuardarTipoUser">Guardar</button>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <select name="select_tipoUser" id="select_tipoUser" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <button href="javascript:void(0);" class="btn btn-success btn-lg btn-block m-auto" type="submit" id="btnGuardarTipoUser">Guardar</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div> --}}
+        --}}
         <br>
         <table class="table" id="tblusuarios">
             <thead class="table-dark">
@@ -48,12 +49,55 @@
                     <th> <b>NOMBRE</b> </th>
                     <th> <b>IDENTIDAD</b>  </th>
                     <th> <b>ROL DE ACCESO</b>  </th>
+                    <th> <b>Acción</b>  </th>
                 </tr>
             </thead>
             <tbody>
 
             </tbody>
         </table>
+        <div id="modal_asignar_usuario" class="modal custom-modal fade" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ROLES DE USUARIO</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card p-3 sm-white rounded m-auto d-flex" >
+                            <div class="card-header">
+                                <h3 class="card-header text-secondary text-center">Definir niveles de acceso</h3>
+                            </div>
+                            <div class="card-body">
+                                <form id="formUserSelect" class="form-group" data-parsley-validate>
+                                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                    <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group" wire:ignore wire:key="first">
+                                                <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
+                                                <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                                </select>
+                                            </div>
+                                            <input id="empleadoIdentidad" name="empleadoIdentidad" type="hidden" value="">
+                                        </div>
+                                        <div class="col-4">
+                                            <select name="select_tipoUser" id="select_tipoUser" class="form-control" required>
+                                            </select>
+                                        </div>
+                                        <div class="col-2">
+                                            <button href="javascript:void(0);" class="btn btn-success btn-lg btn-block m-auto" type="submit" id="btnGuardarTipoUser">Guardar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
@@ -88,7 +132,8 @@
             "columns": [
                 {data:'nombre'},
                 {data:'identidad'},
-                {data:'nivel'}
+                {data:'nivel'},
+                {data:'accion'}
         ]});
 
          $('#empleado_id').select2({
@@ -166,13 +211,15 @@
                     dataType:"json",
                     success: function(data){
                         /* console.log(data); */
-                        $('#formUserSelect').trigger("reset");
+
                         Swal.fire({
                             icon: 'success',
                             text: 'Nivel de acceso registrado éxito!',
                             timer: 1500
                         });
-                            location.reload();
+                        $('#tblusuarios').DataTable().ajax.reload();
+                        $('#formUserSelect').trigger("reset");
+                        $('#modal_asignar_usuario').modal('hide');
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log(jqXHR, textStatus, errorThrown);

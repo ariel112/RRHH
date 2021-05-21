@@ -37,21 +37,33 @@ class Users extends Component
     }
 
     public function listar_usuarios(){
-        $empleados = DB::SELECT("select * from empleado");
-        $usuarios = DB::SELECT("select * from users where identidad = '".$empleados->identidad."'");
-        $empleadosUsuarios = DB::SELECT("select * from users U inner join empleados E on (E.identidad = U.identidad);");
-         return Datatables::of($empleados)
-            ->addColumn('nombre', function ($empleados) {
-                 return '<td>'.$empleados->nombre.'</td>';
+
+        $users = DB::SELECT("select * from users");
+        /* $usuarios = DB::SELECT("select *from users where identidad ='".$empleados->identidad."'");
+        $empleadosUsuarios = DB::SELECT("select * from users U inner join empleados E on (E.identidad = U.identidad);"); */
+         return Datatables::of($users)
+            ->addColumn('nombre', function ($users) {
+                $empleados = DB::SELECTONE("select * from empleado where identidad = '".$users->identidad."'");
+                return '<td>'.$empleados->nombre.'</td>';
             })
-            ->addColumn('identidad', function ($empleados) {
-                 return '<td>'.$empleados->identidad.'</td>';
+            ->addColumn('identidad', function ($users) {
+                $empleados = DB::SELECTONE("select * from empleado where identidad = '".$users->identidad."'");
+                return '<td>'.$empleados->identidad.'</td>';
             })
-            ->addColumn('nivel', function ($empleados) {
-                return '<td><button type="button" class="btn btn-warning">SALIDA</button></td>';
+            ->addColumn('nivel', function ($users) {
+                $tipo_user = DB::SELECTONE("select * from tipo_user where id = '".$users->id_tipo_user."'");
+                if($users->id_tipo_user == null){
+                    return '<td><button type="button" class="btn btn-dangerbtn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Sin asignación</button></td>';
+                }else{
+                    return '<td><button type="button" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">'.$tipo_user->nombre.'</button></td>';
+                }
 
             })
-            ->rawColumns(['nombre', 'identidad','nivel'])
+            ->addColumn('accion', function ($users) {
+                $empleados = DB::SELECTONE("select * from empleado where identidad = '".$users->identidad."'");
+                return '<td><button type="button" class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#modal_asignar_usuario">ASIGNAR ROL</button></td>';
+            })
+            ->rawColumns(['nombre', 'identidad','nivel','accion'])
             ->make(true);
     }
 }

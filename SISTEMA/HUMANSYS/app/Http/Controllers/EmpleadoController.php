@@ -185,7 +185,8 @@ class EmpleadoController extends Controller
             'name' => explode(' ', $newUser->name, 2)[0]."'s Team",
             'personal_team' => true,]);
             DB::commit();
-           return $empleados;
+           /* return $empleados; */
+           return response()->json($empleados);
 
         }catch(QueryException $e){
             DB::rollback();
