@@ -34,4 +34,8 @@ class Users extends Component
 
         return response()->json('EXITO');
     }
+
+    public function listar_empleados_nivel_de_acceso(){
+
+    }
 }
