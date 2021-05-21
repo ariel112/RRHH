@@ -13,7 +13,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        <div class="card p-3 {{-- mb-5 --}} sm-white rounded m-auto d-flex" {{-- style="width: 30rem;" --}}>
+       {{--  <div class="card p-3 sm-white rounded m-auto d-flex" >
             <div class="card-header">
                 <h3 class="card-header text-secondary text-center">Definir niveles de acceso</h3>
             </div>
@@ -31,7 +31,6 @@
                             <input id="empleadoIdentidad" name="empleadoIdentidad" type="hidden" value="">
                         </div>
                         <div class="col-4">
-                            {{-- <label class="col-form-label focus-label"> Roles de usuarios</label> --}}
                             <select name="select_tipoUser" id="select_tipoUser" class="form-control" required>
                             </select>
                         </div>
@@ -41,16 +40,14 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div> --}}
         <br>
-        <table class="table" id="tblMarcaje">
+        <table class="table" id="tblusuarios">
             <thead class="table-dark">
                 <tr>
-                    <th> <b>ID</b> </th>
                     <th> <b>NOMBRE</b> </th>
                     <th> <b>IDENTIDAD</b>  </th>
-                    <th> <b>ENTRADA</b>  </th>
-                    <th> <b>SALIDA</b>  </th>
+                    <th> <b>ROL DE ACCESO</b>  </th>
                 </tr>
             </thead>
             <tbody>
@@ -69,7 +66,7 @@
         });
 
 
-        $('#tblMarcaje').DataTable({
+        $('#tblusuarios').DataTable({
             "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
             "zeroRecords": "No se encontraron resultados",
@@ -87,13 +84,11 @@
             "serverSide": true,
             processing: true,
             "autoWidth": false,
-            "ajax": "/marcaje/listar",
+            "ajax": "/user/listar_usuarios",
             "columns": [
-                {data:'id'},
                 {data:'nombre'},
                 {data:'identidad'},
-                {data:'entradas'},
-                {data:'salidas'}
+                {data:'nivel'}
         ]});
 
          $('#empleado_id').select2({

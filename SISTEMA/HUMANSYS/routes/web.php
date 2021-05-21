@@ -104,6 +104,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/fueradered', Users::class,)->name('user.fueradered');
     Route::get('/tipoUsers', [Users::class, 'listar_tipos']);
     Route::post('/empleado/tipoUsuario', [Users::class, 'guardarTipoUsuario']);
+    Route::get('/user/listar_usuarios', [Users::class, 'listar_usuarios']);
+
 
 
 

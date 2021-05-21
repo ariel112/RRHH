@@ -7,6 +7,7 @@ use App\Models\empleado;
 use Illuminate\Http\Request;
 use App\Models\User;
 use DB;
+use DataTables;
 
 class Users extends Component
 {
@@ -35,7 +36,22 @@ class Users extends Component
         return response()->json('EXITO');
     }
 
-    public function listar_empleados_nivel_de_acceso(){
+    public function listar_usuarios(){
+        $empleados = DB::SELECT("select * from empleado");
+        $usuarios = DB::SELECT("select * from users where identidad = '".$empleados->identidad."'");
+        $empleadosUsuarios = DB::SELECT("select * from users U inner join empleados E on (E.identidad = U.identidad);");
+         return Datatables::of($empleados)
+            ->addColumn('nombre', function ($empleados) {
+                 return '<td>'.$empleados->nombre.'</td>';
+            })
+            ->addColumn('identidad', function ($empleados) {
+                 return '<td>'.$empleados->identidad.'</td>';
+            })
+            ->addColumn('nivel', function ($empleados) {
+                return '<td><button type="button" class="btn btn-warning">SALIDA</button></td>';
 
+            })
+            ->rawColumns(['nombre', 'identidad','nivel'])
+            ->make(true);
     }
 }
