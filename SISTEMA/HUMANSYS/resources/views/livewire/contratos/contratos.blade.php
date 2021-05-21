@@ -143,7 +143,6 @@
                                 <div class="form-group" wire:ignore wire:key="first">
                                     <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
                                     <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -464,7 +463,7 @@ function CierraPopup(modal) {
  });
 
     function guardar() {
-    // console.log('datos: ', $("#idPic").serialize());
+        // console.log('datos: ', $("#idPic").serialize());
             var modalID ='crear_contratos'
             var data = new FormData($('#form_contrato').get(0));
 
@@ -495,12 +494,12 @@ function CierraPopup(modal) {
                 })
             }
         })
-        }
+    }
 
 
 
 
-// cargo el encargado del componente
+    // cargo el encargado del componente
 (gerente)();
 
 function gerente() {
