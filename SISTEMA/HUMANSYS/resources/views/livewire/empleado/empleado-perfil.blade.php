@@ -407,6 +407,20 @@
                                                                             <div class="card-body">
                                                                                 <div class="pro-edit">
                                                                                     <h3 class="card-title">Deducciones fijas</h3>
+                                                                                    {{-- @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                                                        <div class="dropdown profile-action">
+                                                                                            <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                                                                                            <div class="dropdown-menu dropdown-menu-right">
+                                                                                                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                                                @if ($deduc->estado == 1)
+                                                                                                    <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee" ><i style="color:red;" class="fas fa-ban"></i> Inactivar</a>
+                                                                                                @else
+                                                                                                    <a class="dropdown-item transformed" href="#" data-toggle="modal" data-target="#edit_employee"><i style="color:green;" class="fas fa-ban"></i> Activar</a>
+                                                                                                @endif
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    @endif --}}
                                                                                 </div>
                                                                                 @php
                                                                                     $deduccionesMostrar= DB::SELECT("select * from deducciones");
@@ -418,6 +432,7 @@
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Deduccion por {{ $item_dm->nombre}}:</div>
                                                                                                 <div class="text">Lps. {{$item->monto_deduccion}}</div>
+                                                                                                <div style="margin-right: auto;"><button type="button" class="btn btn-info btn-sm"><i class="far fa-money-bill-alt"></i></button></div>
                                                                                             </li>
                                                                                         </ul>
                                                                                         @endif
