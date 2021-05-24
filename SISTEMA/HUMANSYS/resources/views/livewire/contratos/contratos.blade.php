@@ -165,7 +165,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label class="col-form-label">Cargo</label>
+                                    <label class="col-form-label">Puesto</label>
                                     <input class="form-control" id="cargo" name="cargo" type="text" value="" disabled>
                                 </div>
                             </div>
@@ -197,7 +197,7 @@
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <input type="hidden" name="id" id="id_contrato">
                     <div class="row">
-                        <div class="col-sm-6">
+                        {{-- <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Estado del contrato<span class="text-danger">*</span></label>
                                 <select required class="form-control" name="estado_contrato" id="estado_contrato">
@@ -205,7 +205,7 @@
                                     <option value="Cancelado">Cancelado</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <label class="col-form-label"># Contrato <span class="text-danger">*</span></label>
@@ -290,7 +290,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label class="col-form-label">Cargo</label>
+                                <label class="col-form-label">Puesto</label>
                                 <input class="form-control" id="cargo_edit" name="cargo" type="text" value="" disabled>
                             </div>
                         </div>
@@ -526,7 +526,7 @@ function gerente() {
 
 
 function cargo(data){
-     var html_select =' <option selected value="" disabled >Seleccione el encargado</option>';
+     var html_select =' <option selected value="" disabled >Elaborado por</option>';
      for (var i=0; i<data.length; ++i)
        html_select += '<option value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
 

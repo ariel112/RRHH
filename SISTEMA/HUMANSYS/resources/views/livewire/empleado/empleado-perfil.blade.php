@@ -78,7 +78,7 @@
                                                                                 <h5 class="text-muted">Edad: {{$edad}}</h5>
                                                                                 {{-- <h5 class="text-muted">Departamento: {{$deptos->nombre}}</h5>
                                                                                 <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5> --}}
-                                                                                <h5 class="text-muted">Cargo: {{$cargo->nombre}}</h5>
+                                                                                <h5 class="text-muted">Puesto: {{$cargo->nombre}}</h5>
                                                                                 {{-- <h5 class="text-muted">Profesión: {{$empleado->profesion}}</h5> --}}
                                                                                 <h5 class="text-muted">Empleado ID: {{$empleado->id}}</h5>
                                                                                  <br>
@@ -705,7 +705,7 @@
                                                                             </div>
                                                                             <div class="col-md-4">
                                                                                 <div class="form-group">
-                                                                                    <label class="col-form-label">Cargo</label>
+                                                                                    <label class="col-form-label">Puesto</label>
                                                                                     <select class="form-select form-control" required id="cargo_empleado_edit" name="cargo_empleado_edit">
                                                                                         <option selected value="{{$cargo->id}}">{{$cargo->nombre}}</option>
                                                                                     </select>

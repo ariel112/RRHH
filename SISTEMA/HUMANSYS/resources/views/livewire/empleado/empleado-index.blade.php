@@ -242,7 +242,7 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label class="col-form-label">Cargo<span class="text-danger">*</span></label>
+                                                    <label class="col-form-label">Puesto<span class="text-danger">*</span></label>
                                                     <select class="custom-select form-control" required id="cargo_id" name="cargo_id"></select>
                                                 </div>
                                             </div>
@@ -252,7 +252,7 @@
                                                     <input class="form-control form-control" required id="fecha_ingreso" name="fecha_ingreso" type="date">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            {{-- <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Estatus <span class="text-danger">*</span></label>
                                                     <select class="custom-select form-control" required id="estatus_id" name="estatus_id">
@@ -261,7 +261,7 @@
                                                         <option value="2">INACTIVO</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label class="col-form-label">Descripción Laboral<span class="text-danger">*</span></label>
@@ -1000,7 +1000,7 @@
         }
 
         function renderCargos(data){
-            var html_select_cargos ='<option selected="selected" value="">Seleccione Area de depto.</option>';
+            var html_select_cargos ='<option selected="selected" value="">Seleccione Puesto.</option>';
             for (var i=0; i<data.length; ++i){
                 html_select_cargos += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
                 }
