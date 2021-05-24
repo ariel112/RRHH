@@ -82,6 +82,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
     Route::get('/empleado/cambio_estado/{id_empleado_estado}/{estado}', [EmpleadoController::class, 'cambio_estado_empleado_contrato']);
     Route::get('/empleado/getEmpleadoUser/{idEmpleado}', [EmpleadoController::class, 'getEmpleadoUser']);
+    Route::post('/empleado/actualizacion/deduccion_fija', [EmpleadoController::class, 'updateDeduccionHasEmpleado']);
 
 
 

@@ -547,7 +547,6 @@
                                             </div>
                                         </div>
                                         <!-- /Page Content -->
-
                                         <!-- edit empleado -->
                                         <div id="profile_info" class="modal custom-modal fade" role="dialog">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -963,7 +962,6 @@
                                             </div>
                                         </div>
                                         <!-- Fin Editar Referencia Modal-->
-
                                         <!-- Editar Referencia Modal-->
                                         <div id="deduc_fija_empleado_modal" class="modal custom-modal fade" role="dialog">
                                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1009,9 +1007,6 @@
                                             </div>
                                         </div>
                                         <!-- Fin Editar Referencia Modal-->
-
-
-
                                     </div>
                                 <!-- /Editar Referencia Modal -->
                         @endforeach
