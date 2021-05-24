@@ -90,7 +90,9 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
                                     <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh">
-                                        <option value=""></option>
+                                        <option selected>Elaborado por</option>
+                                        <option > HAZEL ESCOBAR</option>
+                                        <option > ELIA CASTELLANOS</option>
                                     </select>
                                 </div>
                             </div>
@@ -216,7 +218,9 @@
                             <div class="form-group">
                                 <label class="col-form-label">Gerente de Talento Humano</label>
                                 <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh_edit">
-                                    <option value=""></option>
+                                    <option selected="selected">Elaborado por</option>
+                                    <option > HAZEL ESCOBAR</option>
+                                    <option > ELIA CASTELLANOS</option>
                                 </select>
                             </div>
                         </div>
@@ -515,7 +519,7 @@ function gerente() {
     dataType:"json",
     success: function(data){
         // console.log(data);
-        cargo(data);
+        /* cargo(data); */
     },
     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -654,7 +658,7 @@ $(document).ready(function(){
     success: function(data){
 
          //console.log(data);
-        cargo(data, empleado_gerente);
+        /* cargo(data, empleado_gerente); */
     },
     error: function (jqXHR, textStatus, errorThrown) {
 
@@ -669,7 +673,8 @@ function cargo(data, id){
   var html_select = '';
    for (var i=0; i<data.length; ++i)
      if(data[i].id_gerente==id){
-     html_select += '<option selected value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
+     /* html_select += '<option selected value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'; */
+     html_select +=' <option selected value="" disabled >Elaborado por</option>';
      }else{
      html_select += '<option value="'+data[i].id_gerente+'">'+data[i].nombre +'</option>'
 
