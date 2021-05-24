@@ -431,17 +431,54 @@
                                                                                         <ul class="list-group list-group-flush">
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Deduccion por {{ $item_dm->nombre}}:</div>
+                                                                                                <input type="hidden" name="nombre_deduccion_monto_editar" id="nombre_deduccion_monto_editar" value="{{ $item_dm->nombre}}">
                                                                                                 <div class="text">Lps. {{$item->monto_deduccion}}</div>
-                                                                                                <div style="margin-right: auto;"><button type="button" class="btn btn-info btn-sm"><i class="far fa-money-bill-alt"></i></button></div>
+                                                                                                <button type="button" class="btn btn-info btn-sm" style="display:flex; margin-left: auto;" onclick="cargarMontoEspecifico_editar({{ $item->empleado_id }}, {{ $item->deducciones_id }},{{ $item->monto_deduccion }}, '{{ $item_dm->nombre}}')">Cambiar monto de {{ $item_dm->nombre}}</button>
                                                                                             </li>
                                                                                         </ul>
+
                                                                                         @endif
                                                                                     @endforeach
                                                                                 @endforeach
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
+                                                                    <div id="Editar_MontoDeducciónFija" class="modal custom-modal fade" role="dialog">
+                                                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title">DEDUCCIÓN DE {{ $empleado->primer_nombre }} {{ $empleado->primer_apellido}}</h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form  id="formEditar_MontoDeducciónFija" class="form-group" data-parsley-validate>
+                                                                                        <input id="tokenDF" type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                                            <div class="card-header">
+                                                                                                <h3 class="card-header text-secondary text-center">MONTO CORRESPONDIENTE</h3>
+                                                                                            </div>
+                                                                                            <div class="card-body">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-12">
+                                                                                                        <div class="form-group">
+                                                                                                            <input  id="monto_deduccion_fija_editar" type="number" class="form-control mt-3" required value=""  name="monto_deduccion_editar">
+                                                                                                            <input  id="idEmpleado_deduccion_fija_editar" type="hidden" value=""  name="idEmpleado_deduccion_fija_editar">
+                                                                                                            <input  id="iddeduccion_deduccion_fija_editar" type="hidden" value=""  name="iddeduccion_deduccion_fija_editar">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="submit-section">
+                                                                                            <button class="btn btn-primary">Editar</button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
                                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
@@ -973,6 +1010,8 @@
                                         </div>
                                         <!-- Fin Editar Referencia Modal-->
 
+
+
                                     </div>
                                 <!-- /Editar Referencia Modal -->
                         @endforeach
@@ -1029,6 +1068,63 @@
                 editarReferencia();
             }
         });
+
+        $('#formEditar_MontoDeducciónFija').submit(function(e){
+            e.preventDefault();
+            actualizarMontoDeduccionFijaHasEmpleado();
+        });
+
+        function actualizarMontoDeduccionFijaHasEmpleado(){
+            /* let nombre_deduccion = $('#nombre_deduccion_monto_editar').val(); */
+            var data = new FormData($('#formEditar_MontoDeducciónFija').get(0));
+                Swal.fire({
+                        title: 'Confirme actualización del monto. ',
+                        showDenyButton: true,
+                        showCancelButton: true,
+                        confirmButtonText: `Confirmo`,
+                        denyButtonText: `No actualizar`,
+                    }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type:"POST",
+                            url: "/empleado/actualizacion/deduccion_fija",
+                            data: data,
+                            contentType: false,
+                            cache: false,
+                            processData:false,
+                            dataType:"json",
+                            success: function(data){
+                                console.log(data);
+                                $('#formEditar_MontoDeducciónFija').trigger("reset");
+                                $('#Editar_MontoDeducciónFija').modal('hide');
+                                Swal.fire({
+                                    icon: 'success',
+                                    text: 'Monto actualizado con éxito!',
+                                    timer: 1500
+                                    });
+                                    location.reload();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                console.log(jqXHR, textStatus, errorThrown);
+                            }
+                        });
+                    } else if (result.isDenied) {
+                        Swal.fire('No se hizo ningún cambio', '', 'info')
+                        $('#formEditar_MontoDeducciónFija').trigger("reset");
+                        $('#Editar_MontoDeducciónFija').modal('hide');
+                    }
+                })
+        }
+
+        function cargarMontoEspecifico_editar(id_empleado, deducciones_id, monto_deduccion, nombre_monto){
+            /* console.log("ID EMPLEADO: "+id_empleado+" DEDUCCIONES ID: "+deducciones_id ); */
+            /* console.log(nombre_monto); */
+            $("#monto_deduccion_fija_editar").val(monto_deduccion);
+            $("#iddeduccion_deduccion_fija_editar").val(deducciones_id);
+            $("#idEmpleado_deduccion_fija_editar").val(id_empleado);
+            $("#Editar_MontoDeducciónFija").modal("show");
+        }
 
         /* SELECCION DE DEPARTAMENTOS Y CARGOS EN EDITAR */
 
