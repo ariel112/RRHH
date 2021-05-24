@@ -421,18 +421,16 @@ class EmpleadoController extends Controller
     }
 
     public function updateDeduccionHasEmpleado(Request $request){
-        $parentezco = $request['parentezco_referencia_edit'];
-        $direccion = $request['direccion_referencia_edit'];
-        $estatus_referencia_id =$request['estado_referencia_edit'];
-        DB::table('referencia')
-        ->where('id', $id)
-        ->update(['nombre' => $nombre,
-          'identidad' => $identidad,
-          'telefono' => $telefono,
-          'email' => $email,
-          'direccion' => $direccion,
-          'parentezco' => $parentezco,
-          'estatus_referencia_id' => $estatus_referencia_id]);
+        $empleado_id = $request['idEmpleado_deduccion_fija_editar'];
+        $deducciones_id = $request['iddeduccion_deduccion_fija_editar'];
+        $monto_deduccion = $request['monto_deduccion_fija_editar'];
+        /* dd($monto_deduccion); */
+        DB::table('empleado_has_deducciones_fijas')
+        ->where('empleado_id', $empleado_id)
+        ->where('deducciones_id', $deducciones_id)
+        ->update(['monto_deduccion' => $monto_deduccion]);
+
+        return response()->json('EXITO');
     }
 
     /**

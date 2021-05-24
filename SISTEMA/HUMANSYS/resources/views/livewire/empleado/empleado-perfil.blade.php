@@ -463,7 +463,7 @@
                                                                                                 <div class="row">
                                                                                                     <div class="col-12">
                                                                                                         <div class="form-group">
-                                                                                                            <input  id="monto_deduccion_fija_editar" type="number" class="form-control mt-3" required value=""  name="monto_deduccion_editar">
+                                                                                                            <input  id="monto_deduccion_fija_editar" name="monto_deduccion_fija_editar" type="number" class="form-control mt-3" required value=""  >
                                                                                                             <input  id="idEmpleado_deduccion_fija_editar" type="hidden" value=""  name="idEmpleado_deduccion_fija_editar">
                                                                                                             <input  id="iddeduccion_deduccion_fija_editar" type="hidden" value=""  name="iddeduccion_deduccion_fija_editar">
                                                                                                         </div>
