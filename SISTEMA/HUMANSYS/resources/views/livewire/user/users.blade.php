@@ -4,10 +4,11 @@
         <div class="page-header">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3 class="page-title">Usuarios</h3>
+                    <h3 class="page-title">Niveles de acceso al sistema</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">usuarios</li>
+                        <li class="breadcrumb-item active">Roles</li>
+                        <li class="breadcrumb-item active">Usuarios</li>
                     </ul>
                 </div>
             </div>
@@ -75,19 +76,21 @@
                                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                     <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <div class="form-group" wire:ignore wire:key="first">
                                                 <label class="col-form-label focus-label">Colaborador <span class="text-danger">*</span></label>
-                                                <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
-                                                </select>
+                                                {{-- <select class="js-data-example-ajax form-control" required style="width: 350px; height:40px;" name="empleado_id" id="empleado_id">
+                                                </select> --}}
+                                                <input type="text" id="nombre_empleado" name="nombre_empleado" disabled value="">
                                             </div>
                                             <input id="empleadoIdentidad" name="empleadoIdentidad" type="hidden" value="">
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-6">
+                                            <label class="col-form-label focus-label">Rol en el sistema <span class="text-danger">*</span></label>
                                             <select name="select_tipoUser" id="select_tipoUser" class="form-control" required>
                                             </select>
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-12">
                                             <button href="javascript:void(0);" class="btn btn-success btn-lg btn-block m-auto" type="submit" id="btnGuardarTipoUser">Guardar</button>
                                         </div>
                                     </div>
@@ -136,17 +139,14 @@
                 {data:'accion'}
         ]});
 
-         $('#empleado_id').select2({
+        /* $('#empleado_id').select2({
 
 
                 ajax: {
                     type: 'GET',
                     url:'/empleado_contrato',
                     processResults: function (data) {
-                        /* console.log(data[0].text); */
-                        // console.log(data);
                         getEm(data);
-                        /* console.log(data[1]); */
 
                         $('#empleado_id').select2('data')
                         return {
@@ -155,29 +155,25 @@
 
                     }
                 }
-        });
-        function getEm(data){
-            $("#empleado_id").on("select2:select", function (e) {
-                var id_select = $(e.currentTarget).val();
-                    /* console.log(id_select); */
-                for (let i = 0; i < data.length; i++) {
-                    if(data[i].id == id_select){
-                        $('#empleadoIdentidad').val(data[i].identidad);
-                        /* document.formUserSelect.identidad_empleado.value= data[i].identidad; */
-                        /* console.log(data[i].identidad); */
+        }); */
+        /* function getEm(data){
+                $("#empleado_id").on("select2:select", function (e) {
+                    var id_select = $(e.currentTarget).val();
+                    for (let i = 0; i < data.length; i++) {
+                        if(data[i].id == id_select){
+                            $('#empleadoIdentidad').val(data[i].identidad);
+                        }
                     }
-                }
 
-                // console.log(id_select)
-            });
-        }
+                });
+        } */
 
         function render_tipoUsers(data){
-            var html_render_tipoUsers ='<option selected="selected" value="">SELECCIONE TIPO DE USUARIO</option>';
-            for (var i=0; i<data.length; ++i){
-                html_render_tipoUsers += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
-                }
-            $('#select_tipoUser').html(html_render_tipoUsers);
+                var html_render_tipoUsers ='<option selected="selected" value="">SELECCIONE</option>';
+                for (var i=0; i<data.length; ++i){
+                    html_render_tipoUsers += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                    }
+                $('#select_tipoUser').html(html_render_tipoUsers);
         }
 
         function cargo_tipoUsers(){
@@ -225,6 +221,25 @@
                         console.log(jqXHR, textStatus, errorThrown);
                     }
                 })
+        }
+
+        function cargarEmpleadoUser(idempleado){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/getEmpleadoUser/"+idempleado,
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    /* console.log(data); */
+                    $('#empleadoIdentidad').val(data[0].identidad);
+                    $('#nombre_empleado').val(data[0].nombre);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
         }
     </script>
 

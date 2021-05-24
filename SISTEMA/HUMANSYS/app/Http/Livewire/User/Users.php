@@ -53,15 +53,18 @@ class Users extends Component
             ->addColumn('nivel', function ($users) {
                 $tipo_user = DB::SELECTONE("select * from tipo_user where id = '".$users->id_tipo_user."'");
                 if($users->id_tipo_user == null){
-                    return '<td><button type="button" class="btn btn-dangerbtn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Sin asignación</button></td>';
+                    /* return '<td><button type="button" class="btn btn-dangerbtn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Sin asignación</button></td>'; */
+
+                    return '<td><span class="badge badge-secondary">Sin asignación</span></td>';
                 }else{
-                    return '<td><button type="button" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">'.$tipo_user->nombre.'</button></td>';
+                    /* return '<td><button type="button" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">'.$tipo_user->nombre.'</button></td>'; */
+                    return '<td><span class="badge badge-warning">'.$tipo_user->nombre.'</span></td>';
                 }
 
             })
             ->addColumn('accion', function ($users) {
                 $empleados = DB::SELECTONE("select * from empleado where identidad = '".$users->identidad."'");
-                return '<td><button type="button" class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#modal_asignar_usuario">ASIGNAR ROL</button></td>';
+                return '<td><button type="button" class="btn btn-outline-primary" href="" data-toggle="modal" data-target="#modal_asignar_usuario" onclick="cargarEmpleadoUser('.$empleados->id.')">ASIGNAR ROL</button></td>';
             })
             ->rawColumns(['nombre', 'identidad','nivel','accion'])
             ->make(true);

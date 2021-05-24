@@ -259,8 +259,7 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    {
+    public function show(){
 
     }
 
@@ -272,6 +271,11 @@ class EmpleadoController extends Controller
     public function gettipodeducVariable(){
         $tipodeducVariabl = DB::SELECT("select * from tipo_deducciones_variables;");
         return $tipodeducVariabl;
+    }
+
+    public function getEmpleadoUser($idEmpleado){
+        $empleado = DB::SELECT("select * from empleado where id = '".$idEmpleado."';");
+        return $empleado;
     }
 
     public function getMunicipios($idDepto){

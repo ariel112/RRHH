@@ -81,6 +81,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/empleado/deducciones/desactivar/{id}', [EmpleadoController::class, 'desactivarDeduccion']);
     Route::get('/tipoDeduccionVariable', [EmpleadoController::class, 'gettipodeducVariable']);
     Route::get('/empleado/cambio_estado/{id_empleado_estado}/{estado}', [EmpleadoController::class, 'cambio_estado_empleado_contrato']);
+    Route::get('/empleado/getEmpleadoUser/{idEmpleado}', [EmpleadoController::class, 'getEmpleadoUser']);
 
 
 
@@ -105,6 +106,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/tipoUsers', [Users::class, 'listar_tipos']);
     Route::post('/empleado/tipoUsuario', [Users::class, 'guardarTipoUsuario']);
     Route::get('/user/listar_usuarios', [Users::class, 'listar_usuarios']);
+
 
 
 
