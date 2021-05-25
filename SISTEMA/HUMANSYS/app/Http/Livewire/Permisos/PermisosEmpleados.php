@@ -163,8 +163,7 @@ class PermisosEmpleados extends Component
     }
 
 
-    public function listarPermisosEmpleados()
-    {
+    public function listarPermisosEmpleados(){
 
         // $permisos = permisos::join('estado_permiso','permisos.estado_permiso_jefe_id','=','estado_permiso.id')
 
@@ -240,11 +239,8 @@ class PermisosEmpleados extends Component
 
     public function datosActualizarPermiso($id)
     {
-
         $permiso = permisos::where('id', '=', $id)
             ->get();
-
-
         return response()->json(['permiso' => $permiso[0]]);
     }
 
@@ -278,7 +274,7 @@ class PermisosEmpleados extends Component
                 ], 200);
             } else {
 
-                $permiso = permisos::find($request['id']);
+                /* $permiso = permisos::find($request['id']);
 
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
                 $permiso->nombre = $request['tipoPermisoTexto'];
@@ -293,8 +289,8 @@ class PermisosEmpleados extends Component
                 $permiso->hora_inicio = null;
                 $permiso->hora_final = null;
 
-                $permiso->save();
-
+                $permiso->save(); */
+                DB::delete("delete from permisos where = '".$request['id']."'");
                 return response()->json([
                     'message' => 'Permiso actualizado con exito',
                     'color' => 'success'

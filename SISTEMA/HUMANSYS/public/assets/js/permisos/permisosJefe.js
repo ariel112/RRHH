@@ -10,11 +10,11 @@ var idDenegar ="";
 
 
 function opciones() {
-   
+
     axios
         .get("/listado/permisos")
         .then((response) => {
-        
+
             let lista =
                 '<option selected="true" disabled="disabled">--Seleccione un tipo permiso--</option>';
             response.data.tipos.forEach((element) => {
@@ -25,18 +25,18 @@ function opciones() {
 
             document.getElementById("permisosEmpleado").innerHTML = lista;
             document.getElementById("selectEdit").innerHTML = lista;
-           
+
 
         })
-        .catch((err) => {        
+        .catch((err) => {
             console.error(err);
         });
 }
 
 function tableEmpleadoJefe(){
-   
+
        console.log("entro")
-        
+
     $('#tablePermisosJefe').DataTable({
         ajax:'/listar/permisos/jefe',
         processing: true,
@@ -48,13 +48,13 @@ function tableEmpleadoJefe(){
             {data: 'fecha_final', name: 'fecha_final'},
             {data: 'motivo', name: 'motivo'},
             {data: 'estado_jefe_aprueba', name: 'estado_jefe_aprueba'},
-            {data: 'nombre_jefe', name: 'nombre_jefe'},              
+            {data: 'nombre_jefe', name: 'nombre_jefe'},
             {data: 'estado_rrhh_aprueba', name: 'estado_rrhh_aprueba'},
             {data: 'nombre_rrhh', name: 'nombre_rrhh'},
             {data: 'acciones', name: 'acciones', orderable: false, searchable: false},
-            
 
-            
+
+
         ]
     });
 
@@ -69,7 +69,7 @@ function modalAprobar(id){
 
 
     return;
-    
+
 
 
 }
@@ -113,12 +113,12 @@ function denegarPermiso(){
          })
          .catch( err =>{
            console.error(err.response.data.exception);
-   
+
          })
-   
-   
+
+
         return;
-   
+
    }
 
 function enviarPermiso() {
@@ -146,9 +146,9 @@ function enviarPermiso() {
     //funcion para comparar fechas
     let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
 
- 
 
-  
+
+
 
     if (!fechasValidas) {
         Swal.fire({
@@ -162,7 +162,7 @@ function enviarPermiso() {
         return;
     }
 
-   
+
 
     if (y && x && y == x) {
         let horaInicio = document.getElementById("horaInicio").value;
@@ -172,7 +172,7 @@ function enviarPermiso() {
 
         let horasValidas = this.validarHora(horaInicio, horaFinal)
 
-       
+
 
         if(!horasValidas){
             Swal.fire({
@@ -182,7 +182,7 @@ function enviarPermiso() {
                 icon: "error",
                 confirmButtonText: "Cerrar",
             });
-            
+
             return;
         }
 
@@ -324,8 +324,6 @@ function enviarPermiso() {
     }
 }
 
-
-
 function verificarData() {
     let y = document.getElementById("fechaInicio").value;
     let ddi = y.substring(0, 2);
@@ -383,7 +381,7 @@ function verificarData() {
 function compararFecha(yyi, mmi, ddi, yyf, mmf, ddf) {
 
     let mmInit = mmi-1;
-    let mmFin = mmf-1;//debo restar 1 al mes 
+    let mmFin = mmf-1;//debo restar 1 al mes
 
 
     let fechaInicio = new Date(yyi, mmInit, ddi);
@@ -392,7 +390,7 @@ function compararFecha(yyi, mmi, ddi, yyf, mmf, ddf) {
     fechaInicio.setHours(0,0,0,0);//como solo me interesa la fecha debo setear las horas a cero
     fechafinal.setHours(0,0,0,0);
 
-    
+
 
    if(fechafinal > fechaInicio){
         return true;
@@ -410,33 +408,32 @@ return false;
 function validarHora(horaInicio, horaFinal){
 
     console.log(horaInicio,horaFinal)
- 
+
     let horaInicial = new Date(0,0,0,horaInicio.substring(0,2),horaInicio.substring(3,5),0)
     let horaFinalizacion = new Date(0,0,0,horaFinal.substring(0,2),horaFinal.substring(3,5),0)
- 
+
     if(horaFinalizacion > horaInicial){
      console.log("hora final es mayor")
         return true
-      
+
     }
- 
+
     if(horaFinalizacion.getTime() == horaInicial.getTime()){
         console.log("son iguales")
         return false
     }
- 
- 
- 
+
+
+
    console.log("error")
- 
+
     return false;
  }
- 
- 
+
+
  function botonVerificar(){
      document.getElementById("enviarEdit").className = " d-none";
      document.getElementById("verificarEdit").className = "submit-section d-block";
-     
- 
+
+
  }
- 
