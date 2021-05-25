@@ -254,9 +254,9 @@ class PermisosEmpleados extends Component
 
                 $permiso = permisos::find($request['id']);
 
-                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
-                $permiso->nombre = $request['tipoPermisoTexto'];
-                $permiso->estado = '3'; //pendiente
+                $permiso->tipo_permiso_id = $request['tipoPermisoTexto'];
+                /* $permiso->nombre = $request['tipoPermisoTexto']; */
+               /*  $permiso->estado = '3';  *///pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
                 $permiso->fecha_final = $request['fechaFinal'];
 
@@ -273,7 +273,7 @@ class PermisosEmpleados extends Component
                     'color' => 'success'
                 ], 200);
             } else {
-
+                DB::delete("delete from permisos where permiso_id = '".$request['id']."'");
                 /* $permiso = permisos::find($request['id']);
 
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
@@ -290,7 +290,7 @@ class PermisosEmpleados extends Component
                 $permiso->hora_final = null;
 
                 $permiso->save(); */
-                DB::delete("delete from permisos where = '".$request['id']."'");
+
                 return response()->json([
                     'message' => 'Permiso actualizado con exito',
                     'color' => 'success'
