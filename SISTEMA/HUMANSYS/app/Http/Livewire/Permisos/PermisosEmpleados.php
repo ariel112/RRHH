@@ -60,7 +60,7 @@ class PermisosEmpleados extends Component
 
 
 
-                $permiso->estado = '3'; //pendiente
+                /* $permiso->estado = '3';  *///pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
                 $permiso->fecha_final = $request['fechaInicio'];
                 $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
@@ -138,10 +138,6 @@ class PermisosEmpleados extends Component
                     $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
                     $permiso->fecha_final_aprobada = $request['fechaFinal'];
                     $permiso->save();
-
-
-
-
                 }
 
 
@@ -249,6 +245,11 @@ class PermisosEmpleados extends Component
     {
 
         try {
+            $identidadUser = Auth::user()->identidad;
+
+            $idEmpleado = empleado::where('identidad', '=', $identidadUser)
+                ->select('id')
+                ->get();
 
             if ($request['unDia'] == 1) {
 
@@ -290,7 +291,69 @@ class PermisosEmpleados extends Component
                 $permiso->hora_final = null;
 
                 $permiso->save(); */
+                $fecha1 = new DateTime($request['fechaInicio']);//fecha inicio
+                $fecha2 = new DateTime($request['fechaFinal']);//fecha final
+                $diff = $fecha1->diff($fecha2);
+                $dias=$diff->days+1;
 
+                //$permisosPorDia=[];
+
+
+
+                    $permiso = new permisos;
+
+
+
+                    //$permiso->estado = '3'; //pendiente
+                    $permiso->fecha_inicio = $request['fechaInicio'];
+                    $permiso->fecha_final = $request['fechaInicio'];
+                    $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
+                    $permiso->fecha_final_aprobada = $request['fechaFinal'];
+                    $permiso->hora_inicio = '08:00:00';
+                    $permiso->hora_final = '17:00:00';
+                    $permiso->empleado_id = $idEmpleado[0]['id'];
+                    $permiso->tipo_permiso_id = $request['tipoPermiso'];
+                    $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
+                    $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                    $permiso->motivo = $request['motivo'];
+
+                    $permiso->save();
+                    $idPErmisoPadre = $permiso->id;
+                    $permisoCreado = permisos::find($permiso->id);
+                    $permisoCreado->permiso_id =   $idPErmisoPadre;
+                    $permisoCreado->save();
+
+
+                for($i=1; $i< $dias;$i++){
+
+                    // $suma = strtotime($request['fechaInicio'].'+'.$i.' '.'days');
+                    // array_push($permisosPorDia, ['fecha'=> date("Y-m-d",$suma)]);
+
+                    $permiso = new permisos;
+
+                    $fechaInicio =  strtotime($request['fechaInicio'].'+'.$i.' '.'days');
+
+
+
+                    //$permiso->estado = '3'; //pendiente
+                    $permiso->fecha_inicio =  date("Y-m-d",$fechaInicio);
+                    $permiso->fecha_final = date("Y-m-d",$fechaInicio);
+                    $permiso->hora_inicio = '08:00:00';
+                    $permiso->hora_final = '17:00:00';
+                    $permiso->empleado_id = $idEmpleado[0]['id'];
+                    $permiso->tipo_permiso_id = $request['tipoPermiso'];
+                    $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
+                    $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                    $permiso->motivo = $request['motivo'];
+                    $permiso->permiso_id =   $idPErmisoPadre;
+                    $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
+                    $permiso->fecha_final_aprobada = $request['fechaFinal'];
+                    $permiso->save();
+
+
+
+
+                }
                 return response()->json([
                     'message' => 'Permiso actualizado con exito',
                     'color' => 'success'
