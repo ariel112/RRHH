@@ -7,14 +7,14 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col">
-                    <h3 class="page-title">Cargos</h3>
+                    <h3 class="page-title">Puestos de Trabajo</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Cargos</li>
+                        <li class="breadcrumb-item active">Puestos</li>
                     </ul>
                 </div>
                 <div class="col-auto float-right ml-auto">
-                    <a  class="btn add-btn text-white" data-toggle="modal" data-target="#crear_cargos" ><i class="fa fa-plus"></i> Crear cargo</a>
+                    <a  class="btn add-btn text-white" data-toggle="modal" data-target="#crear_cargos" ><i class="fa fa-plus"></i> Ingresar puestos</a>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                         <thead>
                             <tr>
                                 {{-- <th>#</th> --}}
-                                <th>Cargo</th>
+                                <th>Puesto</th>
                                 <th>Area</th>
                                 <th>Gerencia</th>
                                 <th>Funciones</th>
@@ -62,7 +62,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-success">Crear cargo</h5>
+                    <h5 class="modal-title text-success">Crear Puesto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -99,14 +99,14 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Nombre del Puesto <span class="text-danger">*</span></label>
                                     <input class="form-control" required id="cargo" name="cargo" type="text">
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label class="col-form-label">Funciones del cargo <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Funciones del Puesto <span class="text-danger">*</span></label>
                                      <br>
 
                                     <span id="add_field" value="adicionar" class="btn btn-success"><i class="fa fa-plus text-white"></i></span>
@@ -137,7 +137,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-warning"><i class="fa fa-edit"></i> Editar Cargo</h5>
+                    <h5 class="modal-title text-warning"><i class="fa fa-edit"></i> Editar Puesto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -173,14 +173,14 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Nombre del Puesto <span class="text-danger">*</span></label>
                                     <input required class="form-control" name="cargo_nombre" type="text" id="cargo_edit">
                                 </div>
                             </div>
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label class="col-form-label">Funciones del cargo <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Funciones del Puesto <span class="text-danger">*</span></label>
                                      <br>
 
                                     <span id="add_field_edit" value="adicionar" class="btn btn-success"><i class="fa fa-plus text-white"></i></span>
@@ -212,7 +212,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-success">Cargo</h5>
+                    <h5 class="modal-title text-success">Puesto</h5>
                     <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -241,7 +241,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="form-group">
-                                    <label class="col-form-label">Nombre del cargo <span class="text-danger">*</span></label>
+                                    <label class="col-form-label">Nombre del Puesto <span class="text-danger">*</span></label>
                                     <input class="form-control"  id="vwcargo" type="text" disabled>
                                 </div>
                             </div>
@@ -249,7 +249,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <td colspan="8" class="text-center">
-                                        <h4>Funciones del cargo:</h4>
+                                        <h4>Funciones del Puesto:</h4>
                                         <div id="areafunciones" class="grade-span">
 
                                         </div>
