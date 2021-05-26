@@ -420,6 +420,19 @@ class EmpleadoController extends Controller
               'estatus_referencia_id' => $estatus_referencia_id]);
     }
 
+    public function updateDeduccionHasEmpleado(Request $request){
+        $empleado_id = $request['idEmpleado_deduccion_fija_editar'];
+        $deducciones_id = $request['iddeduccion_deduccion_fija_editar'];
+        $monto_deduccion = $request['monto_deduccion_fija_editar'];
+        /* dd($monto_deduccion); */
+        DB::table('empleado_has_deducciones_fijas')
+        ->where('empleado_id', $empleado_id)
+        ->where('deducciones_id', $deducciones_id)
+        ->update(['monto_deduccion' => $monto_deduccion]);
+
+        return response()->json('EXITO');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -163,8 +163,7 @@ class PermisosEmpleados extends Component
     }
 
 
-    public function listarPermisosEmpleados()
-    {
+    public function listarPermisosEmpleados(){
 
         // $permisos = permisos::join('estado_permiso','permisos.estado_permiso_jefe_id','=','estado_permiso.id')
 
@@ -240,11 +239,8 @@ class PermisosEmpleados extends Component
 
     public function datosActualizarPermiso($id)
     {
-
         $permiso = permisos::where('id', '=', $id)
             ->get();
-
-
         return response()->json(['permiso' => $permiso[0]]);
     }
 
@@ -258,9 +254,9 @@ class PermisosEmpleados extends Component
 
                 $permiso = permisos::find($request['id']);
 
-                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
-                $permiso->nombre = $request['tipoPermisoTexto'];
-                $permiso->estado = '3'; //pendiente
+                $permiso->tipo_permiso_id = $request['tipoPermisoTexto'];
+                /* $permiso->nombre = $request['tipoPermisoTexto']; */
+               /*  $permiso->estado = '3';  *///pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
                 $permiso->fecha_final = $request['fechaFinal'];
 
@@ -277,8 +273,8 @@ class PermisosEmpleados extends Component
                     'color' => 'success'
                 ], 200);
             } else {
-
-                $permiso = permisos::find($request['id']);
+                DB::delete("delete from permisos where permiso_id = '".$request['id']."'");
+                /* $permiso = permisos::find($request['id']);
 
                 $permiso->tipo_permiso = $request['tipoPermisoTexto'];
                 $permiso->nombre = $request['tipoPermisoTexto'];
@@ -293,7 +289,7 @@ class PermisosEmpleados extends Component
                 $permiso->hora_inicio = null;
                 $permiso->hora_final = null;
 
-                $permiso->save();
+                $permiso->save(); */
 
                 return response()->json([
                     'message' => 'Permiso actualizado con exito',

@@ -1,29 +1,29 @@
 <!-- Page Wrapper -->
             <div class="page-wrapper">
-			
+
 				<!-- Page Content -->
                 <div class="content container-fluid">
-				
+
 					<!-- Page Header -->
-					{{-- <div class="page-header">
+					<div class="page-header">
 						<div class="row">
 							<div class="col-sm-12">
-								<h3 class="page-title">Welcome Admin!</h3>
+								<h3 class="page-title">Inicio</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item active">Dashboard</li>
 								</ul>
-							</div> 
+							</div>
 						</div>
-					</div> --}}
+					</div>
 					<!-- /Page Header -->
-				
+
 					<div class="row">
 						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
 							<div class="card dash-widget">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>4</h3>
+										<h3>7</h3>
 										<span>Gerencias</span>
 									</div>
 			 					</div>
@@ -32,51 +32,61 @@
 						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
 							<div class="card dash-widget">
 								<div class="card-body">
-									<span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
+									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>44</h3>
-										<span>Clients</span>
+										<h3>32</h3>
+										<span>Areas</span>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+                        <div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
+							<div class="card dash-widget">
+								<div class="card-body">
+									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
+									<div class="dash-widget-info">
+										<h3>56</h3>
+										<span>Puestos</span>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
 							<div class="card dash-widget">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
 									<div class="dash-widget-info">
 										<h3>98</h3>
-										<span>Empleados</span>
+										<span>Empleados Activos actualmente</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
 								<div class="col-md-6 text-center">
 									<div class="card">
 										<div class="card-body">
-											<h3 class="card-title">Total Revenue</h3>
-											<div id="bar-charts"></div>
+											<h3 class="card-title">Asistencias frente a Inasistencias</h3>
+											<div id="barras-charts"></div>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-6 text-center">
 									<div class="card">
 										<div class="card-body">
-											<h3 class="card-title">Sales Overview</h3>
-											<div id="line-charts"></div>
+											<h3 class="card-title">Planillas</h3>
+											<div id="lineas-charts"></div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card-group m-b-30">
@@ -97,7 +107,7 @@
 										<p class="mb-0">Overall Employees 218</p>
 									</div>
 								</div>
-							
+
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
@@ -115,7 +125,7 @@
 										<p class="mb-0">Previous Month <span class="text-muted">$1,15,852</span></p>
 									</div>
 								</div>
-							
+
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
@@ -133,7 +143,7 @@
 										<p class="mb-0">Previous Month <span class="text-muted">$7,500</span></p>
 									</div>
 								</div>
-							
+
 								<div class="card">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
@@ -152,10 +162,10 @@
 									</div>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
-					
-					<!-- Statistics Widget -->
+
+					{{-- <!-- Statistics Widget -->
 					<div class="row">
 						<div class="col-md-12 col-lg-12 col-xl-4 d-flex">
 							<div class="card flex-fill dash-statistics">
@@ -196,7 +206,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-md-12 col-lg-6 col-xl-4 d-flex">
 							<div class="card flex-fill">
 								<div class="card-body">
@@ -234,7 +244,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-md-12 col-lg-6 col-xl-4 d-flex">
 							<div class="card flex-fill">
 								<div class="card-body">
@@ -281,7 +291,7 @@
 						</div>
 					</div>
 					<!-- /Statistics Widget -->
-					
+
 					<div class="row">
 						<div class="col-md-6 d-flex">
 							<div class="card card-table flex-fill">
@@ -349,7 +359,7 @@
 									<h3 class="card-title mb-0">Payments</h3>
 								</div>
 								<div class="card-body">
-									<div class="table-responsive">	
+									<div class="table-responsive">
 										<table class="table custom-table table-nowrap mb-0">
 											<thead>
 												<tr>
@@ -398,7 +408,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="col-md-6 d-flex">
 							<div class="card card-table flex-fill">
@@ -711,10 +721,60 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				
+					</div> --}}
+
 				</div>
 				<!-- /Page Content -->
 
             </div>
 			<!-- /Page Wrapper -->
+
+            @section('script')
+
+                <script>
+                    $(document).ready(function() {
+                        // barras Chart
+                        Morris.Bar({
+                            element: 'barras-charts',
+                            data: [
+                                { y: '2006', a: 95, b: 70 },
+                                { y: '2007', a: 75,  b: 65 },
+                                { y: '2008', a: 50,  b: 40 },
+                                { y: '2009', a: 75,  b: 65 },
+                                { y: '2010', a: 50,  b: 40 },
+                                { y: '2011', a: 75,  b: 65 },
+                                { y: '2012', a: 100, b: 90 }
+                            ],
+                            xkey: 'y',
+                            ykeys: ['a', 'b'],
+                            labels: ['Total Income', 'Total Outcome'],
+                            lineColors: ['#ff9b44','#fc6075'],
+                            lineWidth: '3px',
+                            barColors: ['#ff9b44','#fc6075'],
+                            resize: true,
+                            redraw: true
+                        });
+                        // lineas Chart
+                        Morris.Line({
+                            element: 'lineas-charts',
+                            data: [
+                                { y: '2006', a: 50, b: 90 },
+                                { y: '2007', a: 75,  b: 65 },
+                                { y: '2008', a: 50,  b: 40 },
+                                { y: '2009', a: 75,  b: 65 },
+                                { y: '2010', a: 50,  b: 40 },
+                                { y: '2011', a: 75,  b: 65 },
+                                { y: '2012', a: 100, b: 50 }
+                            ],
+                            xkey: 'y',
+                            ykeys: ['a', 'b'],
+                            labels: ['Total Sales', 'Total Revenue'],
+                            lineColors: ['#ff9b44','#fc6075'],
+                            lineWidth: '3px',
+                            resize: true,
+                            redraw: true
+                        });
+                    });
+                </script>
+
+            @endsection

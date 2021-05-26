@@ -57,9 +57,9 @@ function enviarPermiso() {
     //funcion para comparar fechas
     let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
 
- 
 
-  
+
+
 
     if (!fechasValidas) {
         Swal.fire({
@@ -73,7 +73,7 @@ function enviarPermiso() {
         return;
     }
 
-   
+
 
     if (y && x && y == x) {
         let horaInicio = document.getElementById("horaInicio").value;
@@ -83,7 +83,7 @@ function enviarPermiso() {
 
         let horasValidas = this.validarHora(horaInicio, horaFinal)
 
-       
+
 
         if(!horasValidas){
             Swal.fire({
@@ -93,7 +93,7 @@ function enviarPermiso() {
                 icon: "error",
                 confirmButtonText: "Cerrar",
             });
-            
+
             return;
         }
 
@@ -315,14 +315,14 @@ function tableEmpleado() {
 
 function editarPermiso(idPermiso) {
     idEdit = idPermiso;
-
+    console.log(idEdit);
     document.getElementById("permisoEdit").reset();
     document.getElementById("verificarEdit").className =
         " submit-section d-block";
     document.getElementById("enviarEdit").className = "d-none";
 
 
-  
+
 
     axios
         .put("/datos/permiso/" + idPermiso)
@@ -394,7 +394,7 @@ function verificarDataEdit() {
 
     let fechaFinal = yyf + "-" + mmf + "-" + ddf;
 
- 
+
     if (y && x) {
 
            //verificar fechas aqui
@@ -457,13 +457,13 @@ function enviarPermisoEdit() {
 
         let fechaFinal = yyf + "-" + mmf + "-" + ddf;
 
-     
+
 
         let tipoPermiso = document.getElementById("selectEdit").value;
         let option = document.getElementById("selectEdit");
         let tipoPermisoText = option.options[option.selectedIndex].text;
 
-       
+
 
         if(tipoPermiso =="--Seleccione un tipo permiso--"){
             Swal.fire({
@@ -479,7 +479,7 @@ function enviarPermisoEdit() {
           //verificar fechas
 
     let fechasValidas = this.compararFecha(yyi, mmi, ddi, yyf, mmf, ddf);
- 
+
 
     if (!fechasValidas) {
         Swal.fire({
@@ -491,10 +491,10 @@ function enviarPermisoEdit() {
         });
 
         return;
-    }    
+    }
 
-       
-           
+
+
 
         if (y && x && y == x) {
             let horaInicio = document.getElementById("horaInicioEdit").value;
@@ -504,7 +504,7 @@ function enviarPermisoEdit() {
 
             let horasValidas = this.validarHora(horaInicio, horaFinal)
 
-       
+
 
             if(!horasValidas){
                 Swal.fire({
@@ -514,11 +514,11 @@ function enviarPermisoEdit() {
                     icon: "error",
                     confirmButtonText: "Cerrar",
                 });
-                
+
                 return;
             }
 
-           
+
                         if (tipoPermisoText && tipoPermiso &&  motivo &&  horaInicio &&   horaFinal  ) {
                             axios
                                 .put("/editar/permiso", {
@@ -558,7 +558,7 @@ function enviarPermisoEdit() {
                                     Swal.fire({
                                         title: "Error!",
                                         text:
-                                            "Ha ocurrido un error, por favor inténtelo nuevamente.",
+                                            "Ha ocurrido un error, por favor inténtelo nuevamente axios.",
                                         icon: "error",
                                         confirmButtonText: "Cerrar",
                                     });
@@ -587,8 +587,8 @@ function enviarPermisoEdit() {
                     icon: "error",
                     confirmButtonText: "Cerrar",
                 });
-        
-                return;   } 
+
+                return;   }
 
 
             if (tipoPermisoText && tipoPermiso && motivo) {
@@ -665,7 +665,7 @@ function enviarPermisoEdit() {
 function compararFecha(yyi, mmi, ddi, yyf, mmf, ddf) {
 
     let mmInit = mmi-1;
-    let mmFin = mmf-1;//debo restar 1 al mes 
+    let mmFin = mmf-1;//debo restar 1 al mes
 
 
     let fechaInicio = new Date(yyi, mmInit, ddi);
@@ -674,7 +674,7 @@ function compararFecha(yyi, mmi, ddi, yyf, mmf, ddf) {
     fechaInicio.setHours(0,0,0,0);//como solo me interesa la fecha debo setear las horas a cero
     fechafinal.setHours(0,0,0,0);
 
-    
+
 
    if(fechafinal > fechaInicio){
         return true;
@@ -699,7 +699,7 @@ function validarHora(horaInicio, horaFinal){
    if(horaFinalizacion > horaInicial){
     console.log("hora final es mayor")
        return true
-     
+
    }
 
    if(horaFinalizacion.getTime() == horaInicial.getTime()){
@@ -718,6 +718,6 @@ function validarHora(horaInicio, horaFinal){
 function botonVerificar(){
     document.getElementById("enviarEdit").className = " d-none";
     document.getElementById("verificarEdit").className = "submit-section d-block";
-    
+
 
 }
