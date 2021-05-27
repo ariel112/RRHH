@@ -1,9 +1,9 @@
 <!--Permiso del feje inmediato -->
     <div class="page-wrapper">
-			
+
         <!-- Page Content -->
         <div class="content container-fluid">
-        
+
             <!-- Page Header -->
             <div class="page-header">
                 <div class="row align-items-center">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <!-- /Page Header -->
-            
+
             <!-- Leave Statistics -->
             <div class="row">
                 <div class="col-md-3">
@@ -49,10 +49,10 @@
                 </div>
             </div>
             <!-- /Leave Statistics -->
-            
-          
+
+
             <!-- /Search Filter -->
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
@@ -62,8 +62,8 @@
                                     <th class="font-weight-bold">Empleado</th>
                                     <th class="font-weight-bold">Tipo de permiso</th>
                                     <th class="font-weight-bold">Fecha de inicio</th>
-                                    <th class="font-weight-bold">Fecha de finalización</th>                                
-                                    <th class="font-weight-bold">Motivo</th>                                
+                                    <th class="font-weight-bold">Fecha de finalización</th>
+                                    <th class="font-weight-bold">Motivo</th>
                                     <th class="font-weight-bold">Aprobación de jefe inmediato  </th>
                                     <th class="font-weight-bold">Encargado de Departamento</th>
                                     <th class="font-weight-bold">Aprobación de Talento Humano</th>
@@ -72,7 +72,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+
                             </tbody>
                         </table>
                     </div>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <!-- /Page Content -->
-        
+
         <!-- Add Leave Modal -->
         <div id="add_leave" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label>Tipo de permiso <span class="text-danger">*</span></label>
                             <select id="permisosEmpleado" class="select">
-                          
+
                                 <!-- <option>Select Leave Type</option>
                                 <option>Casual Leave 12 Days</option>
                                 <option>Medical Leave</option>
@@ -155,68 +155,68 @@
         </div>
     </div>
         <!-- /Add Leave Modal -->
-        
+
         <!-- Edit Leave Modal -->
         <div id="edit_leave" class="modal custom-modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar Permiso</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="permisoEdit">
-                        <div class="form-group">
-                            <label>Leave Type <span class="text-danger">*</span></label>
-                            <select id="selectEdit" class="select" onclick="opciones()">                                
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Fecha de inicio<span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input id="fechaInicioEdit" class="form-control datetimepicker" type="text" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Fecha final <span class="text-danger">*</span></label>
-                            <div class="cal-icon"  >
-                                <input id="fechaFinalEdit" class="form-control datetimepicker"   type="text" required>
-                            </div>
-                        </div>
-
-                        <div id="horasPermisosEdit" class="d-none">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar Permiso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="permisoEdit">
                             <div class="form-group">
-                                <label>Hora de inicio <span class="text-danger">*</span></label>
-                                <input id="horaInicioEdit" type="time" class="form-control" required>
+                                <label>Leave Type <span class="text-danger">*</span></label>
+                                <select id="selectEdit" class="select" onclick="opciones()">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha de inicio<span class="text-danger">*</span></label>
+                                <div class="cal-icon">
+                                    <input id="fechaInicioEdit" class="form-control datetimepicker" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha final <span class="text-danger">*</span></label>
+                                <div class="cal-icon"  >
+                                    <input id="fechaFinalEdit" class="form-control datetimepicker"   type="text" required>
+                                </div>
+                            </div>
+
+                            <div id="horasPermisosEdit" class="d-none">
+                                <div class="form-group">
+                                    <label>Hora de inicio <span class="text-danger">*</span></label>
+                                    <input id="horaInicioEdit" type="time" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Hora de final <span class="text-danger">*</span></label>
+                                    <input id="horaFinalEdit" type="time" class="form-control" required>
+                                </div>
+
                             </div>
 
                             <div class="form-group">
-                                <label>Hora de final <span class="text-danger">*</span></label>
-                                <input id="horaFinalEdit" type="time" class="form-control" required>
+                                <label>Motivo<span class="text-danger">*</span></label>
+                                <textarea id="motivoEdit" rows="4" class="form-control"></textarea>
                             </div>
 
-                        </div>
-                    
-                        <div class="form-group">
-                            <label>Motivo<span class="text-danger">*</span></label>
-                            <textarea id="motivoEdit" rows="4" class="form-control"></textarea>
-                        </div>
+                            <div class="submit-section" id="verificarEdit">
+                                <button class="btn btn-success submit-btn" type="button" onclick="verificarDataEdit()" >Verificar</button>
+                            </div>
 
-                        <div class="submit-section" id="verificarEdit">
-                            <button class="btn btn-success submit-btn" type="button" onclick="verificarDataEdit()" >Verificar</button>
-                        </div>
+                            <div class="submit-section d-none" id="enviarEdit">
+                                <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
+                            </div>
 
-                        <div class="submit-section d-none" id="enviarEdit">
-                            <button class="btn btn-primary submit-btn" type="button" onclick="enviarPermisoEdit()" >Enviar</button>
-                        </div>
-
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
         <!-- /Edit Leave Modal -->
 
         <!-- Approve Leave Modal -->
@@ -243,7 +243,7 @@
             </div>
         </div>
         <!-- /Approve Leave Modal -->
-        
+
         <!-- Delete Leave Modal -->
         <div class="modal custom-modal fade" id="delete_approve" role="dialog">
             <div class="modal-dialog modal-dialog-centered">
@@ -268,7 +268,7 @@
             </div>
         </div>
         <!-- /Delete Leave Modal -->
-        
+
     </div>
     <!-- /Page Wrapper -->
 

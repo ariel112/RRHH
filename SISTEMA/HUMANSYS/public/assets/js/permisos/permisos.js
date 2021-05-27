@@ -28,7 +28,7 @@ function opciones() {
         })
         .catch((err) => {
             // console.error(err,"entro");
-            console.error(err.response.data.exception);
+            console.error(err);
         });
 }
 

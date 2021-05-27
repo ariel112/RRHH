@@ -233,8 +233,7 @@ class PermisosEmpleados extends Component
     }
 
 
-    public function datosActualizarPermiso($id)
-    {
+    public function datosActualizarPermiso($id){
         $permiso = permisos::where('id', '=', $id)
             ->get();
         /* dd($permiso); */
@@ -257,14 +256,12 @@ class PermisosEmpleados extends Component
                 $permiso = permisos::find($request['id']);
 
                 $permiso->tipo_permiso_id = $request['tipoPermisoTexto'];
-                /* $permiso->nombre = $request['tipoPermisoTexto']; */
-               /*  $permiso->estado = '3';  *///pendiente
                 $permiso->fecha_inicio = $request['fechaInicio'];
                 $permiso->fecha_final = $request['fechaFinal'];
 
                 $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
-                $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                /* $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
+                $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos */
                 $permiso->hora_inicio = $request['horaInicio'];
                 $permiso->hora_final = $request['horaFinal'];
                 $permiso->motivo = $request['motivo'];
@@ -275,38 +272,14 @@ class PermisosEmpleados extends Component
                     'color' => 'success'
                 ], 200);
             } else {
-
+                $permiso_estados = DB::SELECTONE("select * from permisos where id = '".$request['id']."'");
                 DB::delete("delete from permisos where permiso_id = '".$request['id']."'");
-                /* $permiso = permisos::find($request['id']);
-
-                $permiso->tipo_permiso = $request['tipoPermisoTexto'];
-                $permiso->nombre = $request['tipoPermisoTexto'];
-                $permiso->estado = '3'; //pendiente
-                $permiso->fecha_inicio = $request['fechaInicio'];
-                $permiso->fecha_final = $request['fechaFinal'];
-
-                $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
-                $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
-                $permiso->motivo = $request['motivo'];
-                $permiso->hora_inicio = null;
-                $permiso->hora_final = null;
-
-                $permiso->save(); */
                 $fecha1 = new DateTime($request['fechaInicio']);//fecha inicio
                 $fecha2 = new DateTime($request['fechaFinal']);//fecha final
                 $diff = $fecha1->diff($fecha2);
                 $dias=$diff->days+1;
 
-                //$permisosPorDia=[];
-
-
-
                     $permiso = new permisos;
-
-
-
-                    //$permiso->estado = '3'; //pendiente
                     $permiso->fecha_inicio = $request['fechaInicio'];
                     $permiso->fecha_final = $request['fechaInicio'];
                     $permiso->fecha_inicio_aprobada = $request['fechaInicio'];
@@ -315,8 +288,8 @@ class PermisosEmpleados extends Component
                     $permiso->hora_final = '17:00:00';
                     $permiso->empleado_id = $idEmpleado[0]['id'];
                     $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                    $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
-                    $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                    $permiso->estado_permiso_jefe_id = $permiso_estados->estado_permiso_jefe_id; //pendiente jefe
+                    $permiso->estado_permiso_rrhh_id = $permiso_estados->estado_permiso_rrhh_id; //pendiente de recursos humanos
                     $permiso->motivo = $request['motivo'];
 
                     $permiso->save();
@@ -344,8 +317,8 @@ class PermisosEmpleados extends Component
                     $permiso->hora_final = '17:00:00';
                     $permiso->empleado_id = $idEmpleado[0]['id'];
                     $permiso->tipo_permiso_id = $request['tipoPermiso'];
-                    $permiso->estado_permiso_jefe_id = '3'; //pendiente jefe
-                    $permiso->estado_permiso_rrhh_id = '5'; //pendiente de recursos humanos
+                    $permiso->estado_permiso_jefe_id = $permiso_estados->estado_permiso_jefe_id; //pendiente jefe
+                    $permiso->estado_permiso_rrhh_id = $permiso_estados->estado_permiso_rrhh_id; //pendiente de recursos humanos
                     $permiso->motivo = $request['motivo'];
                     $permiso->permiso_id =   $idPErmisoPadre;
                     $permiso->fecha_inicio_aprobada = $request['fechaInicio'];

@@ -83,7 +83,7 @@ order by permisos.created_at desc;
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item"  href="#" onclick="modalAprobar(' . $row->idPermiso . ')"><i class="fa fa-dot-circle-o text-success"></i> Aprobar</a>
                 <a class="dropdown-item" href="#" onclick="modalDenegar(' . $row->idPermiso . ')" ><i class="fa fa-dot-circle-o text-danger"></i> Declinar</a>
-
+                <a class="dropdown-item"  href="#" onclick="editarPermiso(' . $row->idPermiso . ')"><i class="fa fa-dot-circle-o text-warning"></i> Editar</a>
             </div>
         </div>';
                     return $html;
