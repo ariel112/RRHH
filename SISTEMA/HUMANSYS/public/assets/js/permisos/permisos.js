@@ -333,12 +333,12 @@ function editarPermiso(idPermiso) {
             let fechaFinalEdit = document.getElementById("fechaFinalEdit");
             let motivoEdit = document.getElementById("motivoEdit");
 
-            let fechaIniEdit = response.data.permiso.fecha_inicio;
+            let fechaIniEdit = response.data.permiso.fecha_inicio_aprobada;
             let yyEditIni = fechaIniEdit.substring(0, 4);
             let mmEditiIni = fechaIniEdit.substring(5, 7);
             let ddEdiIni = fechaIniEdit.substring(8, 10);
 
-            let fechaFinEdit = response.data.permiso.fecha_final;
+            let fechaFinEdit = response.data.permiso.fecha_final_aprobada;
             let yyEditFinal = fechaFinEdit.substring(0, 4);
             let mmEditiFinal = fechaFinEdit.substring(5, 7);
             let ddEditFinal = fechaFinEdit.substring(8, 10);

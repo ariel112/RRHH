@@ -108,14 +108,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/empleado/tipoUsuario', [Users::class, 'guardarTipoUsuario']);
     Route::get('/user/listar_usuarios', [Users::class, 'listar_usuarios']);
 
-
-
-
-
-
-
-
-
     //BusquedaEmpleados
     Route::get('/empleado/deptos', [EmpleadoController::class, 'getDeptosEmpleado']);
     Route::get('/empleado/area/{idDeptos}', [EmpleadoController::class, 'getAreaEmpleado']);

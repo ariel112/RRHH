@@ -237,6 +237,7 @@ class PermisosEmpleados extends Component
     {
         $permiso = permisos::where('id', '=', $id)
             ->get();
+        /* dd($permiso); */
         return response()->json(['permiso' => $permiso[0]]);
     }
 
@@ -274,6 +275,7 @@ class PermisosEmpleados extends Component
                     'color' => 'success'
                 ], 200);
             } else {
+
                 DB::delete("delete from permisos where permiso_id = '".$request['id']."'");
                 /* $permiso = permisos::find($request['id']);
 
