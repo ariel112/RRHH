@@ -27,7 +27,10 @@ class PermisosEmpleados extends Component
     {
         try {
 
-            $tipos = tipo_permiso::all();
+            $tipos = DB::SELECT("select if( TP.id != 7,CONCAT(TP.permiso, ' - ' ,UPPER(TGS.tipo)),TP.permiso) as permiso, TP.id
+            from tipo_permiso TP
+            inner join tipo_gose_sueldo TGS
+            on TP.tipo_gose_sueldo_id = TGS.id");
 
             return response()->json([
                 'tipos' => $tipos,

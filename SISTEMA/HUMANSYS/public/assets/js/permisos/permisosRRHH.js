@@ -144,7 +144,7 @@ function aprobarPermiso(){
 
    }
 
-   function denegarPermiso(){
+function denegarPermiso(){
 
 
 
@@ -167,7 +167,7 @@ function aprobarPermiso(){
 
    //--------enviar permiso
 
-   function enviarPermiso() {
+function enviarPermiso() {
     let tipoPermiso = document.getElementById("permisosRRHH").value;
     let option = document.getElementById("permisosRRHH");
     let tipoPermisoText = option.options[option.selectedIndex].text;
@@ -369,7 +369,6 @@ function aprobarPermiso(){
         return;
     }
 }
-
 
 
 function verificarData() {

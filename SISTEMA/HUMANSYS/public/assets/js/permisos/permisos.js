@@ -7,11 +7,13 @@ function opciones() {
     axios
         .get("/listado/permisos")
         .then((response) => {
+            console.log(response.data.tipos);
             /* console.log(response.data) */
 
             let lista =
                 '<option selected="true" disabled="disabled">--Seleccione un tipo permiso--</option>';
             response.data.tipos.forEach((element) => {
+
                 lista =
                     lista +
                     `<option value="${element.id}">${element.permiso}</option>`;

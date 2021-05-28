@@ -112,7 +112,7 @@ from
 
 
 
-    public function aprobarPermiso($id){
+public function aprobarPermiso($id){
         try {
             $identidad = Auth::user()->identidad;
             $idEmpleado = empleado::where('identidad', '=', $identidad)
@@ -137,7 +137,7 @@ from
             ], 402);
         }
     }
-    public function denegarPermiso($id){
+public function denegarPermiso($id){
         try {
 
             $identidad = Auth::user()->identidad;
@@ -169,7 +169,7 @@ from
 
 
 
-    public function guardarPermisoJefe(Request $request){
+public function guardarPermisoJefe(Request $request){
         try {
 
             $identidadUser = Auth::user()->identidad;
