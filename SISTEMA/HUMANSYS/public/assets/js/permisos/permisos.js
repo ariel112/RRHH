@@ -13,7 +13,7 @@ function opciones() {
     axios
         .get("/listado/permisos")
         .then((response) => {
-            //console.log(response.data)
+            /* console.log(response.data) */
 
             let lista =
                 '<option selected="true" disabled="disabled">--Seleccione un tipo permiso--</option>';
@@ -28,7 +28,7 @@ function opciones() {
         })
         .catch((err) => {
             // console.error(err,"entro");
-            console.error(err);
+            console.error(err.response.data.exception);
         });
 }
 
