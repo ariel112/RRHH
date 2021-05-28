@@ -170,7 +170,7 @@
                         <form id="permisoEdit">
                             <div class="form-group">
                                 <label>Leave Type <span class="text-danger">*</span></label>
-                                <select id="selectEdit" class="select" onclick="opciones()">
+                                <select id="selectEditRRHH1" class="select" onclick="opciones2()">
                                 </select>
                             </div>
                             <div class="form-group">
@@ -283,7 +283,7 @@
                                 <form id="permisoEdit">
                                     <div class="form-group">
                                         <label>Leave Type <span class="text-danger">*</span></label>
-                                        <select id="selectEdit" class="select" onclick="opciones()">
+                                        <select id="selectEditRRHH2" class="select" onclick="opciones()">
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -336,5 +336,5 @@
 
     @section("script")
     <script src="{{ asset('assets/js/permisos/permisosRRHH.js') }}"></script>
-    <script src="{{ asset('assets/js/permisos/permisos.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/permisos/permisos.js') }}"></script> --}}
     @endsection
