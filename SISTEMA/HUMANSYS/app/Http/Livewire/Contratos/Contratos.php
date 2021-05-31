@@ -449,24 +449,50 @@ class Contratos extends Component
                                WHERE A.id='$contrato->empleado_rrhh'");
 
 
+
       $cargos_log = DB::selectOne("select LC.cargo_id from log_cargo LC inner join contrato C on (LC.contrato_id = C.id) inner join empleado E on (E.id = LC.empleado_id) where C.id = '".$contrato->id."' and E.id = '".$contrato->empleado_id."' ORDER BY LC.created_at DESC LIMIT 1");
-      $funciones_log_cargo = DB::select("select * from funciones where cargo_id= '".$cargos_log->cargo_id."'");
-      $data = [
-          'title' => 'Contrato',
-          'contrato' => $contrato,
-          'funciones' => $funciones,
-          'gerente_rh' => $gerente_rh,
-          'sueldo_letras' => $sueldo_letras,
-          'cargos' => $cargos,
-          'numero' => $numero,
-          'mesf' => $mesf,
-          'numerof' => $numerof,
-          'mes' => $mes,
-          'log_sueldo' => $log_sueldo,
-          'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
-          'cargos_log'=>$cargos_log,
-          'funciones_log_cargo'=>$funciones_log_cargo
-      ];
+      if($cargos_log == ""){
+        $cargos_log = null;
+          /* $funciones_log_cargo = DB::select("select * from funciones where cargo_id= '".$cargos_log->cargo_id."'"); */
+          $funciones_log_cargo = null;
+        $data = [
+            'title' => 'Contrato',
+            'contrato' => $contrato,
+            'funciones' => $funciones,
+            'gerente_rh' => $gerente_rh,
+            'sueldo_letras' => $sueldo_letras,
+            'cargos' => $cargos,
+            'numero' => $numero,
+            'mesf' => $mesf,
+            'numerof' => $numerof,
+            'mes' => $mes,
+            'log_sueldo' => $log_sueldo,
+            'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
+            'cargos_log'=>$cargos_log,
+            'funciones_log_cargo'=>$funciones_log_cargo
+        ];
+      }else{
+        $funciones_log_cargo = DB::select("select * from funciones where cargo_id= '".$cargos_log->cargo_id."'");
+        $data = [
+            'title' => 'Contrato',
+            'contrato' => $contrato,
+            'funciones' => $funciones,
+            'gerente_rh' => $gerente_rh,
+            'sueldo_letras' => $sueldo_letras,
+            'cargos' => $cargos,
+            'numero' => $numero,
+            'mesf' => $mesf,
+            'numerof' => $numerof,
+            'mes' => $mes,
+            'log_sueldo' => $log_sueldo,
+            'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
+            'cargos_log'=>$cargos_log,
+            'funciones_log_cargo'=>$funciones_log_cargo
+        ];
+      }
+
+
+
 
       $pdf = PDF::loadView('pdf/contrato_sin', $data);
 
