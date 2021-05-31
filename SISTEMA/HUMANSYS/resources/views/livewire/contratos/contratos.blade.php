@@ -90,9 +90,6 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Gerente de Talento Humano</label>
                                     <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh">
-                                        <option selected>Elaborado por</option>
-                                        <option > HAZEL ESCOBAR</option>
-                                        <option > ELIA CASTELLANOS</option>
                                     </select>
                                 </div>
                             </div>
@@ -217,10 +214,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="col-form-label">Gerente de Talento Humano</label>
-                                <select required class="form-control empleado_rrhh" name="empleado_rrhh" id="empleado_rrhh_edit">
-                                    <option selected="selected">Elaborado por</option>
-                                    <option > HAZEL ESCOBAR</option>
-                                    <option > ELIA CASTELLANOS</option>
+                                <select required class="form-control empleado_rrhh" name="empleado_rrhh_edit" id="empleado_rrhh_edit">
                                 </select>
                             </div>
                         </div>
@@ -383,7 +377,7 @@ $('#tbl_contrato').DataTable({
 
 
 $(document).ready(function() {
-
+    cargo_GERENTErrhh();
 // cerrar modal
 
 function CierraPopup(modal) {
@@ -584,7 +578,32 @@ function editar() {
 
 
 });
+function render_GERENTErrhh(data){
+            var html_select_GERENTErrhh ='<option selected="selected" value="">Elaborado por.</option>';
+            for (var i=0; i<data.length; ++i){
+                html_select_GERENTErrhh += '<option value="'+data[i].id+'" ">'+data[i].nombre+'</option>';
+                }
+            $('#empleado_rrhh').html(html_select_GERENTErrhh);
+            $('#empleado_rrhh_edit').html(html_select_GERENTErrhh);
+        }
 
+function cargo_GERENTErrhh(){
+            $.ajax({
+                type:"GET",
+                url: "/empleado/rrhh/",
+                contentType: false,
+                cache: false,
+                processData:false,
+                dataType:"json",
+                success: function(data){
+                    /* console.log(data); */
+                    render_GERENTErrhh(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        }
 
 
 //  =================== editar contratos ===============================

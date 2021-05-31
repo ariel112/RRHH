@@ -86,6 +86,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 
+
     //Marcaje de sistencias
     Route::get('/marcaje', Marcaje::class,)->name('asistencia.marcaje');
     Route::get('/marcaje/listar', [Marcaje::class, 'listar_marcaje']);
@@ -149,6 +150,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/contratos/muestra/{id}', [Contratos::class, 'contrato_muestra'])->name('contratos.muestra');
      Route::post('/contratos/edit', [Contratos::class, 'contratos_edit'])->name('contratos.edit');
      Route::get('/contratos/elimina/{id}', [Contratos::class, 'contrato_elimina'])->name('contratos.elimina');
+     Route::get('/empleado/rrhh/', [Contratos::class, 'contrato_rrhh_gerente']);
+
     // ruta para generear contrato pdf
     Route::get('/contrato/generate-pdf/{id}', [Contratos::class, 'generatePDF']);
     // generar pdf sin formato

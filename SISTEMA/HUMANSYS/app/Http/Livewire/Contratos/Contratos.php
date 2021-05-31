@@ -28,6 +28,11 @@ class Contratos extends Component
         ]);
     }
 
+    public function contrato_rrhh_gerente(){
+        $gerente_rrhh = DB::select('select * from empleado where cargo_id = 19');
+        return $gerente_rrhh;
+    }
+
     public function contrato_show(Request $request){
         /* SELECT LS.created_at, LS.id, LS.sueldo FROM log_sueldos LS INNER JOIN contrato C WHERE C.estatus_id = 1 ORDER BY LS.created_at ASC LIMIT 1; */
                 $fechaInicio = $request->fecha_inicio;

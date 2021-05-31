@@ -92,8 +92,8 @@
                                     <label class="col-form-label">Tipo empleado<span class="text-danger">*</span></label>
                                     <select required class="form-control" name="tipo_empleado" id="tipo_empleado">
                                         <option selected value="">Seleccione el tipo</option>
-                                        <option value="1">Trabajador</option>
-                                        <option value="2">Patrono</option>
+                                        <option value="1">COLABORADOR</option>
+                                        <option value="2">GERENTE</option>
                                     </select>
                                 </div>
                             </div>
