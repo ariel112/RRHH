@@ -47,7 +47,7 @@ class CrearPlanilla extends Component
             DB::beginTransaction();
 
 
-            //-------------------datos persona que genera planilla----------------//    
+            //-------------------datos persona que genera planilla----------------//
 
 
             //$idUser = Auth::user()->id;
@@ -57,7 +57,7 @@ class CrearPlanilla extends Component
 
 
             $empleadoGenera = DB::SELECT('select id, nombre from empleado where identidad =' . $identidad);
-            $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento 
+            $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento
 
 
 
@@ -82,7 +82,7 @@ class CrearPlanilla extends Component
 
                 $diaSemana = date("N", strtotime($fecha));
 
-                if ($diaSemana !== "6" && $diaSemana !== "7") { //estoy excluyendo sabado(6) y domingo(7) 
+                if ($diaSemana !== "6" && $diaSemana !== "7") { //estoy excluyendo sabado(6) y domingo(7)
                     array_push($arregloDeFechas, ['fecha' => $fecha]);
                 }
             }
@@ -90,21 +90,21 @@ class CrearPlanilla extends Component
 
             //------------------------------------------------------------inicio de calculo de asitencia-----------------------------------------------------------//
             //listado de empleados tomar en cuenta los que tienen contrato activo
-            //solo toma los empleado de tipo empleado y con estado activo los gerentes son libre de deducciones por asistencia 
+            //solo toma los empleado de tipo empleado y con estado activo los gerentes son libre de deducciones por asistencia
             $empleados = DB::SELECT('select
 
             empleado.id,
             contrato.sueldo
-            
-            from tipo_empleado 
-            inner join cargo 
+
+            from tipo_empleado
+            inner join cargo
             on tipo_empleado.id = cargo.tipo_empleado_id
             inner join empleado
             on empleado.cargo_id = cargo.id
             inner join contrato
             on empleado.id = contrato.empleado_id
             where tipo_empleado.id = 1
-          
+
             and empleado.estatus_id = 1 and contrato.estatus_id=1'); //ojo para efectos de prueba solo estoy calculando dos empleados 3 y 4
             //---------calcula la deduccion por asistencia
 
@@ -113,9 +113,9 @@ class CrearPlanilla extends Component
                 foreach ($empleados as $empleado) {
 
                     $verificarAsistencia = DB::SELECT('
-                    select 
-                    id 
-                    from 
+                    select
+                    id
+                    from
                     asistencia
                     where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
 
@@ -131,7 +131,7 @@ class CrearPlanilla extends Component
                     select  id,
                         IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(entrada_fija, "%H:%i:%S")) as entrada_fija,
                         IF(salida_fija is NULL or entrada_fija is NULL, 0 , date_format(salida_fija, "%H:%i:%S")) as salida_fija
-                     from 
+                     from
                      asistencia where fecha_dia = "' . $dia['fecha'] . '" and empleado_id=' . $empleado->id);
 
 
@@ -142,10 +142,10 @@ class CrearPlanilla extends Component
                     $horaFinal = strtotime($asistenciaDia[0]->salida_fija); //final
                     $minutosTrabajados = ($horaFinal - $horaInicio) / 60;
 
-                    //calculando minutos de permiso 
+                    //calculando minutos de permiso
 
                     $permisos = DB::SELECT('
-                    select 
+                    select
                         hora_inicio, hora_final
                     FROM permisos
                         WHERE DATE(fecha_inicio)="' . $dia['fecha'] . '" and
@@ -161,6 +161,50 @@ class CrearPlanilla extends Component
 
                         $minutosTrabajados = $minutosTrabajados + $minutosPermiso;
                     }
+
+                    //FIN calculando minutos de permiso
+
+
+//------------------------------------------------------------------------------------------------//
+
+                    // CALCULO DE MINUTOS ENTRADA O SALIDA DE MEDIO DIA
+
+                        $permisos_mdia = DB::SELECT('
+                        select
+                            hora_inicio, hora_final
+                        FROM permisos_mdia
+                                WHERE DATE(fecha_dia)="' . $dia['fecha'] . '" and empleado_id = ' . $empleado->id);
+
+                        if ($permisos_mdia) {
+                            $horaInicioPermiso_mdia = strtotime($permisos_mdia[0]->hora_inicio); //inicial
+                            $horaFinalPermiso_mdia = strtotime($permisos_mdia[0]->hora_final); //final
+                            $minutosPermiso_mdia = ($horaFinalPermiso_mdia - $horaInicioPermiso_mdia) / 60;
+                            $minutosTrabajados = $minutosTrabajados + $minutosPermiso_mdia;
+                        }
+
+                    // FIN CALCULO DE MINUTOS ENTRADA O SALIDA DE MEDIO DIA
+
+
+//------------------------------------------------------------------------------------------------//
+
+                    // CALCULO DE MINUTOS ENTRADA O SALIDA DE FERIADOS
+                        $feriado = DB::SELECT('
+                        select
+                            hora_inicio, hora_fin
+                        FROM feriado
+                                WHERE DATE(fecha_dia)="' . $dia['fecha'] . '" and estatus_id = 1');
+
+                        if ($feriado) {
+                            $horaInicio_feriado = strtotime($feriado[0]->hora_inicio); //inicial
+                            $horaFinal_feriado = strtotime($feriado[0]->hora_fin); //final
+                            $minutos_feriado = ($horaFinal_feriado - $horaInicio_feriado) / 60;
+                            $minutosTrabajados = $minutosTrabajados + $minutos_feriado;
+                        }
+
+                    // FIN CALCULO DE MINUTOS ENTRADA O SALIDA DE FERIADOS
+
+
+
 
                     $valorDia =  ($empleado->sueldo / 28);
                     $valorHora = $valorDia / 8;
@@ -194,7 +238,7 @@ class CrearPlanilla extends Component
 
 
             //consultar todos los empleados incluyendo gerentes
-            // mediante if verificar si es empleado o gerente 
+            // mediante if verificar si es empleado o gerente
             // si no es gerente restarle llegadas tarde --- select sum(monto_deduccion) from asistencia where (DATE(fecha_dia) > "2021-04-26" and DATE(fecha_dia) < "2021-05-02" ) and empleado_id = 3
 
             // $horaInicio = strtotime("08:00:00");//inicial
@@ -202,7 +246,7 @@ class CrearPlanilla extends Component
             // $minutosTrabajados = ($horaFinal-$horaInicio)/60;
 
 
-            //esta consulta obtiene los empleados y gerentes activos; Con su tipo de empleado, 1 es empleado y 2 es gerente 
+            //esta consulta obtiene los empleados y gerentes activos; Con su tipo de empleado, 1 es empleado y 2 es gerente
             $empleadosGeneral = DB::SELECT('
             select
                 empleado.id,
@@ -212,14 +256,14 @@ class CrearPlanilla extends Component
                 tipo_empleado.id as tipo_empleado,
                 contrato.sueldo as sueldoContrato
             from
-                tipo_empleado 
-                inner join cargo 
+                tipo_empleado
+                inner join cargo
                 on tipo_empleado.id = cargo.tipo_empleado_id
                 inner join empleado
                 on empleado.cargo_id = cargo.id
                 inner join contrato
                 on empleado.id = contrato.empleado_id
-                where 
+                where
                 empleado.estatus_id = 1 and contrato.estatus_id=1
             ');
 
@@ -256,7 +300,7 @@ class CrearPlanilla extends Component
                     $deduccionAsistencia = DB::SELECT('
                     select sum(monto_deduccion) as monto
                     from asistencia
-                    where (DATE(fecha_dia) >= "' . $fechaInicio . '"and 
+                    where (DATE(fecha_dia) >= "' . $fechaInicio . '"and
                     DATE(fecha_dia) <= "' . $fechaFin . '" )  and
                     DAYOFWEEK(fecha_dia) IN (2,3,4,5,6) and
                     empleado_id = ' . $empleado->id);
@@ -267,13 +311,13 @@ class CrearPlanilla extends Component
                 }
 
                 $deduccionesFijas = DB::SELECT("select sum(monto_deduccion) as monto
-                FROM empleado_has_deducciones_fijas                
+                FROM empleado_has_deducciones_fijas
                  where empleado_has_deducciones_fijas.empleado_id = " . $empleado->id);
 
                 $deduccionesFijasMonto = $deduccionesFijas[0]->monto;
 
 
-                $deduccionesVariables = DB::SELECT("select sum(monto) as monto FROM deducciones_empleado 
+                $deduccionesVariables = DB::SELECT("select sum(monto) as monto FROM deducciones_empleado
                  where deducciones_empleado.empleado_id =" . $empleado->id);
 
                 $deduccionesFijasVariablesMonto =  $deduccionesFijas[0]->monto;
@@ -309,7 +353,7 @@ class CrearPlanilla extends Component
                 deducciones.id as deduccion_fija_id,
                 deducciones.nombre as nombre_deduccion,
                 edf.monto_deduccion as monto
-                
+
                 from
                 deducciones inner join empleado_has_deducciones_fijas edf
                 on deducciones.id = edf.deducciones_id
@@ -322,7 +366,7 @@ class CrearPlanilla extends Component
                 A.id,
                 A.nombre,
                 B.monto
-                from 
+                from
                 tipo_deducciones_variables A inner join deducciones_empleado B
                 on A.id = B.tipo_deducciones_varibale_id
                 where B.empleado_id =' . $empleado->id
@@ -388,7 +432,7 @@ class CrearPlanilla extends Component
             foreach ($listaDeduccionesFija as $elemento) {
                 array_push($encabezadosInicio, $elemento->NOMBRE);
 
-                $deduccionesFijasCadena = $deduccionesFijasCadena . "(select A.monto from pagos_deducciones_fijas A 
+                $deduccionesFijasCadena = $deduccionesFijasCadena . "(select A.monto from pagos_deducciones_fijas A
                 where A.pagos_id = pagos.id and A.deduccion_fija_id=" . $elemento->id . " ) as '" . $elemento->NOMBRE . "',";
             }
 
@@ -403,7 +447,7 @@ class CrearPlanilla extends Component
 
             //----consulta en partes--------//
             $parte1 = '
-            select  
+            select
                 pagos.identidad AS IDENTIDAD,
                 pagos.nombre_empleado AS NOMBRE_EMPLEADO,
                 (select DATE_FORMAT(fecha_ingreso,"%d-%m-%Y") from empleado where id=pagos.empleado_id) as "FECHA_INGRESO",
@@ -416,9 +460,9 @@ class CrearPlanilla extends Component
             $parte3 = '
              pagos.llegadas_tarde_monto as LLEGADAS_TARDE_MONTO,
              pagos.total_deducciones as TOTAL_DEDUCCIONES,
-             pagos.sueldo_neto as SUELDO_NETO       
-           
-           from 
+             pagos.sueldo_neto as SUELDO_NETO
+
+           from
              pagos
            where planilla_id= 1';
 
@@ -499,8 +543,8 @@ class CrearPlanilla extends Component
                     empleado.identidad,
                     empleado.nombre,
                     contrato.sueldo
-                    
-                    
+
+
                     from
                     empleado inner join contrato  on
                     empleado.id = contrato.empleado_id
@@ -508,7 +552,7 @@ class CrearPlanilla extends Component
                     ");
 
             $empleadoGenera = DB::SELECT('select id, nombre from empleado where identidad =' . $identidad);
-            $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento 
+            $datosEmpleadoGenera = $empleadoGenera[0]; //el primer elemento
 
 
 
@@ -573,9 +617,9 @@ class CrearPlanilla extends Component
                         id
                         from planilla
                         where
-                        (DATE(fecha_inicio) between '" . $fechaInicio . "' and '" . $fechaFinal . "' ) or 
+                        (DATE(fecha_inicio) between '" . $fechaInicio . "' and '" . $fechaFinal . "' ) or
                         (DATE(fecha_final) between '" . $fechaInicio . "' and '" . $fechaFinal . "' )
-                            
+
                             "
             );
 

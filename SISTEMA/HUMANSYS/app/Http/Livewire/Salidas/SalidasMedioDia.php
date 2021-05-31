@@ -22,7 +22,7 @@ class SalidasMedioDia extends Component
         try{
 
             $empleados = DB::SELECT("
-            select 
+            select
             empleado.id,
             empleado.nombre,
             empleado.identidad,
@@ -30,17 +30,17 @@ class SalidasMedioDia extends Component
             from departamento
             inner join area
             on departamento.id = area.departamento_id
-            inner join cargo 
+            inner join cargo
             on area.id = cargo.area_id
             inner join empleado
             on empleado.cargo_id = cargo.id
             where empleado.estatus_id = 1
-           
+
             ");
 
            /* return datatables()->of($empleados)
                 ->addColumn('acciones', function ($row) {
-                    $html = '              
+                    $html = '
                  <input class="form-check-input" type="checkbox" value="'.$row->id.'" name="empleado">
           ';
                     return $html;
@@ -50,11 +50,11 @@ class SalidasMedioDia extends Component
             */
                     //dd($empleados);
             return response()->json(["data"=>$empleados],200);
-           
+
         }catch(QueryException $e){
-            
+
              return response()->json([
-            'message'=>$e, 
+            'message'=>$e,
             ],402); }
         }
 
@@ -78,9 +78,9 @@ class SalidasMedioDia extends Component
 
                 if( $tanda == 1){
                     $horaInicio = '08:00';
-                    $horaFinal = '12:00';
+                    $horaFinal = '13:00';
                 }else{
-                    $horaInicio = '13:00';
+                    $horaInicio = '12:00';
                     $horaFinal = '17:00';
 
                 }
@@ -89,28 +89,25 @@ class SalidasMedioDia extends Component
 
                 foreach($arregloEmpleados as $empleado){
                    // $empleado->id;
-                    array_push($guardarPermiso,['fecha_dia'=>$fecha, 'hora_inicio'=>$horaInicio,
-                     'hora_final'=> $horaFinal, 'empleado_id'=>$empleado['id'],
-                      'empleado_registra'=>  $id, 'tanda_id'=> $tanda]);
-                      $id='4000';
+                    array_push($guardarPermiso,['fecha_dia'=>$fecha, 'hora_inicio'=>$horaInicio, 'hora_final'=> $horaFinal, 'empleado_id'=>$empleado['id'],  'empleado_registra'=>  $id, 'tanda_id'=> $tanda]);
                 }
                 DB::table('permisos_mdia')->insert($guardarPermiso);
                 //dd($guardarPermiso);
 
 
 
-                
+
                  return response()->json(['message'=>'guardado con exito'],200);
             }catch(QueryException $e){
-                
+
                  return response()->json([
-                'error'=>$e, 
+                'error'=>$e,
                 'message'=>'Ha ocurrido un error'
                 ],402); }
         }
 
 
 
-        
-    
+
+
 }
