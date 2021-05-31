@@ -76,7 +76,11 @@ class PermisosEmpleados extends Component
                 $permiso->hora_final = $request['horaFinal'];
                 $permiso->motivo = $request['motivo'];
                 $permiso->save();
+                $id_permiso = $permiso->id;
 
+                $permisoCreado = permisos::find($id_permiso);
+                    $permisoCreado->permiso_id =  $id_permiso;
+                    $permisoCreado->save();
                 return response()->json([
                     'message' => 'Permiso enviado con exito',
                     'color' => 'success'

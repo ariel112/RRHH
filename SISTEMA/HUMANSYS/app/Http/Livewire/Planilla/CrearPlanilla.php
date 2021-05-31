@@ -35,14 +35,14 @@ class CrearPlanilla extends Component
             $nombrePlanilla = $request['nombre'];
 
 
-            $validador = $this->verficiarFechas($fechaInicio, $fechaFin);
+           /* $validador = $this->verficiarFechas($fechaInicio, $fechaFin);
 
             if ($validador) {
                 return response()->json([
                     "message" => 'Rango de fechas invalido',
                     "icon" => "error"
                 ], 402);
-            }
+            }*/
 
             DB::beginTransaction();
 
@@ -86,6 +86,8 @@ class CrearPlanilla extends Component
                     array_push($arregloDeFechas, ['fecha' => $fecha]);
                 }
             }
+
+
 
 
             //------------------------------------------------------------inicio de calculo de asitencia-----------------------------------------------------------//
@@ -141,6 +143,8 @@ class CrearPlanilla extends Component
                     $horaInicio = strtotime($asistenciaDia[0]->entrada_fija); //inicial
                     $horaFinal = strtotime($asistenciaDia[0]->salida_fija); //final
                     $minutosTrabajados = ($horaFinal - $horaInicio) / 60;
+
+                    /* DD($minutosTrabajados); */
 
                     //calculando minutos de permiso
 
@@ -292,7 +296,7 @@ class CrearPlanilla extends Component
                 $totalDeducciones = 0;
                 $deduccionAsistenciaMonto = 0;
                 $deduccionesFijasMonto = 0;
-                $deduccionesFijasVariablesMonto = 0;
+                $deduccionesVariablesMonto = 0;
                 $deducionesFijas = [];
                 $deduccioneVariables = [];
 
@@ -312,7 +316,7 @@ class CrearPlanilla extends Component
                     // dd($deduccionAsistenciaMonto);
 
                 }
-
+                //MONTOS
                 $deduccionesFijas = DB::SELECT("select sum(monto_deduccion) as monto
                 FROM empleado_has_deducciones_fijas
                  where empleado_has_deducciones_fijas.empleado_id = " . $empleado->id);
@@ -320,12 +324,13 @@ class CrearPlanilla extends Component
                 $deduccionesFijasMonto = $deduccionesFijas[0]->monto;
 
 
+                //VARIABLES
                 $deduccionesVariables = DB::SELECT("select sum(monto) as monto FROM deducciones_empleado
                  where deducciones_empleado.empleado_id =" . $empleado->id);
 
-                $deduccionesFijasVariablesMonto =  $deduccionesFijas[0]->monto;
+                $deduccionesVariablesMonto =  $deduccionesVariables[0]->monto;
 
-                $totalDeducciones =  $deduccionAsistenciaMonto + $deduccionesFijasMonto + $deduccionesFijasVariablesMonto;
+                $totalDeducciones =  $deduccionAsistenciaMonto + $deduccionesFijasMonto + $deduccionesVariablesMonto;
                 $sueldoBruto = $empleado->sueldoContrato; //revisar eso
                 $catorcena =  ($sueldoBruto / 2);
                 $sueldoNeto =  $catorcena -  $totalDeducciones;
@@ -467,7 +472,7 @@ class CrearPlanilla extends Component
 
            from
              pagos
-           where planilla_id= 1';
+           where planilla_id='.$idPlanilla;
 
             $tt = $parte1 . $parte2 . $parte3;
 

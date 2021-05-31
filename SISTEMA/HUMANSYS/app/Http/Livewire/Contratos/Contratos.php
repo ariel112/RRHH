@@ -278,7 +278,7 @@ class Contratos extends Component
         // $contrato->empleado_id= $request->empleado_id;
         $contrato->horarios_id = 1;
         // $contrato->users_aprueba_id = Auth::user()->id;
-        $contrato->empleado_rrhh = $request->empleado_rrhh;
+        $contrato->empleado_rrhh = $request->empleado_rrhh_edit;
         $contrato->save();
 
         return response()->json('EXITO');

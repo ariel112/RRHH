@@ -479,6 +479,7 @@ function CierraPopup(modal) {
                 $('select').empty();
                 alert_bien();
                 $('#tbl_contrato').DataTable().ajax.reload();
+                location.reload();
                 // $('#tbl_cargos').DataTable().ajax.reload();
             //  console.log(data);
 
@@ -563,7 +564,7 @@ function editar() {
               CierraPopup(modalID);
               alert_edit();
               $('#tbl_contrato').DataTable().ajax.reload();
-
+              location.reload();
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
