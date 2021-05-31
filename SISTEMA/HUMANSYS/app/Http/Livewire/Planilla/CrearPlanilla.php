@@ -147,10 +147,13 @@ class CrearPlanilla extends Component
                     $permisos = DB::SELECT('
                     select
                         hora_inicio, hora_final
-                    FROM permisos
+                    FROM permisos p
+                    	INNER JOIN tipo_permiso tp on (tp.id = p.tipo_permiso_id)
                         WHERE DATE(fecha_inicio)="' . $dia['fecha'] . '" and
                         DATE(fecha_final)="' . $dia['fecha'] . '" and
-                        tipo_gose_sueldo_id = 1 and empleado_id = ' . $empleado->id);
+                        tp.tipo_gose_sueldo_id = 1 and empleado_id =' . $empleado->id);
+
+
 
                     if ($permisos) {
                         $horaInicioPermiso = strtotime($permisos[0]->hora_inicio); //inicial
