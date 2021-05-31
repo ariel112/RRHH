@@ -310,7 +310,7 @@
                                                                                         @foreach ($funciones as $funcion)
                                                                                             <li class="list-group-item">
                                                                                                 <div class="title">Funcion:</div>
-                                                                                                <div class="text"><a>{{$funcion->nombre}} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam totam alias, voluptate mollitia hic soluta accusantium doloremque.</a></div>
+                                                                                                <div class="text"><a>{{$funcion->nombre}}</a></div>
                                                                                             </li>
                                                                                         @endforeach
                                                                                     </ul>

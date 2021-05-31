@@ -35,6 +35,9 @@ class Contratos extends Component
 
     public function contrato_show(Request $request){
         /* SELECT LS.created_at, LS.id, LS.sueldo FROM log_sueldos LS INNER JOIN contrato C WHERE C.estatus_id = 1 ORDER BY LS.created_at ASC LIMIT 1; */
+
+                $hoy = date('Y-m-d');
+                /* dd($hoy); */
                 $fechaInicio = $request->fecha_inicio;
                 $fechaFinal = $request->fecha_fin;
 
@@ -47,7 +50,7 @@ class Contratos extends Component
                         'color' => 'error',
                         'estado' => 2
                     ], 402);
-                }else if($existenciaContrato->conteo2 == 1 && $buscContrato->conteo == 0){
+                }else if($existenciaContrato->conteo2 == 0 && $fechaInicio > $hoy){
                     try {
                         DB::beginTransaction();
                             $contrato = new contrato();
@@ -75,11 +78,66 @@ class Contratos extends Component
                             'exception' => $e,
                         ], 402);
                     }
-                }else{
+                }else if($existenciaContrato->conteo2 == 1){
+                    try {
+                        DB::beginTransaction();
+                            $contrato = new contrato();
+                            $contrato->num_contrato = $request->num_contrato;
+                            $contrato->num_delegacion = $request->num_delegacion;
+                            $contrato->tipo_contrato = $request->tipo_contrato;
+                            $contrato->fecha_inicio = $request->fecha_inicio;
+                            $contrato->fecha_fin = $request->fecha_fin;
+                            $contrato->sueldo = $request->sueldo;
+                            $contrato->vacaciones = $request->vacaciones;
+                            $contrato->empleado_id= $request->empleado_id;
+                            $contrato->horarios_id = 1;
+                            $contrato->estatus_id = 2;
+                            $contrato->users_aprueba_id = Auth::user()->id;
+                            $contrato->empleado_rrhh = $request->empleado_rrhh;
+                            $contrato->save();
+                        DB::commit();
+                        return response()->json('EXITO');
+                    } catch (QueryException $e) {
+                        DB::rollback();
+                        return response()->json([
+                            'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                            'color' => 'error',
+                            'estado' => 2,
+                            'exception' => $e,
+                        ], 402);
+                    }
+                }else if($existenciaContrato->conteo2 == 0 && $hoy < $fechaFinal && $hoy > $fechaInicio){
+                    try {
+                        DB::beginTransaction();
+                            $contrato = new contrato();
+                            $contrato->num_contrato = $request->num_contrato;
+                            $contrato->num_delegacion = $request->num_delegacion;
+                            $contrato->tipo_contrato = $request->tipo_contrato;
+                            $contrato->fecha_inicio = $request->fecha_inicio;
+                            $contrato->fecha_fin = $request->fecha_fin;
+                            $contrato->sueldo = $request->sueldo;
+                            $contrato->vacaciones = $request->vacaciones;
+                            $contrato->empleado_id= $request->empleado_id;
+                            $contrato->horarios_id = 1;
+                            $contrato->estatus_id = 1;
+                            $contrato->users_aprueba_id = Auth::user()->id;
+                            $contrato->empleado_rrhh = $request->empleado_rrhh;
+                            $contrato->save();
+                        DB::commit();
+                        return response()->json('EXITO');
+                    } catch (QueryException $e) {
+                        DB::rollback();
+                        return response()->json([
+                            'message' => 'Ha ocurrido un error, por favor intente de nuevo.',
+                            'color' => 'error',
+                            'estado' => 2,
+                            'exception' => $e,
+                        ], 402);
+                    }
+                }else if($existenciaContrato->conteo2 == 0 && $hoy == $fechaInicio){
 
                     try {
                         DB::beginTransaction();
-                        /* dd($request); */
                             $contrato = new contrato();
                             $contrato->num_contrato = $request->num_contrato;
                             $contrato->num_delegacion = $request->num_delegacion;
@@ -110,6 +168,12 @@ class Contratos extends Component
                         ], 402);
                     }
 
+                }else if($existenciaContrato->conteo2 == 0 && $hoy > $fechaInicio && $hoy > $fechaFinal  ){
+                    return response()->json([
+                        'message' => 'Fechas de inicio y finalizacion de contrato son inconsistentes.',
+                        'color' => 'error',
+                        'estado' => 2
+                    ], 402);
                 }
 
 
@@ -137,10 +201,13 @@ class Contratos extends Component
                 <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" data-toggle="modal" data-target="#editar_contratos" onclick="editcontrato('.$contrato->id.')"  ><i class="fa fa-pencil m-r-5 text-warning"></i> Editar</a>
-                        <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-success"></i> Formato</a>
-                        <a class="dropdown-item" href="/contrato/generate-pdf_sin/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-info"></i> Sin Formato</a>
+
+                        <a class="dropdown-item" href="/contrato/generate-pdf_sin/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-info"></i> Descargar</a>
                     </div>
                 </div>';
+                /*
+                Opcion con formato_ se quita porque no esta completa por el momento
+                <a class="dropdown-item" href="/contrato/generate-pdf/'.$contrato->id.'"><i class="fa fa-file-pdf-o m-r-5 text-success"></i> Formato</a> */
                 })
         ->addColumn('item', function ($contrato) {
         if ($contrato->estado_contrato === 2) {
@@ -438,14 +505,21 @@ class Contratos extends Component
 
 
       $log_sueldo = DB::selectOne("select LS.created_at, LS.id, LS.sueldo from log_sueldos LS inner join contrato C where C.estatus_id = 1 and C.id = '".$contrato->id."' ORDER BY LS.created_at ASC LIMIT 1;");
-      $centavos_log_sueldo = explode('.',$log_sueldo->sueldo);
+      if($log_sueldo== ""){
+        $log_sueldo= null;
+        $sueldo_letras_log_sueldo  = null;
 
-      if(sizeof($centavos_log_sueldo)>1){
-        $sueldo_letras_log_sueldo = (new NumeroALetras())->toMoney($log_sueldo->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
-        } else {
-            $sueldo_letras_log_sueldo = (new NumeroALetras())->toMoney($log_sueldo->sueldo, 2, 'LEMPIRAS EXACTOS', 'CENTAVOS');
+      }else{
+            $centavos_log_sueldo = explode('.',$log_sueldo->sueldo);
+        if(sizeof($centavos_log_sueldo)>1){
+            $sueldo_letras_log_sueldo = (new NumeroALetras())->toMoney($log_sueldo->sueldo, 2, 'LEMPIRAS', 'CENTAVOS EXACTOS');
+            } else {
+                $sueldo_letras_log_sueldo = (new NumeroALetras())->toMoney($log_sueldo->sueldo, 2, 'LEMPIRAS EXACTOS', 'CENTAVOS');
 
+        }
       }
+
+
 
       $funciones = DB::select("SELECT * FROM `funciones` WHERE cargo_id='$contrato->cargo_id'");
       $cargos = DB::selectOne("SELECT * FROM `cargo` WHERE id='$contrato->cargo_id'");
@@ -460,41 +534,26 @@ class Contratos extends Component
         $cargos_log = null;
           /* $funciones_log_cargo = DB::select("select * from funciones where cargo_id= '".$cargos_log->cargo_id."'"); */
           $funciones_log_cargo = null;
-        $data = [
-            'title' => 'Contrato',
-            'contrato' => $contrato,
-            'funciones' => $funciones,
-            'gerente_rh' => $gerente_rh,
-            'sueldo_letras' => $sueldo_letras,
-            'cargos' => $cargos,
-            'numero' => $numero,
-            'mesf' => $mesf,
-            'numerof' => $numerof,
-            'mes' => $mes,
-            'log_sueldo' => $log_sueldo,
-            'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
-            'cargos_log'=>$cargos_log,
-            'funciones_log_cargo'=>$funciones_log_cargo
-        ];
       }else{
         $funciones_log_cargo = DB::select("select * from funciones where cargo_id= '".$cargos_log->cargo_id."'");
-        $data = [
-            'title' => 'Contrato',
-            'contrato' => $contrato,
-            'funciones' => $funciones,
-            'gerente_rh' => $gerente_rh,
-            'sueldo_letras' => $sueldo_letras,
-            'cargos' => $cargos,
-            'numero' => $numero,
-            'mesf' => $mesf,
-            'numerof' => $numerof,
-            'mes' => $mes,
-            'log_sueldo' => $log_sueldo,
-            'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
-            'cargos_log'=>$cargos_log,
-            'funciones_log_cargo'=>$funciones_log_cargo
-        ];
       }
+
+      $data = [
+        'title' => 'Contrato',
+        'contrato' => $contrato,
+        'funciones' => $funciones,
+        'gerente_rh' => $gerente_rh,
+        'sueldo_letras' => $sueldo_letras,
+        'cargos' => $cargos,
+        'numero' => $numero,
+        'mesf' => $mesf,
+        'numerof' => $numerof,
+        'mes' => $mes,
+        'log_sueldo' => $log_sueldo,
+        'sueldo_letras_log_sueldo' => $sueldo_letras_log_sueldo,
+        'cargos_log'=>$cargos_log,
+        'funciones_log_cargo'=>$funciones_log_cargo
+    ];
 
 
 
