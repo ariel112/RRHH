@@ -16,14 +16,21 @@
 						</div>
 					</div>
 					<!-- /Page Header -->
+                    @php
+                        $deptos = DB::selectone("SELECT COUNT(id) as deptos FROM departamento");
+                        $areas = DB::selectone("SELECT COUNT(id) as areas FROM area");
+                        $cargos = DB::selectone("SELECT COUNT(id) as cargos FROM cargo");
+                        $emplActivos = DB::selectone("SELECT COUNT(id) as emps FROM empleado WHERE estatus_id = 1");
 
+                    @endphp
 					<div class="row">
 						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3 animate__animated animate__backInRight">
 							<div class="card dash-widget"style="opacity: 80%;">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>7</h3>
+
+										<h3>{{ $deptos->deptos }}</h3>
 										<span>Gerencias</span>
 									</div>
 			 					</div>
@@ -34,7 +41,7 @@
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>32</h3>
+										<h3>{{ $areas->areas }}</h3>
 										<span>Areas</span>
 									</div>
 								</div>
@@ -45,7 +52,7 @@
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
-										<h3>56</h3>
+										<h3>{{ $cargos->cargos }}</h3>
 										<span>Puestos</span>
 									</div>
 								</div>
@@ -56,8 +63,8 @@
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
 									<div class="dash-widget-info">
-										<h3>98</h3>
-										<span>Empleados Activos actualmente</span>
+										<h3>{{ $emplActivos->emps }}</h3>
+										<span>Empleados Activos</span>
 									</div>
 								</div>
 							</div>

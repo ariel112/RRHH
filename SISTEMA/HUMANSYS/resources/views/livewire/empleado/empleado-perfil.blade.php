@@ -247,7 +247,7 @@
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
                                                                 <div class="col-md-6 d-flex">
-                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info" style="opacity: 80%;">
+                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                         <div class="card-body">
                                                                             @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                                                                 <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
@@ -290,7 +290,7 @@
 
                                                 <!-- Funciones Tab -->
                                                 <div class="tab-pane fade" id="emp_funciones">
-                                                    <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info" style="opacity: 80%;">
+                                                    <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -299,11 +299,10 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-5 p-10">
                                                                                     <div class="profile-info-left">
-                                                                                        <h3 class="user-name m-t-0 mb-0">AREA DE {{$area->nombre}}</h3><br>
-                                                                                        <h5 class="text-muted">Código: {{$area->codigo}}</h5>
-                                                                                        <h5 class="text-muted">Area de Trabajo: {{$area->nombre}}</h5>
+                                                                                        <h3 class="text-muted">Gerencia:{{$deptos->nombre}}</h3><br>
+                                                                                        <h3 class="text-muted">Area: {{$area->nombre}}</h3>
+                                                                                        <h3 class="text-muted">Puesto: {{$cargo->nombre}}</h3>
                                                                                         <br>
-                                                                                        <div class="small doj text-muted">Jefe inmediato: Selvin Morazán</div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-md-7">
@@ -362,7 +361,7 @@
                                                                                             <label class="col-form-label">Tipo de deducción<span class="text-danger">*</span></label>
                                                                                             <select class="custom-select form-control" required id="TipodeducSelect" name="TipodeducSelect" onchange="selecteValor_TipoDeduc()">
                                                                                                 <option selected value=""> <b>Seleccione tipo de deducción</b></option>
-                                                                                                <option value="0">PORCENTAJE</option>
+                                                                                                {{-- <option value="0">PORCENTAJE</option> --}}
                                                                                                 <option value="1">MONTO FIJO</option>
                                                                                             </select>
                                                                                         </div>
@@ -404,7 +403,7 @@
 
                                                         <div class="row" id="grillDeducciones">
                                                                     <div class="col-md-6 d-flex">
-                                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning" style="opacity: 80%;">
+                                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                             <div class="card-body">
                                                                                 <div class="pro-edit">
                                                                                     <h3 class="card-title">Deducciones fijas</h3>
@@ -484,7 +483,7 @@
                                                                     </div>
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
-                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif" style="opacity: 80%;">
+                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                                 @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                                                                     <div class="dropdown profile-action">
                                                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
