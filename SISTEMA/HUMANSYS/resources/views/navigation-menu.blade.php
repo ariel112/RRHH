@@ -246,8 +246,10 @@
                                 </li>
                             @endif
 						</ul>
-					</div>
-                    <img src="" alt="">
+                    </div>
+
                 </div>
+                <img style="display:block; margin-top:-60%; margin-left:5%;" src="../../assets/img/logo_becas_sidebar.png" alt="">
             </div>
+
 </div>

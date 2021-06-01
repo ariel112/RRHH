@@ -64,6 +64,7 @@ class Feriados extends Component
 
     public function listar_feriados(){
         $feriados = DB::SELECT("SELECT * FROM feriado");
+
          return Datatables::of($feriados)
             ->addColumn('id', function ($feriados) {
                 return '<td>'.$feriados->id.'</td>';
@@ -77,6 +78,7 @@ class Feriados extends Component
             ->addColumn('user', function ($feriados) {
                 $usuario = DB::SELECTONE("select * from users where id = '".$feriados->users_id."'");
                 return '<td>'.$usuario->name.'</td>';
+
             })
             ->addColumn('estatus', function ($feriados) {
                 if($feriados->estatus_id == 1){
@@ -105,7 +107,6 @@ class Feriados extends Component
                 }
 
             })
-            ->editColumn('id', '{{$id}}')
             ->rawColumns(['id','fecha', 'motivo','user','estatus','actions'  ])
             ->make(true);
     }
