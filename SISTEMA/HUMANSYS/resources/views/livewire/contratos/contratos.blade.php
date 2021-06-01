@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="tbl_contrato" class="table table-striped custom-table mb-0">
-                        <thead>
+                    <table id="tbl_contrato" class="table">
+                        <thead class="table-dark">
                             <tr>
                                 <th># Contrato</th>
                                 <th>Empleado</th>

@@ -1,16 +1,16 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
-            
-            <table class="table table-striped custom-table table-nowrap mb-0" id="myTable">
-                <thead>
+
+            <table class="table " id="myTable">
+                <thead class="table-dark">
                     <tr>
                         <th>Empleado</th>
                         @for ($i =1 ; $i <=$fin ; $i++)
                             <th>{{ $i }}</th>
                         @endfor
                     </tr>
-                </thead>
+                </thead class="table-dark">
                 <tbody>
                     @foreach ($matriz as $ma )
                             <tr>

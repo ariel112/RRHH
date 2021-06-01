@@ -16,7 +16,7 @@
         </div>
         <!-- /Page Header -->
 
-        <div class="card">
+        <div class="card" style="opacity: 80%;">
             <div class="card-body">
                 <form id="formDeducVarianteCrear" class="form-group" data-parsley-validate>
                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-  
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'HUMANSYS') }}</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -18,12 +18,12 @@
     {{-- listado del frontend --}}
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/favicon.png')}}">
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
 
         {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
-      
+
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
         @livewireStyles
@@ -31,18 +31,18 @@
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css')}}">
     <!-- Lineawesome CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/line-awesome.min.css')}}">
-    
+
     <!-- Datatable CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}">
-		
+
 		<!-- Select2 CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css')}}">
-		
+
 		<!-- Datetimepicker CSS -->
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
-    
-    
-    
+
+
+
     <!-- Chart CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css')}}">
     <!-- Main CSS -->
@@ -64,6 +64,10 @@
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation-menu')
 
+        <style>
+            .page-wrapper{background-image: url('../assets/img/fondo-beca2.png');background-repeat: no-repeat;
+background-size: cover;}
+        </style>
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-white shadow">
@@ -112,12 +116,12 @@
             <!-- Select2 JS -->
 		    <script src="{{ asset('assets/js/select2.min.js')}}"></script>
 
-                   
+
             <!-- Datetimepicker JS -->
             <script src="{{ asset('assets/js/moment.min.js')}}"></script>
             <script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
             {{-- fin de la parte de contratos --}}
-            
+
             <!-- Custom JS -->
             <script src="{{ asset('assets/js/app.js')}}"></script>
         {{-- fin de frontend --}}
@@ -130,11 +134,11 @@
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 ¿
 
-      
-            
+
+
             <!--JS permisos-->
 
-            
+
 
     {{-- fin de frontend --}}
 </body>

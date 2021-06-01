@@ -21,7 +21,10 @@
 
 				<!-- Header Title -->
                 <div class="page-title-box">
-					<h3>HUMANSYS</h3>
+                    <div class="row">
+                        <div class="col-12"><h3>RECURSOS HUMANOS BECAS 2020</h3></div>
+                        {{-- <div class="col-2"><img class="animate__animated animate__fadeInDown" src="../assets/img/logo-Programa-2020.png" alt=""></div> --}}
+                    </div>
                 </div>
 				<!-- /Header Title -->
 
@@ -192,7 +195,7 @@
                             @endif
 
 							<li class="submenu">
-								<a href="#" class="noti-dot"><i class="la la-credit-card"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
+								<a href="#" {{-- class="noti-dot" --}}><i class="la la-credit-card"></i> <span> Permisos</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
                                     @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                         <li><a href="{{ route('permisos.index_rrhh') }}" :active="request()->routeIs('permisos.index_rrhh')" >Bandeja RRHH</a></li>
@@ -216,7 +219,7 @@
 								<a href="#"><i class="la la-money"></i> <span> Asistencias </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
                                     @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
-                                        <li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li>
+                                        {{-- <li><a href="{{ route('asistencia.index') }}" :active="request()->routeIs('asistencia.index')">Buscar</a></li> --}}
                                         <li><a href="{{ route('asistencia.marcaje') }}" :active="request()->routeIs('asistencia.marcaje')">Marcar</a></li>
                                         <li><a href="{{ route('salida.index') }}" :active="request()->routeIs('salida.index')">Medio Día</a></li>
                                     @endif

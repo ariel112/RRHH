@@ -60,7 +60,7 @@
         </div>
 
         <br><br>
-        <div class="card">
+        <div class="card animate__animated animate__rotateInUpRight" style="opacity: 80%;">
             <div class="card-header">
               <h5>Marcar asistencia </h5>
             </div>

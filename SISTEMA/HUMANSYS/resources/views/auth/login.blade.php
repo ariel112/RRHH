@@ -1,10 +1,15 @@
-<x-guest-layout>
+
+<x-guest-layout >
+
     <x-jet-authentication-card>
+        <div style="background-image: url('../assets/img/fondo-beca2.png');background-repeat: no-repeat;background-size: cover;">
+        {{-- style="background-image: url('../assets/img/fondo-beca2.png');background-repeat: no-repeat;background-size: cover;" --}}
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            {{-- <x-jet-authentication-card-logo /> --}}
+            <img class="animate__animated animate__fadeInDown" src="../assets/img/logo-Programa-2020.png" alt="">
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4 " />
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -12,7 +17,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" >
             @csrf
 
             <div>
@@ -44,5 +49,7 @@
                 </x-jet-button>
             </div>
         </form>
+    </div>
     </x-jet-authentication-card>
+
 </x-guest-layout>

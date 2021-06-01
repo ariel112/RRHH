@@ -56,8 +56,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            <table id="tablePermisosRRHH" class="table table-striped custom-table mb-0 ">
-                                <thead>
+                            <table id="tablePermisosRRHH" class="table ">
+                                <thead class="table-dark">
                                     <tr>
                                     <th class="font-weight-bold">Empleado</th>
                                     <th class="font-weight-bold">Tipo de permiso</th>

@@ -31,8 +31,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0" id="tbl_cargos">
-                        <thead>
+                    <table class="table " id="tbl_cargos">
+                        <thead class="table-dark">
                             <tr>
                                 {{-- <th>#</th> --}}
                                 <th>Puesto</th>

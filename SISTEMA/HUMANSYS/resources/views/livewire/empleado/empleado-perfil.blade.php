@@ -1,5 +1,6 @@
-
-    <div class="page-wrapper">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <div class="page-wrapper" style="background-image: url('../../assets/img/fondo-beca2.png');background-repeat: no-repeat;
+    background-size: cover;" >
         <style>
             input{
                 text-transform:uppercase;
@@ -20,7 +21,7 @@
                                         <div class="page-header">
                                             <div class="row">
                                                 <div class="col-sm-12">
-                                                    <h3 class="page-title">Perfil de Empleado <i class="far fa-user-circle"></i></h3>
+                                                    <h3 class="page-title animate__animated animate__bounce" >Perfil de Empleado <i class="far fa-user-circle"></i></h3>
                                                     <ul class="breadcrumb">
                                                         <li class="breadcrumb-item"><a>Dashboard</a></li>
                                                         <li class="breadcrumb-item active">Información</li>
@@ -44,7 +45,7 @@
                                         </div>
                                         <!-- /Page Header -->
 
-                                            <div class="card mb-0 ">
+                                            <div id="principalFicha" class="card mb-0 animate__animated animate__lightSpeedInLeft" style="opacity: 80%;">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-md-12">
@@ -139,7 +140,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card  tab-box">
+                                            <div class="card  tab-box" style="opacity: 80%;">
                                                 <div class="row user-tabs">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                                                         <ul class="nav nav-tabs nav-tabs-bottom">
@@ -157,8 +158,8 @@
                                                 <!----------------------------- Detalle completo de informacion -------------------------->
                                                 <div id="emp_informacion" class="pro-overview tab-pane fade show active">
                                                     <div class="row">
-                                                        <div class="col-md-6 d-flex">
-                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                        <div class="col-md-6 d-flex" style="opacity: 80%;">
+                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig">
                                                                 <div class="card-body">
                                                                     <h3 class="card-title">Información detallada <i class="fas fa-info-circle"></i></h3>
                                                                     <ul class="personal-info">
@@ -198,8 +199,8 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 d-flex">
-                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                        <div class="col-md-6 d-flex" style="opacity: 80%;">
+                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                 <div class="card-body">
                                                                     <h3 class="card-title">Información Gerencial <i class="fas fa-tasks"></i></h3>
                                                                     <ul class="personal-info">
@@ -246,7 +247,7 @@
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
                                                                 <div class="col-md-6 d-flex">
-                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info">
+                                                                    <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info" style="opacity: 80%;">
                                                                         <div class="card-body">
                                                                             @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                                                                 <div class="pro-edit"><a data-target="#edit_ref_modal" data-toggle="modal" class="edit-icon" href="#" onclick="cargoReferencia({{$referencia->id}})"><i class="fa fa-pencil"></i></a></div>
@@ -289,7 +290,7 @@
 
                                                 <!-- Funciones Tab -->
                                                 <div class="tab-pane fade" id="emp_funciones">
-                                                    <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info">
+                                                    <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info" style="opacity: 80%;">
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col-md-12">
@@ -339,7 +340,7 @@
                                                                 <form  id="formDeduccion" data-parsley-validate >
                                                                     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                                     {{-- <input name="idUser" type="text" value="{{ Auth::user()->id }}" style="display: none"> --}}
-                                                                        <div class="card shadow p-3 mb-5 bg-white rounded">
+                                                                        <div class="card shadow p-3 mb-5 bg-white rounded" >
                                                                             <div class="card-body">
                                                                                 <div class="row">
                                                                                     {{-- <div class="col-md-4">
@@ -403,7 +404,7 @@
 
                                                         <div class="row" id="grillDeducciones">
                                                                     <div class="col-md-6 d-flex">
-                                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning">
+                                                                        <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning" style="opacity: 80%;">
                                                                             <div class="card-body">
                                                                                 <div class="pro-edit">
                                                                                     <h3 class="card-title">Deducciones fijas</h3>
@@ -433,7 +434,9 @@
                                                                                                 <div class="title">Deduccion por {{ $item_dm->nombre}}:</div>
                                                                                                 <input type="hidden" name="nombre_deduccion_monto_editar" id="nombre_deduccion_monto_editar" value="{{ $item_dm->nombre}}">
                                                                                                 <div class="text">Lps. {{$item->monto_deduccion}}</div>
-                                                                                                <button type="button" class="btn btn-info btn-sm" style="display:flex; margin-left: auto;" onclick="cargarMontoEspecifico_editar({{ $item->empleado_id }}, {{ $item->deducciones_id }},{{ $item->monto_deduccion }}, '{{ $item_dm->nombre}}')">Cambiar monto de {{ $item_dm->nombre}}</button>
+                                                                                                @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
+                                                                                                    <button type="button" class="btn btn-info btn-sm" style="display:flex; margin-left: auto;" onclick="cargarMontoEspecifico_editar({{ $item->empleado_id }}, {{ $item->deducciones_id }},{{ $item->monto_deduccion }}, '{{ $item_dm->nombre}}')">Cambiar monto de {{ $item_dm->nombre}}</button>
+                                                                                                @endif
                                                                                             </li>
                                                                                         </ul>
 
@@ -481,7 +484,7 @@
                                                                     </div>
                                                                     @foreach ($deducciones_emps as $deduc)
                                                                         <div class="col-md-6 d-flex">
-                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif">
+                                                                            <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif" style="opacity: 80%;">
                                                                                 @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                                                                     <div class="dropdown profile-action">
                                                                                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{-- <i class="material-icons"></i> --}}<i class="fas fa-cog"></i></a>
@@ -1017,6 +1020,7 @@
     </div>
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <script>
         $('#formEditEmpleado').submit(function(e){
             e.preventDefault();

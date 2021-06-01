@@ -11,8 +11,8 @@
             <div class="col-md-12">
                 <div class="table-responsive">
 
-                    <table id="matrizAsistencia" class="table table-striped custom-table mb-0 " style="width:100%">
-                        <thead>
+                    <table id="matrizAsistencia" class="table" style="width:100%">
+                        <thead class="table-dark">
                             <tr>
 
                                 <th class="font-weight-bold">Entrada</th>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <!--fin tabla empleados------>
-       
+
         </div>
     </div>
 </div>
@@ -53,7 +53,7 @@
         //     columns: [
         //         { data: "nombre", name: "nombre" },
         //         { data: "identidad", name: "identidad" },
-        //         { data: "departamento", name: "departamento" },          
+        //         { data: "departamento", name: "departamento" },
         //         { data: "acciones",  name: "acciones",  orderable: false,  searchable: false,  },
         //     ],
         // });
@@ -63,7 +63,7 @@
                 "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
             },
             "paging": false,
-           
+
             ajax: "/matriz/empleado/asistencia",
 
             columns: [{
@@ -84,8 +84,8 @@
                 },
                 // { data: "acciones",  name: "seleccionar",  },
             ],
-           
-           
+
+
 
         });
     }

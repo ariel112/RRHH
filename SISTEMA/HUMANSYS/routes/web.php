@@ -56,7 +56,14 @@ Route::get('/', function () {
 Route::get('/envio', [EnvioController::class, 'index'] );
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    if(Auth::user()->id_tipo_user == 2){
+        $idUser = DB::SELECTONE("select * from empleado where identidad =".Auth::user()->identidad);
+
+       return redirect('/empleado/perfil/'.$idUser->id);
+    }else{
+        return view('dashboard');
+    }
+
 })->name('dashboard');
 
 

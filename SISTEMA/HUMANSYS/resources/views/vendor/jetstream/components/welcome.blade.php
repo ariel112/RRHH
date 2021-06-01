@@ -18,8 +18,8 @@
 					<!-- /Page Header -->
 
 					<div class="row">
-						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
-							<div class="card dash-widget">
+						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3 animate__animated animate__backInRight">
+							<div class="card dash-widget"style="opacity: 80%;">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
@@ -29,8 +29,8 @@
 			 					</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
-							<div class="card dash-widget">
+						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3 animate__animated animate__backInLeft">
+							<div class="card dash-widget"style="opacity: 80%;">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
@@ -40,8 +40,8 @@
 								</div>
 							</div>
 						</div>
-                        <div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
-							<div class="card dash-widget">
+                        <div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3  animate__animated animate__backInRight">
+							<div class="card dash-widget"style="opacity: 80%;">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-cubes"></i></span>
 									<div class="dash-widget-info">
@@ -51,8 +51,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3">
-							<div class="card dash-widget">
+						<div class="col-md-6 col-sm-4 col-lg-6 col-xl-6 col-xs-3 animate__animated animate__backInLeft">
+							<div class="card dash-widget "style="opacity: 80%;">
 								<div class="card-body">
 									<span class="dash-widget-icon"><i class="fa fa-user"></i></span>
 									<div class="dash-widget-info">
@@ -67,16 +67,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="row">
-								<div class="col-md-6 text-center">
-									<div class="card">
+								<div class="col-md-6 text-center"style="opacity: 80%;">
+									<div class="card animate__animated animate__fadeInUp">
 										<div class="card-body">
 											<h3 class="card-title">Asistencias frente a Inasistencias</h3>
 											<div id="barras-charts"></div>
 										</div>
 									</div>
 								</div>
-								<div class="col-md-6 text-center">
-									<div class="card">
+								<div class="col-md-6 text-center"style="opacity: 80%;">
+									<div class="card animate__animated animate__fadeInUp" >
 										<div class="card-body">
 											<h3 class="card-title">Planillas</h3>
 											<div id="lineas-charts"></div>
@@ -87,10 +87,10 @@
 						</div>
 					</div>
 
-					<div class="row">
+					{{-- <div class="row">
 						<div class="col-md-12">
 							<div class="card-group m-b-30">
-								<div class="card">
+								<div class="card"style="opacity: 80%;">
 									<div class="card-body">
 										<div class="d-flex justify-content-between mb-3">
 											<div>
@@ -163,7 +163,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> --}}
 
 					{{-- <!-- Statistics Widget -->
 					<div class="row">

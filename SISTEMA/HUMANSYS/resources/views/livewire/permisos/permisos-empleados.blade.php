@@ -52,13 +52,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="empleadoListado" class="table table-striped custom-table mb-0 ">
-                        <thead>
-                            <tr>                             
+                    <table id="empleadoListado" class="table">
+                        <thead class="table-dark">
+                            <tr>
                                     <th class="font-weight-bold">Tipo de permiso</th>
                                     <th class="font-weight-bold">Fecha de inicio</th>
-                                    <th class="font-weight-bold">Fecha final</th>                                
-                                    <th class="font-weight-bold">Motivo</th>                                
+                                    <th class="font-weight-bold">Fecha final</th>
+                                    <th class="font-weight-bold">Motivo</th>
                                     <th class="font-weight-bold">Aprobacion de jefe inmediato</th>
                                     <th class="font-weight-bold">Encargado de Departamento</th>
                                     <th class="font-weight-bold">Aprobacion de Talento Humano</th>
@@ -70,7 +70,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                          
+
                         </tbody>
                     </table>
                 </div>
@@ -94,7 +94,7 @@
                         <div class="form-group">
                             <label>Tipo de permiso <span class="text-danger">*</span></label>
                             <select id="permisosEmpleado" class="select">
-                          
+
                                 <!-- <option>Select Leave Type</option>
                                 <option>Casual Leave 12 Days</option>
                                 <option>Medical Leave</option>
@@ -168,7 +168,7 @@
                     <form id="permisoEdit">
                         <div class="form-group">
                             <label>Leave Type <span class="text-danger">*</span></label>
-                            <select id="selectEdit" class="select" onclick="opciones()">                                
+                            <select id="selectEdit" class="select" onclick="opciones()">
                             </select>
                         </div>
                         <div class="form-group">
@@ -196,7 +196,7 @@
                             </div>
 
                         </div>
-                    
+
                         <div class="form-group">
                             <label>Motivo<span class="text-danger">*</span></label>
                             <textarea id="motivoEdit" rows="4" class="form-control"></textarea>

@@ -51,8 +51,8 @@
             <div class="col-md-12">
                 <div class="table-responsive">
 
-                    <table id="tablaEmpleadosSalidas" class="table table-striped custom-table mb-0 " style="width:100%">
-                        <thead>
+                    <table id="tablaEmpleadosSalidas" class="table" style="width:100%">
+                        <thead class="table-dark">
                             <tr>
 
                                 <th class="font-weight-bold">Nombre empleado</th>
@@ -92,7 +92,7 @@
         //     columns: [
         //         { data: "nombre", name: "nombre" },
         //         { data: "identidad", name: "identidad" },
-        //         { data: "departamento", name: "departamento" },          
+        //         { data: "departamento", name: "departamento" },
         //         { data: "acciones",  name: "acciones",  orderable: false,  searchable: false,  },
         //     ],
         // });
@@ -130,7 +130,7 @@
                 selector: 'td:first-child'
             },
             buttons: [{
-                text: 'Guarar',
+                text: 'GUARDAR',
                 action: function() {
 
 
@@ -163,7 +163,7 @@
                         return;
                     }
 
-                  
+
 
 
 
@@ -213,7 +213,7 @@
 
                     })
 
-                  
+
                     ///guardar/empleados/medio/dia
                     // events.prepend( '<div>'+count+' row(s) selected</div>' );
 

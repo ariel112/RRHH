@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- /Page Header -->
-        <div class="card shadow p-3 mb-5 bg-primary rounded">
+        <div class="card shadow p-3 mb-5 bg-primary rounded"style="opacity: 60%;">
             <div class="card-body " style="padding: auto">
                 <div class="date " >
                     <h1 style="color:white;">
