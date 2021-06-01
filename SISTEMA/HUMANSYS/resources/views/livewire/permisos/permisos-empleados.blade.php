@@ -21,7 +21,7 @@
         <!-- /Page Header -->
 
         <!-- Leave Statistics -->
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-3">
                 <div class="stats-info">
                     <h6>Vacaciones Anuales</h6>
@@ -46,7 +46,7 @@
                     <h4>5</h4>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- /Leave Statistics -->
 
         <div class="row">
