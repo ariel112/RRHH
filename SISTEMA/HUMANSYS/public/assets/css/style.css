@@ -1318,7 +1318,8 @@ table.dataTable thead > tr > td.sorting {
 -----------------------*/
 
 .sidebar {
-    background-color: #34444c;
+    /* background-color: #34444c; */
+    background-color: #154360;
     border-right: 1px solid transparent;
     bottom: 0;
     left: 0;
