@@ -247,6 +247,7 @@
                             @endif
 						</ul>
 					</div>
+                    <img src="" alt="">
                 </div>
             </div>
 </div>
