@@ -240,7 +240,7 @@
                             @endif
                             @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                 <li class="submenu">
-                                    <a href="#"><i class="la la-money"></i> <span> Nominas de sueldos </span> <span class="menu-arrow"></span></a>
+                                    <a href="#"><i class="la la-money"></i> <span> Nóminas de sueldos </span> <span class="menu-arrow"></span></a>
                                     <ul style="display: none;">
                                         {{-- <li><a href="{{ route('planilla.index') }}" :active="request()->routeIs('planilla.index')"> Planillas</a></li> --}}
                                         <li><a href="{{route('generar.index')}}"> Generar Planilla </a></li>
