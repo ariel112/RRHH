@@ -246,7 +246,7 @@
                                                     <div class="row">
                                                         @foreach($referencias as $referencia)
                                                             @if ($referencia->estatus_referencia_id == 1)
-                                                                <div class="col-md-6 d-flex">
+                                                                <div class="col-md-6 d-flex" style="opacity: 80%;">
                                                                     <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                         <div class="card-body">
                                                                             @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
@@ -289,11 +289,11 @@
                                                 <!------------------------- /Detalle completo de informacion ---------------------------------->
 
                                                 <!-- Funciones Tab -->
-                                                <div class="tab-pane fade" id="emp_funciones">
+                                                <div class="tab-pane fade" id="emp_funciones" style="opacity: 80%;">
                                                     <div class="card mb-0 shadow-lg p-3 mb-5 bg-white rounded border border-info animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                         <div class="card-body">
                                                             <div class="row">
-                                                                <div class="col-md-12">
+                                                                <div class="col-md-12" >
                                                                     <div class="profile-view">
                                                                         <div class="profile-basic">
                                                                             <div class="row">
@@ -402,7 +402,7 @@
                                                     @endif
 
                                                         <div class="row" id="grillDeducciones">
-                                                                    <div class="col-md-6 d-flex">
+                                                                    <div class="col-md-6 d-flex" style="opacity: 80%;">
                                                                         <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-warning animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                             <div class="card-body">
                                                                                 <div class="pro-edit">
@@ -482,7 +482,7 @@
                                                                         </div>
                                                                     </div>
                                                                     @foreach ($deducciones_emps as $deduc)
-                                                                        <div class="col-md-6 d-flex">
+                                                                        <div class="col-md-6 d-flex" style="opacity: 80%;">
                                                                             <div class="card profile-box flex-fill shadow p-3 mb-5 bg-white rounded border border-success  @if($deduc->estado == 1)border-success  @elseif($deduc->estado == 0) border-danger @endif animate__animated animate__fadeInUpBig" style="opacity: 80%;">
                                                                                 @if (Auth::user()->id_tipo_user == 1 || Auth::user()->id_tipo_user == 3)
                                                                                     <div class="dropdown profile-action">

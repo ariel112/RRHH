@@ -399,6 +399,7 @@ var campos_max = 16;   //max de 10 campos
 
               CierraPopup(modalID);
               alert_bien();
+              location.reload();
               $('#tbl_cargos').DataTable().ajax.reload();
 
             },
@@ -512,7 +513,7 @@ function editar() {
                 $('#tbl_cargos').DataTable().ajax.reload();
               CierraPopup(modalID);
               alert_edit();
-
+              location.reload();
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
