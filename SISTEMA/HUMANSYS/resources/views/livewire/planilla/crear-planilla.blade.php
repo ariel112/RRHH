@@ -2,7 +2,7 @@
 
     <!-- Page Content -->
     <div class="content container-fluid">
-        <div class="w-50 animate__animated animate__fadeInUpBig" style="padding-top:10%; margin:auto; opacity:80%;">
+        <div class=" animate__animated animate__fadeInUpBig" style="padding-top:10%; margin:auto; opacity:80%;">
             <div class="card shadow p-3 mb-5 bg-white rounded border border-info" style="opacity:80%;">
                 <div class="card-header">
                     <h5 class="card-title">Planilla Catorcenal</h5>

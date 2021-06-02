@@ -16,7 +16,7 @@
     <div class="row staff-grid-row">
         @if($empleados->count())
             @foreach($empleados as $empleado)
-                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3" style="opacity: 80%;">
+                <div class="col-md-4 col-sm-6 col-12 col-lg-4 col-xl-3 animate__animated animate__flipInX" style="opacity: 80%;">
                     <div class="profile-widget">
                         <div class="profile-img">
                             <a href="{{ route('empleado.perfil',$empleado->id) }}" class="avatar" {{-- onclick="enviarId({{$empleado->id}})" --}}><img src="assets/img/user.jpg" alt="" ></a>
