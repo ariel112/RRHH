@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table id="tablePermisosJefe" class="table">
+                        <table id="tablePermisosJefe" class="table animate__animated animate__bounceInUp">
                             <thead class="table-dark">
                                 <tr>
                                     <th class="font-weight-bold">Empleado</th>

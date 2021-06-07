@@ -20,6 +20,7 @@ class MatrisAsistencia extends Component
 
     public function obtenerMatriz(){
         try{
+
             $identidadUser = Auth::user()->identidad;
             $idEmpleado = empleado::where('identidad', '=', $identidadUser)
             ->select('id')

@@ -36,7 +36,7 @@
             </div>
         </div>
 
-        <table class="table" id="tblMarcaje">
+        <table class="table animate__animated animate__bounceInUp" id="tblMarcaje">
             <thead class="table-dark">
                 <tr>
                     <th> <b>ID</b> </th>

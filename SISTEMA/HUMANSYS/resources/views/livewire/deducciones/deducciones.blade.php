@@ -48,7 +48,7 @@
                 <div class="col-auto float-right ml-auto">
                     <a  class="btn btn-success text-white" data-toggle="modal" data-target="#add_techo" ><i class="fa fa-plus"></i>Agregar Techo</a>
                 </div>
-                <table class="table table-striped custom-table mb-0" id="techos">
+                <table class="table table-striped custom-table mb-0 animate__animated animate__bounceInUp" id="techos">
                     <thead>
                         <tr>
                             <th> <b>PORCENTAJE</b> </th>

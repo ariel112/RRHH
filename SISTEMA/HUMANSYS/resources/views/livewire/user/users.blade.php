@@ -15,7 +15,7 @@
             </div>
         </div>
         <br>
-        <table class="table" id="tblusuarios">
+        <table class="table animate__animated animate__bounceInUp" id="tblusuarios">
             <thead class="table-dark">
                 <tr>
                     <th> <b>NOMBRE</b> </th>

@@ -60,7 +60,7 @@
                                 </div>
                             </div>
 
-                                <button type="button" class="btn btn-success mt-4" onclick="ejecutarPlanilla()">Generar</button>
+                                <button type="button" class="btn btn-success btn-block mt-4" onclick="ejecutarPlanilla()">Generar</button>
                         </form>
                     </div>
                 </div>

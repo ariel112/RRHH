@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table id="tbl_contrato" class="table">
+                    <table id="tbl_contrato" class="table animate__animated animate__bounceInUp">
                         <thead class="table-dark">
                             <tr>
                                 <th># Contrato</th>

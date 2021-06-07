@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="table-responsive">
 
-                    <table id="matrizAsistencia" class="table" style="width:100%">
+                    <table id="matrizAsistencia" class="table animate__animated animate__bounceInUp" style="width:100%">
                         <thead class="table-dark">
                             <tr>
 

@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="table-responsive">
 
-            <table class="table " id="myTable">
+            <table class="table animate__animated animate__bounceInUp" id="myTable">
                 <thead class="table-dark">
                     <tr>
                         <th>Empleado</th>

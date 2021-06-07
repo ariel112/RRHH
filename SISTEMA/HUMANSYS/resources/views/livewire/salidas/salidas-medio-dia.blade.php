@@ -51,7 +51,7 @@
             <div class="col-md-12">
                 <div class="table-responsive">
 
-                    <table id="tablaEmpleadosSalidas" class="table" style="width:100%">
+                    <table id="tablaEmpleadosSalidas" class="table animate__animated animate__bounceInUp" style="width:100%">
                         <thead class="table-dark">
                             <tr>
 

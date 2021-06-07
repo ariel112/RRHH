@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table mb-0" id="deducciones">
+                    <table class="table table-striped custom-table mb-0 animate__animated animate__bounceInUp"  id="deducciones">
                         <thead>
                             <tr>
                                 <th> <b>PERFIL</b> </th>

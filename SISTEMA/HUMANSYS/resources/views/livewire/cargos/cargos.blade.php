@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table " id="tbl_cargos">
+                    <table class="table animate__animated animate__bounceInUp" id="tbl_cargos">
                         <thead class="table-dark">
                             <tr>
                                 {{-- <th>#</th> --}}

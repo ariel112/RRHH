@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <table class="table" id="tbltipodeduc">
+        <table class="table animate__animated animate__bounceInUp" id="tbltipodeduc ">
             <thead class="table-dark">
                 <tr>
                     <th> <b>ID</b> </th>

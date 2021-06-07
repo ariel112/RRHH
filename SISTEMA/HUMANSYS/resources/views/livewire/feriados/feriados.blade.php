@@ -16,21 +16,23 @@
             </div>
         </div>
         <!-- /Page Header -->
-        <table class="table" id="tblFeriados">
-            <thead class="table-dark">
-                <tr>
-                    <th> <b>ID</b> </th>
-                    <th> <b>FECHA</b> </th>
-                    <th> <b>MOTIVO</b>  </th>
-                    <th> <b>REGISTRADO POR</b>  </th>
-                    <th> <b>ESTADO</b>  </th>
-                    <th> <b>ACCIONES</b>  </th>
-                </tr>
-            </thead>
-            <tbody>
 
-            </tbody>
-        </table>
+            <table class="table animate__animated animate__bounceInUp" id="tblFeriados">
+                <thead class="table-dark">
+                    <tr>
+                        <th> <b>ID</b> </th>
+                        <th> <b>FECHA</b> </th>
+                        <th> <b>MOTIVO</b>  </th>
+                        <th> <b>REGISTRADO POR</b>  </th>
+                        <th> <b>ESTADO</b>  </th>
+                        <th> <b>ACCIONES</b>  </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
 
         <div class="modal custom-modal fade" id="modalAddFeriado" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">

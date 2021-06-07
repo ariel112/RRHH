@@ -1,8 +1,8 @@
 <div class="page-wrapper">
-			
+
     <!-- Page Content -->
     <div class="content container-fluid">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <div class="row align-items-center">
@@ -13,7 +13,7 @@
                         <li class="breadcrumb-item active">Salario</li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
         <!-- /Page Header -->
@@ -23,15 +23,15 @@
                       <b><i class="fa fa-calendar-alt  fa-2x" ></i> <b style="font-size: 25px;">Inicio y Final:</b></b>
                     </label>
                     <input style="border: 2px solid #2aab2a" type="text" name="start_end" class="form-control" id="rangoPeriodo">
-                </div> 
+                </div>
         </div>
         <br>
-     
-        
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-striped custom-table datatable">
+                    <table class="table table-striped custom-table datatable animate__animated animate__bounceInUp">
                         <thead>
                             <tr>
                                 <th>EMPLEADO</th>
@@ -43,7 +43,7 @@
                                 <th>ISR</th>
                                 <th>IHSS</th>
                                 <th>LLEGADAS TARDE</th>
-                                <th>OTRAS DEDUCCIONES</th>                             
+                                <th>OTRAS DEDUCCIONES</th>
                                 <th>TOTAL DEDUCCIONES</th>
                                 <th>TOTAL A PAGAR</th>
                                 <th>Voucher</th>
@@ -80,8 +80,8 @@
                                     </div>
                                 </td>
                             </tr>
-                        
-                            
+
+
                         </tbody>
                     </table>
                 </div>
@@ -89,7 +89,7 @@
         </div>
     </div>
     <!-- /Page Content -->
-    
+
     <!-- Add Salary Modal -->
     <div id="add_salary" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -102,23 +102,23 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="row"> 
-                            <div class="col-sm-6"> 
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Select Staff</label>
-                                    <select class="select"> 
+                                    <select class="select">
                                         <option>John Doe</option>
                                         <option>Richard Miles</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6"> 
+                            <div class="col-sm-6">
                                 <label>Net Salary</label>
                                 <input class="form-control" type="text">
                             </div>
                         </div>
-                        <div class="row"> 
-                            <div class="col-sm-6"> 
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <h4 class="text-primary">Earnings</h4>
                                 <div class="form-group">
                                     <label>Basic</label>
@@ -152,12 +152,12 @@
                                     <a href="#"><i class="fa fa-plus-circle"></i> Add More</a>
                                 </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <h4 class="text-primary">Deductions</h4>
                                 <div class="form-group">
                                     <label>TDS</label>
                                     <input class="form-control" type="text">
-                                </div> 
+                                </div>
                                 <div class="form-group">
                                     <label>ESI</label>
                                     <input class="form-control" type="text">
@@ -196,7 +196,7 @@
         </div>
     </div>
     <!-- /Add Salary Modal -->
-    
+
     <!-- Edit Salary Modal -->
     <div id="edit_salary" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -209,23 +209,23 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="row"> 
-                            <div class="col-sm-6"> 
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Select Staff</label>
-                                    <select class="select"> 
+                                    <select class="select">
                                         <option>John Doe</option>
                                         <option>Richard Miles</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-sm-6"> 
+                            <div class="col-sm-6">
                                 <label>Net Salary</label>
                                 <input class="form-control" type="text" value="$4000">
                             </div>
                         </div>
-                        <div class="row"> 
-                            <div class="col-sm-6"> 
+                        <div class="row">
+                            <div class="col-sm-6">
                                 <h4 class="text-primary">Earnings</h4>
                                 <div class="form-group">
                                     <label>Basic</label>
@@ -254,14 +254,14 @@
                                 <div class="form-group">
                                     <label>Others</label>
                                     <input class="form-control" type="text">
-                                </div>  
+                                </div>
                             </div>
-                            <div class="col-sm-6">  
+                            <div class="col-sm-6">
                                 <h4 class="text-primary">Deductions</h4>
                                 <div class="form-group">
                                     <label>TDS</label>
                                     <input class="form-control" type="text" value="$300">
-                                </div> 
+                                </div>
                                 <div class="form-group">
                                     <label>ESI</label>
                                     <input class="form-control" type="text" value="$20">
@@ -301,7 +301,7 @@
         </div>
     </div>
     <!-- /Edit Salary Modal -->
-    
+
     <!-- Delete Salary Modal -->
     <div class="modal custom-modal fade" id="delete_salary" role="dialog">
         <div class="modal-dialog modal-dialog-centered">
@@ -326,6 +326,5 @@
         </div>
     </div>
     <!-- /Delete Salary Modal -->
-    
+
 </div>
- 
