@@ -25,15 +25,15 @@ class MatrisAsistencia extends Component
             ->select('id')
             ->get();
             $id = $idEmpleado[0]['id'];
+            $sinRegistros = "'No existen registros'";
+            $matriz = DB::SELECT('select  IF(entrada_real is null, '.$sinRegistros.' ,entrada_real) as entrada,IF(salida_real is null, '.$sinRegistros.' ,salida_real)  as salida, IF(minutos_tarde is null, 0,minutos_tarde ) as minutos_tarde , monto_deduccion from asistencia where empleado_id ='.$id);
 
-            $matriz = DB::SELECT('select entrada_real as entrada, salida_real as salida, IF(minutos_tarde is null, 0,minutos_tarde ) as minutos_tarde , monto_deduccion from asistencia where empleado_id ='.$id);
-            
              return response()->json(['data'=>$matriz],200);
         }catch(QueryException $e){
-            
+
              return response()->json([
-            'error'=>$e, 
+            'error'=>$e,
             ],402); }
         }
-    
+
 }
