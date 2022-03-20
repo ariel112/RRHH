@@ -90,13 +90,13 @@ class Kernel extends ConsoleKernel
                               FORMAT(Checkinout.CheckTime, 'yyyy-MM-dd'),' 17:00:00'
                             )
                     ) as salida_fija,
-                    FORMAT(Checkinout.CheckTime, 'yyyy-MM-dd ') as fecha_dia_salida
+                    FORMAT(Checkinout.CheckTime, 'yyyy-MM-dd') as fecha_dia_salida
                     from Checkinout inner join Userinfo
                     on Userinfo.Userid = Checkinout.Userid
                     where CheckType = 1
                     and Userinfo.Duty is not null
                     and Userinfo.Duty <>''
-                    and FORMAT(Checkinout.CheckTime, 'yyyy-MM-dd ') = FORMAT(getDate() , 'yyyy-MM-dd ')
+                    and FORMAT(Checkinout.CheckTime, 'yyyy-MM-dd') = FORMAT(getDate() , 'yyyy-MM-dd')
                     order by Checkinout.CheckTime ASC ;");
 
                     foreach($datosReloj as $datos){

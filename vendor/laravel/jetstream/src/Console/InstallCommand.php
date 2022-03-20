@@ -121,11 +121,10 @@ class InstallCommand extends Command
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
             return [
-                '@tailwindcss/forms' => '^0.2.1',
-                '@tailwindcss/typography' => '^0.3.0',
+                '@tailwindcss/forms' => '^0.3.1',
+                '@tailwindcss/typography' => '^0.4.0',
                 'alpinejs' => '^2.7.3',
-                'autoprefixer' => '^10.0.2',
-                'postcss-import' => '^12.0.1',
+                'postcss-import' => '^14.0.1',
                 'tailwindcss' => '^2.0.1',
             ] + $packages;
         });
@@ -158,6 +157,9 @@ class InstallCommand extends Command
 
         // Models...
         copy(__DIR__.'/../../stubs/app/Models/User.php', app_path('Models/User.php'));
+
+        // Factories...
+        copy(__DIR__.'/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
 
         // Actions...
         copy(__DIR__.'/../../stubs/app/Actions/Fortify/CreateNewUser.php', app_path('Actions/Fortify/CreateNewUser.php'));
@@ -275,7 +277,6 @@ EOF;
                 '@tailwindcss/typography' => '^0.3.0',
                 'postcss-import' => '^12.0.1',
                 'tailwindcss' => '^2.0.1',
-                'autoprefixer' => '^10.0.2',
                 'vue' => '^3.0.5',
                 '@vue/compiler-sfc' => '^3.0.5',
                 'vue-loader' => '^16.1.2',
@@ -330,6 +331,9 @@ EOF;
 
         // Models...
         copy(__DIR__.'/../../stubs/app/Models/User.php', app_path('Models/User.php'));
+
+        // Factories...
+        copy(__DIR__.'/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
 
         // Actions...
         copy(__DIR__.'/../../stubs/app/Actions/Fortify/CreateNewUser.php', app_path('Actions/Fortify/CreateNewUser.php'));
