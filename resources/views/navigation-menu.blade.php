@@ -268,7 +268,7 @@
                     </div>
 
                 </div>
-                <img style="display:block; margin-top:-60%; margin-left:5%;" src="../../assets/img/logo_becas_sidebar.png" alt="">
+                <img style="display:block; margin-top:-60%; margin-left:5%;" width="90%" height="90%"src="img/illud-texto.png" alt="">
             </div>
 
 </div>

@@ -1149,10 +1149,10 @@ table.dataTable thead > tr > td.sorting {
 
 .header {
 	background: #000428;
-	background: -moz-linear-gradient(left, #004e92 0%, #000428 100%);
-	background: -webkit-linear-gradient(left, #004e92 0%, #004e92 100%);
-	background: -ms-linear-gradient(left, #004e92 0%, #000428 100%);
-	background: linear-gradient(to right, #000428 0%, #004e92 100%);
+	background: -moz-linear-gradient(left, #00922c 0%, #002803 100%);
+	background: -webkit-linear-gradient(left, #00922c 0%, #002803 100%);
+	background: -ms-linear-gradient(left, #00922c 0%, #002803 100%);
+	background: linear-gradient(to right, #00922c 0%, #002803 100%);
     /* background: #000428;
     background: -webkit-linear-gradient(to top, #004e92, #000428);
     background: linear-gradient(to top, #004e92, #000428); */
@@ -1323,8 +1323,8 @@ table.dataTable thead > tr > td.sorting {
 .sidebar {
     /* background-color: #34444c; */
     background: #000428;
-    background: -webkit-linear-gradient(to top, #004e92, #000428);
-    background: linear-gradient(to top, #004e92, #000428);
+    background: -webkit-linear-gradient(to top, #0eac55, #04270f);
+    background: linear-gradient(to top, #0cc760, #052b07);
     border-right: 1px solid transparent;
     bottom: 0;
     left: 0;
